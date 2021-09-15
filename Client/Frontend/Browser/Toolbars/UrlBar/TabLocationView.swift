@@ -193,14 +193,15 @@ class TabLocationView: UIView {
         button.accessibilityIdentifier = "urlBar-shieldsButton"
         return button
     }()
-    
-    lazy var rewardsButton: RewardsButton = {
-        let button = RewardsButton()
-        button.addTarget(self, action: #selector(didClickBraveRewardsButton), for: .touchUpInside)
-        let longPressGestureRewardsButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressRewardsButton(_:)))
-        button.addGestureRecognizer(longPressGestureRewardsButton)
-        return button
-    }()
+  
+    // MS comment out brave rewards
+//    lazy var rewardsButton: RewardsButton = {
+//        let button = RewardsButton()
+//        button.addTarget(self, action: #selector(didClickBraveRewardsButton), for: .touchUpInside)
+//        let longPressGestureRewardsButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressRewardsButton(_:)))
+//        button.addGestureRecognizer(longPressGestureRewardsButton)
+//        return button
+//    }()
     
     lazy var separatorLine: UIView = CustomSeparatorView(lineSize: .init(width: 1, height: 26), cornerRadius: 2).then {
         $0.backgroundColor = .braveSeparator
@@ -224,11 +225,12 @@ class TabLocationView: UIView {
         addGestureRecognizer(longPressRecognizer)
         addGestureRecognizer(tapRecognizer)
         
-        var optionSubviews = [readerModeButton, playlistButton, reloadButton, separatorLine, shieldsButton]
+        let optionSubviews = [readerModeButton, playlistButton, reloadButton, separatorLine, shieldsButton]
         separatorLine.isUserInteractionEnabled = false
         
-        // MD position of rewards button
-        optionSubviews.append(rewardsButton)
+        // MS position of rewards button
+        // MS comment out brave rewards
+//        optionSubviews.append(rewardsButton)
         
         let buttonContentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         optionSubviews.forEach {

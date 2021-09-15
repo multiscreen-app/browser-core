@@ -48,35 +48,37 @@ class OnboardingNavigationController: UINavigationController {
         /// Returns a list of onboarding screens for given type.
         /// Screens should be sorted in order of which they are presented to the user.
         fileprivate var screens: [Screens] {
-            if BraveRewards.isAvailable {
-                switch self {
-                case .newUser(let progress):
-                    // The user already made it to rewards and agreed so they should only see ads countdown
-                    if progress == .rewards {
-                        return [.rewardsAgreement]
-                    }
-                    
-                    var newUserScreens: [Screens] = [.searchEnginePicker, .shieldsInfo, .rewardsAgreement]
-                    
-                    // FIXME: Update to iOS14 clipboard api once ready (#2838)
-                    if Preferences.URP.referralCode.value == nil && UIPasteboard.general.hasStrings {
-                        newUserScreens.insert(.privacyConsent, at: 0)
-                    }
-                    
-                    return newUserScreens
-                case .existingUserRewardsOff(let progress):
-                    // The user already made it to rewards and agreed so they should only see ads countdown
-                    if progress == .rewards {
-                        return []
-                    }
-                    return [.rewardsAgreement]
-                }
-            } else {
-                switch self {
-                case .newUser: return [.searchEnginePicker, .shieldsInfo]
-                case .existingUserRewardsOff: return []
-                }
+            // MS new user onboarding screen
+            // MS comment out brave rewards
+//            if BraveRewards.isAvailable {
+//                switch self {
+//                case .newUser(let progress):
+//                    // The user already made it to rewards and agreed so they should only see ads countdown
+//                    if progress == .rewards {
+//                        return [.rewardsAgreement]
+//                    }
+//
+//                    var newUserScreens: [Screens] = [.searchEnginePicker, .shieldsInfo, .rewardsAgreement]
+//
+//                    // FIXME: Update to iOS14 clipboard api once ready (#2838)
+//                    if Preferences.URP.referralCode.value == nil && UIPasteboard.general.hasStrings {
+//                        newUserScreens.insert(.privacyConsent, at: 0)
+//                    }
+//
+//                    return newUserScreens
+//                case .existingUserRewardsOff(let progress):
+//                    // The user already made it to rewards and agreed so they should only see ads countdown
+//                    if progress == .rewards {
+//                        return []
+//                    }
+//                    return [.rewardsAgreement]
+//                }
+//            } else {
+            switch self {
+            case .newUser: return [.searchEnginePicker, .shieldsInfo]
+            case .existingUserRewardsOff: return []
             }
+//            }
         }
     }
     

@@ -129,23 +129,24 @@ extension BrowserViewController: OnboardingControllerDelegate {
         Preferences.General.basicOnboardingCompleted.value = OnboardingState.completed.rawValue
         Preferences.General.basicOnboardingNextOnboardingPrompt.value = nil
         
-        if BraveRewards.isAvailable {
-            switch onboardingController.onboardingType {
-            case .newUser:
-                Preferences.General.basicOnboardingProgress.value = OnboardingProgress.rewards.rawValue
-            default:
-                break
-            }
-        } else {
-            switch onboardingController.onboardingType {
-            case .newUser:
-                Preferences.General.basicOnboardingProgress.value = OnboardingProgress.searchEngine.rawValue
-            case .existingUserRewardsOff:
-                break
-            default:
-                break
-            }
+        // MS comment out brave rewards
+//        if BraveRewards.isAvailable {
+//            switch onboardingController.onboardingType {
+//            case .newUser:
+//                Preferences.General.basicOnboardingProgress.value = OnboardingProgress.rewards.rawValue
+//            default:
+//                break
+//            }
+//        } else {
+        switch onboardingController.onboardingType {
+        case .newUser:
+            Preferences.General.basicOnboardingProgress.value = OnboardingProgress.searchEngine.rawValue
+        case .existingUserRewardsOff:
+            break
+        default:
+            break
         }
+//        }
         
         dismissOnboarding(onboardingController)
     }

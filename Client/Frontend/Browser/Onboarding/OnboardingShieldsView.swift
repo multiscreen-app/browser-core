@@ -74,17 +74,18 @@ extension OnboardingShieldsViewController {
         }
         
         override init(frame: CGRect) {
-            if BraveRewards.isAvailable {
-                continueButton = CommonViews.primaryButton(text: Strings.OBContinueButton).then {
-                    $0.accessibilityIdentifier = "OnboardingShieldsViewController.ContinueButton"
-                    $0.titleLabel?.minimumScaleFactor = 0.75
-                }
-            } else {
-                continueButton = CommonViews.primaryButton(text: Strings.OBFinishButton).then {
-                    $0.accessibilityIdentifier = "OnboardingShieldsViewController.FinishButton"
-                    $0.titleLabel?.minimumScaleFactor = 0.75
-                }
+            // MS comment out brave rewards
+//            if BraveRewards.isAvailable {
+//                continueButton = CommonViews.primaryButton(text: Strings.OBContinueButton).then {
+//                    $0.accessibilityIdentifier = "OnboardingShieldsViewController.ContinueButton"
+//                    $0.titleLabel?.minimumScaleFactor = 0.75
+//                }
+//            } else {
+            continueButton = CommonViews.primaryButton(text: Strings.OBFinishButton).then {
+                $0.accessibilityIdentifier = "OnboardingShieldsViewController.FinishButton"
+                $0.titleLabel?.minimumScaleFactor = 0.75
             }
+//            }
             
             super.init(frame: frame)
             

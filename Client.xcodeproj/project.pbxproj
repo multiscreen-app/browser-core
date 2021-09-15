@@ -5756,8 +5756,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"$SRCROOT/swiftlint.sh\"\n\n";
+			shellPath = /bin/bash;
+			shellScript = "if ! command -v npm &> /dev/null\nthen\n    export PATH=$HOME/homebrew/bin:$PATH\nfi\nsh \"$SRCROOT/swiftlint.sh\"\n\n";
 		};
 		27C2856425D5CDEF00429881 /* Fix MaterialComponents Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5798,8 +5798,8 @@
 				"$(SRCROOT)/Client/Assets/AllFramesAtDocumentEndSandboxed.js",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "npm run build\n";
+			shellPath = /bin/bash;
+			shellScript = "if ! command -v npm &> /dev/null\nthen\n    export PATH=$HOME/homebrew/bin:$PATH\nfi\nnpm run build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

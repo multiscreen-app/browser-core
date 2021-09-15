@@ -226,15 +226,16 @@ class BrowserViewController: UIViewController {
             }
         }
         rewards = BraveRewards(configuration: configuration, buildChannel: buildChannel)
-        if !BraveRewards.isAvailable {
-            // Disable rewards services in case previous user already enabled
-            // rewards in previous build
-            rewards.isEnabled = false
-        } else {
-            if rewards.isEnabled && !Preferences.Rewards.rewardsToggledOnce.value {
-                Preferences.Rewards.rewardsToggledOnce.value = true
-            }
+        // MS comment out brave rewards
+//        if !BraveRewards.isAvailable {
+//            // Disable rewards services in case previous user already enabled
+//            // rewards in previous build
+//            rewards.isEnabled = false
+//        } else {
+        if rewards.isEnabled && !Preferences.Rewards.rewardsToggledOnce.value {
+            Preferences.Rewards.rewardsToggledOnce.value = true
         }
+//        }
         deviceCheckClient = DeviceCheckClient(environment: configuration.ledgerEnvironment)
         
         if Locale.current.regionCode == "JP" {
