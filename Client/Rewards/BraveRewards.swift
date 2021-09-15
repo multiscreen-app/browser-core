@@ -11,12 +11,14 @@ import Combine
 class BraveRewards: NSObject {
     
     /// Whether or not Brave Rewards is available/can be enabled
+    // MS disable brave awards
     public static var isAvailable: Bool {
-        #if MOZ_CHANNEL_DEBUG
-        return true
-        #else
-        return DCDevice.current.isSupported
-        #endif
+        return false
+//        #if MOZ_CHANNEL_DEBUG
+//        return true
+//        #else
+//        return DCDevice.current.isSupported
+//        #endif
     }
     
     private(set) var ads: BraveAds

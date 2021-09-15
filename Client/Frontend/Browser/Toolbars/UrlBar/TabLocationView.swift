@@ -227,6 +227,7 @@ class TabLocationView: UIView {
         var optionSubviews = [readerModeButton, playlistButton, reloadButton, separatorLine, shieldsButton]
         separatorLine.isUserInteractionEnabled = false
         
+        // MD position of rewards button
         optionSubviews.append(rewardsButton)
         
         let buttonContentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
