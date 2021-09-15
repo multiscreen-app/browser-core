@@ -549,8 +549,8 @@ extension BrowserViewController: ToolbarDelegate {
         let initialHeight: CGFloat = selectedTabURL != nil ? 470 : 420
         let menuController = MenuViewController(initialHeight: initialHeight, content: { menuController in
             VStack(spacing: 6) {
-                featuresMenuSection(menuController)
-                Divider()
+//                featuresMenuSection(menuController)
+//                Divider()
                 destinationMenuSection(menuController)
                 if let tabURL = selectedTabURL {
                     Divider()

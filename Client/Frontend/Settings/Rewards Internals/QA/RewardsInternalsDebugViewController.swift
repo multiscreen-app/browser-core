@@ -58,13 +58,13 @@ class RewardsInternalsDebugViewController: TableViewController {
                     Row(text: Strings.RewardsInternals.walletCreationDate, detailText: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(info.bootStamp))))
                 ]
             ),
-            .init(
-                header: .title(Strings.RewardsInternals.deviceInfoHeader),
-                rows: [
-                    Row(text: Strings.RewardsInternals.status, detailText: DCDevice.current.isSupported ? Strings.RewardsInternals.supported : Strings.RewardsInternals.notSupported),
-                    Row(text: Strings.RewardsInternals.enrollmentState, detailText: DeviceCheckClient.isDeviceEnrolled() ? Strings.RewardsInternals.enrolled : Strings.RewardsInternals.notEnrolled)
-                ]
-            )
+//            .init(
+//                header: .title(Strings.RewardsInternals.deviceInfoHeader),
+//                rows: [
+//                    Row(text: Strings.RewardsInternals.status, detailText: DCDevice.current.isSupported ? Strings.RewardsInternals.supported : Strings.RewardsInternals.notSupported),
+//                    Row(text: Strings.RewardsInternals.enrollmentState, detailText: DeviceCheckClient.isDeviceEnrolled() ? Strings.RewardsInternals.enrolled : Strings.RewardsInternals.notEnrolled)
+//                ]
+//            )
         ]
         
         if let balance = ledger.balance {

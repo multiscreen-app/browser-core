@@ -146,12 +146,13 @@ extension BrowserViewController: WKNavigationDelegate {
         // Universal links do not work if the request originates from the app, manual handling is required.
         if let mainDocURL = navigationAction.request.mainDocumentURL,
            let universalLink = UniversalLinkManager.universalLinkType(for: mainDocURL, checkPath: true) {
-            switch universalLink {
-            case .buyVPN:
-                presentCorrespondingVPNViewController()
-                decisionHandler(.cancel, preferences)
-                return
-            }
+            // MS disabled universal link
+//            switch universalLink {
+//            case .buyVPN:
+//                presentCorrespondingVPNViewController()
+//                decisionHandler(.cancel, preferences)
+//                return
+//            }
         }
 
         // First special case are some schemes that are about Calling. We prompt the user to confirm this action. This

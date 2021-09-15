@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0A07CE247518B100591DFB /* BraveVPNContactFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A07CD247518B100591DFB /* BraveVPNContactFormViewController.swift */; };
 		0A0A5ED125B1F080007B3E74 /* DefaultBrowserIntroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A5ED025B1F080007B3E74 /* DefaultBrowserIntroManager.swift */; };
 		0A0D3D3921A4BD0600BEE65B /* SafeBrowsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3821A4BD0600BEE65B /* SafeBrowsing.swift */; };
 		0A0D3D3C21A4BE6400BEE65B /* adblock-list.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3B21A4BE6400BEE65B /* adblock-list.txt */; };
@@ -17,8 +16,6 @@
 		0A0D3D6121A596BE00BEE65B /* MalwareList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D3D6021A596BE00BEE65B /* MalwareList.swift */; };
 		0A179E282519F97E0014D9E1 /* InitialSearchEngines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A179E272519F97E0014D9E1 /* InitialSearchEngines.swift */; };
 		0A19365423508756002E2B81 /* LinkPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19365323508756002E2B81 /* LinkPreviewViewController.swift */; };
-		0A1DF468244858CA00541FE4 /* VPNProductInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF467244858CA00541FE4 /* VPNProductInfo.swift */; };
-		0A1DF48424487AA000541FE4 /* GRDGatewayAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DF48324487AA000541FE4 /* GRDGatewayAPIResponse.m */; };
 		0A1DF486244A2ECB00541FE4 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1DF485244A2ECB00541FE4 /* NetworkExtension.framework */; };
 		0A1E843D2190A57F0042F782 /* SyncSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E84332190A57D0042F782 /* SyncSettingsTableViewController.swift */; };
 		0A1E843E2190A57F0042F782 /* SyncCodewordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E84342190A57D0042F782 /* SyncCodewordsView.swift */; };
@@ -31,37 +28,17 @@
 		0A1E84452190A57F0042F782 /* SyncPairWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E843B2190A57F0042F782 /* SyncPairWordsViewController.swift */; };
 		0A1E84462190A57F0042F782 /* SyncAddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E843C2190A57F0042F782 /* SyncAddDeviceViewController.swift */; };
 		0A27ABA123D1B9C400194921 /* BrandedImageCalloutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A27ABA023D1B9C400194921 /* BrandedImageCalloutState.swift */; };
-		0A2FF33F24A4B75100F88F43 /* vpncheckmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A2FF33E24A4B75000F88F43 /* vpncheckmark.json */; };
-		0A39FE902486604D00290ABC /* GRDSubscriberCredential.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE832486604100290ABC /* GRDSubscriberCredential.h */; };
-		0A39FE912486604D00290ABC /* GRDGatewayAPIResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE842486604200290ABC /* GRDGatewayAPIResponse.h */; };
-		0A39FE922486604D00290ABC /* GRDServerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE852486604400290ABC /* GRDServerManager.h */; };
-		0A39FE932486604D00290ABC /* GRDVPNHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A39FE862486604700290ABC /* GRDVPNHelper.m */; };
-		0A39FE942486604D00290ABC /* GRDServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A39FE872486604800290ABC /* GRDServerManager.m */; };
-		0A39FE952486604D00290ABC /* GRDKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE882486604900290ABC /* GRDKeychain.h */; };
-		0A39FE962486604D00290ABC /* GRDGatewayAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE892486604A00290ABC /* GRDGatewayAPI.h */; };
-		0A39FE972486604D00290ABC /* GRDHousekeepingAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE8A2486604A00290ABC /* GRDHousekeepingAPI.h */; };
-		0A39FE982486604D00290ABC /* GRDHousekeepingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A39FE8B2486604B00290ABC /* GRDHousekeepingAPI.m */; };
-		0A39FE992486604D00290ABC /* GRDGatewayAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A39FE8C2486604B00290ABC /* GRDGatewayAPI.m */; };
-		0A39FE9A2486604D00290ABC /* GRDVPNHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE8D2486604B00290ABC /* GRDVPNHelper.h */; };
-		0A39FE9B2486604D00290ABC /* GRDKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A39FE8E2486604C00290ABC /* GRDKeychain.m */; };
-		0A39FE9C2486604D00290ABC /* GRDSubscriberCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A39FE8F2486604C00290ABC /* GRDSubscriberCredential.m */; };
-		0A39FE9F248660EA00290ABC /* VPNConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A39FE9D248660E900290ABC /* VPNConstants.h */; };
-		0A39FEA0248660EA00290ABC /* VPNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A39FE9E248660EA00290ABC /* VPNConstants.m */; };
 		0A3C789D23055C4A0022F6D8 /* OnboardingSearchEnginesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C789C23055C4A0022F6D8 /* OnboardingSearchEnginesViewController.swift */; };
 		0A3C789F23056C910022F6D8 /* OnboardingSearchEnginesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C789E23056C910022F6D8 /* OnboardingSearchEnginesView.swift */; };
 		0A3C78A1230597DA0022F6D8 /* OnboardingShieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C78A0230597DA0022F6D8 /* OnboardingShieldsViewController.swift */; };
 		0A3C78A3230597F10022F6D8 /* OnboardingShieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C78A2230597F10022F6D8 /* OnboardingShieldsView.swift */; };
 		0A40450C25A47BD6009EC321 /* FrequencyQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40450B25A47BD6009EC321 /* FrequencyQuery.swift */; };
 		0A4214FF21AC0D6C006B8E39 /* TimeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4214F621AC0AFF006B8E39 /* TimeExtensions.swift */; };
-		0A42BC43260CEDA3007EBBF3 /* VPNLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A42BC42260CEDA3007EBBF3 /* VPNLogs.swift */; };
 		0A43293021B1C7F50041625B /* AdBlockStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43292F21B1C7F50041625B /* AdBlockStats.swift */; };
 		0A43293B21B1C8D10041625B /* FifoDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A43293A21B1C8D10041625B /* FifoDict.swift */; };
-		0A47389E25D2DD6F0048201A /* NSPredicate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A47389C25D2DD6E0048201A /* NSPredicate+Additions.m */; };
-		0A47389F25D2DD6F0048201A /* NSPredicate+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A47389D25D2DD6F0048201A /* NSPredicate+Additions.h */; };
 		0A4B012020D02EC4004D4011 /* TabsBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B011F20D02EC4004D4011 /* TabsBarViewController.swift */; };
 		0A4B012220D02F26004D4011 /* TabBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B012120D02F26004D4011 /* TabBarCell.swift */; };
 		0A4B012420D0321A004D4011 /* UX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B012320D0321A004D4011 /* UX.swift */; };
-		0A4B7AC0243F3A8100F10CF2 /* DismissableNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B7ABF243F3A8100F10CF2 /* DismissableNavigationViewController.swift */; };
 		0A4BEF5D221AF1910005551A /* AdblockResourceDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BEF5C221AF1910005551A /* AdblockResourceDownloader.swift */; };
 		0A4BEF62221B26610005551A /* LocalAdblockResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BEF61221B26610005551A /* LocalAdblockResourceProtocol.swift */; };
 		0A4BEFD1221E115B0005551A /* NetworkSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BEFCE221E115A0005551A /* NetworkSessionMock.swift */; };
@@ -70,10 +47,6 @@
 		0A4BEFD8221EE78E0005551A /* CachedNetworkResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BEFD7221EE78E0005551A /* CachedNetworkResource.swift */; };
 		0A4BEFDA221EF3360005551A /* NetworkResourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BEFD9221EF3360005551A /* NetworkResourceType.swift */; };
 		0A53F3E721E6560A0086E80C /* InMemoryDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53F3E621E6560A0086E80C /* InMemoryDataController.swift */; };
-		0A55E53224349FE70069F06A /* EnableVPNSettingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55E53124349FE70069F06A /* EnableVPNSettingHeader.swift */; };
-		0A55E53A2434EEB60069F06A /* EnableVPNPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55E5392434EEB60069F06A /* EnableVPNPopupViewController.swift */; };
-		0A55E544243744DC0069F06A /* BraveVPN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55E543243744DC0069F06A /* BraveVPN.swift */; };
-		0A56108424324B2A00B39107 /* BraveVPNSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A56108324324B2A00B39107 /* BraveVPNSettingsViewController.swift */; };
 		0A5CBD3423D4677100362CC8 /* NTPLearnMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBD3323D4677100362CC8 /* NTPLearnMoreViewController.swift */; };
 		0A5CBD3823D4905D00362CC8 /* NTPNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5CBD3723D4905D00362CC8 /* NTPNotificationView.swift */; };
 		0A5E04F923FEADA800E5A3E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A5E04F823FEADA800E5A3E9 /* LaunchScreen.storyboard */; };
@@ -94,15 +67,12 @@
 		0A7B5D702269E72C00AADF22 /* BookmarkSaveLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B5D6F2269E72C00AADF22 /* BookmarkSaveLocation.swift */; };
 		0A7B5D722269E7AD00AADF22 /* BookmarkEditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B5D712269E7AD00AADF22 /* BookmarkEditMode.swift */; };
 		0A8A6225257905E300B035F4 /* UniversalLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8A6224257905E300B035F4 /* UniversalLinkManager.swift */; };
-		0A8ABE19247435E30062DA81 /* BraveVPNCommonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8ABE18247435E30062DA81 /* BraveVPNCommonUI.swift */; };
 		0A8C6993225BC7B100988715 /* ToolbarUrlActionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C6992225BC7B100988715 /* ToolbarUrlActionsProtocol.swift */; };
 		0A8C69AB225CFCAF00988715 /* AddEditBookmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C69AA225CFCAF00988715 /* AddEditBookmarkTableViewController.swift */; };
 		0A8C69B5225DE99700988715 /* BookmarkDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C69B4225DE99700988715 /* BookmarkDetailsView.swift */; };
 		0A8C69BE225E350300988715 /* IndentedImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C69BD225E350300988715 /* IndentedImageTableViewCell.swift */; };
 		0A91598922B834CE00CCC119 /* BVC+Rewards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91598822B834CE00CCC119 /* BVC+Rewards.swift */; };
 		0A917388231D11960069A08B /* AppReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A917387231D11960069A08B /* AppReview.swift */; };
-		0A918DC1252C785200496088 /* VPNRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A918DC0252C785200496088 /* VPNRegion.swift */; };
-		0A918DCD252C81FA00496088 /* BraveVPNRegionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A918DCC252C81FA00496088 /* BraveVPNRegionPickerViewController.swift */; };
 		0A93F1802264C2D200A3571B /* FolderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93F17F2264C2D200A3571B /* FolderDetailsView.swift */; };
 		0A93F1892264C72000A3571B /* BookmarkFormFieldsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93F1882264C72000A3571B /* BookmarkFormFieldsProtocol.swift */; };
 		0AA21E4A2302C4CC00358988 /* webauth_verify_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AA21E472302C4CC00358988 /* webauth_verify_key.json */; };
@@ -131,11 +101,8 @@
 		0AB22A95257EADA900126ADC /* corwin-prescott_beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A86257EADA600126ADC /* corwin-prescott_beach.jpg */; };
 		0AB22A96257EADA900126ADC /* sora-sagano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A87257EADA900126ADC /* sora-sagano.jpg */; };
 		0AB2442C22AA789B00B4D9DD /* ReaderModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2442B22AA789B00B4D9DD /* ReaderModeButton.swift */; };
-		0AB6E25724C5EE290060B052 /* NSLogDisabler.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB6E25624C5EE290060B052 /* NSLogDisabler.h */; };
 		0AB7FCDC235DED0B00F1D9F5 /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7FCDB235DED0B00F1D9F5 /* NumberExtensions.swift */; };
 		0ABA874320E68CF500D2694F /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C027441B2A348C001B1E88 /* SessionData.swift */; };
-		0AC77600242A282C00139377 /* BuyVPNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC775FF242A282C00139377 /* BuyVPNViewController.swift */; };
-		0AC77602242A6AE000139377 /* BuyVPNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC77601242A6AE000139377 /* BuyVPNView.swift */; };
 		0AD0B33225CC6106002EF4F4 /* LegacyBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0B33125CC6106002EF4F4 /* LegacyBookmark.swift */; };
 		0AD4FEEA223A9A5500E00C05 /* BundledJSProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4FEE9223A9A5500E00C05 /* BundledJSProtocol.swift */; };
 		0AD4FEEC223A9C1300E00C05 /* BrowserifiedJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4FEEB223A9C1300E00C05 /* BrowserifiedJS.swift */; };
@@ -143,7 +110,6 @@
 		0AD4FEF2223AA6CA00E00C05 /* JSContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4FEF1223AA6CA00E00C05 /* JSContextExtensions.swift */; };
 		0AD4FEF4223AC32200E00C05 /* JSValueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4FEF3223AC32200E00C05 /* JSValueExtensions.swift */; };
 		0AD5E9C42200591F00D0D91B /* BraveShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD5E9C32200591F00D0D91B /* BraveShield.swift */; };
-		0ADA01F32450894B00B21475 /* IAPObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA01F22450894B00B21475 /* IAPObserver.swift */; };
 		0ADCD4522319640F0078CC67 /* UserAgentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADCD4512319640F0078CC67 /* UserAgentBuilder.swift */; };
 		0AE50854261C63D70099C6A3 /* BraveSearchHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AE50853261C63D70099C6A3 /* BraveSearchHelper.js */; };
 		0AE5086A261C6F2E0099C6A3 /* BraveSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE50869261C6F2E0099C6A3 /* BraveSearchHelper.swift */; };
@@ -158,8 +124,6 @@
 		0AEFB88722299E6A007AF600 /* AdblockerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEFB88622299E6A007AF600 /* AdblockerType.swift */; };
 		0AF0411B2267C61100EBF982 /* ManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0411A2267C61100EBF982 /* ManagedObjectExtensions.swift */; };
 		0AF4C59424F8003A00E500DD /* NTPDefaultBrowserCalloutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4C59324F8003A00E500DD /* NTPDefaultBrowserCalloutProvider.swift */; };
-		0AF6B1E824A0EDC1005417FC /* InstallVPNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6B1E624A0EDC1005417FC /* InstallVPNViewController.swift */; };
-		0AF6B1EA24A0EE19005417FC /* InstallVPNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6B1E924A0EE19005417FC /* InstallVPNView.swift */; };
 		0AFC8F9523D1DF6500941895 /* TranslucentBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC8F9423D1DF6500941895 /* TranslucentBottomSheet.swift */; };
 		0AFC8F9E23D3762B00941895 /* NTPNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC8F9D23D3762A00941895 /* NTPNotificationViewController.swift */; };
 		0B3E7D951B27A7CE00E2E84D /* AboutHomeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E7D931B27A7CE00E2E84D /* AboutHomeHandler.swift */; };
@@ -272,7 +236,6 @@
 		2777273722EB43A100F0214C /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2777273622EB43A100F0214C /* StringExtensions.swift */; };
 		2777275A22EB4C7700F0214C /* BraveShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE7688420B3456C00FF5533 /* BraveShared.framework */; };
 		277C5B21254CAD790032DEF2 /* BraveRewardsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277C5B16254CAD2A0032DEF2 /* BraveRewardsExtensions.swift */; };
-		277E94F225F834240001926E /* VPNMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E94F125F834240001926E /* VPNMenuButton.swift */; };
 		27829DE92548AA4F007CF0B2 /* BraveRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27829DE82548AA4F007CF0B2 /* BraveRewardsViewController.swift */; };
 		27829E092548AA8B007CF0B2 /* BraveRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27829E082548AA8B007CF0B2 /* BraveRewardsView.swift */; };
 		27829E152548AD52007CF0B2 /* LegacyWalletTransferButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27829E142548AD52007CF0B2 /* LegacyWalletTransferButton.swift */; };
@@ -1182,7 +1145,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A0A07CD247518B100591DFB /* BraveVPNContactFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveVPNContactFormViewController.swift; sourceTree = "<group>"; };
 		0A0A5ED025B1F080007B3E74 /* DefaultBrowserIntroManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowserIntroManager.swift; sourceTree = "<group>"; };
 		0A0D3D3821A4BD0600BEE65B /* SafeBrowsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeBrowsing.swift; sourceTree = "<group>"; };
 		0A0D3D3B21A4BE6400BEE65B /* adblock-list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "adblock-list.txt"; sourceTree = "<group>"; };
@@ -1192,8 +1154,6 @@
 		0A0D3D6021A596BE00BEE65B /* MalwareList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalwareList.swift; sourceTree = "<group>"; };
 		0A179E272519F97E0014D9E1 /* InitialSearchEngines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSearchEngines.swift; sourceTree = "<group>"; };
 		0A19365323508756002E2B81 /* LinkPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewViewController.swift; sourceTree = "<group>"; };
-		0A1DF467244858CA00541FE4 /* VPNProductInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNProductInfo.swift; sourceTree = "<group>"; };
-		0A1DF48324487AA000541FE4 /* GRDGatewayAPIResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GRDGatewayAPIResponse.m; sourceTree = "<group>"; };
 		0A1DF485244A2ECB00541FE4 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		0A1E84332190A57D0042F782 /* SyncSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncSettingsTableViewController.swift; sourceTree = "<group>"; };
 		0A1E84342190A57D0042F782 /* SyncCodewordsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncCodewordsView.swift; sourceTree = "<group>"; };
@@ -1225,37 +1185,17 @@
 		0A24F846233EB5B5004D2F3A /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
 		0A24F847233EB5B5004D2F3A /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		0A27ABA023D1B9C400194921 /* BrandedImageCalloutState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandedImageCalloutState.swift; sourceTree = "<group>"; };
-		0A2FF33E24A4B75000F88F43 /* vpncheckmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vpncheckmark.json; sourceTree = "<group>"; };
-		0A39FE832486604100290ABC /* GRDSubscriberCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDSubscriberCredential.h; sourceTree = "<group>"; };
-		0A39FE842486604200290ABC /* GRDGatewayAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDGatewayAPIResponse.h; sourceTree = "<group>"; };
-		0A39FE852486604400290ABC /* GRDServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDServerManager.h; sourceTree = "<group>"; };
-		0A39FE862486604700290ABC /* GRDVPNHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDVPNHelper.m; sourceTree = "<group>"; };
-		0A39FE872486604800290ABC /* GRDServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDServerManager.m; sourceTree = "<group>"; };
-		0A39FE882486604900290ABC /* GRDKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDKeychain.h; sourceTree = "<group>"; };
-		0A39FE892486604A00290ABC /* GRDGatewayAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDGatewayAPI.h; sourceTree = "<group>"; };
-		0A39FE8A2486604A00290ABC /* GRDHousekeepingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDHousekeepingAPI.h; sourceTree = "<group>"; };
-		0A39FE8B2486604B00290ABC /* GRDHousekeepingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDHousekeepingAPI.m; sourceTree = "<group>"; };
-		0A39FE8C2486604B00290ABC /* GRDGatewayAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDGatewayAPI.m; sourceTree = "<group>"; };
-		0A39FE8D2486604B00290ABC /* GRDVPNHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRDVPNHelper.h; sourceTree = "<group>"; };
-		0A39FE8E2486604C00290ABC /* GRDKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDKeychain.m; sourceTree = "<group>"; };
-		0A39FE8F2486604C00290ABC /* GRDSubscriberCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRDSubscriberCredential.m; sourceTree = "<group>"; };
-		0A39FE9D248660E900290ABC /* VPNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPNConstants.h; sourceTree = "<group>"; };
-		0A39FE9E248660EA00290ABC /* VPNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPNConstants.m; sourceTree = "<group>"; };
 		0A3C789C23055C4A0022F6D8 /* OnboardingSearchEnginesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSearchEnginesViewController.swift; sourceTree = "<group>"; };
 		0A3C789E23056C910022F6D8 /* OnboardingSearchEnginesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSearchEnginesView.swift; sourceTree = "<group>"; };
 		0A3C78A0230597DA0022F6D8 /* OnboardingShieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingShieldsViewController.swift; sourceTree = "<group>"; };
 		0A3C78A2230597F10022F6D8 /* OnboardingShieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingShieldsView.swift; sourceTree = "<group>"; };
 		0A40450B25A47BD6009EC321 /* FrequencyQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyQuery.swift; sourceTree = "<group>"; };
 		0A4214F621AC0AFF006B8E39 /* TimeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeExtensions.swift; sourceTree = "<group>"; };
-		0A42BC42260CEDA3007EBBF3 /* VPNLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNLogs.swift; sourceTree = "<group>"; };
 		0A43292F21B1C7F50041625B /* AdBlockStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBlockStats.swift; sourceTree = "<group>"; };
 		0A43293A21B1C8D10041625B /* FifoDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifoDict.swift; sourceTree = "<group>"; };
-		0A47389C25D2DD6E0048201A /* NSPredicate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+Additions.m"; sourceTree = "<group>"; };
-		0A47389D25D2DD6F0048201A /* NSPredicate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+Additions.h"; sourceTree = "<group>"; };
 		0A4B011F20D02EC4004D4011 /* TabsBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsBarViewController.swift; sourceTree = "<group>"; };
 		0A4B012120D02F26004D4011 /* TabBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCell.swift; sourceTree = "<group>"; };
 		0A4B012320D0321A004D4011 /* UX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UX.swift; sourceTree = "<group>"; };
-		0A4B7ABF243F3A8100F10CF2 /* DismissableNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableNavigationViewController.swift; sourceTree = "<group>"; };
 		0A4BEF5C221AF1910005551A /* AdblockResourceDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdblockResourceDownloader.swift; sourceTree = "<group>"; };
 		0A4BEF61221B26610005551A /* LocalAdblockResourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAdblockResourceProtocol.swift; sourceTree = "<group>"; };
 		0A4BEFCE221E115A0005551A /* NetworkSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSessionMock.swift; sourceTree = "<group>"; };
@@ -1264,10 +1204,6 @@
 		0A4BEFD7221EE78E0005551A /* CachedNetworkResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedNetworkResource.swift; sourceTree = "<group>"; };
 		0A4BEFD9221EF3360005551A /* NetworkResourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResourceType.swift; sourceTree = "<group>"; };
 		0A53F3E621E6560A0086E80C /* InMemoryDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDataController.swift; sourceTree = "<group>"; };
-		0A55E53124349FE70069F06A /* EnableVPNSettingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableVPNSettingHeader.swift; sourceTree = "<group>"; };
-		0A55E5392434EEB60069F06A /* EnableVPNPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableVPNPopupViewController.swift; sourceTree = "<group>"; };
-		0A55E543243744DC0069F06A /* BraveVPN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveVPN.swift; sourceTree = "<group>"; };
-		0A56108324324B2A00B39107 /* BraveVPNSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveVPNSettingsViewController.swift; sourceTree = "<group>"; };
 		0A5CBD3323D4677100362CC8 /* NTPLearnMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPLearnMoreViewController.swift; sourceTree = "<group>"; };
 		0A5CBD3723D4905D00362CC8 /* NTPNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPNotificationView.swift; sourceTree = "<group>"; };
 		0A5E04F823FEADA800E5A3E9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1290,15 +1226,12 @@
 		0A7B5D6F2269E72C00AADF22 /* BookmarkSaveLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSaveLocation.swift; sourceTree = "<group>"; };
 		0A7B5D712269E7AD00AADF22 /* BookmarkEditMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditMode.swift; sourceTree = "<group>"; };
 		0A8A6224257905E300B035F4 /* UniversalLinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinkManager.swift; sourceTree = "<group>"; };
-		0A8ABE18247435E30062DA81 /* BraveVPNCommonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveVPNCommonUI.swift; sourceTree = "<group>"; };
 		0A8C6992225BC7B100988715 /* ToolbarUrlActionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarUrlActionsProtocol.swift; sourceTree = "<group>"; };
 		0A8C69AA225CFCAF00988715 /* AddEditBookmarkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditBookmarkTableViewController.swift; sourceTree = "<group>"; };
 		0A8C69B4225DE99700988715 /* BookmarkDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDetailsView.swift; sourceTree = "<group>"; };
 		0A8C69BD225E350300988715 /* IndentedImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentedImageTableViewCell.swift; sourceTree = "<group>"; };
 		0A91598822B834CE00CCC119 /* BVC+Rewards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BVC+Rewards.swift"; sourceTree = "<group>"; };
 		0A917387231D11960069A08B /* AppReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReview.swift; sourceTree = "<group>"; };
-		0A918DC0252C785200496088 /* VPNRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNRegion.swift; sourceTree = "<group>"; };
-		0A918DCC252C81FA00496088 /* BraveVPNRegionPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveVPNRegionPickerViewController.swift; sourceTree = "<group>"; };
 		0A93F17F2264C2D200A3571B /* FolderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailsView.swift; sourceTree = "<group>"; };
 		0A93F1882264C72000A3571B /* BookmarkFormFieldsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkFormFieldsProtocol.swift; sourceTree = "<group>"; };
 		0AA21E472302C4CC00358988 /* webauth_verify_key.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = webauth_verify_key.json; sourceTree = "<group>"; };
@@ -1327,10 +1260,7 @@
 		0AB22A86257EADA600126ADC /* corwin-prescott_beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "corwin-prescott_beach.jpg"; sourceTree = "<group>"; };
 		0AB22A87257EADA900126ADC /* sora-sagano.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sora-sagano.jpg"; sourceTree = "<group>"; };
 		0AB2442B22AA789B00B4D9DD /* ReaderModeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModeButton.swift; sourceTree = "<group>"; };
-		0AB6E25624C5EE290060B052 /* NSLogDisabler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLogDisabler.h; sourceTree = "<group>"; };
 		0AB7FCDB235DED0B00F1D9F5 /* NumberExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
-		0AC775FF242A282C00139377 /* BuyVPNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVPNViewController.swift; sourceTree = "<group>"; };
-		0AC77601242A6AE000139377 /* BuyVPNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyVPNView.swift; sourceTree = "<group>"; };
 		0AD0B33125CC6106002EF4F4 /* LegacyBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyBookmark.swift; sourceTree = "<group>"; };
 		0AD4FEE9223A9A5500E00C05 /* BundledJSProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledJSProtocol.swift; sourceTree = "<group>"; };
 		0AD4FEEB223A9C1300E00C05 /* BrowserifiedJS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserifiedJS.swift; sourceTree = "<group>"; };
@@ -1338,7 +1268,6 @@
 		0AD4FEF1223AA6CA00E00C05 /* JSContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSContextExtensions.swift; sourceTree = "<group>"; };
 		0AD4FEF3223AC32200E00C05 /* JSValueExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSValueExtensions.swift; sourceTree = "<group>"; };
 		0AD5E9C32200591F00D0D91B /* BraveShield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveShield.swift; sourceTree = "<group>"; };
-		0ADA01F22450894B00B21475 /* IAPObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPObserver.swift; sourceTree = "<group>"; };
 		0ADCD4512319640F0078CC67 /* UserAgentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgentBuilder.swift; sourceTree = "<group>"; };
 		0AE50853261C63D70099C6A3 /* BraveSearchHelper.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = BraveSearchHelper.js; sourceTree = "<group>"; };
 		0AE50869261C6F2E0099C6A3 /* BraveSearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveSearchHelper.swift; sourceTree = "<group>"; };
@@ -1353,8 +1282,6 @@
 		0AEFB88622299E6A007AF600 /* AdblockerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdblockerType.swift; sourceTree = "<group>"; };
 		0AF0411A2267C61100EBF982 /* ManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectExtensions.swift; sourceTree = "<group>"; };
 		0AF4C59324F8003A00E500DD /* NTPDefaultBrowserCalloutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPDefaultBrowserCalloutProvider.swift; sourceTree = "<group>"; };
-		0AF6B1E624A0EDC1005417FC /* InstallVPNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallVPNViewController.swift; sourceTree = "<group>"; };
-		0AF6B1E924A0EE19005417FC /* InstallVPNView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallVPNView.swift; sourceTree = "<group>"; };
 		0AFC8F9423D1DF6500941895 /* TranslucentBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentBottomSheet.swift; sourceTree = "<group>"; };
 		0AFC8F9D23D3762A00941895 /* NTPNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPNotificationViewController.swift; sourceTree = "<group>"; };
 		0B3E7D931B27A7CE00E2E84D /* AboutHomeHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutHomeHandler.swift; sourceTree = "<group>"; };
@@ -1578,7 +1505,6 @@
 		27756C8025AD153000C129AF /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = "<group>"; };
 		2777273622EB43A100F0214C /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		277C5B16254CAD2A0032DEF2 /* BraveRewardsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveRewardsExtensions.swift; sourceTree = "<group>"; };
-		277E94F125F834240001926E /* VPNMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNMenuButton.swift; sourceTree = "<group>"; };
 		27829DE82548AA4F007CF0B2 /* BraveRewardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveRewardsViewController.swift; sourceTree = "<group>"; };
 		27829E082548AA8B007CF0B2 /* BraveRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveRewardsView.swift; sourceTree = "<group>"; };
 		27829E142548AD52007CF0B2 /* LegacyWalletTransferButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyWalletTransferButton.swift; sourceTree = "<group>"; };
@@ -2601,32 +2527,6 @@
 			path = Lists;
 			sourceTree = "<group>";
 		};
-		0A1DF46A24486D4C00541FE4 /* GRDAPI */ = {
-			isa = PBXGroup;
-			children = (
-				0A39FE892486604A00290ABC /* GRDGatewayAPI.h */,
-				0A39FE8C2486604B00290ABC /* GRDGatewayAPI.m */,
-				0A39FE842486604200290ABC /* GRDGatewayAPIResponse.h */,
-				0A39FE8A2486604A00290ABC /* GRDHousekeepingAPI.h */,
-				0A39FE8B2486604B00290ABC /* GRDHousekeepingAPI.m */,
-				0A39FE882486604900290ABC /* GRDKeychain.h */,
-				0A39FE8E2486604C00290ABC /* GRDKeychain.m */,
-				0A39FE852486604400290ABC /* GRDServerManager.h */,
-				0A39FE872486604800290ABC /* GRDServerManager.m */,
-				0A39FE832486604100290ABC /* GRDSubscriberCredential.h */,
-				0A39FE8F2486604C00290ABC /* GRDSubscriberCredential.m */,
-				0A39FE8D2486604B00290ABC /* GRDVPNHelper.h */,
-				0A39FE862486604700290ABC /* GRDVPNHelper.m */,
-				0A1DF48324487AA000541FE4 /* GRDGatewayAPIResponse.m */,
-				0A39FE9D248660E900290ABC /* VPNConstants.h */,
-				0A39FE9E248660EA00290ABC /* VPNConstants.m */,
-				0AB6E25624C5EE290060B052 /* NSLogDisabler.h */,
-				0A47389D25D2DD6F0048201A /* NSPredicate+Additions.h */,
-				0A47389C25D2DD6E0048201A /* NSPredicate+Additions.m */,
-			);
-			path = GRDAPI;
-			sourceTree = "<group>";
-		};
 		0A1E84322190A4BA0042F782 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
@@ -2832,30 +2732,6 @@
 				2748625C25AD308A00BC40AA /* sqlcipher.xcframework */,
 			);
 			path = sqlcipher;
-			sourceTree = "<group>";
-		};
-		0AC775FD242A280400139377 /* BraveVPN */ = {
-			isa = PBXGroup;
-			children = (
-				0A1DF46A24486D4C00541FE4 /* GRDAPI */,
-				0AC775FF242A282C00139377 /* BuyVPNViewController.swift */,
-				0AC77601242A6AE000139377 /* BuyVPNView.swift */,
-				0AF6B1E624A0EDC1005417FC /* InstallVPNViewController.swift */,
-				0AF6B1E924A0EE19005417FC /* InstallVPNView.swift */,
-				0A56108324324B2A00B39107 /* BraveVPNSettingsViewController.swift */,
-				0A918DCC252C81FA00496088 /* BraveVPNRegionPickerViewController.swift */,
-				0A55E53124349FE70069F06A /* EnableVPNSettingHeader.swift */,
-				0A55E5392434EEB60069F06A /* EnableVPNPopupViewController.swift */,
-				0A55E543243744DC0069F06A /* BraveVPN.swift */,
-				0A4B7ABF243F3A8100F10CF2 /* DismissableNavigationViewController.swift */,
-				0A1DF467244858CA00541FE4 /* VPNProductInfo.swift */,
-				0ADA01F22450894B00B21475 /* IAPObserver.swift */,
-				0A8ABE18247435E30062DA81 /* BraveVPNCommonUI.swift */,
-				0A0A07CD247518B100591DFB /* BraveVPNContactFormViewController.swift */,
-				0A2FF33E24A4B75000F88F43 /* vpncheckmark.json */,
-				0A918DC0252C785200496088 /* VPNRegion.swift */,
-			);
-			path = BraveVPN;
 			sourceTree = "<group>";
 		};
 		0AD4FED9223A8AF800E00C05 /* Extensions */ = {
@@ -3689,7 +3565,6 @@
 				27D114D32358FBBF00166534 /* BraveRewardsSettingsViewController.swift */,
 				27D114D52358FCA400166534 /* SettingsRowViews.swift */,
 				278C700924F96D7000A246C8 /* BraveShieldsAndPrivacySettingsController.swift */,
-				0A42BC42260CEDA3007EBBF3 /* VPNLogs.swift */,
 				2F51767325E4024B00429692 /* PlaylistSettingsViewController.swift */,
 				2F12A175260A3B17005A8C2B /* ShortcutSettingsViewController.swift */,
 			);
@@ -4410,7 +4285,6 @@
 				0A8C6992225BC7B100988715 /* ToolbarUrlActionsProtocol.swift */,
 				0AEF99A822E22C5E00294C76 /* DownloadsViewController.swift */,
 				27AE360C25E55AA200E795E5 /* MenuViewController.swift */,
-				277E94F125F834240001926E /* VPNMenuButton.swift */,
 				CA9A233326B97B4300923D70 /* PlaylistMenuButton.swift */,
 			);
 			path = Menu;
@@ -4981,7 +4855,6 @@
 				27829DE72548A81A007CF0B2 /* Brave Rewards */,
 				D3A994941A368691008AD1AC /* Browser */,
 				A104E190210A380E00D2323E /* Shields */,
-				0AC775FD242A280400139377 /* BraveVPN */,
 				F84B21F51A0910F600AAB793 /* Reader */,
 				2F44FC551A9E83E200FD20CC /* Settings */,
 				D3972BF01C22412B00035B87 /* Share */,
@@ -5094,8 +4967,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A39FE962486604D00290ABC /* GRDGatewayAPI.h in Headers */,
-				0A39FE9F248660EA00290ABC /* VPNConstants.h in Headers */,
 				4422D50821BFFB7600BF1855 /* port_posix.h in Headers */,
 				4422D4CD21BFFB7600BF1855 /* cache.h in Headers */,
 				4422D50621BFFB7600BF1855 /* port.h in Headers */,
@@ -5111,28 +4982,21 @@
 				4422D56721BFFB7F00BF1855 /* unicode_casefold.h in Headers */,
 				4422D56121BFFB7F00BF1855 /* filtered_re2.h in Headers */,
 				4422D4CA21BFFB7600BF1855 /* status.h in Headers */,
-				0A39FE972486604D00290ABC /* GRDHousekeepingAPI.h in Headers */,
 				4422D42E21BFCF8900BF1855 /* HttpsEverywhere.h in Headers */,
 				4422D56F21BFFB7F00BF1855 /* regexp.h in Headers */,
 				4422D43821BFD29E00BF1855 /* NSData+GZIP.h in Headers */,
 				4422D50921BFFB7600BF1855 /* port_example.h in Headers */,
-				0A47389F25D2DD6F0048201A /* NSPredicate+Additions.h in Headers */,
 				4422D42B21BFCF8900BF1855 /* RecentlyUsedCache.h in Headers */,
 				4422D56021BFFB7F00BF1855 /* prefilter_tree.h in Headers */,
-				0AB6E25724C5EE290060B052 /* NSLogDisabler.h in Headers */,
 				4422D4FE21BFFB7600BF1855 /* log_reader.h in Headers */,
 				4422D4E421BFFB7600BF1855 /* two_level_iterator.h in Headers */,
 				4422D54921BFFB7E00BF1855 /* logging.h in Headers */,
-				0A39FE922486604D00290ABC /* GRDServerManager.h in Headers */,
 				4422D50521BFFB7600BF1855 /* atomic_pointer.h in Headers */,
 				4422D4D021BFFB7600BF1855 /* dumpfile.h in Headers */,
 				4422D4E721BFFB7600BF1855 /* log_format.h in Headers */,
 				4422D4D621BFFB7600BF1855 /* iterator.h in Headers */,
 				4422D4D121BFFB7600BF1855 /* c.h in Headers */,
-				0A39FE952486604D00290ABC /* GRDKeychain.h in Headers */,
-				0A39FE912486604D00290ABC /* GRDGatewayAPIResponse.h in Headers */,
 				4422D4DB21BFFB7600BF1855 /* block_.h in Headers */,
-				0A39FE902486604D00290ABC /* GRDSubscriberCredential.h in Headers */,
 				4422D50321BFFB7600BF1855 /* snapshot.h in Headers */,
 				4422D4E021BFFB7600BF1855 /* block_builder.h in Headers */,
 				4422D4C521BFFB7600BF1855 /* random.h in Headers */,
@@ -5175,7 +5039,6 @@
 				4422D4B221BFFB7600BF1855 /* posix_logger.h in Headers */,
 				4422D4B621BFFB7600BF1855 /* logging.h in Headers */,
 				4422D4BA21BFFB7600BF1855 /* mutexlock.h in Headers */,
-				0A39FE9A2486604D00290ABC /* GRDVPNHelper.h in Headers */,
 				4422D4B321BFFB7600BF1855 /* testharness.h in Headers */,
 				4422D4C721BFFB7600BF1855 /* testutil.h in Headers */,
 				4422D4EC21BFFB7600BF1855 /* skiplist.h in Headers */,
@@ -5786,7 +5649,6 @@
 				0AB22A89257EADA900126ADC /* dylan-malval_alps.jpg in Resources */,
 				0AB22A92257EADA900126ADC /* spencer-moore_desert.jpg in Resources */,
 				4422D56E21BFFB7F00BF1855 /* make_perl_groups.pl in Resources */,
-				0A2FF33F24A4B75100F88F43 /* vpncheckmark.json in Resources */,
 				E4B7B7621A793CF20022C5E0 /* CharisSILBI.ttf in Resources */,
 				F9F859702533CE52000CEB24 /* LoginsHelper.js in Resources */,
 				0AB22A95257EADA900126ADC /* corwin-prescott_beach.jpg in Resources */,
@@ -6176,7 +6038,6 @@
 				2746D27124A2A12700E38852 /* RewardsInternalsPromotionListController.swift in Sources */,
 				0A4BEFDA221EF3360005551A /* NetworkResourceType.swift in Sources */,
 				4422D4B921BFFB7600BF1855 /* crc32c.cc in Sources */,
-				0A39FE932486604D00290ABC /* GRDVPNHelper.m in Sources */,
 				592F521E2217327C0078395E /* HttpCookieExtension.swift in Sources */,
 				4422D4D721BFFB7600BF1855 /* table.cc in Sources */,
 				0A4BEF62221B26610005551A /* LocalAdblockResourceProtocol.swift in Sources */,
@@ -6240,7 +6101,6 @@
 				0A0A5ED125B1F080007B3E74 /* DefaultBrowserIntroManager.swift in Sources */,
 				442477FA268CB86F008A04D7 /* BraveSearchDebugMenuDetail.swift in Sources */,
 				27AD20CC26851DD100889AA7 /* BraveRewards.swift in Sources */,
-				0A8ABE19247435E30062DA81 /* BraveVPNCommonUI.swift in Sources */,
 				A13AC72520EC12360040D4BB /* Migration.swift in Sources */,
 				27201EFC24535C2F00C19DD1 /* NewTabPageFlowLayout.swift in Sources */,
 				27FD2CAB2146C31C00A5A779 /* RequestDesktopSiteActivity.swift in Sources */,
@@ -6254,10 +6114,8 @@
 				595E0EE121CAEF5B00813D49 /* FileManagerExtension.swift in Sources */,
 				C615FAD9212A1E2600A8168C /* WebImageCache.swift in Sources */,
 				2F91AFD325FFA830002DBC4A /* ActivityShortcutManager.swift in Sources */,
-				0A56108424324B2A00B39107 /* BraveVPNSettingsViewController.swift in Sources */,
 				C615FAED212ACAD200A8168C /* BraveWebView.swift in Sources */,
 				C817B34D1FC609500086018E /* UIScrollViewSwizzled.swift in Sources */,
-				0A55E53A2434EEB60069F06A /* EnableVPNPopupViewController.swift in Sources */,
 				0A3C78A3230597F10022F6D8 /* OnboardingShieldsView.swift in Sources */,
 				4422D4E221BFFB7600BF1855 /* format.cc in Sources */,
 				CA9A233426B97B4300923D70 /* PlaylistMenuButton.swift in Sources */,
@@ -6277,7 +6135,6 @@
 				0AADC4CA20D2A66E00FDE368 /* FavoriteCell.swift in Sources */,
 				4422D4C021BFFB7600BF1855 /* options.cc in Sources */,
 				A198E75120C701ED00334C11 /* HistoryViewController.swift in Sources */,
-				0A39FE9B2486604D00290ABC /* GRDKeychain.m in Sources */,
 				D3BE7B461B054F8600641031 /* TestAppDelegate.swift in Sources */,
 				0A91598922B834CE00CCC119 /* BVC+Rewards.swift in Sources */,
 				A1F66A7320DD71C400303328 /* SettingsViewController.swift in Sources */,
@@ -6308,7 +6165,6 @@
 				EB11A1062044A90E0018F749 /* ContentBlockerHelper+TabContentScript.swift in Sources */,
 				2755AB8623107DBD00F0721F /* AdsMediaReporting.swift in Sources */,
 				27036EC3256718DA004EF6B6 /* PartnerCardView.swift in Sources */,
-				0A39FE9C2486604D00290ABC /* GRDSubscriberCredential.m in Sources */,
 				FA9293D41D6580E100AC8D33 /* QRCodeViewController.swift in Sources */,
 				27448533245B5EC2001920B5 /* NTPDataSource.swift in Sources */,
 				39F4C10A2045DB2E00746155 /* FocusHelper.swift in Sources */,
@@ -6345,7 +6201,6 @@
 				44331DDC22561F34007E3E93 /* ToolbarUrlActionsDelegate.swift in Sources */,
 				27C6478F2551CD2B006D72FC /* RewardsInternalsDebugViewController.swift in Sources */,
 				4422D43721BFD29E00BF1855 /* NSData+GZIP.m in Sources */,
-				0A47389E25D2DD6F0048201A /* NSPredicate+Additions.m in Sources */,
 				27EF6B8024BF48C7005E034F /* FeedSourceListViewController.swift in Sources */,
 				D31CF65C1CC1959A001D0BD0 /* PrivilegedRequest.swift in Sources */,
 				0A764F31230EE5CA003A1D9B /* OnboardingState.swift in Sources */,
@@ -6373,7 +6228,6 @@
 				396CDB55203C5B870034A3A3 /* TabTrayController+KeyCommands.swift in Sources */,
 				74E36D781B71323500D69DA1 /* SettingsContentViewController.swift in Sources */,
 				2F51767425E4024B00429692 /* PlaylistSettingsViewController.swift in Sources */,
-				0A1DF468244858CA00541FE4 /* VPNProductInfo.swift in Sources */,
 				2F2C35A6261DF41100631310 /* CustomIntentHandler.swift in Sources */,
 				27B3DDD524AF98EA0006A7ED /* FeedItem.swift in Sources */,
 				448DC7D6268A5C3E00F4795C /* BraveSearchDebugMenu.swift in Sources */,
@@ -6411,7 +6265,6 @@
 				2FDF290825DEE265001E5C87 /* AddToPlaylistActivity.swift in Sources */,
 				273FCB9A25A7BC5500F279B5 /* BraveNewsDebugSettingsController.swift in Sources */,
 				39A359E41BFCCE94006B9E87 /* UserActivityHandler.swift in Sources */,
-				0AF6B1EA24A0EE19005417FC /* InstallVPNView.swift in Sources */,
 				27201F0424589B9800C19DD1 /* NewTabPageNotifications.swift in Sources */,
 				E698FFDA1B4AADF40001F623 /* TabScrollController.swift in Sources */,
 				27448534245B5EC2001920B5 /* NTPModels.swift in Sources */,
@@ -6435,18 +6288,13 @@
 				F930CDD12270F09000A23FE1 /* WebAuthnAuthenticateRequest.swift in Sources */,
 				D8C75DF3207584C400BB8AD0 /* UIImageViewAligned.m in Sources */,
 				E653422D1C5944F90039DD9E /* BrowserPrompts.swift in Sources */,
-				0A55E53224349FE70069F06A /* EnableVPNSettingHeader.swift in Sources */,
 				4422D43621BFD29E00BF1855 /* NSFileManager+Tar.m in Sources */,
-				0A4B7AC0243F3A8100F10CF2 /* DismissableNavigationViewController.swift in Sources */,
-				0ADA01F32450894B00B21475 /* IAPObserver.swift in Sources */,
 				39DD030D1CD53E1900BC09B3 /* HomePageHelper.swift in Sources */,
 				27254F85269366CF00204EB4 /* AdblockRustEngine.swift in Sources */,
 				C4F3B29A1CFCF93A00966259 /* ButtonToast.swift in Sources */,
-				0A918DC1252C785200496088 /* VPNRegion.swift in Sources */,
 				D31A0FC71A65D6D000DC8C7E /* SearchSuggestClient.swift in Sources */,
 				4422D4AE21BFFB7600BF1855 /* testutil.cc in Sources */,
 				0AE5C09922CAA01E00DFF3EE /* RewardsButton.swift in Sources */,
-				0A39FE982486604D00290ABC /* GRDHousekeepingAPI.m in Sources */,
 				0A4BEFD2221E115B0005551A /* NetworkSession.swift in Sources */,
 				0A8C69B5225DE99700988715 /* BookmarkDetailsView.swift in Sources */,
 				4422D4F121BFFB7600BF1855 /* c.cc in Sources */,
@@ -6469,13 +6317,11 @@
 				C615FACF2129FBD000A8168C /* ImageCacheProtocol.swift in Sources */,
 				4422D4BB21BFFB7600BF1855 /* cache.cc in Sources */,
 				CA439A9025E80EE400FE9150 /* VideoPlayerTrackbar.swift in Sources */,
-				0A39FEA0248660EA00290ABC /* VPNConstants.m in Sources */,
 				2FD1C61C2639AE9100E3C25F /* BrowserViewController+Onboarding.swift in Sources */,
 				39455F771FC83F430088A22C /* TabEventHandler.swift in Sources */,
 				4422D4B721BFFB7600BF1855 /* filter_policy.cc in Sources */,
 				27036EA325671817004EF6B6 /* FeedCardFooterButton.swift in Sources */,
 				0AADC4D520D2A6A200FDE368 /* PreloadedFavorites.swift in Sources */,
-				0AC77602242A6AE000139377 /* BuyVPNView.swift in Sources */,
 				2F45B40A263AF1C20033A594 /* BrowserViewController+ToolbarDelegate.swift in Sources */,
 				278C467823EDF0060083347F /* SimpleShieldsView.swift in Sources */,
 				5D24AF8421BA489A00F9506A /* ContentBlocker.swift in Sources */,
@@ -6485,9 +6331,7 @@
 				E65075511E37F6D1006961AC /* NSURLExtensionsMailTo.swift in Sources */,
 				D83822001FC7961D00303C12 /* DispatchQueueExtensions.swift in Sources */,
 				D03F8EB22004014E003C2224 /* FaviconHandler.swift in Sources */,
-				0A42BC43260CEDA3007EBBF3 /* VPNLogs.swift in Sources */,
 				78A9D0962407B4A90077576C /* BraveGetUA.swift in Sources */,
-				0AC77600242A282C00139377 /* BuyVPNViewController.swift in Sources */,
 				0AB2442C22AA789B00B4D9DD /* ReaderModeButton.swift in Sources */,
 				4422D55E21BFFB7F00BF1855 /* mimics_pcre.cc in Sources */,
 				0A6112AC230B00E7001BBC45 /* OnboardingNavigationController.swift in Sources */,
@@ -6504,7 +6348,6 @@
 				4422D4EB21BFFB7600BF1855 /* filename.cc in Sources */,
 				2726636924944BFA0056CFE1 /* BraveNewsOptInView.swift in Sources */,
 				CA439A5925E6F29D00FE9150 /* VideoPlayerInfoBar.swift in Sources */,
-				277E94F225F834240001926E /* VPNMenuButton.swift in Sources */,
 				2755EABD255323C60033C43F /* PublisherInfoExtensions.swift in Sources */,
 				2746D28324A4FB7400E38852 /* RewardsInternalsSharable.swift in Sources */,
 				44331DDA22552313007E3E93 /* LocationContainerView.swift in Sources */,
@@ -6558,7 +6401,6 @@
 				277223722469B4FB0059A7EB /* FaviconFetcher.swift in Sources */,
 				274398F524E71D8700E79605 /* FailableDecodable.swift in Sources */,
 				CA752EA526CEABF8009356EF /* PlaylistToast.swift in Sources */,
-				0A918DCD252C81FA00496088 /* BraveVPNRegionPickerViewController.swift in Sources */,
 				279C756B219DDE3B001CD1CB /* FingerprintingProtection.swift in Sources */,
 				E650755F1E37F756006961AC /* Try.m in Sources */,
 				0A3C789D23055C4A0022F6D8 /* OnboardingSearchEnginesViewController.swift in Sources */,
@@ -6582,10 +6424,8 @@
 				0AEFB88722299E6A007AF600 /* AdblockerType.swift in Sources */,
 				274398F824E71E9800E79605 /* URLString.swift in Sources */,
 				D863C8F21F68BFC20058D95F /* GradientProgressBar.swift in Sources */,
-				0AF6B1E824A0EDC1005417FC /* InstallVPNViewController.swift in Sources */,
 				D3C744CD1A687D6C004CE85D /* URIFixup.swift in Sources */,
 				E4A961181AC041C40069AD6F /* ReadabilityService.swift in Sources */,
-				0A55E544243744DC0069F06A /* BraveVPN.swift in Sources */,
 				0A6BEF6624FCF23C0057A166 /* NewTabCenteredCollectionViewCell.swift in Sources */,
 				4422D56A21BFFB7F00BF1855 /* simplify.cc in Sources */,
 				274398E724E483AD00E79605 /* FeedItemMenu.swift in Sources */,
@@ -6618,7 +6458,6 @@
 				2F198EE82603FDD900945AB3 /* AddSearchEngineActivity.swift in Sources */,
 				EB11A1052044A90E0018F749 /* TrackingProtectionPageStats.swift in Sources */,
 				0A93F1802264C2D200A3571B /* FolderDetailsView.swift in Sources */,
-				0A0A07CE247518B100591DFB /* BraveVPNContactFormViewController.swift in Sources */,
 				5E99D02025E56C15003F30B4 /* PlaylistDownloadManager.swift in Sources */,
 				27036F8825684F64004EF6B6 /* DeviceCheck.swift in Sources */,
 				C400467C1CF4E43E00B08303 /* BackForwardListViewController.swift in Sources */,
@@ -6633,7 +6472,6 @@
 				44331DD222551AFE007E3E93 /* ToolbarButton.swift in Sources */,
 				CAC2CB402644488600BB8D36 /* RecentSearchHeaderView.swift in Sources */,
 				5E99D02B25E56C18003F30B4 /* HLSThumbnailGenerator.swift in Sources */,
-				0A39FE942486604D00290ABC /* GRDServerManager.m in Sources */,
 				4422D4BC21BFFB7600BF1855 /* testharness.cc in Sources */,
 				3BE7275D1CCFE8B60099189F /* CustomSearchHandler.swift in Sources */,
 				F930CDD72270F14300A23FE1 /* WebAuthnUtils.swift in Sources */,
@@ -6647,8 +6485,6 @@
 				2FD1C60B2638823D00E3C25F /* HistoryFetchers.swift in Sources */,
 				5E9B28EB255047C80072E655 /* BookmarkModelStateObserver.swift in Sources */,
 				4422D55521BFFB7E00BF1855 /* nfa.cc in Sources */,
-				0A39FE992486604D00290ABC /* GRDGatewayAPI.m in Sources */,
-				0A1DF48424487AA000541FE4 /* GRDGatewayAPIResponse.m in Sources */,
 				4422D4B421BFFB7600BF1855 /* hash.cc in Sources */,
 				0A5CBD3823D4905D00362CC8 /* NTPNotificationView.swift in Sources */,
 				27D114D62358FCA400166534 /* SettingsRowViews.swift in Sources */,

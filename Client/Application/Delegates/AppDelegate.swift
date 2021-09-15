@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
     let dau = DAU()
     
     /// Must be added at launch according to Apple's documentation.
-    let iapObserver = IAPObserver()
+//    let iapObserver = IAPObserver()
 
     @discardableResult func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Hold references to willFinishLaunching parameters for delayed app launch
@@ -210,7 +210,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         self.tabManager = nil
         self.browserViewController = nil
         self.rootViewController = nil
-        SKPaymentQueue.default().remove(iapObserver)
+//        SKPaymentQueue.default().remove(iapObserver)
         
         // Clean up BraveCore
         BraveSyncAPI.removeAllObservers()
@@ -278,7 +278,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // IAPs can trigger on the app as soon as it launches,
         // for example when a previous transaction was not finished and is in pending state.
-        SKPaymentQueue.default().add(iapObserver)
+//        SKPaymentQueue.default().add(iapObserver)
         
         // Override point for customization after application launch.
         var shouldPerformAdditionalDelegateHandling = true
@@ -383,7 +383,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
             // VPN credentials are kept in keychain and persist between app reinstalls.
             // To avoid unexpected problems we clear all vpn keychain items.
             // New set of keychain items will be created on purchase or iap restoration.
-            BraveVPN.clearCredentials()
+//            BraveVPN.clearCredentials()
         }
         
         if let urp = UserReferralProgram.shared {
@@ -509,7 +509,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         syncOnDidEnterBackground(application: application)
-        BraveVPN.sendVPNWorksInBackgroundNotification()
+//        BraveVPN.sendVPNWorksInBackgroundNotification()
     }
 
     fileprivate func syncOnDidEnterBackground(application: UIApplication) {
@@ -623,10 +623,13 @@ extension AppDelegate {
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if let url = userActivity.webpageURL {
             switch UniversalLinkManager.universalLinkType(for: url, checkPath: false) {
-            case .buyVPN:
-                browserViewController.presentCorrespondingVPNViewController()
-                return true
+            // MS disable universal link
+//            case .buyVPN:
+//                browserViewController.presentCorrespondingVPNViewController()
+//                return true
             case .none:
+                break
+            default:
                 break
             }
 
@@ -659,11 +662,11 @@ extension AppDelegate {
                     type: .clearBrowsingHistory, using: browserViewController)
                 
                 return true
-            case ActivityType.enableBraveVPN.identifier:
-                ActivityShortcutManager.shared.performShortcutActivity(
-                    type: .enableBraveVPN, using: browserViewController)
-                
-                return true
+//            case ActivityType.enableBraveVPN.identifier:
+//                ActivityShortcutManager.shared.performShortcutActivity(
+//                    type: .enableBraveVPN, using: browserViewController)
+//                
+//                return true
             case ActivityType.openBraveNews.identifier:
                 ActivityShortcutManager.shared.performShortcutActivity(
                     type: .openBraveNews, using: browserViewController)
