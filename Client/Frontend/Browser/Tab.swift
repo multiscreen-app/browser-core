@@ -342,11 +342,12 @@ class Tab: NSObject {
         deleteNewTabPageController()
         contentScriptManager.helpers.removeAll()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let rewards = appDelegate.browserViewController.rewards
-        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
-            rewards.reportTabClosed(tabId: Int(rewardsId))
-        }
+  
+        // MS comment out brave rewards
+//        let rewards = appDelegate.browserViewController.rewards
+//        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+//            rewards.reportTabClosed(tabId: Int(rewardsId))
+//        }
     }
 
     var loading: Bool {

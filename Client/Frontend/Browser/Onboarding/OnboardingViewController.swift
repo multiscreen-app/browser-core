@@ -11,11 +11,9 @@ import BraveCore
 class OnboardingViewController: UIViewController {
     weak var delegate: Onboardable?
     var profile: Profile
-    var rewards: BraveRewards?
     
-    init(profile: Profile, rewards: BraveRewards?) {
+    init(profile: Profile) {
         self.profile = profile
-        self.rewards = rewards
         super.init(nibName: nil, bundle: nil)
     }
     

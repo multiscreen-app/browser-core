@@ -13,11 +13,8 @@ class NTPNotificationViewController: TranslucentBottomSheet {
     
     var learnMoreHandler: (() -> Void)?
     
-    private var rewards: BraveRewards?
-    
-    init?(state: BrandedImageCalloutState, rewards: BraveRewards?) {
+    init?(state: BrandedImageCalloutState) {
         self.state = state
-        self.rewards = rewards
         super.init()
         
         if state == .dontShow { return nil }

@@ -11,26 +11,17 @@ class NewTabPageNotifications {
     /// Different types of notifications can be presented to users.
     enum NotificationType {
         /// Notification to inform the user about branded images program.
-        case brandedImages(state: BrandedImageCalloutState)
+//        case brandedImages(state: BrandedImageCalloutState)
+        // MS comment out brave rewards placeholder
+        case placeholder
     }
     
-    private let rewards: BraveRewards
     
-    init(rewards: BraveRewards) {
-        self.rewards = rewards
-    }
-    
-    func notificationToShow(isShowingBackgroundImage: Bool,
-                            isShowingSponseredImage: Bool) -> NotificationType? {
+    func notificationToShow(isShowingBackgroundImage: Bool) -> NotificationType? {
         if !isShowingBackgroundImage {
             return nil
         }
-        
-        let state = BrandedImageCalloutState.getState(
-            adsEnabled: rewards.ads.isEnabled,
-            adsAvailableInRegion: BraveAds.isCurrentLocaleSupported(),
-            isSponsoredImage: isShowingSponseredImage
-        )
-        return .brandedImages(state: state)
+
+        return .placeholder
     }
 }

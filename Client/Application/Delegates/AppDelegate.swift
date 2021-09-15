@@ -195,7 +195,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         
         // Schedule Brave Core Priority Tasks
         self.braveCore?.scheduleLowPriorityStartupTasks()
-        browserViewController.removeScheduledAdGrantReminders()
+        // MS comment out brave rewards
+//        browserViewController.removeScheduledAdGrantReminders()
 
         log.info("startApplication end")
         return true
@@ -555,7 +556,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         // `applicationDidBecomeActive` will get called whenever the Touch ID authentication overlay disappears.
         AdblockResourceDownloader.shared.startLoading()
         
-        browserViewController.showWalletTransferExpiryPanelIfNeeded()
+        // MS comment out brave rewards
+//        browserViewController.showWalletTransferExpiryPanelIfNeeded()
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -667,11 +669,11 @@ extension AppDelegate {
 //                    type: .enableBraveVPN, using: browserViewController)
 //                
 //                return true
-            case ActivityType.openBraveNews.identifier:
-                ActivityShortcutManager.shared.performShortcutActivity(
-                    type: .openBraveNews, using: browserViewController)
-                
-                return true
+//            case ActivityType.openBraveNews.identifier:
+//                ActivityShortcutManager.shared.performShortcutActivity(
+//                    type: .openBraveNews, using: browserViewController)
+//                
+//                return true
             case ActivityType.openPlayList.identifier:
                 ActivityShortcutManager.shared.performShortcutActivity(
                     type: .openPlayList, using: browserViewController)

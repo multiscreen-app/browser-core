@@ -280,14 +280,15 @@ extension BrowserViewController: TopToolbarDelegate {
     func topToolbarDidTapBookmarkButton(_ topToolbar: TopToolbarView) {
         showBookmarkController()
     }
-    
-    func topToolbarDidTapBraveRewardsButton(_ topToolbar: TopToolbarView) {
-        showBraveRewardsPanel()
-    }
-    
-    func topToolbarDidLongPressBraveRewardsButton(_ topToolbar: TopToolbarView) {
-        showRewardsDebugSettings()
-    }
+  
+    // MS comment out brave rewards
+//    func topToolbarDidTapBraveRewardsButton(_ topToolbar: TopToolbarView) {
+//        showBraveRewardsPanel()
+//    }
+//
+//    func topToolbarDidLongPressBraveRewardsButton(_ topToolbar: TopToolbarView) {
+//        showRewardsDebugSettings()
+//    }
     
     func topToolbarDidTapMenuButton(_ topToolbar: TopToolbarView) {
         tabToolbarDidPressMenu(topToolbar)

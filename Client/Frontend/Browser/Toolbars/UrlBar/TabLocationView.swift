@@ -20,8 +20,8 @@ protocol TabLocationViewDelegate {
     func tabLocationViewDidLongPressReload(_ tabLocationView: TabLocationView, from button: UIButton)
     func tabLocationViewDidTapStop(_ tabLocationView: TabLocationView)
     func tabLocationViewDidTapShieldsButton(_ urlBar: TabLocationView)
-    func tabLocationViewDidTapRewardsButton(_ urlBar: TabLocationView)
-    func tabLocationViewDidLongPressRewardsButton(_ urlBar: TabLocationView)
+//    func tabLocationViewDidTapRewardsButton(_ urlBar: TabLocationView)
+//    func tabLocationViewDidLongPressRewardsButton(_ urlBar: TabLocationView)
     
     /// - returns: whether the long-press was handled by the delegate; i.e. return `false` when the conditions for even starting handling long-press were not satisfied
     @discardableResult func tabLocationViewDidLongPressReaderMode(_ tabLocationView: TabLocationView) -> Bool
@@ -331,15 +331,16 @@ class TabLocationView: UIView {
         delegate?.tabLocationViewDidTapShieldsButton(self)
     }
     
-    @objc func didClickBraveRewardsButton() {
-        delegate?.tabLocationViewDidTapRewardsButton(self)
-    }
-    
-    @objc func didLongPressRewardsButton(_ gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began {
-            delegate?.tabLocationViewDidLongPressRewardsButton(self)
-        }
-    }
+    // MS comment out brave rewards
+//    @objc func didClickBraveRewardsButton() {
+//        delegate?.tabLocationViewDidTapRewardsButton(self)
+//    }
+//    
+//    @objc func didLongPressRewardsButton(_ gesture: UILongPressGestureRecognizer) {
+//        if gesture.state == .began {
+//            delegate?.tabLocationViewDidLongPressRewardsButton(self)
+//        }
+//    }
 
     fileprivate func updateTextWithURL() {
         (urlTextField as? DisplayTextField)?.hostString = url?.host ?? ""

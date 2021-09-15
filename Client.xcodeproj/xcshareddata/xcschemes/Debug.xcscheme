@@ -170,7 +170,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-BRSkipOnboarding YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-BRSkipEduPopups YES"

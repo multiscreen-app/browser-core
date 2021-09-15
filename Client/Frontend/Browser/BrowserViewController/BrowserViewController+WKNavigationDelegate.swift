@@ -429,7 +429,7 @@ extension BrowserViewController: WKNavigationDelegate {
         tab.url = webView.url
         self.scrollController.resetZoomState()
 
-        rewards.reportTabNavigation(tabId: tab.rewardsId)
+//        rewards.reportTabNavigation(tabId: tab.rewardsId)
         
         if tabManager.selectedTab === tab {
             updateUIForReaderHomeStateForTab(tab)
@@ -455,17 +455,19 @@ extension BrowserViewController: WKNavigationDelegate {
             }
             
             navigateInTab(tab: tab, to: navigation)
-            if let url = tab.url, tab.shouldClassifyLoadsForAds {
-                let faviconURL = URL(string: tab.displayFavicon?.url ?? "")
-                rewards.reportTabUpdated(
-                    Int(tab.rewardsId),
-                    url: url,
-                    faviconURL: faviconURL,
-                    isSelected: tabManager.selectedTab == tab,
-                    isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing
-                )
-            }
-            tab.reportPageLoad(to: rewards, redirectionURLs: tab.redirectURLs)
+            // MS comment out brave rewards
+//            if let url = tab.url, tab.shouldClassifyLoadsForAds {
+//                let faviconURL = URL(string: tab.displayFavicon?.url ?? "")
+//                rewards.reportTabUpdated(
+//                    Int(tab.rewardsId),
+//                    url: url,
+//                    faviconURL: faviconURL,
+//                    isSelected: tabManager.selectedTab == tab,
+//                    isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing
+//                )
+//            }
+            // MS comment out brave rewards page load
+//            tab.reportPageLoad(to: rewards, redirectionURLs: tab.redirectURLs)
             tab.redirectURLs = []
             if webView.url?.isLocal == false {
                 // Reset should classify
@@ -479,7 +481,7 @@ extension BrowserViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        guard let tab = tabManager[webView], let url = webView.url, rewards.isEnabled else { return }
+        guard let tab = tabManager[webView], let url = webView.url else { return }
         tab.redirectURLs.append(url)
     }
 }

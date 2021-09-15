@@ -30,12 +30,12 @@ class NewTabPageBackground: PreferencesObserver {
         currentBackground?.wallpaper.image
     }
     /// The sponsors logo if available
-    var sponsorLogoImage: UIImage? {
-        if case .withBrandLogo(let logo) = currentBackground?.type {
-            return logo?.image
-        }
-        return nil
-    }
+//    var sponsorLogoImage: UIImage? {
+//        if case .withBrandLogo(let logo) = currentBackground?.type {
+//            return logo?.image
+//        }
+//        return nil
+//    }
     /// A block called when the current background image/sponsored logo changes
     /// while the New Tab Page is active
     var changed: (() -> Void)?

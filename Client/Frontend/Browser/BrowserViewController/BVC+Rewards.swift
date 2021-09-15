@@ -85,143 +85,143 @@ extension BrowserViewController {
     
     // MS comment out brave rewards
 
-    func showWalletTransferExpiryPanelIfNeeded() {
-        func _show() {
-            let controller = WalletTransferExpiredViewController()
-            let popover = PopoverController(contentController: controller, contentSizeBehavior: .autoLayout)
-            popover.popoverDidDismiss = { _ in
-                Preferences.Rewards.transferUnavailableLastSeen.value = Date().timeIntervalSince1970
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                popover.present(from: self.topToolbar.locationView.rewardsButton, on: self)
-            }
-        }
-        
-        let now = Date()
-        
-        guard let legacyWallet = legacyWallet,
-              !legacyWallet.isLedgerTransferExpired,
-              presentedViewController == nil,
-              Locale.current.regionCode == "JP" else { return }
-        
-        legacyWallet.transferrableAmount { amount in
-            guard amount > 0 else { return }
-            let gap = AppConstants.buildChannel.isPublic ? 3.days : 2.minutes
-            if let lastSeenTimeInterval = Preferences.Rewards.transferUnavailableLastSeen.value {
-                // Check if they've seen it in the past 3 days
-                if now.timeIntervalSince1970 > lastSeenTimeInterval + gap {
-                    _show()
-                }
-            } else {
-                _show()
-            }
-        }
-    }
+//    func showWalletTransferExpiryPanelIfNeeded() {
+//        func _show() {
+//            let controller = WalletTransferExpiredViewController()
+//            let popover = PopoverController(contentController: controller, contentSizeBehavior: .autoLayout)
+//            popover.popoverDidDismiss = { _ in
+//                Preferences.Rewards.transferUnavailableLastSeen.value = Date().timeIntervalSince1970
+//            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                popover.present(from: self.topToolbar.locationView.rewardsButton, on: self)
+//            }
+//        }
+//
+//        let now = Date()
+//
+//        guard let legacyWallet = legacyWallet,
+//              !legacyWallet.isLedgerTransferExpired,
+//              presentedViewController == nil,
+//              Locale.current.regionCode == "JP" else { return }
+//
+//        legacyWallet.transferrableAmount { amount in
+//            guard amount > 0 else { return }
+//            let gap = AppConstants.buildChannel.isPublic ? 3.days : 2.minutes
+//            if let lastSeenTimeInterval = Preferences.Rewards.transferUnavailableLastSeen.value {
+//                // Check if they've seen it in the past 3 days
+//                if now.timeIntervalSince1970 > lastSeenTimeInterval + gap {
+//                    _show()
+//                }
+//            } else {
+//                _show()
+//            }
+//        }
+//    }
     
-    func claimPendingPromotions() {
-        guard let ledger = rewards.ledger else { return }
-        ledger.pendingPromotions.forEach { promo in
-            if promo.status == .active {
-                ledger.claimPromotion(promo) { [weak self] success, shouldReconcileAds in
-                    if shouldReconcileAds {
-                        self?.rewards.ads.reconcileAdRewards()
-                    }
-                    log.info("[BraveRewards] Auto-Claim Promotion - \(success) for \(promo.approximateValue)")
-                }
-            }
-        }
-    }
+//    func claimPendingPromotions() {
+//        guard let ledger = rewards.ledger else { return }
+//        ledger.pendingPromotions.forEach { promo in
+//            if promo.status == .active {
+//                ledger.claimPromotion(promo) { [weak self] success, shouldReconcileAds in
+//                    if shouldReconcileAds {
+//                        self?.rewards.ads.reconcileAdRewards()
+//                    }
+//                    log.info("[BraveRewards] Auto-Claim Promotion - \(success) for \(promo.approximateValue)")
+//                }
+//            }
+//        }
+//    }
     
-    func authorizeUpholdWallet(from tab: Tab, queryItems items: [String: String]) {
-        guard let ledger = rewards.ledger else { return }
-        ledger.authorizeExternalWallet(
-            ofType: .uphold,
-            queryItems: items) { result, redirectURL in
-                switch result {
-                case .ledgerOk:
-                    // Fetch the wallet
-                    ledger.fetchUpholdWallet { _ in
-                        if let redirectURL = redirectURL {
-                            // Requires verification
-                            let request = URLRequest(url: redirectURL)
-                            tab.loadRequest(request)
-                        } else {
-                            // Done
-                            self.tabManager.removeTab(tab)
-                            // MS comment out brave rewards
-//                            self.showBraveRewardsPanel()
-                        }
-                    }
-                case .batNotAllowed:
-                    // Uphold account doesn't support BAT...
-                    let popup = AlertPopupView(
-                        imageView: nil,
-                        title: Strings.userWalletBATNotAllowedTitle,
-                        message: Strings.userWalletBATNotAllowedMessage,
-                        titleWeight: .semibold,
-                        titleSize: 18.0
-                    )
-                    popup.addButton(title: Strings.userWalletBATNotAllowedLearnMore, type: .link, fontSize: 14.0) { () -> PopupViewDismissType in
-                        if let url = URL(string: "https://uphold.com/en/brave/support") {
-                            tab.loadRequest(URLRequest(url: url))
-                        }
-                        return .flyDown
-                    }
-                    popup.addButton(title: Strings.userWalletCloseButtonTitle, type: .primary, fontSize: 14.0) { () -> PopupViewDismissType in
-                        return .flyDown
-                    }
-                    popup.showWithType(showType: .flyUp)
-                default:
-                    // Some other issue occured with authorization
-                    let popup = AlertPopupView(
-                        imageView: nil,
-                        title: Strings.userWalletGenericErrorTitle,
-                        message: Strings.userWalletGenericErrorMessage,
-                        titleWeight: .semibold,
-                        titleSize: 18.0
-                    )
-                    popup.addButton(title: Strings.userWalletCloseButtonTitle, type: .primary, fontSize: 14.0) { () -> PopupViewDismissType in
-                        return .flyDown
-                    }
-                    popup.showWithType(showType: .flyUp)
-                }
-        }
-    }
+//    func authorizeUpholdWallet(from tab: Tab, queryItems items: [String: String]) {
+//        guard let ledger = rewards.ledger else { return }
+//        ledger.authorizeExternalWallet(
+//            ofType: .uphold,
+//            queryItems: items) { result, redirectURL in
+//                switch result {
+//                case .ledgerOk:
+//                    // Fetch the wallet
+//                    ledger.fetchUpholdWallet { _ in
+//                        if let redirectURL = redirectURL {
+//                            // Requires verification
+//                            let request = URLRequest(url: redirectURL)
+//                            tab.loadRequest(request)
+//                        } else {
+//                            // Done
+//                            self.tabManager.removeTab(tab)
+//                            // MS comment out brave rewards
+////                            self.showBraveRewardsPanel()
+//                        }
+//                    }
+//                case .batNotAllowed:
+//                    // Uphold account doesn't support BAT...
+//                    let popup = AlertPopupView(
+//                        imageView: nil,
+//                        title: Strings.userWalletBATNotAllowedTitle,
+//                        message: Strings.userWalletBATNotAllowedMessage,
+//                        titleWeight: .semibold,
+//                        titleSize: 18.0
+//                    )
+//                    popup.addButton(title: Strings.userWalletBATNotAllowedLearnMore, type: .link, fontSize: 14.0) { () -> PopupViewDismissType in
+//                        if let url = URL(string: "https://uphold.com/en/brave/support") {
+//                            tab.loadRequest(URLRequest(url: url))
+//                        }
+//                        return .flyDown
+//                    }
+//                    popup.addButton(title: Strings.userWalletCloseButtonTitle, type: .primary, fontSize: 14.0) { () -> PopupViewDismissType in
+//                        return .flyDown
+//                    }
+//                    popup.showWithType(showType: .flyUp)
+//                default:
+//                    // Some other issue occured with authorization
+//                    let popup = AlertPopupView(
+//                        imageView: nil,
+//                        title: Strings.userWalletGenericErrorTitle,
+//                        message: Strings.userWalletGenericErrorMessage,
+//                        titleWeight: .semibold,
+//                        titleSize: 18.0
+//                    )
+//                    popup.addButton(title: Strings.userWalletCloseButtonTitle, type: .primary, fontSize: 14.0) { () -> PopupViewDismissType in
+//                        return .flyDown
+//                    }
+//                    popup.showWithType(showType: .flyUp)
+//                }
+//        }
+//    }
     
     @objc func resetNTPNotification() {
         Preferences.NewTabPage.brandedImageShowed.value = false
         Preferences.NewTabPage.atleastOneNTPNotificationWasShowed.value = false
     }
     
-    static func migrateAdsConfirmations(for configruation: BraveRewards.Configuration) {
-        // To ensure after a user launches 1.21 that their ads confirmations, viewed count and
-        // estimated payout remain correct.
-        //
-        // This hack is unfortunately neccessary due to a missed migration path when moving
-        // confirmations from ledger to ads, we must extract `confirmations.json` out of ledger's
-        // state file and save it as a new file under the ads directory.
-        let base = configruation.storageURL
-        let ledgerStateContainer = base.appendingPathComponent("ledger/random_state.plist")
-        let adsConfirmations = base.appendingPathComponent("ads/confirmations.json")
-        let fm = FileManager.default
-        
-        if !fm.fileExists(atPath: ledgerStateContainer.path) ||
-            fm.fileExists(atPath: adsConfirmations.path) {
-            // Nothing to migrate or already migrated
-            return
-        }
-        
-        do {
-            let contents = NSDictionary(contentsOfFile: ledgerStateContainer.path)
-            guard let confirmations = contents?["confirmations.json"] as? String else {
-                log.debug("No confirmations found to migrate in ledger's state container")
-                return
-            }
-            try confirmations.write(toFile: adsConfirmations.path, atomically: true, encoding: .utf8)
-        } catch {
-            log.error("Failed to migrate confirmations.json to ads folder: \(error)")
-        }
-    }
+//    static func migrateAdsConfirmations(for configruation: BraveRewards.Configuration) {
+//        // To ensure after a user launches 1.21 that their ads confirmations, viewed count and
+//        // estimated payout remain correct.
+//        //
+//        // This hack is unfortunately neccessary due to a missed migration path when moving
+//        // confirmations from ledger to ads, we must extract `confirmations.json` out of ledger's
+//        // state file and save it as a new file under the ads directory.
+//        let base = configruation.storageURL
+//        let ledgerStateContainer = base.appendingPathComponent("ledger/random_state.plist")
+//        let adsConfirmations = base.appendingPathComponent("ads/confirmations.json")
+//        let fm = FileManager.default
+//
+//        if !fm.fileExists(atPath: ledgerStateContainer.path) ||
+//            fm.fileExists(atPath: adsConfirmations.path) {
+//            // Nothing to migrate or already migrated
+//            return
+//        }
+//
+//        do {
+//            let contents = NSDictionary(contentsOfFile: ledgerStateContainer.path)
+//            guard let confirmations = contents?["confirmations.json"] as? String else {
+//                log.debug("No confirmations found to migrate in ledger's state container")
+//                return
+//            }
+//            try confirmations.write(toFile: adsConfirmations.path, atomically: true, encoding: .utf8)
+//        } catch {
+//            log.error("Failed to migrate confirmations.json to ads folder: \(error)")
+//        }
+//    }
     
     private func loadNewTabWithRewardsURL(_ url: URL) {
         self.presentedViewController?.dismiss(animated: true)
@@ -237,58 +237,58 @@ extension BrowserViewController {
     
     /// Removes any scheduled or delivered ad grant reminders which may have been added prior to
     /// removal of those reminders.
-    func removeScheduledAdGrantReminders() {
-        let idPrefix = "rewards.notification.monthly-claim"
-        let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests { requests in
-            let ids = requests
-                .filter { $0.identifier.hasPrefix(idPrefix) }
-                .map(\.identifier)
-            if ids.isEmpty { return }
-            center.removeDeliveredNotifications(withIdentifiers: ids)
-            center.removePendingNotificationRequests(withIdentifiers: ids)
-        }
-    }
+//    func removeScheduledAdGrantReminders() {
+//        let idPrefix = "rewards.notification.monthly-claim"
+//        let center = UNUserNotificationCenter.current()
+//        center.getPendingNotificationRequests { requests in
+//            let ids = requests
+//                .filter { $0.identifier.hasPrefix(idPrefix) }
+//                .map(\.identifier)
+//            if ids.isEmpty { return }
+//            center.removeDeliveredNotifications(withIdentifiers: ids)
+//            center.removePendingNotificationRequests(withIdentifiers: ids)
+//        }
+//    }
     
-    func setupLedger() {
-        guard let ledger = rewards.ledger else { return }
-        // Update defaults
-        ledger.minimumVisitDuration = 8
-        ledger.minimumNumberOfVisits = 1
-        ledger.allowUnverifiedPublishers = false
-        ledger.allowVideoContributions = true
-        ledger.contributionAmount = Double.greatestFiniteMagnitude
-        
-        // Create ledger observer
-        let rewardsObserver = LedgerObserver(ledger: ledger)
-        ledger.add(rewardsObserver)
-        
-        rewardsObserver.walletInitalized = { [weak self] result in
-            guard let self = self, let client = self.deviceCheckClient else { return }
-            if result == .walletCreated {
-                ledger.setupDeviceCheckEnrollment(client) { }
-                self.updateRewardsButtonState()
-            }
-        }
-        rewardsObserver.promotionsAdded = { [weak self] promotions in
-            self?.claimPendingPromotions()
-        }
-        rewardsObserver.fetchedPanelPublisher = { [weak self] publisher, tabId in
-            guard let self = self, self.isViewLoaded, let tab = self.tabManager.selectedTab, tab.rewardsId == tabId else { return }
-            self.publisher = publisher
-        }
-        
-        promotionFetchTimer = Timer.scheduledTimer(
-            withTimeInterval: 1.hours,
-            repeats: true,
-            block: { [weak self, weak ledger] _ in
-                guard let self = self, let ledger = ledger else { return }
-                if self.rewards.isEnabled {
-                    ledger.fetchPromotions(nil)
-                }
-            }
-        )
-    }
+//    func setupLedger() {
+//        guard let ledger = rewards.ledger else { return }
+//        // Update defaults
+//        ledger.minimumVisitDuration = 8
+//        ledger.minimumNumberOfVisits = 1
+//        ledger.allowUnverifiedPublishers = false
+//        ledger.allowVideoContributions = true
+//        ledger.contributionAmount = Double.greatestFiniteMagnitude
+//
+//        // Create ledger observer
+//        let rewardsObserver = LedgerObserver(ledger: ledger)
+//        ledger.add(rewardsObserver)
+//
+//        rewardsObserver.walletInitalized = { [weak self] result in
+//            guard let self = self, let client = self.deviceCheckClient else { return }
+//            if result == .walletCreated {
+//                ledger.setupDeviceCheckEnrollment(client) { }
+//                self.updateRewardsButtonState()
+//            }
+//        }
+//        rewardsObserver.promotionsAdded = { [weak self] promotions in
+//            self?.claimPendingPromotions()
+//        }
+//        rewardsObserver.fetchedPanelPublisher = { [weak self] publisher, tabId in
+//            guard let self = self, self.isViewLoaded, let tab = self.tabManager.selectedTab, tab.rewardsId == tabId else { return }
+//            self.publisher = publisher
+//        }
+//
+//        promotionFetchTimer = Timer.scheduledTimer(
+//            withTimeInterval: 1.hours,
+//            repeats: true,
+//            block: { [weak self, weak ledger] _ in
+//                guard let self = self, let ledger = ledger else { return }
+//                if self.rewards.isEnabled {
+//                    ledger.fetchPromotions(nil)
+//                }
+//            }
+//        )
+//    }
 }
 
 extension Tab {

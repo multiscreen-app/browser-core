@@ -13,6 +13,7 @@ import BraveCore
 extension BrowserViewController {
     
     func presentOnboardingIntro(_ completion: @escaping () -> Void) {
+        // MS show onboarding on debug
         if Preferences.DebugFlag.skipOnboardingIntro == true { return }
         
         // 1. Existing user.
@@ -27,7 +28,7 @@ extension BrowserViewController {
         }
         
         // The user either skipped or didn't complete onboarding.
-        let isRewardsEnabled = rewards.isEnabled
+//        let isRewardsEnabled = rewards.isEnabled
         let currentProgress = OnboardingProgress(rawValue: Preferences.General.basicOnboardingProgress.value) ?? .none
         
         // 1. Existing user.
@@ -39,56 +40,58 @@ extension BrowserViewController {
                 return
             }
             
+            // MS comment out brave rewards
             // 60 days has passed since the user last saw the onboarding.. it's time to show the onboarding again..
-            if daysUntilNextPrompt <= Date() && !isRewardsEnabled {
-                guard let onboarding = OnboardingNavigationController(
-                    profile: profile,
-                    onboardingType: .existingUserRewardsOff(currentProgress),
-                    rewards: rewards
-                    ) else { return }
-                
-                onboarding.onboardingDelegate = self
-                present(onboarding, animated: true)
-                
-                Preferences.General.basicOnboardingNextOnboardingPrompt.value = Date(timeIntervalSinceNow: BrowserViewController.onboardingDaysInterval)
-            }
+//            if daysUntilNextPrompt <= Date() && !isRewardsEnabled {
+//                guard let onboarding = OnboardingNavigationController(
+//                    profile: profile,
+//                    onboardingType: .existingUserRewardsOff(currentProgress)
+//                    ) else { return }
+//                
+//                onboarding.onboardingDelegate = self
+//                present(onboarding, animated: true)
+//                
+//                Preferences.General.basicOnboardingNextOnboardingPrompt.value = Date(timeIntervalSinceNow: BrowserViewController.onboardingDaysInterval)
+//            }
             
             return
         }
         
+        // MS comment out brave rewards
         // 1. Rewards are on/off (existing user)
         // 2. User hasn't seen the rewards part of the onboarding yet.
-        if (Preferences.General.basicOnboardingCompleted.value == OnboardingState.completed.rawValue)
-            &&
-            (Preferences.General.basicOnboardingProgress.value == OnboardingProgress.searchEngine.rawValue) {
-            
-            guard !isRewardsEnabled, let onboarding = OnboardingNavigationController(
-                profile: profile,
-                onboardingType: .existingUserRewardsOff(currentProgress),
-                rewards: rewards
-                ) else { return }
-            
-            onboarding.onboardingDelegate = self
-            present(onboarding, animated: true)
-            return
-        }
+//        if (Preferences.General.basicOnboardingCompleted.value == OnboardingState.completed.rawValue)
+//            &&
+//            (Preferences.General.basicOnboardingProgress.value == OnboardingProgress.searchEngine.rawValue) {
+//
+//            guard !isRewardsEnabled, let onboarding = OnboardingNavigationController(
+//                profile: profile,
+//                onboardingType: .existingUserRewardsOff(currentProgress),
+//                rewards: rewards
+//                ) else { return }
+//
+//            onboarding.onboardingDelegate = self
+//            present(onboarding, animated: true)
+//            return
+//        }
         
+        // MS comment out brave rewards
         // 1. Rewards are on/off (existing user)
         // 2. User hasn't seen the rewards part of the onboarding yet because their version of the app is insanely OLD and somehow the progress value doesn't exist.
-        if (Preferences.General.basicOnboardingCompleted.value == OnboardingState.completed.rawValue)
-            &&
-            (Preferences.General.basicOnboardingProgress.value == OnboardingProgress.none.rawValue) {
-            
-            guard !isRewardsEnabled, let onboarding = OnboardingNavigationController(
-                profile: profile,
-                onboardingType: .existingUserRewardsOff(currentProgress),
-                rewards: rewards
-                ) else { return }
-            
-            onboarding.onboardingDelegate = self
-            present(onboarding, animated: true)
-            return
-        }
+//        if (Preferences.General.basicOnboardingCompleted.value == OnboardingState.completed.rawValue)
+//            &&
+//            (Preferences.General.basicOnboardingProgress.value == OnboardingProgress.none.rawValue) {
+//
+//            guard !isRewardsEnabled, let onboarding = OnboardingNavigationController(
+//                profile: profile,
+//                onboardingType: .existingUserRewardsOff(currentProgress),
+//                rewards: rewards
+//                ) else { return }
+//
+//            onboarding.onboardingDelegate = self
+//            present(onboarding, animated: true)
+//            return
+//        }
         
         // 1. User is brand new
         // 2. User hasn't completed onboarding
@@ -98,8 +101,7 @@ extension BrowserViewController {
             
             guard let onboarding = OnboardingNavigationController(
                 profile: profile,
-                onboardingType: .newUser(currentProgress),
-                rewards: rewards
+                onboardingType: .newUser(currentProgress)
                 ) else { return }
             
             onboarding.onboardingDelegate = self

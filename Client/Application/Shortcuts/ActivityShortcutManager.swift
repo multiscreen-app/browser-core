@@ -18,7 +18,7 @@ enum ActivityType: String {
     case newPrivateTab = "NewPrivateTab"
     case clearBrowsingHistory = "ClearBrowsingHistory"
 //    case enableBraveVPN = "EnableBraveVPN"
-    case openBraveNews = "OpenBraveNews"
+//    case openBraveNews = "OpenBraveNews"
     case openPlayList = "OpenPlayList"
 
     var identifier: String {
@@ -36,8 +36,8 @@ enum ActivityType: String {
                 return Strings.Shortcuts.activityTypeClearHistoryTitle
 //            case .enableBraveVPN:
 //                return Strings.Shortcuts.activityTypeEnableVPNTitle
-            case .openBraveNews:
-                return Strings.Shortcuts.activityTypeOpenBraveNewsTitle
+//            case .openBraveNews:
+//                return Strings.Shortcuts.activityTypeOpenBraveNewsTitle
             case .openPlayList:
                 return Strings.Shortcuts.activityTypeOpenPlaylistTitle
         }
@@ -52,8 +52,8 @@ enum ActivityType: String {
                 return Strings.Shortcuts.activityTypeClearHistoryDescription
 //            case .enableBraveVPN:
 //                return Strings.Shortcuts.activityTypeEnableVPNDescription
-            case .openBraveNews:
-                return Strings.Shortcuts.activityTypeBraveNewsDescription
+//            case .openBraveNews:
+//                return Strings.Shortcuts.activityTypeBraveNewsDescription
             case .openPlayList:
                 return Strings.Shortcuts.activityTypeOpenPlaylistDescription
         }
@@ -70,8 +70,8 @@ enum ActivityType: String {
                 return Strings.Shortcuts.activityTypeClearHistorySuggestedPhrase
 //            case .enableBraveVPN:
 //                return Strings.Shortcuts.activityTypeEnableVPNSuggestedPhrase
-            case .openBraveNews:
-                return Strings.Shortcuts.activityTypeOpenBraveNewsSuggestedPhrase
+//            case .openBraveNews:
+//                return Strings.Shortcuts.activityTypeOpenBraveNewsSuggestedPhrase
             case .openPlayList:
                 return Strings.Shortcuts.activityTypeOpenPlaylistSuggestedPhrase
         }
@@ -144,23 +144,23 @@ class ActivityShortcutManager: NSObject {
 //                            BraveVPN.reconnect()
 //                        }
 //                }
-            case .openBraveNews:
-                // Do nothing as browser when browser to PB only and Brave News isn't available on private tabs
-                guard !Preferences.Privacy.privateBrowsingOnly.value else {
-                    return
-                }
-                
-                if Preferences.BraveNews.isEnabled.value {
-                    bvc.openBlankNewTab(attemptLocationFieldFocus: false, isPrivate: false, isExternal: true)
-                    bvc.popToBVC()
-
-                    guard let newTabPageController = bvc.tabManager.selectedTab?.newTabPageViewController else { return }
-                    newTabPageController.scrollToBraveNews()
-                } else {
-                    let controller = BraveNewsSettingsViewController(dataSource: bvc.feedDataSource, rewards: bvc.rewards)
-                    let container = UINavigationController(rootViewController: controller)
-                    bvc.present(container, animated: true)
-                }
+//            case .openBraveNews:
+//                // Do nothing as browser when browser to PB only and Brave News isn't available on private tabs
+//                guard !Preferences.Privacy.privateBrowsingOnly.value else {
+//                    return
+//                }
+//
+//                if Preferences.BraveNews.isEnabled.value {
+//                    bvc.openBlankNewTab(attemptLocationFieldFocus: false, isPrivate: false, isExternal: true)
+//                    bvc.popToBVC()
+//
+//                    guard let newTabPageController = bvc.tabManager.selectedTab?.newTabPageViewController else { return }
+//                    newTabPageController.scrollToBraveNews()
+//                } else {
+//                    let controller = BraveNewsSettingsViewController(dataSource: bvc.feedDataSource)
+//                    let container = UINavigationController(rootViewController: controller)
+//                    bvc.present(container, animated: true)
+//                }
             case .openPlayList:
                 let playlistController = (UIApplication.shared.delegate as? AppDelegate)?.playlistRestorationController ?? PlaylistViewController(initialItem: nil, initialItemPlaybackOffset: 0.0)
                 playlistController.modalPresentationStyle = .fullScreen

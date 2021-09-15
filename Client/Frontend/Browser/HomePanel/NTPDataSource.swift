@@ -99,7 +99,6 @@ class NTPDataSource {
     
     enum BackgroundType {
         case regular
-        case withBrandLogo(_ logo: NTPLogo?)
         case withQRCode(_ code: String)
     }
     
@@ -123,15 +122,16 @@ class NTPDataSource {
                 return (theme.wallpapers, .withQRCode(refCode), .randomOrderAvoidDuplicates)
             }
             
-            if let sponsor = sponsor {
-                let attemptSponsored = Preferences.NewTabPage.backgroundSponsoredImages.value
-                    && backgroundRotationCounter == NTPDataSource.sponsorshipShowValue
-                    && !PrivateBrowsingManager.shared.isPrivateBrowsing
-                
-                if attemptSponsored {
-                    return (sponsor.wallpapers, .withBrandLogo(sponsor.logo), .sponsoredRotation)
-                }
-            }
+            // MS comment out brave rewards
+//            if let sponsor = sponsor {
+//                let attemptSponsored = Preferences.NewTabPage.backgroundSponsoredImages.value
+//                    && backgroundRotationCounter == NTPDataSource.sponsorshipShowValue
+//                    && !PrivateBrowsingManager.shared.isPrivateBrowsing
+//
+//                if attemptSponsored {
+//                    return (sponsor.wallpapers, .withBrandLogo(sponsor.logo), .sponsoredRotation)
+//                }
+//            }
             
             return (standardBackgrounds, .regular, .randomOrderAvoidDuplicates)
         }()

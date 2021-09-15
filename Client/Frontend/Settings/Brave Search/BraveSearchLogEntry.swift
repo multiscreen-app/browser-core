@@ -36,5 +36,3 @@ class BraveSearchLogEntry: ObservableObject {
         var fallbackData: Data?
     }
 }
-
-
