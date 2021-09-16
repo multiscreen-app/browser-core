@@ -85,11 +85,11 @@ class SettingsViewController: TableViewController {
         view.tintColor = .braveOrange
     }
     
-    private func displayRewardsDebugMenu() {
-        guard let rewards = rewards else { return }
-        let settings = RewardsDebugSettingsViewController(rewards: rewards, legacyWallet: legacyWallet)
-        navigationController?.pushViewController(settings, animated: true)
-    }
+//    private func displayRewardsDebugMenu() {
+//        guard let rewards = rewards else { return }
+//        let settings = RewardsDebugSettingsViewController(rewards: rewards, legacyWallet: legacyWallet)
+//        navigationController?.pushViewController(settings, animated: true)
+//    }
     
 //    private func displayBraveNewsDebugMenu() {
 //        let settings = BraveNewsDebugSettingsController(dataSource: feedDataSource)
@@ -502,9 +502,10 @@ class SettingsViewController: TableViewController {
                     self.navigationController?.pushViewController(UrpLogsViewController(), animated: true)
                 }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
                 Row(text: "URP Code: \(UserReferralProgram.getReferralCode() ?? "--")"),
-                Row(text: "View Rewards Debug Menu", selection: { [unowned self] in
-                    self.displayRewardsDebugMenu()
-                }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
+                // ms remove brave rewards
+//                Row(text: "View Rewards Debug Menu", selection: { [unowned self] in
+//                    self.displayRewardsDebugMenu()
+//                }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
                 // ms remove brave news debug
 //                Row(text: "View Brave News Debug Menu", selection: { [unowned self] in
 //                    self.displayBraveNewsDebugMenu()

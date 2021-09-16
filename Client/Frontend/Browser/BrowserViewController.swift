@@ -149,7 +149,7 @@ class BrowserViewController: UIViewController {
 //    let rewards: BraveRewards
 //    let legacyWallet: BraveLedger?
     var promotionFetchTimer: Timer?
-    private var notificationsHandler: AdsNotificationHandler?
+//    private var notificationsHandler: AdsNotificationHandler?
     var publisher: Ledger.PublisherInfo?
     
 //    let vpnProductInfo = VPNProductInfo()
