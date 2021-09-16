@@ -13,12 +13,10 @@ private let log = Logger.browserLogger
 class BraveShieldsAndPrivacySettingsController: TableViewController {
     let profile: Profile
     let tabManager: TabManager
-    let feedDataSource: FeedDataSource
     
-    init(profile: Profile, tabManager: TabManager, feedDataSource: FeedDataSource) {
+    init(profile: Profile, tabManager: TabManager) {
         self.profile = profile
         self.tabManager = tabManager
-        self.feedDataSource = feedDataSource
         super.init(style: .insetGrouped)
     }
     
@@ -126,10 +124,6 @@ class BraveShieldsAndPrivacySettingsController: TableViewController {
             [(PlayListCacheClearable(), false),
              (PlayListDataClearable(), false),
              (RecentSearchClearable(), true)]
-        
-        #if !NO_BRAVE_NEWS
-        alwaysVisible.append((BraveNewsClearable(feedDataSource: self.feedDataSource), true))
-        #endif
         
         alwaysVisible.append(contentsOf: others)
         

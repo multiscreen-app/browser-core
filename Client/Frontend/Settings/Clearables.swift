@@ -170,23 +170,24 @@ class DownloadsClearable: Clearable {
     }
 }
 
-class BraveNewsClearable: Clearable {
-    
-    let feedDataSource: FeedDataSource
-    
-    init(feedDataSource: FeedDataSource) {
-        self.feedDataSource = feedDataSource
-    }
-    
-    var label: String {
-        return Strings.BraveNews.braveNews
-    }
-    
-    func clear() -> Success {
-        feedDataSource.clearCachedFiles()
-        return succeed()
-    }
-}
+// ms brave news clearable
+//class BraveNewsClearable: Clearable {
+//
+//    let feedDataSource: FeedDataSource
+//
+//    init(feedDataSource: FeedDataSource) {
+//        self.feedDataSource = feedDataSource
+//    }
+//
+//    var label: String {
+//        return Strings.BraveNews.braveNews
+//    }
+//
+//    func clear() -> Success {
+//        feedDataSource.clearCachedFiles()
+//        return succeed()
+//    }
+//}
 
 class PlayListCacheClearable: Clearable {
         

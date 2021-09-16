@@ -255,8 +255,7 @@ extension BrowserViewController: TopToolbarDelegate {
             vc.dismiss(animated: true) {
                 let shieldsAndPrivacy = BraveShieldsAndPrivacySettingsController(
                     profile: self.profile,
-                    tabManager: self.tabManager,
-                    feedDataSource: self.feedDataSource
+                    tabManager: self.tabManager
                 )
                 let container = SettingsNavigationController(rootViewController: shieldsAndPrivacy)
                 container.isModalInPresentation = true

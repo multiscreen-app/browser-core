@@ -94,7 +94,7 @@ class NewTabPageViewController: UIViewController {
     private let backgroundView = NewTabPageBackgroundView()
     private let backgroundButtonsView = NewTabPageBackgroundButtonsView()
     
-    private let feedDataSource: FeedDataSource
+//    private let feedDataSource: FeedDataSource
     private let feedOverlayView = NewTabPageFeedOverlayView()
     private var preventReloadOnBraveNewsEnabledChange = false
     
@@ -102,10 +102,9 @@ class NewTabPageViewController: UIViewController {
     
     init(tab: Tab,
          profile: Profile,
-         dataSource: NTPDataSource,
-         feedDataSource: FeedDataSource) {
+         dataSource: NTPDataSource) {
         self.tab = tab
-        self.feedDataSource = feedDataSource
+//        self.feedDataSource = feedDataSource
         background = NewTabPageBackground(dataSource: dataSource)
         notifications = NewTabPageNotifications()
         collectionView = NewTabCollectionView(frame: .zero, collectionViewLayout: layout)
@@ -128,20 +127,20 @@ class NewTabPageViewController: UIViewController {
             sections.insert(NTPDefaultBrowserCalloutProvider(), at: 0)
         }
         
-        #if !NO_BRAVE_NEWS
-        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
-            sections.append(
-                BraveNewsSectionProvider(
-                    dataSource: feedDataSource,
-                    rewards: rewards,
-                    actionHandler: { [weak self] in
-                        self?.handleBraveNewsAction($0)
-                    }
-                )
-            )
-            layout.braveNewsSection = sections.firstIndex(where: { $0 is BraveNewsSectionProvider })
-        }
-        #endif
+//        #if !NO_BRAVE_NEWS
+//        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+//            sections.append(
+//                BraveNewsSectionProvider(
+//                    dataSource: feedDataSource,
+//                    rewards: rewards,
+//                    actionHandler: { [weak self] in
+//                        self?.handleBraveNewsAction($0)
+//                    }
+//                )
+//            )
+//            layout.braveNewsSection = sections.firstIndex(where: { $0 is BraveNewsSectionProvider })
+//        }
+//        #endif
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -150,13 +149,13 @@ class NewTabPageViewController: UIViewController {
             self?.setupBackgroundImage()
         }
         
-        #if !NO_BRAVE_NEWS
-        Preferences.BraveNews.isEnabled.observe(from: self)
-        feedDataSource.observeState(from: self) { [weak self] in
-            self?.handleFeedStateChange($0, $1)
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(checkForUpdatedFeed), name: UIApplication.didBecomeActiveNotification, object: nil)
-        #endif
+//        #if !NO_BRAVE_NEWS
+//        Preferences.BraveNews.isEnabled.observe(from: self)
+//        feedDataSource.observeState(from: self) { [weak self] in
+//            self?.handleFeedStateChange($0, $1)
+//        }
+//        NotificationCenter.default.addObserver(self, selector: #selector(checkForUpdatedFeed), name: UIApplication.didBecomeActiveNotification, object: nil)
+//        #endif
     }
     
     @available(*, unavailable)
@@ -179,9 +178,9 @@ class NewTabPageViewController: UIViewController {
         
         // MS comment out brave rewards
 //        feedOverlayView.headerView.settingsButton.addTarget(self, action: #selector(tappedBraveNewsSettings), for: .touchUpInside)
-        if !AppConstants.buildChannel.isPublic {
-            feedOverlayView.headerView.settingsButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressedBraveNewsSettingsButton)))
-        }
+//        if !AppConstants.buildChannel.isPublic {
+//            feedOverlayView.headerView.settingsButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressedBraveNewsSettingsButton)))
+//        }
 //        feedOverlayView.newContentAvailableButton.addTarget(self, action: #selector(tappedNewContentAvailable), for: .touchUpInside)
         
         backgroundButtonsView.tappedActiveButton = { [weak self] sender in
@@ -726,13 +725,13 @@ class NewTabPageViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @objc private func longPressedBraveNewsSettingsButton() {
-        assert(!AppConstants.buildChannel.isPublic,
-               "Debug settings are not accessible on public builds")
-        let settings = BraveNewsDebugSettingsController(dataSource: feedDataSource)
-        let container = UINavigationController(rootViewController: settings)
-        present(container, animated: true)
-    }
+//    @objc private func longPressedBraveNewsSettingsButton() {
+//        assert(!AppConstants.buildChannel.isPublic,
+//               "Debug settings are not accessible on public builds")
+//        let settings = BraveNewsDebugSettingsController(dataSource: feedDataSource)
+//        let container = UINavigationController(rootViewController: settings)
+//        present(container, animated: true)
+//    }
 }
 
 extension NewTabPageViewController: PreferencesObserver {
@@ -740,25 +739,25 @@ extension NewTabPageViewController: PreferencesObserver {
         if !preventReloadOnBraveNewsEnabledChange {
             collectionView.reloadData()
         }
-        if !isBraveNewsVisible {
-            collectionView.verticalScrollIndicatorInsets = .zero
-            feedOverlayView.headerView.alpha = 0.0
-            backgroundButtonsView.alpha = 1.0
-        }
+//        if !isBraveNewsVisible {
+//            collectionView.verticalScrollIndicatorInsets = .zero
+//            feedOverlayView.headerView.alpha = 0.0
+//            backgroundButtonsView.alpha = 1.0
+//        }
         preventReloadOnBraveNewsEnabledChange = false
     }
 }
 
 // MARK: - UIScrollViewDelegate
 extension NewTabPageViewController {
-    var isBraveNewsVisible: Bool {
-        #if NO_BRAVE_NEWS
-        return false
-        #else
-        return !PrivateBrowsingManager.shared.isPrivateBrowsing &&
-            (Preferences.BraveNews.isEnabled.value || Preferences.BraveNews.isShowingOptIn.value)
-        #endif
-    }
+//    var isBraveNewsVisible: Bool {
+//        #if NO_BRAVE_NEWS
+//        return false
+//        #else
+//        return !PrivateBrowsingManager.shared.isPrivateBrowsing &&
+//            (Preferences.BraveNews.isEnabled.value || Preferences.BraveNews.isShowingOptIn.value)
+//        #endif
+//    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         for section in sections {
             section.scrollViewDidScroll?(scrollView)
@@ -805,11 +804,11 @@ extension NewTabPageViewController {
     }
     
     /// Moves New Tab Page Scroll to start of Brave News - Used for shortcut
-    func scrollToBraveNews() {
-        // Offset of where Brave News starts
-        let todayStart = collectionView.frame.height - feedOverlayView.headerView.bounds.height - 32 - 16
-        collectionView.contentOffset.y = todayStart
-    }
+//    func scrollToBraveNews() {
+//        // Offset of where Brave News starts
+//        let todayStart = collectionView.frame.height - feedOverlayView.headerView.bounds.height - 32 - 16
+//        collectionView.contentOffset.y = todayStart
+//    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

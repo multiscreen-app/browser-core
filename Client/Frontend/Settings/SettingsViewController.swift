@@ -57,12 +57,10 @@ class SettingsViewController: TableViewController {
     private let tabManager: TabManager
     private let rewards: BraveRewards?
     private let legacyWallet: BraveLedger?
-    private let feedDataSource: FeedDataSource
     
-    init(profile: Profile, tabManager: TabManager, feedDataSource: FeedDataSource, rewards: BraveRewards? = nil, legacyWallet: BraveLedger? = nil) {
+    init(profile: Profile, tabManager: TabManager, rewards: BraveRewards? = nil, legacyWallet: BraveLedger? = nil) {
         self.profile = profile
         self.tabManager = tabManager
-        self.feedDataSource = feedDataSource
         self.rewards = rewards
         self.legacyWallet = legacyWallet
         
@@ -93,10 +91,10 @@ class SettingsViewController: TableViewController {
         navigationController?.pushViewController(settings, animated: true)
     }
     
-    private func displayBraveNewsDebugMenu() {
-        let settings = BraveNewsDebugSettingsController(dataSource: feedDataSource)
-        navigationController?.pushViewController(settings, animated: true)
-    }
+//    private func displayBraveNewsDebugMenu() {
+//        let settings = BraveNewsDebugSettingsController(dataSource: feedDataSource)
+//        navigationController?.pushViewController(settings, animated: true)
+//    }
     
     private func displayBraveSearchDebugMenu() {
         let hostingController =
@@ -167,7 +165,7 @@ class SettingsViewController: TableViewController {
             header: .title(Strings.features),
             rows: [
                 Row(text: Strings.braveShieldsAndPrivacy, selection: { [unowned self] in
-                    let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager, feedDataSource: self.feedDataSource)
+                    let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager)
                     self.navigationController?.pushViewController(controller, animated: true)
                 }, image: #imageLiteral(resourceName: "settings-shields"), accessory: .disclosureIndicator)
             ]
@@ -507,9 +505,10 @@ class SettingsViewController: TableViewController {
                 Row(text: "View Rewards Debug Menu", selection: { [unowned self] in
                     self.displayRewardsDebugMenu()
                 }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
-                Row(text: "View Brave News Debug Menu", selection: { [unowned self] in
-                    self.displayBraveNewsDebugMenu()
-                }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
+                // ms remove brave news debug
+//                Row(text: "View Brave News Debug Menu", selection: { [unowned self] in
+//                    self.displayBraveNewsDebugMenu()
+//                }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
                 Row(text: "View Brave Search Debug Menu", selection: { [unowned self] in
                     self.displayBraveSearchDebugMenu()
                 }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),

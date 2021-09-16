@@ -12,10 +12,10 @@ import Shared
 /// A set of feed related components that overlay the New Tab Page when Brave News is enabled
 class NewTabPageFeedOverlayView: UIView {
     
-    let headerView = FeedSectionHeaderView().then {
-        $0.alpha = 0.0
-        $0.setContentHuggingPriority(.required, for: .vertical)
-    }
+//    let headerView = FeedSectionHeaderView().then {
+//        $0.alpha = 0.0
+//        $0.setContentHuggingPriority(.required, for: .vertical)
+//    }
     
     let loaderView = LoaderView(size: .small).then {
         $0.tintColor = .white
@@ -52,19 +52,19 @@ class NewTabPageFeedOverlayView: UIView {
         super.init(frame: frame)
         
         addSubview(newContentAvailableButton)
-        addSubview(headerView)
+//        addSubview(headerView)
         addSubview(loaderView)
         
         clipsToBounds = true
         
-        headerView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-        }
-        
-        newContentAvailableButton.snp.makeConstraints {
-            $0.top.equalTo(headerView.snp.bottom).offset(16)
-            $0.centerX.equalToSuperview()
-        }
+//        headerView.snp.makeConstraints {
+//            $0.top.leading.trailing.equalToSuperview()
+//        }
+//
+//        newContentAvailableButton.snp.makeConstraints {
+//            $0.top.equalTo(headerView.snp.bottom).offset(16)
+//            $0.centerX.equalToSuperview()
+//        }
         
         loaderView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
