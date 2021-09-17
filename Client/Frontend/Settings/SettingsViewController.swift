@@ -55,10 +55,12 @@ class SettingsViewController: TableViewController {
     
     private let profile: Profile
     unowned private let tabManager: TabManager
+    private let historyAPI: BraveHistoryAPI
     
-    init(profile: Profile, tabManager: TabManager) {
+    init(profile: Profile, tabManager: TabManager, historyAPI: BraveHistoryAPI) {
         self.profile = profile
         self.tabManager = tabManager
+        self.historyAPI = historyAPI
         
         super.init(style: .insetGrouped)
     }
@@ -120,7 +122,7 @@ class SettingsViewController: TableViewController {
             header: .title(Strings.features),
             rows: [
                 Row(text: Strings.braveShieldsAndPrivacy, selection: { [unowned self] in
-                    let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager)
+                    let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager, historyAPI: self.historyAPI)
                     self.navigationController?.pushViewController(controller, animated: true)
                 }, image: UIImage(systemName: "shield.lefthalf.filled"), accessory: .disclosureIndicator)
             ]

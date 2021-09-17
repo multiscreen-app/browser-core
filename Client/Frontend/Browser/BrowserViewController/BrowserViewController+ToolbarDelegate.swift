@@ -262,7 +262,8 @@ extension BrowserViewController: TopToolbarDelegate {
             vc.dismiss(animated: true) {
                 let shieldsAndPrivacy = BraveShieldsAndPrivacySettingsController(
                     profile: self.profile,
-                    tabManager: self.tabManager
+                    tabManager: self.tabManager,
+                    historyAPI: self.historyAPI
                 )
                 let container = SettingsNavigationController(rootViewController: shieldsAndPrivacy)
                 container.browserInstanceDelegate = browserInstance?.delegate
@@ -333,7 +334,7 @@ extension BrowserViewController: TopToolbarDelegate {
         searchController.searchDelegate = self
         searchController.profile = self.profile
 
-        searchLoader = SearchLoader(privateBrowsingManager: self.privateBrowsingManager)
+        searchLoader = SearchLoader(historyAPI: historyAPI, bookmarkAPI: bookmarkAPI)
         searchLoader?.addListener(searchController)
         searchLoader?.autocompleteSuggestionHandler = { [weak self] completion in
             self?.topToolbar.setAutocompleteSuggestion(completion)
@@ -444,6 +445,7 @@ extension BrowserViewController: TopToolbarDelegate {
     private func showBookmarkController() {
         let bookmarkViewController = BookmarksViewController(
             folder: Bookmarkv2.lastVisitedFolder(),
+            bookmarkAPI: bookmarkAPI,
             isPrivateBrowsing: self.privateBrowsingManager.isPrivateBrowsing)
         
         bookmarkViewController.toolbarUrlActionsDelegate = self
@@ -462,7 +464,7 @@ extension BrowserViewController: TopToolbarDelegate {
 
         let mode = BookmarkEditMode.addBookmark(title: selectedTab.displayTitle, url: bookmarkUrl.absoluteString)
 
-        let addBookMarkController = AddEditBookmarkTableViewController(mode: mode)
+        let addBookMarkController = AddEditBookmarkTableViewController(bookmarkAPI: bookmarkAPI, mode: mode)
 
         presentSettingsNavigation(with: addBookMarkController, cancelEnabled: true)
     }

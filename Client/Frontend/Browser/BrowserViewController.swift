@@ -97,6 +97,8 @@ class BrowserViewController: UIViewController {
     weak var tabTrayController: TabTrayController!
     let profile: Profile
     let tabManager: TabManager
+    let historyAPI: BraveHistoryAPI
+    let bookmarkAPI: BraveBookmarksAPI
     
     /// Whether last session was a crash or not
     fileprivate let crashedLastSession: Bool
@@ -179,10 +181,12 @@ class BrowserViewController: UIViewController {
     
     private let launchOptions: LaunchOptions
 
-    init(profile: Profile, tabManager: TabManager, crashedLastSession: Bool,
+    init(profile: Profile, tabManager: TabManager, historyAPI: BraveHistoryAPI, bookmarkAPI: BraveBookmarksAPI, crashedLastSession: Bool,
          safeBrowsingManager: SafeBrowsing? = nil, launchOptions: LaunchOptions = LaunchOptions()) {
         self.profile = profile
         self.tabManager = tabManager
+        self.historyAPI = historyAPI
+        self.bookmarkAPI = bookmarkAPI
         self.readerModeCache = ReaderMode.cache(for: tabManager.selectedTab)
         self.crashedLastSession = crashedLastSession
         self.launchOptions = launchOptions
@@ -1662,9 +1666,9 @@ class BrowserViewController: UIViewController {
                     if let visitType =
                         typedNavigation.first(where: { $0.key.typedDisplayString == url.typedDisplayString })?.value,
                        visitType == .typed {
-                        Historyv2.add(url: url, title: tab.title ?? "", dateAdded: Date())
+                        historyAPI.add(url: url, title: tab.title ?? "", dateAdded: Date())
                     } else {
-                        Historyv2.add(url: url, title: tab.title ?? "", dateAdded: Date(), isURLTyped: false)
+                        historyAPI.add(url: url, title: tab.title ?? "", dateAdded: Date(), isURLTyped: false)
                     }
                 }
             }

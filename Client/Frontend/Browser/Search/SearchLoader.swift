@@ -5,11 +5,18 @@
 import Shared
 import Storage
 import Data
+import BraveCore
 
 /// Shared data source for the SearchViewController and the URLBar domain completion.
 /// Since both of these use the same query, we can perform the query once and dispatch the results.
 class SearchLoader: Loader<[Site], SearchViewController> {
+    private let frequencyQuery: FrequencyQuery
+    
     var autocompleteSuggestionHandler: ((String) -> Void)?
+    
+    init(historyAPI: BraveHistoryAPI, bookmarkAPI: BraveBookmarksAPI) {
+        frequencyQuery = FrequencyQuery(historyAPI: historyAPI, bookmarkAPI: bookmarkAPI)
+    }
 
     var query: String = "" {
         didSet {
@@ -18,7 +25,7 @@ class SearchLoader: Loader<[Site], SearchViewController> {
                 return
             }
 
-            FrequencyQuery.sitesByFrequency(containing: query, isPrivateBrowsing: self.privateBrowsingManager.isPrivateBrowsing) { [weak self] result in
+            frequencyQuery.sitesByFrequency(containing: query) { [weak self] result in
                 guard let self = self else { return }
                 
                 self.load(Array(result))
@@ -37,12 +44,6 @@ class SearchLoader: Loader<[Site], SearchViewController> {
                 }
             }
         }
-    }
-    
-    private unowned let privateBrowsingManager: PrivateBrowsingManager
-    
-    init(privateBrowsingManager: PrivateBrowsingManager) {
-        self.privateBrowsingManager = privateBrowsingManager
     }
 
     fileprivate func completionForURL(_ url: String) -> String? {

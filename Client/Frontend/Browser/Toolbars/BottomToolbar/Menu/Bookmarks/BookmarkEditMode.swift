@@ -5,20 +5,22 @@
 import Foundation
 import Data
 import Shared
+import BraveCore
 
 /// Bookmark editing has four states.
 /// each state has small differences in presentation as well as business logic.
 enum BookmarkEditMode {
     case addBookmark(title: String, url: String)
     case addFolder(title: String)
-    case editBookmark(_ bookmark: Bookmarkv2)
-    case editFolder(_ folder: Bookmarkv2)
-    case editFavorite(_ favorite: Bookmarkv2)
+    case addFolderUsingTabs(title: String, tabList: [Tab])
+    case editBookmark(_ bookmark: BookmarkNode)
+    case editFolder(_ folder: BookmarkNode)
+    case editFavorite(_ favorite: BookmarkNode)
     
     /// Returns a initial, default save location if none is provided
     var initialSaveLocation: BookmarkSaveLocation {
         switch self {
-        case .addBookmark(_, _), .addFolder(_):
+        case .addBookmark(_, _), .addFolder(_), .addFolderUsingTabs(_, _):
             return .rootLevel
         // Set current parent folder if possible, fallback to root folder
         case .editBookmark(let bookmark):
@@ -33,7 +35,7 @@ enum BookmarkEditMode {
     /// Returns a folder which is edited, otherwise retuns nil.
     /// This is required to exclude the folder from showing in
     /// folder hierarchy.
-    var folder: Bookmarkv2? {
+    var folder: BookmarkNode? {
         switch self {
         case .editFolder(let folder): return folder
         default: return nil
@@ -44,22 +46,22 @@ enum BookmarkEditMode {
     var title: String {
         switch self {
         case .addBookmark(_, _): return Strings.newBookmarkTitle
-        case .addFolder(_): return  Strings.newFolderTitle
+        case .addFolder(_), .addFolderUsingTabs(_, _): return  Strings.newFolderTitle
         case .editBookmark(_): return  Strings.editBookmarkTitle
         case .editFolder(_): return  Strings.editFolderTitle
         case .editFavorite(_): return  Strings.editFavoriteTitle
         }
     }
     
-    private func folderOrRoot(bookmarkOrFolder: Bookmarkv2) -> BookmarkSaveLocation {
-        guard let parent = bookmarkOrFolder.parent else { return .rootLevel }
+    private func folderOrRoot(bookmarkOrFolder: BookmarkNode) -> BookmarkSaveLocation {
+        guard let parent = bookmarkOrFolder.parentNode else { return .rootLevel }
         return .folder(folder: parent)
     }
     
     var specialCells: [AddEditBookmarkTableViewController.SpecialCell] {
         // Order of cells matters.
         switch self {
-        case .addFolder, .editFolder: return [.rootLevel]
+        case .addFolder, .addFolderUsingTabs, .editFolder: return [.rootLevel]
         case .addBookmark, .editBookmark, .editFavorite: return [.addFolder, .favorites, .rootLevel]
         }
     }
