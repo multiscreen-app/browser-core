@@ -187,25 +187,25 @@ class BrowserViewController: UIViewController {
         self.crashedLastSession = crashedLastSession
         self.safeBrowsing = safeBrowsingManager
 
-        let configuration: BraveRewards.Configuration
-        if AppConstants.buildChannel.isPublic {
-            configuration = .production
-        } else {
-            if let override = Preferences.Rewards.EnvironmentOverride(rawValue: Preferences.Rewards.environmentOverride.value), override != .none {
-                switch override {
-                case .dev:
-                    configuration = .default
-                case .staging:
-                    configuration = .staging
-                case .prod:
-                    configuration = .production
-                default:
-                    configuration = .staging
-                }
-            } else {
-                configuration = AppConstants.buildChannel == .debug ? .staging : .production
-            }
-        }
+//        let configuration: BraveRewards.Configuration
+//        if AppConstants.buildChannel.isPublic {
+//            configuration = .production
+//        } else {
+//            if let override = Preferences.Rewards.EnvironmentOverride(rawValue: Preferences.Rewards.environmentOverride.value), override != .none {
+//                switch override {
+//                case .dev:
+//                    configuration = .default
+//                case .staging:
+//                    configuration = .staging
+//                case .prod:
+//                    configuration = .production
+//                default:
+//                    configuration = .staging
+//                }
+//            } else {
+//                configuration = AppConstants.buildChannel == .debug ? .staging : .production
+//            }
+//        }
 
         let buildChannel = Ads.BraveAdsBuildChannel().then {
           $0.name = AppConstants.buildChannel.rawValue
@@ -236,7 +236,7 @@ class BrowserViewController: UIViewController {
 //            Preferences.Rewards.rewardsToggledOnce.value = true
 //        }
 //        }
-        deviceCheckClient = DeviceCheckClient(environment: configuration.ledgerEnvironment)
+//        deviceCheckClient = DeviceCheckClient(environment: configuration.ledgerEnvironment)
         
         if Locale.current.regionCode == "JP" {
             benchmarkBlockingDataSource = BlockingSummaryDataSource()
@@ -264,51 +264,51 @@ class BrowserViewController: UIViewController {
 //        feedDataSource.rewards = rewards
     }
     
-    static func legacyWallet(for config: BraveRewards.Configuration) -> BraveLedger? {
-        let fm = FileManager.default
-        let stateStorage = config.storageURL
-        let legacyLedger = stateStorage.appendingPathComponent("legacy_ledger")
-
-        // Check if we've already migrated the users wallet to the `legacy_rewards` folder
-        if fm.fileExists(atPath: legacyLedger.path) {
-            BraveLedger.environment = config.ledgerEnvironment
-            return BraveLedger(stateStoragePath: legacyLedger.path)
-        }
-        
-        // We've already performed an attempt at migration, if there wasn't a legacy folder, then
-        // we have no legacy wallet.
-        if Preferences.Rewards.migratedLegacyWallet.value {
-            return nil
-        }
-        
-        // Ledger exists in the state storage under `ledger` folder, if that folder doesn't exist
-        // then the user hasn't actually launched the app before and doesn't need to migrate
-        let ledgerFolder = stateStorage.appendingPathComponent("ledger")
-        if !fm.fileExists(atPath: ledgerFolder.path) {
-            // No wallet, therefore no legacy folder needed
-            Preferences.Rewards.migratedLegacyWallet.value = true
-            return nil
-        }
-        
-        do {
-            // Copy the current `ledger` directory into the new legacy state storage path
-            try fm.copyItem(at: ledgerFolder, to: legacyLedger)
-            // Remove the old Rewards DB so that it starts fresh
-            try fm.removeItem(atPath: ledgerFolder.appendingPathComponent("Rewards.db").path)
-            // And remove the sqlite journal file if it exists
-            let journalPath = ledgerFolder.appendingPathComponent("Rewards.db-journal").path
-            if fm.fileExists(atPath: journalPath) {
-                try fm.removeItem(atPath: journalPath)
-            }
-            
-            Preferences.Rewards.migratedLegacyWallet.value = true
-            BraveLedger.environment = config.ledgerEnvironment
-            return BraveLedger(stateStoragePath: legacyLedger.path)
-        } catch {
-            log.error("Failed to migrate legacy wallet into a new folder: \(error)")
-            return nil
-        }
-    }
+//    static func legacyWallet(for config: BraveRewards.Configuration) -> BraveLedger? {
+//        let fm = FileManager.default
+//        let stateStorage = config.storageURL
+//        let legacyLedger = stateStorage.appendingPathComponent("legacy_ledger")
+//
+//        // Check if we've already migrated the users wallet to the `legacy_rewards` folder
+//        if fm.fileExists(atPath: legacyLedger.path) {
+//            BraveLedger.environment = config.ledgerEnvironment
+//            return BraveLedger(stateStoragePath: legacyLedger.path)
+//        }
+//
+//        // We've already performed an attempt at migration, if there wasn't a legacy folder, then
+//        // we have no legacy wallet.
+//        if Preferences.Rewards.migratedLegacyWallet.value {
+//            return nil
+//        }
+//
+//        // Ledger exists in the state storage under `ledger` folder, if that folder doesn't exist
+//        // then the user hasn't actually launched the app before and doesn't need to migrate
+//        let ledgerFolder = stateStorage.appendingPathComponent("ledger")
+//        if !fm.fileExists(atPath: ledgerFolder.path) {
+//            // No wallet, therefore no legacy folder needed
+//            Preferences.Rewards.migratedLegacyWallet.value = true
+//            return nil
+//        }
+//
+//        do {
+//            // Copy the current `ledger` directory into the new legacy state storage path
+//            try fm.copyItem(at: ledgerFolder, to: legacyLedger)
+//            // Remove the old Rewards DB so that it starts fresh
+//            try fm.removeItem(atPath: ledgerFolder.appendingPathComponent("Rewards.db").path)
+//            // And remove the sqlite journal file if it exists
+//            let journalPath = ledgerFolder.appendingPathComponent("Rewards.db-journal").path
+//            if fm.fileExists(atPath: journalPath) {
+//                try fm.removeItem(atPath: journalPath)
+//            }
+//
+//            Preferences.Rewards.migratedLegacyWallet.value = true
+//            BraveLedger.environment = config.ledgerEnvironment
+//            return BraveLedger(stateStoragePath: legacyLedger.path)
+//        } catch {
+//            log.error("Failed to migrate legacy wallet into a new folder: \(error)")
+//            return nil
+//        }
+//    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -439,7 +439,7 @@ class BrowserViewController: UIViewController {
         }
     }
     
-    let deviceCheckClient: DeviceCheckClient?
+//    let deviceCheckClient: DeviceCheckClient?
     
 //    private func setupAdsNotificationHandler() {
 //        notificationsHandler = AdsNotificationHandler(ads: rewards.ads, presentingController: self)

@@ -55,14 +55,10 @@ class SettingsViewController: TableViewController {
     
     private let profile: Profile
     private let tabManager: TabManager
-    private let rewards: BraveRewards?
-    private let legacyWallet: BraveLedger?
     
-    init(profile: Profile, tabManager: TabManager, rewards: BraveRewards? = nil, legacyWallet: BraveLedger? = nil) {
+    init(profile: Profile, tabManager: TabManager) {
         self.profile = profile
         self.tabManager = tabManager
-        self.rewards = rewards
-        self.legacyWallet = legacyWallet
         
         super.init(style: .insetGrouped)
     }
