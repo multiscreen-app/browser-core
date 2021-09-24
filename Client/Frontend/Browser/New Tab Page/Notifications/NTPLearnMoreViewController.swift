@@ -20,14 +20,12 @@ class NTPLearnMoreViewController: BottomSheetViewController {
     var linkHandler: ((URL) -> Void)?
     
     private let state: BrandedImageCalloutState
-    private let rewards: BraveRewards
     
     private let termsOfServiceUrl = "https://www.brave.com/terms_of_use"
     private let learnMoreAboutBraveRewardsUrl = "https://brave.com/brave-rewards/"
     
-    init(state: BrandedImageCalloutState, rewards: BraveRewards) {
+    init(state: BrandedImageCalloutState) {
         self.state = state
-        self.rewards = rewards
         super.init()
     }
     
