@@ -32,7 +32,7 @@ class CreatePDFActivity: UIActivity {
     }
     
     override func perform() {
-        // FIXME potential memory leak with removing weak var
+        // FIXME potential memory leak with removing weak self
         webView?.createPDF {result in
             dispatchPrecondition(condition: .onQueue(.main))
             switch result {
