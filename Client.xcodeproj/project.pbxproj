@@ -161,7 +161,6 @@
 		2748626A25AD30A500BC40AA /* sqlcipher.xcframework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 2748625C25AD308A00BC40AA /* sqlcipher.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2755AB7D23107BC600F0721F /* AdsReporting.js in Resources */ = {isa = PBXBuildFile; fileRef = 2755AB7C23107BC600F0721F /* AdsReporting.js */; };
 		27563E63263334210082B413 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27563E62263334210082B413 /* Colors.xcassets */; };
-		2760056625D1FFF500D47A75 /* AddFeedToBraveNewsActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760056525D1FFF500D47A75 /* AddFeedToBraveNewsActivity.swift */; };
 		2760D2BF215ACCE20068E131 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760D2BE215ACCE20068E131 /* BundleExtensions.swift */; };
 		2765825D2171263A00754B2F /* UserReferralProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2765825C2171263A00754B2F /* UserReferralProgram.swift */; };
 		276582692171266900754B2F /* ReferralData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276582652171266900754B2F /* ReferralData.swift */; };
@@ -239,7 +238,6 @@
 		27AD20C326851C5400889AA7 /* BraveCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; };
 		27AD20C426851C5400889AA7 /* BraveCore.xcframework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27AE360D25E55AA200E795E5 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE360C25E55AA200E795E5 /* MenuViewController.swift */; };
-		27B16C5924E1D72600E0CF2C /* NewTabPageFeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B16C5824E1D72600E0CF2C /* NewTabPageFeedOverlayView.swift */; };
 		27B33D5826556E7300F3D274 /* BraveButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B33D5726556E7300F3D274 /* BraveButtonStyle.swift */; };
 		27B3DDD024AE83710006A7ED /* FeedSourceOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B3DDCF24AE83710006A7ED /* FeedSourceOverride.swift */; };
 		27B68DF025C48F39002D0826 /* MaterialComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B68DD625C48EE9002D0826 /* MaterialComponents.xcframework */; };
@@ -1427,7 +1425,6 @@
 		27AC7CF724C759BE00441317 /* Enterprise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Enterprise.entitlements; sourceTree = "<group>"; };
 		27AD20C226851C5400889AA7 /* BraveCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BraveCore.xcframework; path = "node_modules/brave-core-ios/BraveCore.xcframework"; sourceTree = "<group>"; };
 		27AE360C25E55AA200E795E5 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		27B16C5824E1D72600E0CF2C /* NewTabPageFeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTabPageFeedOverlayView.swift; sourceTree = "<group>"; };
 		27B33D5726556E7300F3D274 /* BraveButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BraveButtonStyle.swift; sourceTree = "<group>"; };
 		27B3DDCF24AE83710006A7ED /* FeedSourceOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSourceOverride.swift; sourceTree = "<group>"; };
 		27B68DD625C48EE9002D0826 /* MaterialComponents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MaterialComponents.xcframework; path = "node_modules/brave-core-ios/MaterialComponents.xcframework"; sourceTree = "<group>"; };
@@ -2727,7 +2724,6 @@
 				276A790E24476F8100AC9446 /* Sections */,
 				27201F052458B7E100C19DD1 /* Backgrounds */,
 				27201F062458B7E800C19DD1 /* Notifications */,
-				27B16C5824E1D72600E0CF2C /* NewTabPageFeedOverlayView.swift */,
 				27201EFB24535C2F00C19DD1 /* NewTabPageFlowLayout.swift */,
 				27201EF824535A9500C19DD1 /* NewTabCollectionViewCell.swift */,
 				27EB601F244607DA00265C1B /* NewTabPageViewController.swift */,
@@ -5810,7 +5806,6 @@
 				448DC7E4268A6A2200F4795C /* BraveSearchLogEntry.swift in Sources */,
 				44331DD622551E15007E3E93 /* ToolbarProtocols.swift in Sources */,
 				0A1E84422190A57F0042F782 /* SyncPairCameraViewController.swift in Sources */,
-				2760056625D1FFF500D47A75 /* AddFeedToBraveNewsActivity.swift in Sources */,
 				44331DDC22561F34007E3E93 /* ToolbarUrlActionsDelegate.swift in Sources */,
 				4422D43721BFD29E00BF1855 /* NSData+GZIP.m in Sources */,
 				D31CF65C1CC1959A001D0BD0 /* PrivilegedRequest.swift in Sources */,
@@ -6007,7 +6002,6 @@
 				E4A961181AC041C40069AD6F /* ReadabilityService.swift in Sources */,
 				0A6BEF6624FCF23C0057A166 /* NewTabCenteredCollectionViewCell.swift in Sources */,
 				4422D56A21BFFB7F00BF1855 /* simplify.cc in Sources */,
-				27B16C5924E1D72600E0CF2C /* NewTabPageFeedOverlayView.swift in Sources */,
 				2F676F6F260BA1B00048A1DB /* BlockingSummaryDataSource.swift in Sources */,
 				27CFB71424E1F67B008DFC8C /* Observable.swift in Sources */,
 				27DCB9EE263765430067EF4A /* TabTrayToolbar.swift in Sources */,

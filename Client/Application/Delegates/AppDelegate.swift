@@ -149,22 +149,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         if let clazz = NSClassFromString("WKCont" + "ent" + "View"), let swizzledMethod = class_getInstanceMethod(TabWebViewMenuHelper.self, #selector(TabWebViewMenuHelper.swizzledMenuHelperFindInPage)) {
             class_addMethod(clazz, MenuHelper.selectorFindInPage, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
         }
-        
-        #if !NO_BRAVE_NEWS
-        if Preferences.BraveNews.isEnabled.value && !Preferences.BraveNews.userOptedIn.value {
-            // Opt-out any user that has not explicitly opted-in
-            Preferences.BraveNews.isEnabled.value = false
-            // User now has to explicitly opt-in
-            Preferences.BraveNews.isShowingOptIn.value = true
-        }
-        
-        if !Preferences.BraveNews.languageChecked.value,
-           let languageCode = Locale.preferredLanguages.first?.prefix(2) {
-            Preferences.BraveNews.languageChecked.value = true
-            // Base opt-in visibility on whether or not the user's language is supported in BT
-            Preferences.BraveNews.isShowingOptIn.value = FeedDataSource.supportedLanguages.contains(String(languageCode))
-        }
-        #endif
 
         self.tabManager = TabManager(prefs: profile.prefs, imageStore: imageStore)
 
@@ -327,10 +311,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
             return .braveBlurple
         }
         window?.makeKeyAndVisible()
-
-        if Preferences.Rewards.isUsingBAP.value == nil {
-            Preferences.Rewards.isUsingBAP.value = Locale.current.regionCode == "JP"
-        }
         
         // Now roll logs.
         DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
@@ -664,16 +644,6 @@ extension AppDelegate {
                     type: .clearBrowsingHistory, using: browserViewController)
                 
                 return true
-//            case ActivityType.enableBraveVPN.identifier:
-//                ActivityShortcutManager.shared.performShortcutActivity(
-//                    type: .enableBraveVPN, using: browserViewController)
-//                
-//                return true
-//            case ActivityType.openBraveNews.identifier:
-//                ActivityShortcutManager.shared.performShortcutActivity(
-//                    type: .openBraveNews, using: browserViewController)
-//                
-//                return true
             case ActivityType.openPlayList.identifier:
                 ActivityShortcutManager.shared.performShortcutActivity(
                     type: .openPlayList, using: browserViewController)

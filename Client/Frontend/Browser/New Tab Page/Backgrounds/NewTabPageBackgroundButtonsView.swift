@@ -80,7 +80,6 @@ class NewTabPageBackgroundButtonsView: UIView, PreferencesObserver {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        Preferences.BraveNews.isEnabled.observe(from: self)
         
         backgroundColor = .clear
         addLayoutGuide(collectionViewSafeAreaLayoutGuide)
@@ -104,22 +103,14 @@ class NewTabPageBackgroundButtonsView: UIView, PreferencesObserver {
         
         let isLandscape = frame.width > frame.height
         
-        #if NO_BRAVE_NEWS
-        let braveNewsVisible = false
-        #else
-        let braveNewsVisible =
-            !PrivateBrowsingManager.shared.isPrivateBrowsing &&
-            (Preferences.BraveNews.isEnabled.value || Preferences.BraveNews.isShowingOptIn.value)
-        #endif
-        
         imageCreditButton.snp.remakeConstraints {
             $0.leading.equalTo(collectionViewSafeAreaLayoutGuide).inset(16)
-            $0.bottom.equalTo(collectionViewSafeAreaLayoutGuide).inset(16 + (braveNewsVisible ? 30 : 0))
+            $0.bottom.equalTo(collectionViewSafeAreaLayoutGuide).inset(16)
         }
         
         sponsorLogoButton.snp.remakeConstraints {
             $0.size.equalTo(170)
-            $0.bottom.equalTo(collectionViewSafeAreaLayoutGuide.snp.bottom).inset(10 + (braveNewsVisible ? 30 : 0))
+            $0.bottom.equalTo(collectionViewSafeAreaLayoutGuide.snp.bottom).inset(10)
             
             if isLandscape {
                 $0.left.equalTo(collectionViewSafeAreaLayoutGuide.snp.left).offset(20)
@@ -130,7 +121,7 @@ class NewTabPageBackgroundButtonsView: UIView, PreferencesObserver {
         
         qrCodeButton.snp.remakeConstraints {
             $0.size.equalTo(48)
-            $0.bottom.equalTo(collectionViewSafeAreaLayoutGuide.snp.bottom).inset(24 + (braveNewsVisible ? 30 : 0))
+            $0.bottom.equalTo(collectionViewSafeAreaLayoutGuide.snp.bottom).inset(24)
             
             if isLandscape {
                 $0.left.equalTo(collectionViewSafeAreaLayoutGuide.snp.left).offset(48)

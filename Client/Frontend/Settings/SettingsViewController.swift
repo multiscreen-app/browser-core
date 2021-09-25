@@ -81,17 +81,6 @@ class SettingsViewController: TableViewController {
         view.tintColor = .braveOrange
     }
     
-//    private func displayRewardsDebugMenu() {
-//        guard let rewards = rewards else { return }
-//        let settings = RewardsDebugSettingsViewController(rewards: rewards, legacyWallet: legacyWallet)
-//        navigationController?.pushViewController(settings, animated: true)
-//    }
-    
-//    private func displayBraveNewsDebugMenu() {
-//        let settings = BraveNewsDebugSettingsController(dataSource: feedDataSource)
-//        navigationController?.pushViewController(settings, animated: true)
-//    }
-    
     private func displayBraveSearchDebugMenu() {
         let hostingController =
             UIHostingController(rootView: BraveSearchDebugMenu(logging: BraveSearchLogEntry.shared))
@@ -109,23 +98,6 @@ class SettingsViewController: TableViewController {
             aboutSection
         ]
         
-//        let shouldShowVPNSection = { () -> Bool in
-//            if !VPNProductInfo.isComplete || Preferences.VPN.vpnSettingHeaderWasDismissed.value {
-//                return false
-//            }
-//
-//            switch BraveVPN.vpnState {
-//            case .notPurchased, .expired, .purchased:
-//                return true
-//            case .installed:
-//                return false
-//            }
-//        }()
-//
-//        if shouldShowVPNSection {
-//            list.insert(enableBraveVPNSection, at: 0)
-//        }
-        
         if let debugSection = debugSection {
             list.append(debugSection)
         }
@@ -134,27 +106,6 @@ class SettingsViewController: TableViewController {
     }
     
     // MARK: - Sections
-    
-//    private lazy var enableBraveVPNSection: Static.Section = {
-//        let header = EnableVPNSettingHeader()
-//        header.enableVPNTapped = { [weak self] in
-//            self?.enableVPNTapped()
-//        }
-//
-//        header.dismissHeaderTapped = { [weak self] in
-//            self?.dismissVPNHeaderTapped()
-//        }
-//
-//        let calculatedSize = header.systemLayoutSizeFitting(
-//            CGSize(width: navigationController?.navigationBar.frame.width ?? 0, height: 300),
-//            withHorizontalFittingPriority: .required,
-//            verticalFittingPriority: .fittingSizeLevel
-//        )
-//
-//        header.bounds = CGRect(size: calculatedSize)
-//
-//        return Static.Section(header: .view(header))
-//    }()
     
     private lazy var featuresSection: Static.Section = {
         var section = Static.Section(
@@ -166,39 +117,7 @@ class SettingsViewController: TableViewController {
                 }, image: #imageLiteral(resourceName: "settings-shields"), accessory: .disclosureIndicator)
             ]
         )
-        
-        // MS comment out brave rewards
-//        if BraveRewards.isAvailable, let rewards = rewards {
-//            section.rows += [
-//                Row(text: Strings.braveRewardsTitle, selection: { [unowned self] in
-//                    let rewardsVC = BraveRewardsSettingsViewController(rewards, legacyWallet: self.legacyWallet)
-//                    rewardsVC.walletTransferLearnMoreTapped = { [weak self] in
-//                        guard let self = self else { return }
-//                        self.dismiss(animated: true) {
-//                            self.presentingViewController?.dismiss(animated: true) {
-//                                self.settingsDelegate?.settingsOpenURLInNewTab(BraveUX.braveRewardsLearnMoreURL)
-//                            }
-//                        }
-//                    }
-//                    self.navigationController?.pushViewController(rewardsVC, animated: true)
-//                }, image: #imageLiteral(resourceName: "settings-brave-rewards"), accessory: .disclosureIndicator),
-//            ]
-//        }
-        
-        #if !NO_BRAVE_NEWS
-        section.rows.append(
-            Row(text: Strings.BraveNews.braveNews, selection: {
-                let todaySettings = BraveNewsSettingsViewController(dataSource: self.feedDataSource, rewards: self.rewards)
-                self.navigationController?.pushViewController(todaySettings, animated: true)
-            }, image: #imageLiteral(resourceName: "settings-brave-today").template, accessory: .disclosureIndicator)
-        )
-        #endif
          
-//        vpnRow = vpnSettingsRow()
-//        if let vpnRow = vpnRow {
-//            section.rows.append(vpnRow)
-//        }
-        
         section.rows.append(
             Row(text: Strings.PlayList.playListSectionTitle, selection: { [unowned self] in
                 let playlistSettings = PlaylistSettingsViewController()
@@ -352,53 +271,15 @@ class SettingsViewController: TableViewController {
             .boolRow(title: Strings.showBookmarkButtonInTopToolbar,
                      option: Preferences.General.showBookmarkToolbarShortcut,
                      image: #imageLiteral(resourceName: "settings-bookmarks-shortcut").template),
-            .boolRow(title: Strings.hideRewardsIcon,
-                     option: Preferences.Rewards.hideRewardsIcon,
-                     image: #imageLiteral(resourceName: "settings-rewards-icon").template)
+//            .boolRow(title: Strings.hideRewardsIcon,
+//                     option: Preferences.Rewards.hideRewardsIcon,
+//                     image: #imageLiteral(resourceName: "settings-rewards-icon").template)
         ])
         
         return display
     }()
     
     private var vpnRow: Row?
-    
-//    private func vpnSettingsRow() -> Row {
-//        let (text, color) = { () -> (String, UIColor) in
-//            switch BraveVPN.vpnState {
-//            case .notPurchased, .purchased:
-//                return ("", UIColor.black)
-//            case .installed(let enabled):
-//                if enabled {
-//                    return (Strings.VPN.settingsVPNEnabled, .braveSuccessLabel)
-//                } else {
-//                    return (Strings.VPN.settingsVPNDisabled, .braveErrorLabel)
-//                }
-//            case .expired:
-//                return (Strings.VPN.settingsVPNExpired, .braveErrorLabel)
-//            }
-//        }()
-//        
-//        return Row(text: Strings.VPN.vpnName, detailText: text, selection: { [unowned self] in
-//            
-//            let vc = { () -> UIViewController? in
-//                switch BraveVPN.vpnState {
-//                case .notPurchased, .purchased, .expired:
-//                    return BraveVPN.vpnState.enableVPNDestinationVC
-//                case .installed:
-//                    let vc = BraveVPNSettingsViewController()
-//                    vc.faqButtonTapped = { [weak self] in
-//                        self?.settingsDelegate?.settingsOpenURLInNewTab(BraveUX.braveVPNFaqURL)
-//                        self?.dismiss(animated: true)
-//                    }
-//                    return vc
-//                }
-//            }()
-//            
-//            guard let vcToShow = vc else { return }
-//            self.navigationController?.pushViewController(vcToShow, animated: true)
-//            }, image: #imageLiteral(resourceName: "settings-vpn").template, accessory: .disclosureIndicator,
-//               cellClass: ColoredDetailCell.self, context: [ColoredDetailCell.colorKey: color], uuid: "vpnrow")
-//    }
 
     private lazy var securitySection: Static.Section = {
         return Section(
@@ -498,14 +379,6 @@ class SettingsViewController: TableViewController {
                     self.navigationController?.pushViewController(UrpLogsViewController(), animated: true)
                 }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
                 Row(text: "URP Code: \(UserReferralProgram.getReferralCode() ?? "--")"),
-                // ms remove brave rewards
-//                Row(text: "View Rewards Debug Menu", selection: { [unowned self] in
-//                    self.displayRewardsDebugMenu()
-//                }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
-                // ms remove brave news debug
-//                Row(text: "View Brave News Debug Menu", selection: { [unowned self] in
-//                    self.displayBraveNewsDebugMenu()
-//                }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
                 Row(text: "View Brave Search Debug Menu", selection: { [unowned self] in
                     self.displayBraveSearchDebugMenu()
                 }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
@@ -528,24 +401,4 @@ class SettingsViewController: TableViewController {
         )
     }()
     
-    // MARK: - Actions
-    
-//    private func enableVPNTapped() {
-//        let state = BraveVPN.vpnState
-//
-//        switch state {
-//        case .notPurchased, .purchased, .expired:
-//            guard let vc = state.enableVPNDestinationVC else { return }
-//            navigationController?.pushViewController(vc, animated: true)
-//        case .installed:
-//            BraveVPN.reconnect()
-//            dismiss(animated: true)
-//        }
-//    }
-    
-//    private func dismissVPNHeaderTapped() {
-//        if dataSource.sections.isEmpty { return }
-//        dataSource.sections[0] = Static.Section()
-//        Preferences.VPN.vpnSettingHeaderWasDismissed.value = true
-//    }
 }

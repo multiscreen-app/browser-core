@@ -256,8 +256,6 @@ class BrowserViewController: UIViewController {
         Preferences.General.mediaAutoBackgrounding.observe(from: self)
         Preferences.Shields.allShields.forEach { $0.observe(from: self) }
         Preferences.Privacy.blockAllCookies.observe(from: self)
-        Preferences.Rewards.hideRewardsIcon.observe(from: self)
-        Preferences.Rewards.rewardsToggledOnce.observe(from: self)
         Preferences.Playlist.enablePlaylistMenuBadge.observe(from: self)
         Preferences.NewTabPage.selectedCustomTheme.observe(from: self)
         Preferences.Playlist.webMediaSourceCompatibility.observe(from: self)

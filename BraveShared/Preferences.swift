@@ -51,14 +51,6 @@ extension Preferences {
         public static let ntpCheckDate = Option<TimeInterval?>(key: "ntp.next-check-date", default: nil)
     }
     
-    public final class BraveNews {
-        public static let isShowingOptIn = Option<Bool>(key: "brave-today.showing-opt-in", default: false)
-        public static let userOptedIn = Option<Bool>(key: "brave-today.user-opted-in", default: false)
-        public static let isEnabled = Option<Bool>(key: "brave-today.enabled", default: true)
-        public static let languageChecked = Option<Bool>(key: "brave-today.language-checked", default: false)
-        public static let debugEnvironment = Option<String?>(key: "brave-today.debug.environment", default: nil)
-    }
-    
     public final class Review {
         /// Application Launch Count (how many times the application has been launched)
         public static let launchCount = Option<Int>(key: "review.launch-count", default: 0)
@@ -116,50 +108,6 @@ extension Preferences {
         public static let advancedControlsVisible = Option<Bool>(key: "shields.advanced-controls-visible", default: false)
     }
     
-    public final class Rewards {
-        public static let myFirstAdShown = Option<Bool>(key: "rewards.ads.my-first-ad-shown", default: false)
-        public static let hideRewardsIcon = Option<Bool>(key: "rewards.new-hide-rewards-icon", default: false)
-        public static let rewardsToggledOnce = Option<Bool>(key: "rewards.rewards-toggled-once", default: false)
-        public static let isUsingBAP = Option<Bool?>(key: "rewards.is-using-bap", default: nil)
-        public static let seenDataMigrationFailureError = Option<Bool>(key: "rewards.seen-data-migration-failure-error", default: false)
-        public static let migratedLegacyWallet = Option<Bool>(key: "rewards.migrated-legacy-wallet", default: false)
-        public static let dismissedLegacyWalletTransfer = Option<Bool>(key: "rewards.dismissed-legacy-wallet-transfer", default: false)
-        public static let transferDrainID = Option<String?>(key: "rewards.legacy-wallet-transfer-drain-id", default: nil)
-        public static let lastTransferStatus = Option<Int?>(key: "rewards.legacy-wallet-transfer-status", default: nil)
-        public static let lastTransferStatusDismissed = Option<Int?>(key: "rewards.legacy-wallet-transfer-last-dismissed-status", default: nil)
-        public static let transferCompletionAcknowledged = Option<Bool>(key: "rewards.legacy-wallet-transfer-completion-acknowledged", default: false)
-        public static let transferUnavailableLastSeen = Option<TimeInterval?>(key: "rewards.transfer-unavailable-warning-last-seen-date", default: nil)
-        public static let drainStatusOverride = Option<Int?>(key: "rewards.drain-status-override", default: nil)
-        
-        public enum EnvironmentOverride: Int {
-            case none
-            case staging
-            case prod
-            case dev
-            
-            public var name: String {
-                switch self {
-                case .none: return "None"
-                case .staging: return "Staging"
-                case .prod: return "Prod"
-                case .dev: return "Dev"
-                }
-            }
-            
-            public static var sortedCases: [EnvironmentOverride] {
-                return [.none, .dev, .staging, .prod]
-            }
-        }
-        /// In debug/beta, this is the overriden environment.
-        public static let environmentOverride = Option<Int>(key: "rewards.environment-override",
-                                                            default: EnvironmentOverride.none.rawValue)
-        
-        /// In debut/beta, the number of seconds before an ad should automatically dismiss
-        public static let adsDurationOverride = Option<Int?>(key: "rewards.ads.dismissal-override", default: nil)
-        
-        /// Whether or not the user successfully enrolled before
-        public static let didEnrollDeviceCheck = Option<Bool>(key: "rewards.devicecheck.did.enroll", default: false)
-    }
 }
 
 extension Preferences {
