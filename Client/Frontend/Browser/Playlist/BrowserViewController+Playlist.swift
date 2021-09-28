@@ -246,9 +246,9 @@ extension BrowserViewController: PlaylistHelperDelegate {
         playlistController.modalPresentationStyle = .fullScreen
         
         /// Donate Open Playlist Activity for suggestions
-        let openPlaylist = ActivityShortcutManager.shared.createShortcutActivity(type: .openPlayList)
-        self.userActivity = openPlaylist
-        openPlaylist.becomeCurrent()
+//        let openPlaylist = ActivityShortcutManager.shared.createShortcutActivity(type: .openPlayList)
+//        self.userActivity = openPlaylist
+//        openPlaylist.becomeCurrent()
 
         present(playlistController, animated: true)
     }

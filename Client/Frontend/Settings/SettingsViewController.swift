@@ -93,7 +93,7 @@ class SettingsViewController: TableViewController {
             featuresSection,
             generalSection,
             displaySection,
-            securitySection,
+//            securitySection,
             supportSection,
             aboutSection
         ]
@@ -137,9 +137,6 @@ class SettingsViewController: TableViewController {
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }, image: #imageLiteral(resourceName: "settings-search").template, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
                 .boolRow(title: Strings.bookmarksLastVisitedFolderTitle, option: Preferences.General.showLastVisitedBookmarksFolder, image: #imageLiteral(resourceName: "menu_folder_open").template),
-                Row(text: Strings.Shortcuts.shortcutSettingsTitle, selection: { [unowned self] in
-                    self.navigationController?.pushViewController(ShortcutSettingsViewController(), animated: true)
-                }, image: #imageLiteral(resourceName: "settings-siri-shortcuts").template, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self)
             ]
         )
         
@@ -267,15 +264,15 @@ class SettingsViewController: TableViewController {
     
     private var vpnRow: Row?
 
-    private lazy var securitySection: Static.Section = {
-        return Section(
-            header: .title(Strings.security),
-            rows: [
-                .boolRow(title: Strings.browserLock, detailText: Strings.browserLockDescription, option: Preferences.Privacy.lockWithPasscode, image: #imageLiteral(resourceName: "settings-passcode").template),
-                .boolRow(title: Strings.saveLogins, option: Preferences.General.saveLogins, image: #imageLiteral(resourceName: "settings-save-logins").template)
-            ]
-        )
-    }()
+//    private lazy var securitySection: Static.Section = {
+//        return Section(
+//            header: .title(Strings.security),
+//            rows: [
+//                .boolRow(title: Strings.browserLock, detailText: Strings.browserLockDescription, option: Preferences.Privacy.lockWithPasscode, image: #imageLiteral(resourceName: "settings-passcode").template),
+//                .boolRow(title: Strings.saveLogins, option: Preferences.General.saveLogins, image: #imageLiteral(resourceName: "settings-save-logins").template)
+//            ]
+//        )
+//    }()
     
     private lazy var supportSection: Static.Section = {
         return Static.Section(

@@ -344,7 +344,6 @@ class Tab: NSObject {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
   
         // MS comment out brave rewards
-//        let rewards = appDelegate.browserViewController.rewards
 //        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
 //            rewards.reportTabClosed(tabId: Int(rewardsId))
 //        }
@@ -434,9 +433,9 @@ class Tab: NSObject {
                 }
                 
                 /// Donate Custom Intent Open Website
-                if url.isSecureWebPage(), !isPrivate {
-                    ActivityShortcutManager.shared.donateCustomIntent(for: .openWebsite, with: url.absoluteString)
-                }
+//                if url.isSecureWebPage(), !isPrivate {
+//                    ActivityShortcutManager.shared.donateCustomIntent(for: .openWebsite, with: url.absoluteString)
+//                }
             }
 
             return webView.load(request)

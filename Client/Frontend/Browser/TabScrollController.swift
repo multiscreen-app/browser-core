@@ -171,37 +171,38 @@ private extension TabScrollingController {
             return
         }
 
-        if let containerView = scrollView?.superview {
-            let translation = gesture.translation(in: containerView)
-            let delta = lastContentOffset - translation.y
-
-            if delta > 0 {
-                scrollDirection = .down
-            } else if delta < 0 {
-                scrollDirection = .up
-            }
-
-            lastContentOffset = translation.y
-            if checkRubberbandingForDelta(delta) && checkScrollHeightIsLargeEnoughForScrolling() {
-                let bottomIsNotRubberbanding = contentOffset.y + scrollViewHeight < contentSize.height
-                let topIsRubberbanding = contentOffset.y <= 0
-                if isTabShowingPDF || ((toolbarState != .collapsed || topIsRubberbanding) && bottomIsNotRubberbanding) {
-                    scrollWithDelta(delta)
-                }
-
-                if headerTopOffset == -topScrollHeight && footerBottomOffset == bottomScrollHeight {
-                    toolbarState = .collapsed
-                } else if headerTopOffset == 0 {
-                    toolbarState = .visible
-                } else {
-                    toolbarState = .animating
-                }
-            }
-
-            if gesture.state == .ended || gesture.state == .cancelled {
-                lastContentOffset = 0
-            }
-        }
+        // MS DISABLE SCROLL
+//        if let containerView = scrollView?.superview {
+//            let translation = gesture.translation(in: containerView)
+//            let delta = lastContentOffset - translation.y
+//
+//            if delta > 0 {
+//                scrollDirection = .down
+//            } else if delta < 0 {
+//                scrollDirection = .up
+//            }
+//
+//            lastContentOffset = translation.y
+//            if checkRubberbandingForDelta(delta) && checkScrollHeightIsLargeEnoughForScrolling() {
+//                let bottomIsNotRubberbanding = contentOffset.y + scrollViewHeight < contentSize.height
+//                let topIsRubberbanding = contentOffset.y <= 0
+//                if isTabShowingPDF || ((toolbarState != .collapsed || topIsRubberbanding) && bottomIsNotRubberbanding) {
+//                    scrollWithDelta(delta)
+//                }
+//
+//                if headerTopOffset == -topScrollHeight && footerBottomOffset == bottomScrollHeight {
+//                    toolbarState = .collapsed
+//                } else if headerTopOffset == 0 {
+//                    toolbarState = .visible
+//                } else {
+//                    toolbarState = .animating
+//                }
+//            }
+//
+//            if gesture.state == .ended || gesture.state == .cancelled {
+//                lastContentOffset = 0
+//            }
+//        }
     }
 
     func checkRubberbandingForDelta(_ delta: CGFloat) -> Bool {
@@ -282,7 +283,8 @@ extension TabScrollingController: UIScrollViewDelegate {
             if scrollDirection == .up {
                 showToolbars(animated: !isTabShowingPDF)
             } else if scrollDirection == .down {
-                hideToolbars(animated: !isTabShowingPDF)
+                // MS DISABLE SCROLL
+//                hideToolbars(animated: !isTabShowingPDF)
             }
         }
     }

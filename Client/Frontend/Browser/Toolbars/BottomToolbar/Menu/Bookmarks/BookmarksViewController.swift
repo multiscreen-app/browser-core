@@ -438,9 +438,9 @@ class BookmarksViewController: SiteTableViewController, ToolbarUrlActionsProtoco
                 if let url = URL(string: bookmark.url ?? "") {
                     let bookmarkClickEvent: (() -> Void)? = {
                         /// Donate Custom Intent Open Bookmark List
-                        if !self.isPrivateBrowsing {
-                            ActivityShortcutManager.shared.donateCustomIntent(for: .openBookmarks, with: url.absoluteString)
-                        }
+//                        if !self.isPrivateBrowsing {
+//                            ActivityShortcutManager.shared.donateCustomIntent(for: .openBookmarks, with: url.absoluteString)
+//                        }
                         
                         self.toolbarUrlActionsDelegate?.select(url: url, visitType: .bookmark)
                     }

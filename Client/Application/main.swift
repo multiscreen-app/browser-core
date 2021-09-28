@@ -6,10 +6,6 @@ import Shared
 
 private var appDelegate: AppDelegate.Type
 
-if AppConstants.isRunningTest {
-    appDelegate = TestAppDelegate.self
-} else {
-    appDelegate = AppDelegate.self
-}
+appDelegate = AppDelegate.self
 
 _ = UIApplicationMain(CommandLine.argc, CommandLine.unsafeArgv, NSStringFromClass(UIApplication.self), NSStringFromClass(appDelegate))

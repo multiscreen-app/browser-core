@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
 
     var receivedURLs: [URL]?
     
-    var windowProtection: WindowProtection?
     var shutdownWebServer: DispatchSourceTimer?
 
     @discardableResult func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -93,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
             //  to passcode the browser (no data to protect).
             // Main concern is user installs Brave after a long period of time, cannot recall passcode, and can
             //  literally never use Brave. This bypasses this situation, while not using a modifiable pref.
-            KeychainWrapper.sharedAppContainerKeychain.setAuthenticationInfo(nil)
+//            KeychainWrapper.sharedAppContainerKeychain.setAuthenticationInfo(nil)
         }
         
         // We have to wait until pre1.12 migration is done until we proceed with database
@@ -161,11 +160,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         navigationController.delegate = self
         navigationController.isNavigationBarHidden = true
         navigationController.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
-        rootViewController = navigationController
-
+        rootViewController = TestViewController(controller: navigationController)
         self.window!.rootViewController = rootViewController
 
-        windowProtection = WindowProtection(window: window!)
         SystemUtils.onFirstRun()
         
         // Schedule Brave Core Priority Tasks

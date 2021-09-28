@@ -329,9 +329,9 @@ class BraveShieldsAndPrivacySettingsController: TableViewController {
                         self.tabManager.clearTabHistory()
                         
                         /// Donate Clear Browser History for suggestions
-                        let clearBrowserHistoryActivity = ActivityShortcutManager.shared.createShortcutActivity(type: .clearBrowsingHistory)
-                        self.userActivity = clearBrowserHistoryActivity
-                        clearBrowserHistoryActivity.becomeCurrent()
+//                        let clearBrowserHistoryActivity = ActivityShortcutManager.shared.createShortcutActivity(type: .clearBrowsingHistory)
+//                        self.userActivity = clearBrowserHistoryActivity
+//                        clearBrowserHistoryActivity.becomeCurrent()
                     }
                     
                     _toggleFolderAccessForBlockCookies(locked: true)
