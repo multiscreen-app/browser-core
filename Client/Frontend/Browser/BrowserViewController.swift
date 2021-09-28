@@ -1642,30 +1642,6 @@ class BrowserViewController: UIViewController {
         }
     }
     
-    func scanQRCode() {
-        if RecentSearchQRCodeScannerController.hasCameraPermissions {
-            let qrCodeController = RecentSearchQRCodeScannerController { [weak self] string in
-                guard let self = self else { return }
-                
-                if let url = URIFixup.getURL(string) {
-                    self.didScanQRCodeWithURL(url)
-                } else {
-                    self.didScanQRCodeWithText(string)
-                }
-            }
-            
-            let navigationController = UINavigationController(rootViewController: qrCodeController)
-            navigationController.modalPresentationStyle =
-                UIDevice.current.userInterfaceIdiom == .phone ? .pageSheet : .formSheet
-            
-            self.present(navigationController, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: Strings.scanQRCodeViewTitle, message: Strings.scanQRCodePermissionErrorMessage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Strings.scanQRCodeErrorOKButton, style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
     private func focusLocationField() {
         topToolbar.tabLocationViewDidTapLocation(topToolbar.locationView)
     }
@@ -1674,26 +1650,6 @@ class BrowserViewController: UIViewController {
 extension BrowserViewController: ClipboardBarDisplayHandlerDelegate {
     func shouldDisplay(clipboardBar bar: ButtonToast) {
         show(toast: bar, duration: ClipboardBarToastUX.toastDelay)
-    }
-}
-
-extension BrowserViewController: QRCodeViewControllerDelegate {
-    func didScanQRCodeWithURL(_ url: URL) {
-        popToBVC()
-        finishEditingAndSubmit(url, visitType: .typed)
-
-        if !url.isBookmarklet && !PrivateBrowsingManager.shared.isPrivateBrowsing {
-            RecentSearch.addItem(type: .qrCode, text: nil, websiteUrl: url.absoluteString)
-        }
-    }
-
-    func didScanQRCodeWithText(_ text: String) {
-        popToBVC()
-        submitSearchText(text)
-        
-        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
-            RecentSearch.addItem(type: .qrCode, text: text, websiteUrl: nil)
-        }
     }
 }
 
@@ -2525,19 +2481,6 @@ extension BrowserViewController: NewTabPageDelegate {
     
     func focusURLBar() {
         focusLocationField()
-    }
-    
-    func tappedQRCodeButton(url: URL) {
-        let qrPopup = QRCodePopupView(url: url)
-        qrPopup.showWithType(showType: .flyUp)
-        qrPopup.qrCodeShareHandler = { [weak self] url in
-            guard let self = self else { return }
-            
-            let viewRect = CGRect(origin: self.view.center, size: .zero)
-            
-            self.presentActivityViewController(url, sourceView: self.view, sourceRect: viewRect,
-                                               arrowDirection: .any)
-        }
     }
 }
 

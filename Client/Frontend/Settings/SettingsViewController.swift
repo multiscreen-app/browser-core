@@ -136,20 +136,6 @@ class SettingsViewController: TableViewController {
                     let viewController = SearchSettingsTableViewController(profile: self.profile)
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }, image: #imageLiteral(resourceName: "settings-search").template, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
-                Row(text: Strings.sync, selection: { [unowned self] in
-                    if BraveSyncAPI.shared.isInSyncGroup {
-                        if !DeviceInfo.hasConnectivity() {
-                            self.present(SyncAlerts.noConnection, animated: true)
-                            return
-                        }
-                        
-                        self.navigationController?
-                            .pushViewController(SyncSettingsTableViewController(), animated: true)
-                    } else {
-                        self.navigationController?.pushViewController(SyncWelcomeViewController(), animated: true)
-                    }
-                    }, image: #imageLiteral(resourceName: "settings-sync").template, accessory: .disclosureIndicator,
-                       cellClass: MultilineValue1Cell.self),
                 .boolRow(title: Strings.bookmarksLastVisitedFolderTitle, option: Preferences.General.showLastVisitedBookmarksFolder, image: #imageLiteral(resourceName: "menu_folder_open").template),
                 Row(text: Strings.Shortcuts.shortcutSettingsTitle, selection: { [unowned self] in
                     self.navigationController?.pushViewController(ShortcutSettingsViewController(), animated: true)
@@ -375,10 +361,6 @@ class SettingsViewController: TableViewController {
                     let vc = AdblockDebugMenuTableViewController(style: .grouped)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
-                Row(text: "View URP Logs", selection: { [unowned self] in
-                    self.navigationController?.pushViewController(UrpLogsViewController(), animated: true)
-                }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),
-                Row(text: "URP Code: \(UserReferralProgram.getReferralCode() ?? "--")"),
                 Row(text: "View Brave Search Debug Menu", selection: { [unowned self] in
                     self.displayBraveSearchDebugMenu()
                 }, accessory: .disclosureIndicator, cellClass: MultilineValue1Cell.self),

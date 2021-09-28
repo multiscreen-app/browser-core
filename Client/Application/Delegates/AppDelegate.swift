@@ -21,7 +21,6 @@ import Combine
 private let log = Logger.browserLogger
 
 let LatestAppVersionProfileKey = "latestAppVersion"
-private let InitialPingSentKey = "initialPingSent"
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestoration {
     public static func viewController(withRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
@@ -45,12 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
     
     var windowProtection: WindowProtection?
     var shutdownWebServer: DispatchSourceTimer?
-    
-    /// Object used to handle server pings
-    let dau = DAU()
-    
-    /// Must be added at launch according to Apple's documentation.
-//    let iapObserver = IAPObserver()
 
     @discardableResult func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Hold references to willFinishLaunching parameters for delayed app launch
@@ -177,8 +170,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         
         // Schedule Brave Core Priority Tasks
         self.braveCore?.scheduleLowPriorityStartupTasks()
-        // MS comment out brave rewards
-//        browserViewController.removeScheduledAdGrantReminders()
 
         log.info("startApplication end")
         return true
@@ -358,27 +349,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         
         if isFirstLaunch {
             Preferences.DAU.installationDate.value = Date()
-            
-            // VPN credentials are kept in keychain and persist between app reinstalls.
-            // To avoid unexpected problems we clear all vpn keychain items.
-            // New set of keychain items will be created on purchase or iap restoration.
-//            BraveVPN.clearCredentials()
-        }
-        
-        if let urp = UserReferralProgram.shared {
-            if Preferences.URP.referralLookupOutstanding.value == nil {
-                // This preference has never been set, and this means it is a new or upgraded user.
-                // That distinction must be made to know if a network request for ref-code look up should be made.
-                
-                // Setting this to an explicit value so it will never get overwritten on subsequent launches.
-                // Upgrade users should not have ref code ping happening.
-                Preferences.URP.referralLookupOutstanding.value = isFirstLaunch
-            }
-            
-            handleReferralLookup(urp, checkClipboard: false)
-        } else {
-            log.error("Failed to initialize user referral program")
-            UrpLog.log("Failed to initialize user referral program")
         }
         
         AdblockResourceDownloader.shared.startLoading()
@@ -387,56 +357,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         return shouldPerformAdditionalDelegateHandling
     }
     
-    func handleReferralLookup(_ urp: UserReferralProgram, checkClipboard: Bool) {
-        let initialOnboarding =
-            Preferences.General.basicOnboardingProgress.value == OnboardingProgress.none.rawValue
-        
-        // FIXME: Update to iOS14 clipboard api once ready (#2838)
-        if initialOnboarding && UIPasteboard.general.hasStrings {
-            log.debug("Skipping URP call at app launch, this is handled in privacy consent onboarding screen")
-            return
-        }
-        
-        if Preferences.URP.referralLookupOutstanding.value == true {
-            var refCode: String?
-            
-            if Preferences.URP.referralCode.value == nil {
-                UrpLog.log("No ref code exists on launch, attempting clipboard retrieval")
-                let savedRefCode = checkClipboard ? UIPasteboard.general.string : nil
-                refCode = UserReferralProgram.sanitize(input: savedRefCode)
-                
-                if refCode != nil {
-                    UrpLog.log("Clipboard ref code found: " + (savedRefCode ?? "!Clipboard Empty!"))
-                    UrpLog.log("Clearing clipboard.")
-                    UIPasteboard.general.clearPasteboard()
-                }
-            }
-            
-            urp.referralLookup(refCode: refCode) { referralCode, offerUrl in
-                // Attempting to send ping after first urp lookup.
-                // This way we can grab the referral code if it exists, see issue #2586.
-                self.dau.sendPingToServer()
-                if let code = referralCode {
-                    let retryTime = AppConstants.buildChannel.isPublic ? 1.days : 10.minutes
-                    let retryDeadline = Date() + retryTime
-                    
-                    Preferences.NewTabPage.superReferrerThemeRetryDeadline.value = retryDeadline
-                    
-                    self.browserViewController.backgroundDataSource
-                        .fetchSpecificResource(.superReferral(code: code))
-                } else {
-                    self.browserViewController.backgroundDataSource.startFetching()
-                }
-                
-                guard let url = offerUrl?.asURL else { return }
-                self.browserViewController.openReferralLink(url: url)
-            }
-        } else {
-            urp.pingIfEnoughTimePassed()
-            browserViewController.backgroundDataSource.startFetching()
-        }
-    }
-
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         guard let routerpath = NavigationPath(url: url) else {
             return false
@@ -477,18 +397,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
             quickActions.handleShortCutItem(shortcut, withBrowserViewController: browserViewController)
             quickActions.launchedShortcutItem = nil
         }
-        
-        // We try to send DAU ping each time the app goes to foreground to work around network edge cases
-        // (offline, bad connection etc.).
-        // Also send the ping only after the URP lookup has processed.
-        if Preferences.URP.referralLookupOutstanding.value == false {
-            dau.sendPingToServer()
-        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         syncOnDidEnterBackground(application: application)
-//        BraveVPN.sendVPNWorksInBackgroundNotification()
     }
 
     fileprivate func syncOnDidEnterBackground(application: UIApplication) {
@@ -533,9 +445,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         // is that this method is only invoked whenever the application is entering the foreground where as
         // `applicationDidBecomeActive` will get called whenever the Touch ID authentication overlay disappears.
         AdblockResourceDownloader.shared.startLoading()
-        
-        // MS comment out brave rewards
-//        browserViewController.showWalletTransferExpiryPanelIfNeeded()
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -592,97 +501,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
 
             self.window?.rootViewController?.present(mailComposeViewController, animated: true, completion: nil)
         }
-    }
-}
-
-// MARK: - NSUserActivity
-
-extension AppDelegate {
-    
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if let url = userActivity.webpageURL {
-            switch UniversalLinkManager.universalLinkType(for: url, checkPath: false) {
-            // MS disable universal link
-//            case .buyVPN:
-//                browserViewController.presentCorrespondingVPNViewController()
-//                return true
-            case .none:
-                break
-            default:
-                break
-            }
-
-            browserViewController.switchToTabForURLOrOpen(url, isPrivileged: true)
-            return true
-        }
-
-        switch userActivity.activityType {
-            case CSSearchableItemActionType:
-                // Otherwise, check if the `NSUserActivity` is a CoreSpotlight item and switch to its tab or
-                // open a new one.
-                if let userInfo = userActivity.userInfo,
-                    let urlString = userInfo[CSSearchableItemActivityIdentifier] as? String,
-                    let url = URL(string: urlString) {
-                    browserViewController.switchToTabForURLOrOpen(url, isPrivileged: false)
-                    return true
-                }
-            case ActivityType.newTab.identifier:
-                ActivityShortcutManager.shared.performShortcutActivity(
-                    type: .newTab, using: browserViewController)
-                
-                return true
-            case ActivityType.newPrivateTab.identifier:
-                ActivityShortcutManager.shared.performShortcutActivity(
-                    type: .newPrivateTab, using: browserViewController)
-                
-                return true
-            case ActivityType.clearBrowsingHistory.identifier:
-                ActivityShortcutManager.shared.performShortcutActivity(
-                    type: .clearBrowsingHistory, using: browserViewController)
-                
-                return true
-            case ActivityType.openPlayList.identifier:
-                ActivityShortcutManager.shared.performShortcutActivity(
-                    type: .openPlayList, using: browserViewController)
-                
-                return true
-            default:
-                break
-        }
-        
-        func switchToTabForIntentURL(intentURL: String?) -> Bool {
-            guard let siteURL = intentURL, let url = URL(string: siteURL) else {
-                return false
-            }
-
-            browserViewController.switchToTabForURLOrOpen(
-                url,
-                isPrivate: Preferences.Privacy.privateBrowsingOnly.value,
-                isPrivileged: false)
-            return true
-        }
-        
-        if let intent = userActivity.interaction?.intent as? OpenWebsiteIntent {
-            return switchToTabForIntentURL(intentURL: intent.websiteURL)
-        }
-        
-        if let intent = userActivity.interaction?.intent as? OpenHistoryWebsiteIntent {
-            return switchToTabForIntentURL(intentURL: intent.websiteURL)
-        }
-        
-        if let intent = userActivity.interaction?.intent as? OpenBookmarkWebsiteIntent {
-            return switchToTabForIntentURL(intentURL: intent.websiteURL)
-        }
-        
-        return false
-    }
-    
-    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem,
-                     completionHandler: @escaping (Bool) -> Void) {
-        let handledShortCutItem = QuickActions.sharedInstance.handleShortCutItem(shortcutItem, withBrowserViewController: browserViewController)
-
-        completionHandler(handledShortCutItem)
     }
 }
 

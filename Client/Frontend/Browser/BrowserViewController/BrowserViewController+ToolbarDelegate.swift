@@ -292,10 +292,6 @@ extension BrowserViewController: TopToolbarDelegate {
     func topToolbarDidTapMenuButton(_ topToolbar: TopToolbarView) {
         tabToolbarDidPressMenu(topToolbar)
     }
-
-    func topToolbarDidPressQrCodeButton(_ urlBar: TopToolbarView) {
-        scanQRCode()
-    }
     
     private func hideSearchController() {
         if let searchController = searchController {
@@ -367,22 +363,6 @@ extension BrowserViewController: TopToolbarDelegate {
                             
                             if shouldSubmitSearch {
                                 submitSearch(text)
-                            }
-                        }
-                    case .qrCode:
-                        if let text = recentSearch.text {
-                            self.topToolbar.setLocation(text, search: false)
-                            self.topToolbar(self.topToolbar, didEnterText: text)
-                            
-                            if shouldSubmitSearch {
-                                submitSearch(text)
-                            }
-                        } else if let websiteUrl = recentSearch.websiteUrl {
-                            self.topToolbar.setLocation(websiteUrl, search: false)
-                            self.topToolbar(self.topToolbar, didEnterText: websiteUrl)
-                            
-                            if shouldSubmitSearch {
-                                submitSearch(websiteUrl)
                             }
                         }
                     case .website:

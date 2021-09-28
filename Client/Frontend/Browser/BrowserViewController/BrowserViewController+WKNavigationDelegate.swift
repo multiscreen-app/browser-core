@@ -112,14 +112,15 @@ extension BrowserViewController: WKNavigationDelegate {
             return
         }
         
-        if let customHeader = UserReferralProgram.shouldAddCustomHeader(for: navigationAction.request) {
-            decisionHandler(.cancel, preferences)
-            var newRequest = navigationAction.request
-            UrpLog.log("Adding custom header: [\(customHeader.field): \(customHeader.value)] for domain: \(newRequest.url?.absoluteString ?? "404")")
-            newRequest.addValue(customHeader.value, forHTTPHeaderField: customHeader.field)
-            webView.load(newRequest)
-            return
-        }
+        // user referral custom handler
+//        if let customHeader = UserReferralProgram.shouldAddCustomHeader(for: navigationAction.request) {
+//            decisionHandler(.cancel, preferences)
+//            var newRequest = navigationAction.request
+//            UrpLog.log("Adding custom header: [\(customHeader.field): \(customHeader.value)] for domain: \(newRequest.url?.absoluteString ?? "404")")
+//            newRequest.addValue(customHeader.value, forHTTPHeaderField: customHeader.field)
+//            webView.load(newRequest)
+//            return
+//        }
 
         if url.scheme == "about" {
             decisionHandler(.allow, preferences)

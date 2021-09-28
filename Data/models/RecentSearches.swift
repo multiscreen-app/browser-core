@@ -10,7 +10,7 @@ import Shared
 private let log = Logger.browserLogger
 
 public enum RecentSearchType: Int32 {
-    case qrCode = 0
+//    case qrCode = 0
     case text = 1
     case website = 2
 }

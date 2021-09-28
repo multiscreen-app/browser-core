@@ -99,7 +99,7 @@ class NTPDataSource {
     
     enum BackgroundType {
         case regular
-        case withQRCode(_ code: String)
+//        case withQRCode(_ code: String)
     }
     
     private enum ImageRotationStrategy {
@@ -116,11 +116,11 @@ class NTPDataSource {
         let (backgroundSet, backgroundType, strategy) = {
             () -> ([NTPBackground], BackgroundType, ImageRotationStrategy) in
             
-            if let theme = customTheme,
-                let refCode = theme.refCode,
-                Preferences.NewTabPage.selectedCustomTheme.value != nil {
-                return (theme.wallpapers, .withQRCode(refCode), .randomOrderAvoidDuplicates)
-            }
+//            if let theme = customTheme,
+//                let refCode = theme.refCode,
+//                Preferences.NewTabPage.selectedCustomTheme.value != nil {
+//                return (theme.wallpapers, .withQRCode(refCode), .randomOrderAvoidDuplicates)
+//            }
             
             // MS comment out brave rewards
 //            if let sponsor = sponsor {

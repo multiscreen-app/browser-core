@@ -75,7 +75,7 @@ protocol NewTabPageDelegate: AnyObject {
     func navigateToInput(_ input: String, inNewTab: Bool, switchingToPrivateMode: Bool)
     func handleFavoriteAction(favorite: Favorite, action: BookmarksAction)
 //    func brandedImageCalloutActioned(_ state: BrandedImageCalloutState)
-    func tappedQRCodeButton(url: URL)
+//    func tappedQRCodeButton(url: URL)
 }
 
 /// The new tab page. Shows users a variety of information, including stats and
@@ -220,8 +220,8 @@ class NewTabPageViewController: UIViewController {
                 } else {
                     backgroundButtonsView.activeButton = .none
                 }
-            case .withQRCode(_):
-                backgroundButtonsView.activeButton = .QRCode
+//            case .withQRCode(_):
+//                backgroundButtonsView.activeButton = .QRCode
             }
         } else {
             backgroundButtonsView.activeButton = .none
@@ -376,19 +376,9 @@ class NewTabPageViewController: UIViewController {
         switch background.type {
         case .regular:
             presentImageCredit(sender)
-        case .withQRCode(let code):
-            tappedQRCode(code)
+//        case .withQRCode(let code):
+//            tappedQRCode(code)
         }
-    }
-    
-    private func tappedQRCode(_ code: String) {
-        // Super referrer websites come in format https://brave.com/r/REF_CODE
-        let refUrl = URL(string: "https://brave.com/")?
-            .appendingPathComponent("r")
-            .appendingPathComponent(code)
-        
-        guard let url = refUrl else { return }
-        delegate?.tappedQRCodeButton(url: url)
     }
     
     private func handleFavoriteAction(favorite: Favorite, action: BookmarksAction) {

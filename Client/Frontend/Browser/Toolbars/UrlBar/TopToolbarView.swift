@@ -48,7 +48,7 @@ protocol TopToolbarDelegate: AnyObject {
     func topToolbarDidLongPressReloadButton(_ urlBar: TopToolbarView, from button: UIButton)
     func topToolbarDidPressStop(_ urlBar: TopToolbarView)
     func topToolbarDidPressReload(_ urlBar: TopToolbarView)
-    func topToolbarDidPressQrCodeButton(_ urlBar: TopToolbarView)
+//    func topToolbarDidPressQrCodeButton(_ urlBar: TopToolbarView)
 }
 
 class TopToolbarView: UIView, ToolbarProtocol {
@@ -111,11 +111,11 @@ class TopToolbarView: UIView, ToolbarProtocol {
         return locationContainer
     }()
     
-    private var qrCodeButton = UIButton().then {
-        $0.setImage(#imageLiteral(resourceName: "recent-search-qrcode"), for: .normal)
-        $0.imageView?.contentMode = .scaleAspectFit
-        $0.accessibilityLabel = Strings.quickActionScanQRCode
-    }
+//    private var qrCodeButton = UIButton().then {
+//        $0.setImage(#imageLiteral(resourceName: "recent-search-qrcode"), for: .normal)
+//        $0.imageView?.contentMode = .scaleAspectFit
+//        $0.accessibilityLabel = Strings.quickActionScanQRCode
+//    }
 
     let line = UIView().then {
         $0.backgroundColor = .braveSeparator
@@ -338,7 +338,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
         locationTextField.accessibilityIdentifier = "address"
         locationTextField.accessibilityLabel = Strings.URLBarViewLocationTextViewAccessibilityLabel
         locationTextField.attributedPlaceholder = self.locationView.placeholder
-        locationTextField.rightView = qrCodeButton
+//        locationTextField.rightView = qrCodeButton
         locationTextField.rightViewMode = .never
         
         locationContainer.addSubview(locationTextField)
@@ -348,7 +348,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
             make.edges.equalTo(self.locationView).inset(insets)
         }
 
-        qrCodeButton.addTarget(self, action: #selector(topToolbarDidPressQrCodeButton), for: .touchUpInside)
+//        qrCodeButton.addTarget(self, action: #selector(topToolbarDidPressQrCodeButton), for: .touchUpInside)
     }
     
     override func becomeFirstResponder() -> Bool {
@@ -408,11 +408,11 @@ class TopToolbarView: UIView, ToolbarProtocol {
     func setLocation(_ location: String?, search: Bool) {
         guard let text = location, !text.isEmpty else {
             locationTextField?.text = location
-            updateLocationBarRightView(showQrCodeButton: true)
+            updateLocationBarRightView()
             return
         }
         
-        updateLocationBarRightView(showQrCodeButton: false)
+        updateLocationBarRightView()
         
         if search {
             locationTextField?.text = text
@@ -512,13 +512,8 @@ class TopToolbarView: UIView, ToolbarProtocol {
         layoutIfNeeded()
     }
     
-    private func updateLocationBarRightView(showQrCodeButton: Bool) {
-        if RecentSearchQRCodeScannerController.hasCameraSupport {
-            locationTextField?.clearButtonMode = showQrCodeButton ? .never : .whileEditing
-            locationTextField?.rightViewMode = showQrCodeButton ? .always : .never
-        } else {
-            locationTextField?.clearButtonMode = .whileEditing
-        }
+    private func updateLocationBarRightView() {
+        locationTextField?.clearButtonMode = .whileEditing
     }
     
     func didClickAddTab() {
@@ -545,10 +540,6 @@ class TopToolbarView: UIView, ToolbarProtocol {
         delegate?.topToolbarDidTapBraveShieldsButton(self)
     }
     
-    @objc func topToolbarDidPressQrCodeButton() {
-        leaveOverlayMode(didCancel: true)
-        delegate?.topToolbarDidPressQrCodeButton(self)
-    }
 }
 
 // MARK: - PreferencesObserver
@@ -638,26 +629,26 @@ extension TopToolbarView: AutocompleteTextFieldDelegate {
     
     func autocompleteTextField(_ autocompleteTextField: AutocompleteTextField, didEnterText text: String) {
         delegate?.topToolbar(self, didEnterText: text)
-        updateLocationBarRightView(showQrCodeButton: text.isEmpty)
+        updateLocationBarRightView()
     }
     
     func autocompleteTextField(_ autocompleteTextField: AutocompleteTextField, didDeleteAutoSelectedText text: String) {
-        updateLocationBarRightView(showQrCodeButton: text.isEmpty)
+        updateLocationBarRightView()
     }
     
     func autocompleteTextFieldDidBeginEditing(_ autocompleteTextField: AutocompleteTextField) {
         autocompleteTextField.highlightAll()
-        updateLocationBarRightView(showQrCodeButton: locationView.urlTextField.text?.isEmpty == true)
+        updateLocationBarRightView()
     }
     
     func autocompleteTextFieldShouldClear(_ autocompleteTextField: AutocompleteTextField) -> Bool {
         delegate?.topToolbar(self, didEnterText: "")
-        updateLocationBarRightView(showQrCodeButton: true)
+        updateLocationBarRightView()
         return true
     }
     
     func autocompleteTextFieldDidCancel(_ autocompleteTextField: AutocompleteTextField) {
         leaveOverlayMode(didCancel: true)
-        updateLocationBarRightView(showQrCodeButton: false)
+        updateLocationBarRightView()
     }
 }

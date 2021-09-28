@@ -660,14 +660,14 @@ extension FavoritesViewController: NSFetchedResultsControllerDelegate {
             switch searchType {
             case .text:
                 cell.setTitle(recentSearch.text)
-            case .qrCode:
-                if let text = recentSearch.text ?? recentSearch.websiteUrl {
-                    let title = NSMutableAttributedString(string: "\(Strings.recentSearchScanned) ",
-                                                          attributes: [.font: UIFont.systemFont(ofSize: 15.0, weight: .semibold)])
-                    title.append(NSAttributedString(string: "\"\(text)\"",
-                                                    attributes: [.font: UIFont.systemFont(ofSize: 15.0)]))
-                    cell.setAttributedTitle(title)
-                }
+//            case .qrCode:
+//                if let text = recentSearch.text ?? recentSearch.websiteUrl {
+//                    let title = NSMutableAttributedString(string: "\(Strings.recentSearchScanned) ",
+//                                                          attributes: [.font: UIFont.systemFont(ofSize: 15.0, weight: .semibold)])
+//                    title.append(NSAttributedString(string: "\"\(text)\"",
+//                                                    attributes: [.font: UIFont.systemFont(ofSize: 15.0)]))
+//                    cell.setAttributedTitle(title)
+//                }
             case .website:
                 if let text = recentSearch.text,
                    let websiteUrl = recentSearch.websiteUrl {
