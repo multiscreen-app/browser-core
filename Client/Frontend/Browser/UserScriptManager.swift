@@ -5,7 +5,6 @@
 import WebKit
 import Shared
 import Data
-import YubiKit
 
 private let log = Logger.browserLogger
 
@@ -174,28 +173,6 @@ class UserScriptManager {
         return WKUserScript(source: source, injectionTime: .atDocumentStart, forMainFrameOnly: false)
     }()
     
-    // U2FUserScript is injected at document start to avoid overriding the low-level
-    // FIDO legacy sign and register APIs that have different arguments
-    private let U2FUserScript: WKUserScript? = {
-        guard let path = Bundle.main.path(forResource: "U2F", ofType: "js"), let source = try? String(contentsOfFile: path) else {
-            log.error("Failed to load U2F.js")
-            return nil
-        }
-        
-        var alteredSource = source
-        
-        alteredSource = alteredSource.replacingOccurrences(of: "$<webauthn>", with: "fido2\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<webauthn-internal>", with: "fido2internal\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<u2f>", with: "fido\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<u2f-internal>", with: "fidointernal\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<pkc>", with: "pkp\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<assert>", with: "assert\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<attest>", with: "attest\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<handler>", with: "U2F\(messageHandlerTokenString)", options: .literal)
-        
-        return WKUserScript(source: alteredSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-    }()
-    
     // PaymentRequestUserScript is injected at document start to handle
     // requests to payment APIs
     private let PaymentRequestUserScript: WKUserScript? = {
@@ -212,22 +189,6 @@ class UserScriptManager {
         alteredSource = alteredSource.replacingOccurrences(of: "$<paymentreqcallback>", with: "PaymentRequestCallback\(securityTokenString)", options: .literal)
         alteredSource = alteredSource.replacingOccurrences(of: "$<handler>", with: "PaymentRequest\(messageHandlerTokenString)", options: .literal)
         
-        return WKUserScript(source: alteredSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-    }()
-    
-    // U2FLowLevelUserScript is injected at documentEnd to override the message channels
-    // with hooks that plug into the Yubico API
-    private let U2FLowLevelUserScript: WKUserScript? = {
-        guard let path = Bundle.main.path(forResource: "U2F-low-level", ofType: "js"), let source = try? String(contentsOfFile: path) else {
-            log.error("Failed to load U2F-low-level.js")
-            return nil
-        }
-        var alteredSource = source
-
-        alteredSource = alteredSource.replacingOccurrences(of: "$<u2f>", with: "fido\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<u2f-internal>", with: "fidointernal\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<handler>", with: "U2F\(messageHandlerTokenString)", options: .literal)
-
         return WKUserScript(source: alteredSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
     }()
     
@@ -350,14 +311,6 @@ class UserScriptManager {
                 $0.addUserScript(script)
             }
             if isCookieBlockingEnabled, let script = cookieControlUserScript {
-                $0.addUserScript(script)
-            }
-            
-            if YubiKitDeviceCapabilities.supportsMFIAccessoryKey, isU2FEnabled, let script = U2FUserScript {
-                $0.addUserScript(script)
-            }
-
-            if isU2FEnabled, let script = U2FLowLevelUserScript {
                 $0.addUserScript(script)
             }
             

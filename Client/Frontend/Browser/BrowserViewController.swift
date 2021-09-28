@@ -20,7 +20,6 @@ import StoreKit
 import SafariServices
 import BraveUI
 import NetworkExtension
-import YubiKit
 import FeedKit
 import SwiftUI
 import class Combine.AnyCancellable
@@ -1790,10 +1789,6 @@ extension BrowserViewController: TabDelegate {
         tab.addContentScript(BraveGetUA(tab: tab), name: BraveGetUA.name(), sandboxed: false)
         tab.addContentScript(BraveSearchHelper(tab: tab, profile: profile),
                              name: BraveSearchHelper.name(), sandboxed: false)
-
-        if YubiKitDeviceCapabilities.supportsMFIAccessoryKey {
-            tab.addContentScript(U2FExtensions(tab: tab), name: U2FExtensions.name(), sandboxed: false)
-        }
         
         tab.addContentScript(ResourceDownloadManager(tab: tab), name: ResourceDownloadManager.name(), sandboxed: false)
         
