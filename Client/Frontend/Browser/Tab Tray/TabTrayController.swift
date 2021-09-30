@@ -369,11 +369,11 @@ class TabTrayController: UIViewController {
         toolbar.privateModeButton.isHidden = Preferences.Privacy.privateBrowsingOnly.value
     }
     
-    private func updateApplicationShortcuts() {
-        if let delegate = UIApplication.shared.delegate as? AppDelegate {
-            delegate.updateShortcutItems(UIApplication.shared)
-        }
-    }
+//    private func updateApplicationShortcuts() {
+//        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+//            delegate.updateShortcutItems(UIApplication.shared)
+//        }
+//    }
     
     private func setPrivateMode() {
         if let tab = tabManager.selectedTab, tab.isPrivate {
@@ -386,7 +386,7 @@ extension TabTrayController: PreferencesObserver {
     func preferencesDidChange(for key: String) {
         if key == Preferences.Privacy.privateBrowsingOnly.key {
             updatePrivateModeButtonVisibility()
-            updateApplicationShortcuts()
+//            updateApplicationShortcuts()
         }
     }
 }

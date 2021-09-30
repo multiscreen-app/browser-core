@@ -79,9 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         
         AdBlockStats.shared.startLoading()
         HttpsEverywhereStats.shared.startLoading()
-        
-        updateShortcutItems(application)
-        
+                
         // Must happen before passcode check, otherwise may unnecessarily reset keychain
         Migration.moveDatabaseToApplicationDirectory()
         
@@ -160,7 +158,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         navigationController.delegate = self
         navigationController.isNavigationBarHidden = true
         navigationController.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
-        rootViewController = TestViewController(controller: navigationController)
+//        rootViewController = TestViewController(controller: navigationController, controller2: UIViewController(nibName: nil, bundle: nil))
+        rootViewController = navigationController
         self.window!.rootViewController = rootViewController
 
         SystemUtils.onFirstRun()
@@ -205,28 +204,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         let p = BrowserProfile(localName: "profile")
         self.profile = p
         return p
-    }
-    
-    func updateShortcutItems(_ application: UIApplication) {
-        let newTabItem = UIMutableApplicationShortcutItem(type: "\(Bundle.main.bundleIdentifier ?? "").NewTab",
-            localizedTitle: Strings.quickActionNewTab,
-            localizedSubtitle: nil,
-            icon: UIApplicationShortcutIcon(templateImageName: "quick_action_new_tab"),
-            userInfo: [:])
-        
-        let privateTabItem = UIMutableApplicationShortcutItem(type: "\(Bundle.main.bundleIdentifier ?? "").NewPrivateTab",
-            localizedTitle: Strings.quickActionNewPrivateTab,
-            localizedSubtitle: nil,
-            icon: UIApplicationShortcutIcon(templateImageName: "quick_action_new_private_tab"),
-            userInfo: [:])
-        
-        let scanQRCodeItem = UIMutableApplicationShortcutItem(type: "\(Bundle.main.bundleIdentifier ?? "").ScanQRCode",
-            localizedTitle: Strings.scanQRCodeViewTitle,
-            localizedSubtitle: nil,
-            icon: UIApplicationShortcutIcon(templateImageName: "recent-search-qrcode"),
-            userInfo: [:])
-
-        application.shortcutItems = Preferences.Privacy.privateBrowsingOnly.value ? [privateTabItem, scanQRCodeItem] : [newTabItem, privateTabItem, scanQRCodeItem]
     }
     
     private var cancellables: Set<AnyCancellable> = []

@@ -1015,11 +1015,11 @@ class BrowserViewController: UIViewController {
         }
     }
     
-    private func updateApplicationShortcuts() {
-        if let delegate = UIApplication.shared.delegate as? AppDelegate {
-            delegate.updateShortcutItems(UIApplication.shared)
-        }
-    }
+//    private func updateApplicationShortcuts() {
+//        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+//            delegate.updateShortcutItems(UIApplication.shared)
+//        }
+//    }
     
     func finishEditingAndSubmit(_ url: URL, visitType: VisitType) {
         if url.isBookmarklet {
@@ -1848,7 +1848,7 @@ extension BrowserViewController: TabManagerDelegate {
             for tab in tabManager.allTabs where tab != selected {
                 if let webView = tab.webView {
                     #if swift(>=5.4)
-                    if #available(iOS 14.5, *) {
+                    if #available(iOS 15.0, *) {
                         webView.requestMediaPlaybackState { state in
                             if state == .playing {
                                 webView.isHidden = true
@@ -2485,7 +2485,7 @@ extension BrowserViewController: PreferencesObserver {
             PrivateBrowsingManager.shared.isPrivateBrowsing = isPrivate
             setupTabs()
             updateTabsBarVisibility()
-            updateApplicationShortcuts()
+//            updateApplicationShortcuts()
         case Preferences.General.alwaysRequestDesktopSite.key:
             tabManager.reset()
             self.tabManager.reloadSelectedTab()

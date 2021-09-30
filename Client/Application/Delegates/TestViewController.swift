@@ -8,10 +8,13 @@ import UIKit
 class TestViewController: UIViewController {
 
     let partial = UIView()
+    let partial2 = UIView()
     let controller: UIViewController
+    let controller2: UIViewController
     
-    init(controller: UIViewController) {
+    init(controller: UIViewController, controller2: UIViewController) {
         self.controller = controller
+        self.controller2 = controller2
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -22,14 +25,23 @@ class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(partial)
+        self.view.addSubview(partial2)
         partial.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100)
-            $0.left.equalToSuperview().offset(100)
-            $0.bottom.equalToSuperview().offset(-100)
-            $0.right.equalToSuperview().offset(-100)
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-self.view.bounds.height / 2)
+            $0.right.equalToSuperview()
+        }
+        
+        partial2.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(self.view.bounds.height / 2)
+            $0.left.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.right.equalToSuperview()
         }
         
         addChildC()
+        addChildC2()
     }
     
     public func addChildC() -> TestViewController {
@@ -39,6 +51,18 @@ class TestViewController: UIViewController {
         partial.clipsToBounds = true
         controller.didMove(toParent: self)
         controller.view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        return self
+    }
+    
+    public func addChildC2() -> TestViewController {
+        self.addChild(controller2)
+        controller2.view.translatesAutoresizingMaskIntoConstraints = false
+        partial2.addSubview(controller2.view)
+        partial2.clipsToBounds = true
+        controller2.didMove(toParent: self)
+        controller2.view.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         return self
