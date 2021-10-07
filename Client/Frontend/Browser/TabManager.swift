@@ -78,6 +78,7 @@ class TabManager: NSObject {
     fileprivate let imageStore: DiskImageStore?
 
     fileprivate let prefs: Prefs
+    var browserViewController: BrowserViewController?
     var selectedIndex: Int { return _selectedIndex }
     var tempTabs: [Tab]?
 

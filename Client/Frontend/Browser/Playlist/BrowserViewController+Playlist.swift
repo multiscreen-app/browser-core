@@ -243,12 +243,7 @@ extension BrowserViewController: PlaylistHelperDelegate {
         stopMediaPlayback()
         
         let playlistController = (UIApplication.shared.delegate as? AppDelegate)?.playlistRestorationController as? PlaylistViewController ?? PlaylistViewController(initialItem: item, initialItemPlaybackOffset: playbackOffset)
-        playlistController.modalPresentationStyle = .fullScreen
-        
-        /// Donate Open Playlist Activity for suggestions
-//        let openPlaylist = ActivityShortcutManager.shared.createShortcutActivity(type: .openPlayList)
-//        self.userActivity = openPlaylist
-//        openPlaylist.becomeCurrent()
+        playlistController.modalPresentationStyle = .pageSheet
 
         present(playlistController, animated: true)
     }

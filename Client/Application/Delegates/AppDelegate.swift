@@ -304,14 +304,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
             Logger.browserLogger.deleteOldLogsDownToSizeLimit()
         }
 
-        // If a shortcut was launched, display its information and take the appropriate action
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-
-            QuickActions.sharedInstance.launchedShortcutItem = shortcutItem
-            // This will block "performActionForShortcutItem:completionHandler" from being called.
-            shouldPerformAdditionalDelegateHandling = false
-        }
-
         // Force the ToolbarTextField in LTR mode - without this change the UITextField's clear
         // button will be in the incorrect position and overlap with the input text. Not clear if
         // that is an iOS bug or not.
@@ -385,15 +377,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         
         self.receivedURLs = nil
         application.applicationIconBadgeNumber = 0
-
-        // handle quick actions is available
-        let quickActions = QuickActions.sharedInstance
-        if let shortcut = quickActions.launchedShortcutItem {
-            // dispatch asynchronously so that BVC is all set up for handling new tabs
-            // when we try and open them
-            quickActions.handleShortCutItem(shortcut, withBrowserViewController: browserViewController)
-            quickActions.launchedShortcutItem = nil
-        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
