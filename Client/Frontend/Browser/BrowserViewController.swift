@@ -899,7 +899,7 @@ class BrowserViewController: UIViewController {
 //            let newTabPageActivity =
 //                ActivityShortcutManager.shared.createShortcutActivity(type: selectedTab.isPrivate ? .newPrivateTab : .newTab)
             
-//            ntpController.delegate = self
+            ntpController.delegate = self
 //            ntpController.userActivity = newTabPageActivity
 //
 //            newTabPageActivity.becomeCurrent()
