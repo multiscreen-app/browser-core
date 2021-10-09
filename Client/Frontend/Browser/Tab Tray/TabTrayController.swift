@@ -347,8 +347,7 @@ class TabTrayController: UIViewController {
             // The addTab delegate method will pop to the BVC no need to do anything here.
             self.toolbar.isUserInteractionEnabled = true
             if finished, request == nil, NewTabAccessors.getNewTabPage() == .blankPage,
-                let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-                let bvc = appDelegate.browserViewController {
+                let bvc = self.tabManager.browserViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                     bvc.topToolbar.tabLocationViewDidTapLocation(bvc.topToolbar.locationView)
                 }

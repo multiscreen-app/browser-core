@@ -175,7 +175,7 @@ class BrowserViewController: UIViewController {
     var shouldShowNTPEducation = false
 
     /// Data Source object used to determine blocking stats
-    //let benchmarkBlockingDataSource = BlockingSummaryDataSource()
+    // let benchmarkBlockingDataSource = BlockingSummaryDataSource()
     var benchmarkBlockingDataSource: BlockingSummaryDataSource?
 
     init(profile: Profile, tabManager: TabManager, crashedLastSession: Bool,
@@ -185,17 +185,14 @@ class BrowserViewController: UIViewController {
         self.readerModeCache = ReaderMode.cache(for: tabManager.selectedTab)
         self.crashedLastSession = crashedLastSession
         self.safeBrowsing = safeBrowsingManager
-
-        let buildChannel = Ads.BraveAdsBuildChannel().then {
-          $0.name = AppConstants.buildChannel.rawValue
-          $0.isRelease = AppConstants.buildChannel == .release
-        }
         
         if Locale.current.regionCode == "JP" {
             benchmarkBlockingDataSource = BlockingSummaryDataSource()
         }
         
         super.init(nibName: nil, bundle: nil)
+        tabManager.browserViewController = self
+
         didInit()
     }
  

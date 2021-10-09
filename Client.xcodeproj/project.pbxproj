@@ -590,7 +590,6 @@
 		7B9BF91C1E43472E00CB24F4 /* JSONExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9BF91B1E43472E00CB24F4 /* JSONExtensions.swift */; };
 		7B9BF9301E449D2500CB24F4 /* MockLogins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E7DB91B27AB4C00E2E84D /* MockLogins.swift */; };
 		7BA8D1C71BA037F500C8AE9E /* OpenInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8D1C61BA037F500C8AE9E /* OpenInHelper.swift */; };
-		7BEFC6801BFF68C30059C952 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEFC67F1BFF68C30059C952 /* QuickActions.swift */; };
 		A104E199210A384400D2323E /* ShieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A104E198210A384400D2323E /* ShieldsViewController.swift */; };
 		A134B88A20DA98BB00A581D0 /* ClientPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134B88920DA98BB00A581D0 /* ClientPreferences.swift */; };
 		A13AC72520EC12360040D4BB /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13AC72420EC12360040D4BB /* Migration.swift */; };
@@ -1879,7 +1878,6 @@
 		7B844E3C1BBDDB9D00E733A2 /* ChevronView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChevronView.swift; sourceTree = "<group>"; };
 		7B9BF91B1E43472E00CB24F4 /* JSONExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensions.swift; sourceTree = "<group>"; };
 		7BA8D1C61BA037F500C8AE9E /* OpenInHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenInHelper.swift; sourceTree = "<group>"; };
-		7BEFC67F1BFF68C30059C952 /* QuickActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
 		A104E198210A384400D2323E /* ShieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldsViewController.swift; sourceTree = "<group>"; };
 		A134B88920DA98BB00A581D0 /* ClientPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientPreferences.swift; sourceTree = "<group>"; };
 		A13AC72420EC12360040D4BB /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
@@ -4249,7 +4247,6 @@
 				28CE83E81A1D206D00576538 /* Client-Bridging-Header.h */,
 				E40FAB0B1A7ABB77009CB80D /* WebServer.swift */,
 				D3BE7B251B054D4400641031 /* main.swift */,
-				7BEFC67F1BFF68C30059C952 /* QuickActions.swift */,
 				D8EFFA0B1FF5B1FA001D3A09 /* NavigationRouter.swift */,
 				A134B88920DA98BB00A581D0 /* ClientPreferences.swift */,
 				A13AC72420EC12360040D4BB /* Migration.swift */,
@@ -5508,7 +5505,6 @@
 				4452CAF0255412800053EFE6 /* DefaultBrowserIntroCalloutViewController.swift in Sources */,
 				0BB5B2881AC0A2B90052877D /* SnackBar.swift in Sources */,
 				CA9A234126B97B8400923D70 /* MenuButton.swift in Sources */,
-				7BEFC6801BFF68C30059C952 /* QuickActions.swift in Sources */,
 				0A0D3D5221A565C300BEE65B /* SafeBrowsingHandler.swift in Sources */,
 				27AE360D25E55AA200E795E5 /* MenuViewController.swift in Sources */,
 				2FEA1613259CDFE800E00E4D /* SearchCustomEngineViewController.swift in Sources */,

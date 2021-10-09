@@ -15,7 +15,7 @@ private let log = Logger.browserLogger
 @available(iOS 14.0, *)
 class CreatePDFActivity: UIActivity {
     private let callback: (Data) -> Void
-    private weak var webView: WKWebView?
+    private var webView: WKWebView
     
     init(webView: WKWebView, _ callback: @escaping (Data) -> Void) {
         self.webView = webView
@@ -33,8 +33,11 @@ class CreatePDFActivity: UIActivity {
     
     override func perform() {
         // FIXME potential memory leak with removing weak self
-        webView?.createPDF {result in
+        webView.createPDF { [weak self] result in
             dispatchPrecondition(condition: .onQueue(.main))
+            guard let self = self else {
+                return
+            }
             switch result {
             case .success(let data):
                 self.callback(data)
