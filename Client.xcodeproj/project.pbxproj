@@ -990,137 +990,230 @@
 		B0FABB08271BA6160056A8A3 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6889C41D66950E002AC85E /* UIImageColors.swift */; };
 		B0FABB09271BA6200056A8A3 /* NSUserDefaultsPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD19A661A25309B0084FBA7 /* NSUserDefaultsPrefs.swift */; };
 		B0FABB0A271BA6870056A8A3 /* HttpsEverywhere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4422D42621BFCF8800BF1855 /* HttpsEverywhere.cpp */; };
-		B0FABBA7271BA8C90056A8A3 /* posix_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44B21BFFB7500BF1855 /* posix_logger.h */; };
-		B0FABBA8271BA8C90056A8A3 /* testharness.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44C21BFFB7500BF1855 /* testharness.h */; };
-		B0FABBA9271BA8C90056A8A3 /* coding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44E21BFFB7500BF1855 /* coding.h */; };
-		B0FABBAA271BA8C90056A8A3 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44F21BFFB7500BF1855 /* logging.h */; };
-		B0FABBAB271BA8CA0056A8A3 /* mutexlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45321BFFB7500BF1855 /* mutexlock.h */; };
-		B0FABBAC271BA8CA0056A8A3 /* histogram.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45621BFFB7500BF1855 /* histogram.h */; };
-		B0FABBAD271BA8CA0056A8A3 /* crc32c.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45721BFFB7500BF1855 /* crc32c.h */; };
-		B0FABBAE271BA8CA0056A8A3 /* arena.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45A21BFFB7500BF1855 /* arena.h */; };
-		B0FABBAF271BA8CA0056A8A3 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45D21BFFB7500BF1855 /* hash.h */; };
-		B0FABBB0271BA8CA0056A8A3 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45E21BFFB7500BF1855 /* random.h */; };
-		B0FABBB1271BA8CA0056A8A3 /* testutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46021BFFB7500BF1855 /* testutil.h */; };
-		B0FABBB2271BA8CA0056A8A3 /* env.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46421BFFB7500BF1855 /* env.h */; };
-		B0FABBB3271BA8CA0056A8A3 /* status.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46521BFFB7500BF1855 /* status.h */; };
-		B0FABBB4271BA8CA0056A8A3 /* db.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46621BFFB7500BF1855 /* db.h */; };
-		B0FABBB5271BA8CA0056A8A3 /* slice.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46721BFFB7500BF1855 /* slice.h */; };
-		B0FABBB6271BA8CA0056A8A3 /* cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46821BFFB7500BF1855 /* cache.h */; };
-		B0FABBB7271BA8CA0056A8A3 /* write_batch.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46921BFFB7500BF1855 /* write_batch.h */; };
-		B0FABBB8271BA8CB0056A8A3 /* options.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46A21BFFB7500BF1855 /* options.h */; };
-		B0FABBB9271BA8CB0056A8A3 /* dumpfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46B21BFFB7500BF1855 /* dumpfile.h */; };
-		B0FABBBA271BA8CB0056A8A3 /* c.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46C21BFFB7500BF1855 /* c.h */; };
-		B0FABBBB271BA8CB0056A8A3 /* filter_policy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46D21BFFB7500BF1855 /* filter_policy.h */; };
-		B0FABBBC271BA8CB0056A8A3 /* comparator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46E21BFFB7500BF1855 /* comparator.h */; };
-		B0FABBBD271BA8CB0056A8A3 /* table.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46F21BFFB7500BF1855 /* table.h */; };
-		B0FABBBE271BA8CB0056A8A3 /* table_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47021BFFB7500BF1855 /* table_builder.h */; };
-		B0FABBBF271BA8CB0056A8A3 /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47121BFFB7500BF1855 /* iterator.h */; };
-		B0FABBC0271BA8CB0056A8A3 /* block_.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47721BFFB7500BF1855 /* block_.h */; };
-		B0FABBC1271BA8CB0056A8A3 /* iterator_wrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47921BFFB7500BF1855 /* iterator_wrapper.h */; };
-		B0FABBC2271BA8CB0056A8A3 /* merger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47A21BFFB7500BF1855 /* merger.h */; };
-		B0FABBC3271BA8CB0056A8A3 /* block_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47C21BFFB7500BF1855 /* block_builder.h */; };
-		B0FABBC4271BA8CC0056A8A3 /* filter_block.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47F21BFFB7500BF1855 /* filter_block.h */; };
-		B0FABBC5271BA8CC0056A8A3 /* two_level_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48021BFFB7500BF1855 /* two_level_iterator.h */; };
-		B0FABBC6271BA8CC0056A8A3 /* format.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48121BFFB7500BF1855 /* format.h */; };
-		B0FABBC7271BA8CC0056A8A3 /* log_format.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48421BFFB7500BF1855 /* log_format.h */; };
-		B0FABBC8271BA8CC0056A8A3 /* table_cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48621BFFB7500BF1855 /* table_cache.h */; };
-		B0FABBC9271BA8CC0056A8A3 /* skiplist.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48921BFFB7500BF1855 /* skiplist.h */; };
-		B0FABBCA271BA8CC0056A8A3 /* dbformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48A21BFFB7500BF1855 /* dbformat.h */; };
-		B0FABBCB271BA8CC0056A8A3 /* log_writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49021BFFB7500BF1855 /* log_writer.h */; };
-		B0FABBCC271BA8CC0056A8A3 /* db_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49221BFFB7500BF1855 /* db_impl.h */; };
-		B0FABBCD271BA8CC0056A8A3 /* db_iter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49321BFFB7500BF1855 /* db_iter.h */; };
-		B0FABBCE271BA8CC0056A8A3 /* memtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49521BFFB7500BF1855 /* memtable.h */; };
-		B0FABBCF271BA8CC0056A8A3 /* version_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49621BFFB7500BF1855 /* version_edit.h */; };
-		B0FABBD0271BA8CC0056A8A3 /* version_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49721BFFB7500BF1855 /* version_set.h */; };
-		B0FABBD1271BA8CD0056A8A3 /* builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49821BFFB7500BF1855 /* builder.h */; };
-		B0FABBD2271BA8CD0056A8A3 /* log_reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49B21BFFB7500BF1855 /* log_reader.h */; };
-		B0FABBD3271BA8CD0056A8A3 /* write_batch_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49C21BFFB7500BF1855 /* write_batch_internal.h */; };
-		B0FABBD4271BA8CD0056A8A3 /* filename.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49F21BFFB7500BF1855 /* filename.h */; };
-		B0FABBD5271BA8CD0056A8A3 /* snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A021BFFB7500BF1855 /* snapshot.h */; };
-		B0FABBD6271BA8CD0056A8A3 /* atomic_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A321BFFB7500BF1855 /* atomic_pointer.h */; };
-		B0FABBD7271BA8CD0056A8A3 /* port.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A421BFFB7500BF1855 /* port.h */; };
-		B0FABBD8271BA8CD0056A8A3 /* port_posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A621BFFB7500BF1855 /* port_posix.h */; };
-		B0FABBD9271BA8CD0056A8A3 /* port_example.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A721BFFB7500BF1855 /* port_example.h */; };
-		B0FABBDA271BA8CD0056A8A3 /* thread_annotations.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A821BFFB7500BF1855 /* thread_annotations.h */; };
-		B0FABBDB271BA8CD0056A8A3 /* memenv.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4AC21BFFB7600BF1855 /* memenv.h */; };
-		B0FABBDC271BA8CD0056A8A3 /* mix.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D50F21BFFB7E00BF1855 /* mix.h */; };
-		B0FABBDD271BA8CD0056A8A3 /* sparse_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51021BFFB7E00BF1855 /* sparse_array.h */; };
-		B0FABBDE271BA8CE0056A8A3 /* flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51121BFFB7E00BF1855 /* flags.h */; };
-		B0FABBDF271BA8CE0056A8A3 /* utf.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51321BFFB7E00BF1855 /* utf.h */; };
-		B0FABBE0271BA8CE0056A8A3 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51521BFFB7E00BF1855 /* logging.h */; };
-		B0FABBE1271BA8CE0056A8A3 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51621BFFB7E00BF1855 /* util.h */; };
-		B0FABBE2271BA8CE0056A8A3 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51721BFFB7E00BF1855 /* pcre.h */; };
-		B0FABBE3271BA8CE0056A8A3 /* sparse_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51921BFFB7E00BF1855 /* sparse_set.h */; };
-		B0FABBE4271BA8CE0056A8A3 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51A21BFFB7E00BF1855 /* mutex.h */; };
-		B0FABBE5271BA8CE0056A8A3 /* strutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51B21BFFB7E00BF1855 /* strutil.h */; };
-		B0FABBE6271BA8CE0056A8A3 /* stringpiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51D21BFFB7E00BF1855 /* stringpiece.h */; };
-		B0FABBE7271BA8CE0056A8A3 /* prog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52421BFFB7E00BF1855 /* prog.h */; };
-		B0FABBE8271BA8CE0056A8A3 /* prefilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52B21BFFB7E00BF1855 /* prefilter.h */; };
-		B0FABBE9271BA8CE0056A8A3 /* walker-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52D21BFFB7E00BF1855 /* walker-inl.h */; };
-		B0FABBEA271BA8CF0056A8A3 /* prefilter_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52E21BFFB7E00BF1855 /* prefilter_tree.h */; };
-		B0FABBEB271BA8CF0056A8A3 /* filtered_re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52F21BFFB7E00BF1855 /* filtered_re2.h */; };
-		B0FABBEC271BA8CF0056A8A3 /* unicode_casefold.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53521BFFB7E00BF1855 /* unicode_casefold.h */; };
-		B0FABBED271BA8CF0056A8A3 /* unicode_groups.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53621BFFB7E00BF1855 /* unicode_groups.h */; };
-		B0FABBEE271BA8CF0056A8A3 /* regexp.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53D21BFFB7E00BF1855 /* regexp.h */; };
-		B0FABBEF271BA8CF0056A8A3 /* bitmap256.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53E21BFFB7E00BF1855 /* bitmap256.h */; };
-		B0FABBF0271BA8CF0056A8A3 /* re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53F21BFFB7E00BF1855 /* re2.h */; };
-		B0FABBF1271BA8CF0056A8A3 /* set.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D54021BFFB7E00BF1855 /* set.h */; };
-		B0FABBF2271BA8CF0056A8A3 /* NSData+GZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D43421BFD29E00BF1855 /* NSData+GZIP.h */; };
-		B0FABBF3271BA8CF0056A8A3 /* NSFileManager+Tar.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D43521BFD29E00BF1855 /* NSFileManager+Tar.h */; };
-		B0FABBF4271BA8CF0056A8A3 /* HttpsEverywhere.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42821BFCF8800BF1855 /* HttpsEverywhere.h */; };
-		B0FABBF5271BA8CF0056A8A3 /* HttpsEverywhereObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42721BFCF8800BF1855 /* HttpsEverywhereObjC.h */; };
-		B0FABBF6271BA8D00056A8A3 /* JsonCpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42A21BFCF8800BF1855 /* JsonCpp.h */; };
-		B0FABBF7271BA8D00056A8A3 /* RecentlyUsedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42521BFCF8800BF1855 /* RecentlyUsedCache.h */; };
-		B0FABBF9271BA8D00056A8A3 /* Swizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = E650755A1E37F747006961AC /* Swizzling.h */; };
-		B0FABBFA271BA8D00056A8A3 /* Try.h in Headers */ = {isa = PBXBuildFile; fileRef = E650755D1E37F756006961AC /* Try.h */; };
-		B0FABBFB271BA8D00056A8A3 /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D1DC51520AC9AFA00905E5A /* Data.h */; };
-		B0FABBFC271BA8D00056A8A3 /* BraveShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DE7688620B3456D00FF5533 /* BraveShared.h */; };
-		B0FABBFD271BA8D00056A8A3 /* BraveUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 278C468823F1E6270083347F /* BraveUI.h */; };
-		B0FABBFE271BA8D00056A8A3 /* SPMLibraries.h in Headers */ = {isa = PBXBuildFile; fileRef = 277568D225ACF91600C129AF /* SPMLibraries.h */; };
-		B0FABBFF271BA8D00056A8A3 /* Shared-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E0BB151AFBC9E4008D6260 /* Shared-Bridging-Header.h */; };
-		B0FABC00271BA8D00056A8A3 /* CrashSimulator.h in Headers */ = {isa = PBXBuildFile; fileRef = E650756A1E37F7AB006961AC /* CrashSimulator.h */; };
-		B0FABC01271BA8D00056A8A3 /* FSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E65075811E37F7AB006961AC /* FSUtils.h */; };
-		B0FABC02271BA8D10056A8A3 /* Storage-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FCAE33D1ABB5F1800877008 /* Storage-Bridging-Header.h */; };
-		B0FABC03271BA8D10056A8A3 /* Static.h in Headers */ = {isa = PBXBuildFile; fileRef = 27756C7925AD153000C129AF /* Static.h */; };
-		B0FABC04271BA8D10056A8A3 /* OnePasswordExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 27756A4825ACFD3F00C129AF /* OnePasswordExtension.h */; };
-		B0FABC05271BA8D10056A8A3 /* UIImageViewAligned.h in Headers */ = {isa = PBXBuildFile; fileRef = D8C75DE9207584C300BB8AD0 /* UIImageViewAligned.h */; };
-		B0FABC06271BA8D10056A8A3 /* POPMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775694A25ACFC1C00C129AF /* POPMath.h */; };
-		B0FABC07271BA8D10056A8A3 /* POPDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775694B25ACFC1C00C129AF /* POPDefines.h */; };
-		B0FABC08271BA8D10056A8A3 /* POPAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775694C25ACFC1C00C129AF /* POPAnimationInternal.h */; };
-		B0FABC09271BA8D10056A8A3 /* POPAnimationExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775694D25ACFC1C00C129AF /* POPAnimationExtras.h */; };
-		B0FABC0A271BA8D10056A8A3 /* POPAnimationEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775694E25ACFC1C00C129AF /* POPAnimationEvent.h */; };
-		B0FABC0B271BA8D10056A8A3 /* POPBasicAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775694F25ACFC1C00C129AF /* POPBasicAnimationInternal.h */; };
-		B0FABC0C271BA8D10056A8A3 /* POPPropertyAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695125ACFC1C00C129AF /* POPPropertyAnimationInternal.h */; };
-		B0FABC0D271BA8D10056A8A3 /* POPDecayAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695325ACFC1C00C129AF /* POPDecayAnimationInternal.h */; };
-		B0FABC0E271BA8D20056A8A3 /* POPSpringAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695425ACFC1C00C129AF /* POPSpringAnimation.h */; };
-		B0FABC0F271BA8D20056A8A3 /* POPBasicAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695525ACFC1C00C129AF /* POPBasicAnimation.h */; };
-		B0FABC10271BA8D20056A8A3 /* POPAnimationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695725ACFC1C00C129AF /* POPAnimationPrivate.h */; };
-		B0FABC11271BA8D20056A8A3 /* POPAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695825ACFC1C00C129AF /* POPAction.h */; };
-		B0FABC12271BA8D20056A8A3 /* POPCustomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695B25ACFC1C00C129AF /* POPCustomAnimation.h */; };
-		B0FABC13271BA8D20056A8A3 /* POPPropertyAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695C25ACFC1C00C129AF /* POPPropertyAnimation.h */; };
-		B0FABC14271BA8D20056A8A3 /* POPCGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775695E25ACFC1C00C129AF /* POPCGUtils.h */; };
-		B0FABC15271BA8D20056A8A3 /* POPGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696125ACFC1C00C129AF /* POPGeometry.h */; };
-		B0FABC16271BA8D20056A8A3 /* POPSpringAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696325ACFC1C00C129AF /* POPSpringAnimationInternal.h */; };
-		B0FABC17271BA8D20056A8A3 /* POPDecayAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696525ACFC1C00C129AF /* POPDecayAnimation.h */; };
-		B0FABC18271BA8D20056A8A3 /* POPSpringSolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696625ACFC1C00C129AF /* POPSpringSolver.h */; };
-		B0FABC19271BA8D20056A8A3 /* POPAnimatableProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696725ACFC1C00C129AF /* POPAnimatableProperty.h */; };
-		B0FABC1A271BA8D30056A8A3 /* POPAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696825ACFC1C00C129AF /* POPAnimator.h */; };
-		B0FABC1B271BA8D30056A8A3 /* POPAnimationRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696925ACFC1C00C129AF /* POPAnimationRuntime.h */; };
-		B0FABC1C271BA8D30056A8A3 /* POP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696A25ACFC1C00C129AF /* POP.h */; };
-		B0FABC1D271BA8D30056A8A3 /* POPLayerExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775696C25ACFC1C00C129AF /* POPLayerExtras.h */; };
-		B0FABC1E271BA8D30056A8A3 /* POPAnimatablePropertyTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775697025ACFC1C00C129AF /* POPAnimatablePropertyTypes.h */; };
-		B0FABC1F271BA8D30056A8A3 /* TransformationMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775697325ACFC1C00C129AF /* TransformationMatrix.h */; };
-		B0FABC20271BA8D30056A8A3 /* FloatConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775697425ACFC1C00C129AF /* FloatConversion.h */; };
-		B0FABC21271BA8D30056A8A3 /* UnitBezier.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775697525ACFC1C00C129AF /* UnitBezier.h */; };
-		B0FABC22271BA8D30056A8A3 /* POPAnimationTracerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775697625ACFC1C00C129AF /* POPAnimationTracerInternal.h */; };
-		B0FABC23271BA8D30056A8A3 /* POPAnimationEventInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775697725ACFC1C00C129AF /* POPAnimationEventInternal.h */; };
-		B0FABC24271BA8D30056A8A3 /* POPAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775697A25ACFC1C00C129AF /* POPAnimation.h */; };
-		B0FABC25271BA8D40056A8A3 /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775698025ACFC1C00C129AF /* POPVector.h */; };
-		B0FABC26271BA8D40056A8A3 /* POPAnimatorPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775698125ACFC1C00C129AF /* POPAnimatorPrivate.h */; };
-		B0FABC27271BA8D40056A8A3 /* POPAnimationTracer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775698225ACFC1C00C129AF /* POPAnimationTracer.h */; };
-		B0FABC28271BA8D40056A8A3 /* POPBaseAnimationTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775699C25ACFC1C00C129AF /* POPBaseAnimationTests.h */; };
-		B0FABC29271BA8D40056A8A3 /* POPAnimationTestsExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 2775699D25ACFC1C00C129AF /* POPAnimationTestsExtras.h */; };
-		B0FABC2A271BA8D40056A8A3 /* POPAnimatable.h in Headers */ = {isa = PBXBuildFile; fileRef = 277569A025ACFC1C00C129AF /* POPAnimatable.h */; };
+		B0FABCA1271BAC790056A8A3 /* port_posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A621BFFB7500BF1855 /* port_posix.h */; };
+		B0FABCA2271BAC790056A8A3 /* cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46821BFFB7500BF1855 /* cache.h */; };
+		B0FABCA3271BAC790056A8A3 /* port.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A421BFFB7500BF1855 /* port.h */; };
+		B0FABCA4271BAC790056A8A3 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45D21BFFB7500BF1855 /* hash.h */; };
+		B0FABCA5271BAC790056A8A3 /* slice.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46721BFFB7500BF1855 /* slice.h */; };
+		B0FABCA6271BAC790056A8A3 /* mix.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D50F21BFFB7E00BF1855 /* mix.h */; };
+		B0FABCA7271BAC790056A8A3 /* unicode_groups.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53621BFFB7E00BF1855 /* unicode_groups.h */; };
+		B0FABCA8271BAC790056A8A3 /* flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51121BFFB7E00BF1855 /* flags.h */; };
+		B0FABCA9271BAC790056A8A3 /* table_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47021BFFB7500BF1855 /* table_builder.h */; };
+		B0FABCAA271BAC790056A8A3 /* iterator_wrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47921BFFB7500BF1855 /* iterator_wrapper.h */; };
+		B0FABCAB271BAC790056A8A3 /* crc32c.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45721BFFB7500BF1855 /* crc32c.h */; };
+		B0FABCAC271BAC790056A8A3 /* builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49821BFFB7500BF1855 /* builder.h */; };
+		B0FABCAD271BAC790056A8A3 /* unicode_casefold.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53521BFFB7E00BF1855 /* unicode_casefold.h */; };
+		B0FABCAE271BAC790056A8A3 /* filtered_re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52F21BFFB7E00BF1855 /* filtered_re2.h */; };
+		B0FABCAF271BAC790056A8A3 /* status.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46521BFFB7500BF1855 /* status.h */; };
+		B0FABCB1271BAC790056A8A3 /* regexp.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53D21BFFB7E00BF1855 /* regexp.h */; };
+		B0FABCB2271BAC790056A8A3 /* NSData+GZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D43421BFD29E00BF1855 /* NSData+GZIP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0FABCB3271BAC790056A8A3 /* port_example.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A721BFFB7500BF1855 /* port_example.h */; };
+		B0FABCB4271BAC790056A8A3 /* RecentlyUsedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42521BFCF8800BF1855 /* RecentlyUsedCache.h */; };
+		B0FABCB5271BAC790056A8A3 /* prefilter_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52E21BFFB7E00BF1855 /* prefilter_tree.h */; };
+		B0FABCB6271BAC790056A8A3 /* log_reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49B21BFFB7500BF1855 /* log_reader.h */; };
+		B0FABCB7271BAC790056A8A3 /* two_level_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48021BFFB7500BF1855 /* two_level_iterator.h */; };
+		B0FABCB8271BAC790056A8A3 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51521BFFB7E00BF1855 /* logging.h */; };
+		B0FABCB9271BAC790056A8A3 /* atomic_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A321BFFB7500BF1855 /* atomic_pointer.h */; };
+		B0FABCBA271BAC790056A8A3 /* dumpfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46B21BFFB7500BF1855 /* dumpfile.h */; };
+		B0FABCBB271BAC790056A8A3 /* log_format.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48421BFFB7500BF1855 /* log_format.h */; };
+		B0FABCBC271BAC790056A8A3 /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47121BFFB7500BF1855 /* iterator.h */; };
+		B0FABCBD271BAC790056A8A3 /* c.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46C21BFFB7500BF1855 /* c.h */; };
+		B0FABCBE271BAC790056A8A3 /* block_.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47721BFFB7500BF1855 /* block_.h */; };
+		B0FABCBF271BAC790056A8A3 /* snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A021BFFB7500BF1855 /* snapshot.h */; };
+		B0FABCC0271BAC790056A8A3 /* block_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47C21BFFB7500BF1855 /* block_builder.h */; };
+		B0FABCC1271BAC790056A8A3 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45E21BFFB7500BF1855 /* random.h */; };
+		B0FABCC2271BAC790056A8A3 /* walker-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52D21BFFB7E00BF1855 /* walker-inl.h */; };
+		B0FABCC3271BAC790056A8A3 /* write_batch_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49C21BFFB7500BF1855 /* write_batch_internal.h */; };
+		B0FABCC4271BAC790056A8A3 /* coding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44E21BFFB7500BF1855 /* coding.h */; };
+		B0FABCC5271BAC790056A8A3 /* version_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49721BFFB7500BF1855 /* version_set.h */; };
+		B0FABCC6271BAC790056A8A3 /* comparator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46E21BFFB7500BF1855 /* comparator.h */; };
+		B0FABCC7271BAC790056A8A3 /* merger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47A21BFFB7500BF1855 /* merger.h */; };
+		B0FABCC8271BAC790056A8A3 /* strutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51B21BFFB7E00BF1855 /* strutil.h */; };
+		B0FABCC9271BAC790056A8A3 /* memtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49521BFFB7500BF1855 /* memtable.h */; };
+		B0FABCCA271BAC790056A8A3 /* sparse_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51921BFFB7E00BF1855 /* sparse_set.h */; };
+		B0FABCCB271BAC790056A8A3 /* table_cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48621BFFB7500BF1855 /* table_cache.h */; };
+		B0FABCCC271BAC790056A8A3 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51621BFFB7E00BF1855 /* util.h */; };
+		B0FABCCD271BAC790056A8A3 /* options.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46A21BFFB7500BF1855 /* options.h */; };
+		B0FABCCE271BAC790056A8A3 /* memenv.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4AC21BFFB7600BF1855 /* memenv.h */; };
+		B0FABCCF271BAC790056A8A3 /* dbformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48A21BFFB7500BF1855 /* dbformat.h */; };
+		B0FABCD0271BAC790056A8A3 /* table.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46F21BFFB7500BF1855 /* table.h */; };
+		B0FABCD1271BAC790056A8A3 /* set.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D54021BFFB7E00BF1855 /* set.h */; };
+		B0FABCD2271BAC790056A8A3 /* db_iter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49321BFFB7500BF1855 /* db_iter.h */; };
+		B0FABCD3271BAC790056A8A3 /* prog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52421BFFB7E00BF1855 /* prog.h */; };
+		B0FABCD4271BAC790056A8A3 /* re2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53F21BFFB7E00BF1855 /* re2.h */; };
+		B0FABCD5271BAC790056A8A3 /* stringpiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51D21BFFB7E00BF1855 /* stringpiece.h */; };
+		B0FABCD6271BAC790056A8A3 /* format.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48121BFFB7500BF1855 /* format.h */; };
+		B0FABCD7271BAC790056A8A3 /* filter_policy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46D21BFFB7500BF1855 /* filter_policy.h */; };
+		B0FABCD8271BAC790056A8A3 /* utf.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51321BFFB7E00BF1855 /* utf.h */; };
+		B0FABCD9271BAC790056A8A3 /* HttpsEverywhereObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42721BFCF8800BF1855 /* HttpsEverywhereObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0FABCDA271BAC790056A8A3 /* version_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49621BFFB7500BF1855 /* version_edit.h */; };
+		B0FABCDB271BAC790056A8A3 /* env.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46421BFFB7500BF1855 /* env.h */; };
+		B0FABCDC271BAC790056A8A3 /* NSFileManager+Tar.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D43521BFD29E00BF1855 /* NSFileManager+Tar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0FABCDD271BAC790056A8A3 /* histogram.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45621BFFB7500BF1855 /* histogram.h */; };
+		B0FABCDE271BAC790056A8A3 /* filename.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49F21BFFB7500BF1855 /* filename.h */; };
+		B0FABCDF271BAC790056A8A3 /* log_writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49021BFFB7500BF1855 /* log_writer.h */; };
+		B0FABCE0271BAC790056A8A3 /* sparse_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51021BFFB7E00BF1855 /* sparse_array.h */; };
+		B0FABCE1271BAC790056A8A3 /* db.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46621BFFB7500BF1855 /* db.h */; };
+		B0FABCE2271BAC790056A8A3 /* db_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D49221BFFB7500BF1855 /* db_impl.h */; };
+		B0FABCE3271BAC790056A8A3 /* arena.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45A21BFFB7500BF1855 /* arena.h */; };
+		B0FABCE4271BAC790056A8A3 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51A21BFFB7E00BF1855 /* mutex.h */; };
+		B0FABCE5271BAC790056A8A3 /* filter_block.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D47F21BFFB7500BF1855 /* filter_block.h */; };
+		B0FABCE6271BAC790056A8A3 /* posix_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44B21BFFB7500BF1855 /* posix_logger.h */; };
+		B0FABCE7271BAC790056A8A3 /* logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44F21BFFB7500BF1855 /* logging.h */; };
+		B0FABCE8271BAC790056A8A3 /* mutexlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D45321BFFB7500BF1855 /* mutexlock.h */; };
+		B0FABCE9271BAC790056A8A3 /* testharness.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D44C21BFFB7500BF1855 /* testharness.h */; };
+		B0FABCEA271BAC790056A8A3 /* testutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46021BFFB7500BF1855 /* testutil.h */; };
+		B0FABCEB271BAC790056A8A3 /* skiplist.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D48921BFFB7500BF1855 /* skiplist.h */; };
+		B0FABCEC271BAC790056A8A3 /* thread_annotations.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D4A821BFFB7500BF1855 /* thread_annotations.h */; };
+		B0FABCED271BAC790056A8A3 /* bitmap256.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D53E21BFFB7E00BF1855 /* bitmap256.h */; };
+		B0FABCEE271BAC790056A8A3 /* prefilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D52B21BFFB7E00BF1855 /* prefilter.h */; };
+		B0FABCEF271BAC790056A8A3 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D51721BFFB7E00BF1855 /* pcre.h */; };
+		B0FABCF0271BAC790056A8A3 /* JsonCpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42A21BFCF8800BF1855 /* JsonCpp.h */; };
+		B0FABCF1271BAC790056A8A3 /* write_batch.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D46921BFFB7500BF1855 /* write_batch.h */; };
+		B0FABCF2271BAC790056A8A3 /* AllFramesAtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = F979BE2B25BCC54D009B6ACF /* AllFramesAtDocumentStart.js */; };
+		B0FABCF3271BAC790056A8A3 /* AmazonRootCA2.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F22B26CBD1C600658EAC /* AmazonRootCA2.cer */; };
+		B0FABCF4271BAC790056A8A3 /* AllFramesAtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = F979BE2C25BCC54D009B6ACF /* AllFramesAtDocumentEnd.js */; };
+		B0FABCF5271BAC790056A8A3 /* AllFramesAtDocumentStartSandboxed.js in Resources */ = {isa = PBXBuildFile; fileRef = F979BE2D25BCC54E009B6ACF /* AllFramesAtDocumentStartSandboxed.js */; };
+		B0FABCF6271BAC790056A8A3 /* AllFramesAtDocumentEndSandboxed.js in Resources */ = {isa = PBXBuildFile; fileRef = F979BE2E25BCC54E009B6ACF /* AllFramesAtDocumentEndSandboxed.js */; };
+		B0FABCF7271BAC790056A8A3 /* FullscreenHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EB57D0122FDC0CB00A07325 /* FullscreenHelper.js */; };
+		B0FABCF8271BAC790056A8A3 /* CertError.html in Resources */ = {isa = PBXBuildFile; fileRef = D38A1EDF1CB458EC0080C842 /* CertError.html */; };
+		B0FABCF9271BAC790056A8A3 /* ISRGRootCA_X2.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23E26CBD3DB00658EAC /* ISRGRootCA_X2.cer */; };
+		B0FABCFA271BAC790056A8A3 /* MediaBackgrounding.js in Resources */ = {isa = PBXBuildFile; fileRef = CA55048F269DED8F00C19917 /* MediaBackgrounding.js */; };
+		B0FABCFB271BAC790056A8A3 /* NetError.css in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1E02F1B051A07007675AF /* NetError.css */; };
+		B0FABCFC271BAC790056A8A3 /* block-cookies.json in Resources */ = {isa = PBXBuildFile; fileRef = 59871C1821E4D83900316590 /* block-cookies.json */; };
+		B0FABCFD271BAC790056A8A3 /* corwin-prescott_crestone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A81257EAD9F00126ADC /* corwin-prescott_crestone.jpg */; };
+		B0FABCFE271BAC790056A8A3 /* MainFrameAtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E824A88260BCE0D00127F36 /* MainFrameAtDocumentEnd.js */; };
+		B0FABCFF271BAC790056A8A3 /* TopSites in Resources */ = {isa = PBXBuildFile; fileRef = 3BC659481E5BA4AE006D560F /* TopSites */; };
+		B0FABD00271BAC790056A8A3 /* FiraSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7571A793CF20022C5E0 /* FiraSans-SemiBold.ttf */; };
+		B0FABD01271BAC790056A8A3 /* corwin-prescott_canyon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A84257EADA400126ADC /* corwin-prescott_canyon.jpg */; };
+		B0FABD02271BAC790056A8A3 /* GlobalSignRootCA_R46.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23326CBD27A00658EAC /* GlobalSignRootCA_R46.cer */; };
+		B0FABD03271BAC790056A8A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F84B21EF1A0910F600AAB793 /* Images.xcassets */; };
+		B0FABD04271BAC790056A8A3 /* AdsReporting.js in Resources */ = {isa = PBXBuildFile; fileRef = 2755AB7C23107BC600F0721F /* AdsReporting.js */; };
+		B0FABD05271BAC790056A8A3 /* spencer-moore_ocean.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A85257EADA500126ADC /* spencer-moore_ocean.jpg */; };
+		B0FABD06271BAC790056A8A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A5E04F823FEADA800E5A3E9 /* LaunchScreen.storyboard */; };
+		B0FABD07271BAC790056A8A3 /* corwin-prescott_olympic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7B257EAD9500126ADC /* corwin-prescott_olympic.jpg */; };
+		B0FABD08271BAC790056A8A3 /* su-san-lee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A80257EAD9E00126ADC /* su-san-lee.jpg */; };
+		B0FABD09271BAC790056A8A3 /* BraveSearchHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AE50853261C63D70099C6A3 /* BraveSearchHelper.js */; };
+		B0FABD0A271BAC790056A8A3 /* ntp-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DB474F0237F4CC9007B7652 /* ntp-data.json */; };
+		B0FABD0B271BAC790056A8A3 /* CookieControl.js in Resources */ = {isa = PBXBuildFile; fileRef = 595E0EDA21CAD97C00813D49 /* CookieControl.js */; };
+		B0FABD0C271BAC790056A8A3 /* adblock-list.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3B21A4BE6400BEE65B /* adblock-list.txt */; };
+		B0FABD0D271BAC790056A8A3 /* LaunchScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A5E04FA23FEB53700E5A3E9 /* LaunchScreen.xcassets */; };
+		B0FABD0E271BAC790056A8A3 /* simple_malware.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3D21A4BE6C00BEE65B /* simple_malware.txt */; };
+		B0FABD0F271BAC790056A8A3 /* block-ads.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DE52508218CE92B000DFAA6 /* block-ads.json */; };
+		B0FABD10271BAC790056A8A3 /* SessionRestore.html in Resources */ = {isa = PBXBuildFile; fileRef = F35B8D2A1D6380EA008E3D61 /* SessionRestore.html */; };
+		B0FABD11271BAC790056A8A3 /* WindowRenderHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E4845BF22DE381200372022 /* WindowRenderHelper.js */; };
+		B0FABD12271BAC790056A8A3 /* top_sites.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BC659581E5BA505006D560F /* top_sites.json */; };
+		B0FABD13271BAC790056A8A3 /* TrackingProtectionStats.js in Resources */ = {isa = PBXBuildFile; fileRef = F9E0F3A7257739B1003A6A30 /* TrackingProtectionStats.js */; };
+		B0FABD14271BAC790056A8A3 /* CharisSILI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B73C1A793CF20022C5E0 /* CharisSILI.ttf */; };
+		B0FABD15271BAC790056A8A3 /* Playlist.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E5E6F2825BB61320035B6A0 /* Playlist.js */; };
+		B0FABD16271BAC790056A8A3 /* GlobalSignRootCA_R1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F24226CBD42C00658EAC /* GlobalSignRootCA_R1.cer */; };
+		B0FABD17271BAC790056A8A3 /* Reader.html in Resources */ = {isa = PBXBuildFile; fileRef = E4CD9F531A71506400318571 /* Reader.html */; };
+		B0FABD18271BAC790056A8A3 /* SearchPlugins in Resources */ = {isa = PBXBuildFile; fileRef = C6345ECA2113B3A000CFB983 /* SearchPlugins */; };
+		B0FABD19271BAC790056A8A3 /* GlobalSignRootCA_R3.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F24126CBD42B00658EAC /* GlobalSignRootCA_R3.cer */; };
+		B0FABD1A271BAC790056A8A3 /* unicode.py in Resources */ = {isa = PBXBuildFile; fileRef = 4422D52721BFFB7E00BF1855 /* unicode.py */; };
+		B0FABD1B271BAC790056A8A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B2142FC1E5E055000CDD3FC /* InfoPlist.strings */; };
+		B0FABD1C271BAC790056A8A3 /* Licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = E69922121B94E3EF007C480D /* Licenses.html */; };
+		B0FABD1D271BAC790056A8A3 /* Reader.css in Resources */ = {isa = PBXBuildFile; fileRef = E4CD9F5A1A71506C00318571 /* Reader.css */; };
+		B0FABD1E271BAC790056A8A3 /* CharisSILB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B73A1A793CF20022C5E0 /* CharisSILB.ttf */; };
+		B0FABD1F271BAC790056A8A3 /* PlaylistDetector.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2C0E425C0B321005EA984 /* PlaylistDetector.js */; };
+		B0FABD20271BAC790056A8A3 /* sora-sagano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A87257EADA900126ADC /* sora-sagano.jpg */; };
+		B0FABD21271BAC790056A8A3 /* dylan-malval_alps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7A257EAD9300126ADC /* dylan-malval_alps.jpg */; };
+		B0FABD22271BAC790056A8A3 /* spencer-moore_desert.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A83257EADA200126ADC /* spencer-moore_desert.jpg */; };
+		B0FABD23271BAC790056A8A3 /* make_perl_groups.pl in Resources */ = {isa = PBXBuildFile; fileRef = 4422D53C21BFFB7E00BF1855 /* make_perl_groups.pl */; };
+		B0FABD24271BAC790056A8A3 /* CharisSILBI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B73B1A793CF20022C5E0 /* CharisSILBI.ttf */; };
+		B0FABD25271BAC790056A8A3 /* LoginsHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = D0C95DF5200EADD500E4E51C /* LoginsHelper.js */; };
+		B0FABD26271BAC790056A8A3 /* corwin-prescott_beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A86257EADA600126ADC /* corwin-prescott_beach.jpg */; };
+		B0FABD27271BAC790056A8A3 /* RewardsReporting.js in Resources */ = {isa = PBXBuildFile; fileRef = 276E7A2E22F21A7700939424 /* RewardsReporting.js */; };
+		B0FABD28271BAC790056A8A3 /* FocusHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 39F4C0F92045D87400746155 /* FocusHelper.js */; };
+		B0FABD29271BAC790056A8A3 /* FiraSans-UltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B75F1A793CF20022C5E0 /* FiraSans-UltraLight.ttf */; };
+		B0FABD2A271BAC790056A8A3 /* ISRGRootCA_X1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23D26CBD3DA00658EAC /* ISRGRootCA_X1.cer */; };
+		B0FABD2B271BAC790056A8A3 /* AmazonRootCA3.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F22926CBD1C400658EAC /* AmazonRootCA3.cer */; };
+		B0FABD2C271BAC790056A8A3 /* alex-plesovskich.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7E257EAD9A00126ADC /* alex-plesovskich.jpg */; };
+		B0FABD2D271BAC790056A8A3 /* FiraSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7561A793CF20022C5E0 /* FiraSans-Regular.ttf */; };
+		B0FABD2E271BAC790056A8A3 /* AmazonRootCA1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23926CBD30800658EAC /* AmazonRootCA1.cer */; };
+		B0FABD2F271BAC790056A8A3 /* GlobalSignRootCA_E46.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23226CBD27900658EAC /* GlobalSignRootCA_E46.cer */; };
+		B0FABD30271BAC790056A8A3 /* make_unicode_casefold.py in Resources */ = {isa = PBXBuildFile; fileRef = 4422D51F21BFFB7E00BF1855 /* make_unicode_casefold.py */; };
+		B0FABD31271BAC790056A8A3 /* YoutubeAdblock.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E4E078224A0E4D700B01720 /* YoutubeAdblock.js */; };
+		B0FABD32271BAC790056A8A3 /* FiraSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7521A793CF20022C5E0 /* FiraSans-Light.ttf */; };
+		B0FABD33271BAC790056A8A3 /* zane-lee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7C257EAD9700126ADC /* zane-lee.jpg */; };
+		B0FABD34271BAC790056A8A3 /* ResourceDownloader.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E3477E822D7771700B0D5F8 /* ResourceDownloader.js */; };
+		B0FABD35271BAC790056A8A3 /* GlobalSignRootCA_R6.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23426CBD27A00658EAC /* GlobalSignRootCA_R6.cer */; };
+		B0FABD36271BAC790056A8A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59D41619232681080087A6E1 /* Localizable.strings */; };
+		B0FABD37271BAC790056A8A3 /* DownloadHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = F9F8597B2533CEBC000CEB24 /* DownloadHelper.js */; };
+		B0FABD38271BAC790056A8A3 /* SafeBrowsingError.html in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D3D4821A5609500BEE65B /* SafeBrowsingError.html */; };
+		B0FABD39271BAC790056A8A3 /* MailSchemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74821FFD1DB6D3AC00EEEA72 /* MailSchemes.plist */; };
+		B0FABD3A271BAC790056A8A3 /* onboarding-shields.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A6E095E230E05BC00AB3F19 /* onboarding-shields.json */; };
+		B0FABD3B271BAC790056A8A3 /* ABPFilterParserData.dat in Resources */ = {isa = PBXBuildFile; fileRef = 0AA4AA98231849440009AAEF /* ABPFilterParserData.dat */; };
+		B0FABD3C271BAC790056A8A3 /* gpc.js in Resources */ = {isa = PBXBuildFile; fileRef = F926074A25B230EC000E659A /* gpc.js */; };
+		B0FABD3D271BAC790056A8A3 /* onboarding-ads.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E11C3FF23314D970003C363 /* onboarding-ads.json */; };
+		B0FABD3E271BAC790056A8A3 /* httpse.leveldb.tgz in Resources */ = {isa = PBXBuildFile; fileRef = 4422D57521C05DE500BF1855 /* httpse.leveldb.tgz */; };
+		B0FABD3F271BAC790056A8A3 /* PlaylistSwizzler.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EC0017D260129AC005DDE4A /* PlaylistSwizzler.js */; };
+		B0FABD40271BAC790056A8A3 /* dylan-malval_sea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A79257EAD9100126ADC /* dylan-malval_sea.jpg */; };
+		B0FABD41271BAC790056A8A3 /* CertError.css in Resources */ = {isa = PBXBuildFile; fileRef = D308EE551CBF0BF5006843F2 /* CertError.css */; };
+		B0FABD42271BAC790056A8A3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4422D44521BFFB7500BF1855 /* LICENSE */; };
+		B0FABD43271BAC790056A8A3 /* CharisSILR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B73D1A793CF20022C5E0 /* CharisSILR.ttf */; };
+		B0FABD44271BAC790056A8A3 /* make_unicode_groups.py in Resources */ = {isa = PBXBuildFile; fileRef = 4422D53B21BFFB7E00BF1855 /* make_unicode_groups.py */; };
+		B0FABD45271BAC790056A8A3 /* FiraSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7411A793CF20022C5E0 /* FiraSans-Bold.ttf */; };
+		B0FABD46271BAC790056A8A3 /* FiraSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7511A793CF20022C5E0 /* FiraSans-Italic.ttf */; };
+		B0FABD47271BAC790056A8A3 /* spencer-moore_fern.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A82257EADA100126ADC /* spencer-moore_fern.jpg */; };
+		B0FABD48271BAC790056A8A3 /* onboarding-rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D8C6E232C0BDB00BDE662 /* onboarding-rewards.json */; };
+		B0FABD49271BAC790056A8A3 /* NetError.html in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1E00D1B03FB0B007675AF /* NetError.html */; };
+		B0FABD4A271BAC790056A8A3 /* block-images.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DE52509218CE92B000DFAA6 /* block-images.json */; };
+		B0FABD4B271BAC790056A8A3 /* ReaderViewLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = E4A961371AC06FA50069AD6F /* ReaderViewLoading.html */; };
+		B0FABD4C271BAC790056A8A3 /* SFSRootCAG2.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F22C26CBD1C600658EAC /* SFSRootCAG2.cer */; };
+		B0FABD4D271BAC790056A8A3 /* AmazonRootCA4.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F22A26CBD1C500658EAC /* AmazonRootCA4.cer */; };
+		B0FABD4E271BAC790056A8A3 /* spencer-moore_lake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7F257EAD9C00126ADC /* spencer-moore_lake.jpg */; };
+		B0FABD4F271BAC790056A8A3 /* BraveShared.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59C8119722D754D4005D5BBC /* BraveShared.strings */; };
+		B0FABD50271BAC790056A8A3 /* PrintHandler.js in Resources */ = {isa = PBXBuildFile; fileRef = F9E0F3B3257878C1003A6A30 /* PrintHandler.js */; };
+		B0FABD51271BAC790056A8A3 /* MainFrameAtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E824A94260BCE0D00127F36 /* MainFrameAtDocumentStart.js */; };
+		B0FABD52271BAC790056A8A3 /* GlobalSignRootCA_R5.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23126CBD27900658EAC /* GlobalSignRootCA_R5.cer */; };
+		B0FABD53271BAC790056A8A3 /* ReaderMode.js in Resources */ = {isa = PBXBuildFile; fileRef = F9E0F38A25772E57003A6A30 /* ReaderMode.js */; };
+		B0FABD54271BAC790056A8A3 /* FiraSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4ECCDAD1AB131770005E717 /* FiraSans-Medium.ttf */; };
+		B0FABD55271BAC790056A8A3 /* andre-benz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7D257EAD9800126ADC /* andre-benz.jpg */; };
+		B0FABD56271BAC790056A8A3 /* PaymentRequest.js in Resources */ = {isa = PBXBuildFile; fileRef = F9B23EE123F61173000EB3D8 /* PaymentRequest.js */; };
+		B0FABD57271BAC790056A8A3 /* FiraSans-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4424B3B1AC71FB400F44C38 /* FiraSans-Book.ttf */; };
+		B0FABD58271BAC790056A8A3 /* blocking-summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F676FAC260BA4860048A1DB /* blocking-summary.json */; };
+		B0FABD59271BAC790056A8A3 /* ArchiveIsCompat.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A64384D24FD4E43000E80A3 /* ArchiveIsCompat.js */; };
+		B0FABD5A271BAC790056A8A3 /* DSTRootCA_X3.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F24526CBF9C900658EAC /* DSTRootCA_X3.cer */; };
+		B0FABD5B271BAC790056A8A3 /* block-trackers.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DE5250C218CE92C000DFAA6 /* block-trackers.json */; };
+		B0FABD5C271BAC790056A8A3 /* SpotlightHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 39A35AEC1C0662A3006B9E87 /* SpotlightHelper.js */; };
+		B0FABD5D271BAC790056A8A3 /* FiraSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7421A793CF20022C5E0 /* FiraSans-BoldItalic.ttf */; };
+		B0FABD5E271BAC790056A8A3 /* Bookmarks.html in Resources */ = {isa = PBXBuildFile; fileRef = 5EE4CF5A2540868E00BC4509 /* Bookmarks.html */; };
+		B0FABD5F271BAC790056A8A3 /* upgrade-http.json in Resources */ = {isa = PBXBuildFile; fileRef = F9BD7D9826C6E77600344FE7 /* upgrade-http.json */; };
+		B0FABD60271BAC790056A8A3 /* __firefox__.js in Resources */ = {isa = PBXBuildFile; fileRef = F9E0F3BE25787E2C003A6A30 /* __firefox__.js */; };
+		B0FABD61271BAC790056A8A3 /* FingerprintingProtection.js in Resources */ = {isa = PBXBuildFile; fileRef = 279C75C021A5B37D001CD1CB /* FingerprintingProtection.js */; };
+		B0FABD6D271BACFB0056A8A3 /* BraveCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; };
+		B0FABD6E271BACFB0056A8A3 /* BraveCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD70271BAD000056A8A3 /* BraveShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE7688420B3456C00FF5533 /* BraveShared.framework */; platformFilter = ios; };
+		B0FABD71271BAD000056A8A3 /* BraveShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE7688420B3456C00FF5533 /* BraveShared.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD74271BAD040056A8A3 /* BraveUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278C468623F1E6270083347F /* BraveUI.framework */; platformFilter = ios; };
+		B0FABD75271BAD040056A8A3 /* BraveUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 278C468623F1E6270083347F /* BraveUI.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD79271BAD0C0056A8A3 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */; };
+		B0FABD7A271BAD160056A8A3 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1DC51320AC9AF900905E5A /* Data.framework */; };
+		B0FABD7B271BAD160056A8A3 /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1DC51320AC9AF900905E5A /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD80271BAD3A0056A8A3 /* libarchive.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FABD7E271BAD200056A8A3 /* libarchive.2.tbd */; };
+		B0FABD81271BAD400056A8A3 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FABD7F271BAD270056A8A3 /* libxml2.2.tbd */; };
+		B0FABD83271BAD4C0056A8A3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FABD82271BAD470056A8A3 /* libz.tbd */; };
+		B0FABD84271BAD530056A8A3 /* MaterialComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B68DD625C48EE9002D0826 /* MaterialComponents.xcframework */; };
+		B0FABD85271BAD540056A8A3 /* MaterialComponents.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27B68DD625C48EE9002D0826 /* MaterialComponents.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD86271BAD5F0056A8A3 /* OnePasswordExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277569F425ACFD3F00C129AF /* OnePasswordExtension.framework */; };
+		B0FABD87271BAD5F0056A8A3 /* OnePasswordExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 277569F425ACFD3F00C129AF /* OnePasswordExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD88271BAD690056A8A3 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277569AE25ACFC1C00C129AF /* pop.framework */; };
+		B0FABD89271BAD690056A8A3 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 277569AE25ACFC1C00C129AF /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD8A271BAD700056A8A3 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288A2D861AB8B3260023ABC3 /* Shared.framework */; platformFilter = ios; };
+		B0FABD8B271BAD700056A8A3 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 288A2D861AB8B3260023ABC3 /* Shared.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD8E271BAD790056A8A3 /* SPMLibraries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277568D025ACF91500C129AF /* SPMLibraries.framework */; platformFilter = ios; };
+		B0FABD8F271BAD790056A8A3 /* SPMLibraries.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 277568D025ACF91500C129AF /* SPMLibraries.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD92271BAD920056A8A3 /* sqlcipher.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2748625C25AD308A00BC40AA /* sqlcipher.xcframework */; };
+		B0FABD93271BAD920056A8A3 /* sqlcipher.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2748625C25AD308A00BC40AA /* sqlcipher.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD94271BAD980056A8A3 /* Static.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27756C8525AD153000C129AF /* Static.framework */; };
+		B0FABD95271BAD980056A8A3 /* Static.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27756C8525AD153000C129AF /* Static.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD96271BAD9D0056A8A3 /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCAE21A1ABB51F800877008 /* Storage.framework */; };
+		B0FABD97271BAD9D0056A8A3 /* Storage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCAE21A1ABB51F800877008 /* Storage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B0FABD9B271BAE580056A8A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FABD9A271BAE580056A8A3 /* UIKit.framework */; };
+		B0FABD9E271BB2540056A8A3 /* UIImageViewAligned.h in Headers */ = {isa = PBXBuildFile; fileRef = D8C75DE9207584C300BB8AD0 /* UIImageViewAligned.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0FABDA1271BB7280056A8A3 /* HttpsEverywhere.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42821BFCF8800BF1855 /* HttpsEverywhere.h */; };
+		B0FABDA3271BBAD90056A8A3 /* Try.h in Headers */ = {isa = PBXBuildFile; fileRef = E650755D1E37F756006961AC /* Try.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C400467C1CF4E43E00B08303 /* BackForwardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */; };
 		C40046FA1CF8E0B200B08303 /* BackForwardListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */; };
 		C4E3984C1D21F2FD004E89BA /* TabTrayButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3984B1D21F2FD004E89BA /* TabTrayButtonExtensions.swift */; };
@@ -1510,13 +1603,6 @@
 			remoteGlobalIDString = 277568CF25ACF91500C129AF;
 			remoteInfo = SPMLibraries;
 		};
-		B0A89F98271BA39700EB6841 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 27F443942135E11200296C58;
-			remoteInfo = ShareExtension;
-		};
 		B0A89F9A271BA39700EB6841 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
@@ -1525,6 +1611,48 @@
 			remoteInfo = Shared;
 		};
 		B0A89F9C271BA39700EB6841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FCAE2191ABB51F800877008;
+			remoteInfo = Storage;
+		};
+		B0FABD72271BAD000056A8A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DE7688320B3456C00FF5533;
+			remoteInfo = BraveShared;
+		};
+		B0FABD76271BAD040056A8A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 278C468523F1E6270083347F;
+			remoteInfo = BraveUI;
+		};
+		B0FABD7C271BAD160056A8A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D1DC51220AC9AF900905E5A;
+			remoteInfo = Data;
+		};
+		B0FABD8C271BAD700056A8A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 288A2D851AB8B3260023ABC3;
+			remoteInfo = Shared;
+		};
+		B0FABD90271BAD790056A8A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 277568CF25ACF91500C129AF;
+			remoteInfo = SPMLibraries;
+		};
+		B0FABD98271BAD9D0056A8A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F84B21B61A090F8100AAB793 /* Project object */;
 			proxyType = 1;
@@ -1540,6 +1668,28 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0FABD6F271BACFB0056A8A3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B0FABD89271BAD690056A8A3 /* pop.framework in Embed Frameworks */,
+				B0FABD87271BAD5F0056A8A3 /* OnePasswordExtension.framework in Embed Frameworks */,
+				B0FABD97271BAD9D0056A8A3 /* Storage.framework in Embed Frameworks */,
+				B0FABD7B271BAD160056A8A3 /* Data.framework in Embed Frameworks */,
+				B0FABD8B271BAD700056A8A3 /* Shared.framework in Embed Frameworks */,
+				B0FABD85271BAD540056A8A3 /* MaterialComponents.xcframework in Embed Frameworks */,
+				B0FABD95271BAD980056A8A3 /* Static.framework in Embed Frameworks */,
+				B0FABD93271BAD920056A8A3 /* sqlcipher.xcframework in Embed Frameworks */,
+				B0FABD75271BAD040056A8A3 /* BraveUI.framework in Embed Frameworks */,
+				B0FABD8F271BAD790056A8A3 /* SPMLibraries.framework in Embed Frameworks */,
+				B0FABD71271BAD000056A8A3 /* BraveShared.framework in Embed Frameworks */,
+				B0FABD6E271BACFB0056A8A3 /* BraveCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2464,6 +2614,11 @@
 		B07D185527053B9000C1570A /* BrowserInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInstance.swift; sourceTree = "<group>"; };
 		B0A89F85271BA32800EB6841 /* EmbeddedClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EmbeddedClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A89F87271BA32800EB6841 /* EmbeddedClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmbeddedClient.h; sourceTree = "<group>"; };
+		B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/CoreNFC.framework; sourceTree = DEVELOPER_DIR; };
+		B0FABD7E271BAD200056A8A3 /* libarchive.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libarchive.2.tbd; sourceTree = DEVELOPER_DIR; };
+		B0FABD7F271BAD270056A8A3 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
+		B0FABD82271BAD470056A8A3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		B0FABD9A271BAE580056A8A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListViewController.swift; sourceTree = "<group>"; };
 		C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListAnimator.swift; sourceTree = "<group>"; };
 		C4E3984B1D21F2FD004E89BA /* TabTrayButtonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabTrayButtonExtensions.swift; path = ../Browser/TabTrayButtonExtensions.swift; sourceTree = "<group>"; };
@@ -2779,6 +2934,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FABD86271BAD5F0056A8A3 /* OnePasswordExtension.framework in Frameworks */,
+				B0FABD92271BAD920056A8A3 /* sqlcipher.xcframework in Frameworks */,
+				B0FABD96271BAD9D0056A8A3 /* Storage.framework in Frameworks */,
+				B0FABD84271BAD530056A8A3 /* MaterialComponents.xcframework in Frameworks */,
+				B0FABD81271BAD400056A8A3 /* libxml2.2.tbd in Frameworks */,
+				B0FABD83271BAD4C0056A8A3 /* libz.tbd in Frameworks */,
+				B0FABD8E271BAD790056A8A3 /* SPMLibraries.framework in Frameworks */,
+				B0FABD74271BAD040056A8A3 /* BraveUI.framework in Frameworks */,
+				B0FABD79271BAD0C0056A8A3 /* CoreNFC.framework in Frameworks */,
+				B0FABD70271BAD000056A8A3 /* BraveShared.framework in Frameworks */,
+				B0FABD8A271BAD700056A8A3 /* Shared.framework in Frameworks */,
+				B0FABD9B271BAE580056A8A3 /* UIKit.framework in Frameworks */,
+				B0FABD80271BAD3A0056A8A3 /* libarchive.2.tbd in Frameworks */,
+				B0FABD7A271BAD160056A8A3 /* Data.framework in Frameworks */,
+				B0FABD94271BAD980056A8A3 /* Static.framework in Frameworks */,
+				B0FABD88271BAD690056A8A3 /* pop.framework in Frameworks */,
+				B0FABD6D271BACFB0056A8A3 /* BraveCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4287,6 +4459,11 @@
 		7B604FC11C496005006EEEC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0FABD9A271BAE580056A8A3 /* UIKit.framework */,
+				B0FABD82271BAD470056A8A3 /* libz.tbd */,
+				B0FABD7F271BAD270056A8A3 /* libxml2.2.tbd */,
+				B0FABD7E271BAD200056A8A3 /* libarchive.2.tbd */,
+				B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */,
 				27AD20C226851C5400889AA7 /* BraveCore.xcframework */,
 				27B68DD725C48EE9002D0826 /* BraveRewards.xcframework */,
 				27B68DD625C48EE9002D0826 /* MaterialComponents.xcframework */,
@@ -5100,137 +5277,89 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0A89F88271BA32800EB6841 /* EmbeddedClient.h in Headers */,
-				B0FABBA7271BA8C90056A8A3 /* posix_logger.h in Headers */,
-				B0FABBA8271BA8C90056A8A3 /* testharness.h in Headers */,
-				B0FABBA9271BA8C90056A8A3 /* coding.h in Headers */,
-				B0FABBAA271BA8C90056A8A3 /* logging.h in Headers */,
-				B0FABBAB271BA8CA0056A8A3 /* mutexlock.h in Headers */,
-				B0FABBAC271BA8CA0056A8A3 /* histogram.h in Headers */,
-				B0FABBAD271BA8CA0056A8A3 /* crc32c.h in Headers */,
-				B0FABBAE271BA8CA0056A8A3 /* arena.h in Headers */,
-				B0FABBAF271BA8CA0056A8A3 /* hash.h in Headers */,
-				B0FABBB0271BA8CA0056A8A3 /* random.h in Headers */,
-				B0FABBB1271BA8CA0056A8A3 /* testutil.h in Headers */,
-				B0FABBB2271BA8CA0056A8A3 /* env.h in Headers */,
-				B0FABBB3271BA8CA0056A8A3 /* status.h in Headers */,
-				B0FABBB4271BA8CA0056A8A3 /* db.h in Headers */,
-				B0FABBB5271BA8CA0056A8A3 /* slice.h in Headers */,
-				B0FABBB6271BA8CA0056A8A3 /* cache.h in Headers */,
-				B0FABBB7271BA8CA0056A8A3 /* write_batch.h in Headers */,
-				B0FABBB8271BA8CB0056A8A3 /* options.h in Headers */,
-				B0FABBB9271BA8CB0056A8A3 /* dumpfile.h in Headers */,
-				B0FABBBA271BA8CB0056A8A3 /* c.h in Headers */,
-				B0FABBBB271BA8CB0056A8A3 /* filter_policy.h in Headers */,
-				B0FABBBC271BA8CB0056A8A3 /* comparator.h in Headers */,
-				B0FABBBD271BA8CB0056A8A3 /* table.h in Headers */,
-				B0FABBBE271BA8CB0056A8A3 /* table_builder.h in Headers */,
-				B0FABBBF271BA8CB0056A8A3 /* iterator.h in Headers */,
-				B0FABBC0271BA8CB0056A8A3 /* block_.h in Headers */,
-				B0FABBC1271BA8CB0056A8A3 /* iterator_wrapper.h in Headers */,
-				B0FABBC2271BA8CB0056A8A3 /* merger.h in Headers */,
-				B0FABBC3271BA8CB0056A8A3 /* block_builder.h in Headers */,
-				B0FABBC4271BA8CC0056A8A3 /* filter_block.h in Headers */,
-				B0FABBC5271BA8CC0056A8A3 /* two_level_iterator.h in Headers */,
-				B0FABBC6271BA8CC0056A8A3 /* format.h in Headers */,
-				B0FABBC7271BA8CC0056A8A3 /* log_format.h in Headers */,
-				B0FABBC8271BA8CC0056A8A3 /* table_cache.h in Headers */,
-				B0FABBC9271BA8CC0056A8A3 /* skiplist.h in Headers */,
-				B0FABBCA271BA8CC0056A8A3 /* dbformat.h in Headers */,
-				B0FABBCB271BA8CC0056A8A3 /* log_writer.h in Headers */,
-				B0FABBCC271BA8CC0056A8A3 /* db_impl.h in Headers */,
-				B0FABBCD271BA8CC0056A8A3 /* db_iter.h in Headers */,
-				B0FABBCE271BA8CC0056A8A3 /* memtable.h in Headers */,
-				B0FABBCF271BA8CC0056A8A3 /* version_edit.h in Headers */,
-				B0FABBD0271BA8CC0056A8A3 /* version_set.h in Headers */,
-				B0FABBD1271BA8CD0056A8A3 /* builder.h in Headers */,
-				B0FABBD2271BA8CD0056A8A3 /* log_reader.h in Headers */,
-				B0FABBD3271BA8CD0056A8A3 /* write_batch_internal.h in Headers */,
-				B0FABBD4271BA8CD0056A8A3 /* filename.h in Headers */,
-				B0FABBD5271BA8CD0056A8A3 /* snapshot.h in Headers */,
-				B0FABBD6271BA8CD0056A8A3 /* atomic_pointer.h in Headers */,
-				B0FABBD7271BA8CD0056A8A3 /* port.h in Headers */,
-				B0FABBD8271BA8CD0056A8A3 /* port_posix.h in Headers */,
-				B0FABBD9271BA8CD0056A8A3 /* port_example.h in Headers */,
-				B0FABBDA271BA8CD0056A8A3 /* thread_annotations.h in Headers */,
-				B0FABBDB271BA8CD0056A8A3 /* memenv.h in Headers */,
-				B0FABBDC271BA8CD0056A8A3 /* mix.h in Headers */,
-				B0FABBDD271BA8CD0056A8A3 /* sparse_array.h in Headers */,
-				B0FABBDE271BA8CE0056A8A3 /* flags.h in Headers */,
-				B0FABBDF271BA8CE0056A8A3 /* utf.h in Headers */,
-				B0FABBE0271BA8CE0056A8A3 /* logging.h in Headers */,
-				B0FABBE1271BA8CE0056A8A3 /* util.h in Headers */,
-				B0FABBE2271BA8CE0056A8A3 /* pcre.h in Headers */,
-				B0FABBE3271BA8CE0056A8A3 /* sparse_set.h in Headers */,
-				B0FABBE4271BA8CE0056A8A3 /* mutex.h in Headers */,
-				B0FABBE5271BA8CE0056A8A3 /* strutil.h in Headers */,
-				B0FABBE6271BA8CE0056A8A3 /* stringpiece.h in Headers */,
-				B0FABBE7271BA8CE0056A8A3 /* prog.h in Headers */,
-				B0FABBE8271BA8CE0056A8A3 /* prefilter.h in Headers */,
-				B0FABBE9271BA8CE0056A8A3 /* walker-inl.h in Headers */,
-				B0FABBEA271BA8CF0056A8A3 /* prefilter_tree.h in Headers */,
-				B0FABBEB271BA8CF0056A8A3 /* filtered_re2.h in Headers */,
-				B0FABBEC271BA8CF0056A8A3 /* unicode_casefold.h in Headers */,
-				B0FABBED271BA8CF0056A8A3 /* unicode_groups.h in Headers */,
-				B0FABBEE271BA8CF0056A8A3 /* regexp.h in Headers */,
-				B0FABBEF271BA8CF0056A8A3 /* bitmap256.h in Headers */,
-				B0FABBF0271BA8CF0056A8A3 /* re2.h in Headers */,
-				B0FABBF1271BA8CF0056A8A3 /* set.h in Headers */,
-				B0FABBF2271BA8CF0056A8A3 /* NSData+GZIP.h in Headers */,
-				B0FABBF3271BA8CF0056A8A3 /* NSFileManager+Tar.h in Headers */,
-				B0FABBF4271BA8CF0056A8A3 /* HttpsEverywhere.h in Headers */,
-				B0FABBF5271BA8CF0056A8A3 /* HttpsEverywhereObjC.h in Headers */,
-				B0FABBF6271BA8D00056A8A3 /* JsonCpp.h in Headers */,
-				B0FABBF7271BA8D00056A8A3 /* RecentlyUsedCache.h in Headers */,
-				B0FABBF9271BA8D00056A8A3 /* Swizzling.h in Headers */,
-				B0FABBFA271BA8D00056A8A3 /* Try.h in Headers */,
-				B0FABBFB271BA8D00056A8A3 /* Data.h in Headers */,
-				B0FABBFC271BA8D00056A8A3 /* BraveShared.h in Headers */,
-				B0FABBFD271BA8D00056A8A3 /* BraveUI.h in Headers */,
-				B0FABBFE271BA8D00056A8A3 /* SPMLibraries.h in Headers */,
-				B0FABBFF271BA8D00056A8A3 /* Shared-Bridging-Header.h in Headers */,
-				B0FABC00271BA8D00056A8A3 /* CrashSimulator.h in Headers */,
-				B0FABC01271BA8D00056A8A3 /* FSUtils.h in Headers */,
-				B0FABC02271BA8D10056A8A3 /* Storage-Bridging-Header.h in Headers */,
-				B0FABC03271BA8D10056A8A3 /* Static.h in Headers */,
-				B0FABC04271BA8D10056A8A3 /* OnePasswordExtension.h in Headers */,
-				B0FABC05271BA8D10056A8A3 /* UIImageViewAligned.h in Headers */,
-				B0FABC06271BA8D10056A8A3 /* POPMath.h in Headers */,
-				B0FABC07271BA8D10056A8A3 /* POPDefines.h in Headers */,
-				B0FABC08271BA8D10056A8A3 /* POPAnimationInternal.h in Headers */,
-				B0FABC09271BA8D10056A8A3 /* POPAnimationExtras.h in Headers */,
-				B0FABC0A271BA8D10056A8A3 /* POPAnimationEvent.h in Headers */,
-				B0FABC0B271BA8D10056A8A3 /* POPBasicAnimationInternal.h in Headers */,
-				B0FABC0C271BA8D10056A8A3 /* POPPropertyAnimationInternal.h in Headers */,
-				B0FABC0D271BA8D10056A8A3 /* POPDecayAnimationInternal.h in Headers */,
-				B0FABC0E271BA8D20056A8A3 /* POPSpringAnimation.h in Headers */,
-				B0FABC0F271BA8D20056A8A3 /* POPBasicAnimation.h in Headers */,
-				B0FABC10271BA8D20056A8A3 /* POPAnimationPrivate.h in Headers */,
-				B0FABC11271BA8D20056A8A3 /* POPAction.h in Headers */,
-				B0FABC12271BA8D20056A8A3 /* POPCustomAnimation.h in Headers */,
-				B0FABC13271BA8D20056A8A3 /* POPPropertyAnimation.h in Headers */,
-				B0FABC14271BA8D20056A8A3 /* POPCGUtils.h in Headers */,
-				B0FABC15271BA8D20056A8A3 /* POPGeometry.h in Headers */,
-				B0FABC16271BA8D20056A8A3 /* POPSpringAnimationInternal.h in Headers */,
-				B0FABC17271BA8D20056A8A3 /* POPDecayAnimation.h in Headers */,
-				B0FABC18271BA8D20056A8A3 /* POPSpringSolver.h in Headers */,
-				B0FABC19271BA8D20056A8A3 /* POPAnimatableProperty.h in Headers */,
-				B0FABC1A271BA8D30056A8A3 /* POPAnimator.h in Headers */,
-				B0FABC1B271BA8D30056A8A3 /* POPAnimationRuntime.h in Headers */,
-				B0FABC1C271BA8D30056A8A3 /* POP.h in Headers */,
-				B0FABC1D271BA8D30056A8A3 /* POPLayerExtras.h in Headers */,
-				B0FABC1E271BA8D30056A8A3 /* POPAnimatablePropertyTypes.h in Headers */,
-				B0FABC1F271BA8D30056A8A3 /* TransformationMatrix.h in Headers */,
-				B0FABC20271BA8D30056A8A3 /* FloatConversion.h in Headers */,
-				B0FABC21271BA8D30056A8A3 /* UnitBezier.h in Headers */,
-				B0FABC22271BA8D30056A8A3 /* POPAnimationTracerInternal.h in Headers */,
-				B0FABC23271BA8D30056A8A3 /* POPAnimationEventInternal.h in Headers */,
-				B0FABC24271BA8D30056A8A3 /* POPAnimation.h in Headers */,
-				B0FABC25271BA8D40056A8A3 /* POPVector.h in Headers */,
-				B0FABC26271BA8D40056A8A3 /* POPAnimatorPrivate.h in Headers */,
-				B0FABC27271BA8D40056A8A3 /* POPAnimationTracer.h in Headers */,
-				B0FABC28271BA8D40056A8A3 /* POPBaseAnimationTests.h in Headers */,
-				B0FABC29271BA8D40056A8A3 /* POPAnimationTestsExtras.h in Headers */,
-				B0FABC2A271BA8D40056A8A3 /* POPAnimatable.h in Headers */,
+				B0FABDA1271BB7280056A8A3 /* HttpsEverywhere.h in Headers */,
+				B0FABCA1271BAC790056A8A3 /* port_posix.h in Headers */,
+				B0FABCA2271BAC790056A8A3 /* cache.h in Headers */,
+				B0FABCA3271BAC790056A8A3 /* port.h in Headers */,
+				B0FABCA4271BAC790056A8A3 /* hash.h in Headers */,
+				B0FABCB2271BAC790056A8A3 /* NSData+GZIP.h in Headers */,
+				B0FABD9E271BB2540056A8A3 /* UIImageViewAligned.h in Headers */,
+				B0FABCD9271BAC790056A8A3 /* HttpsEverywhereObjC.h in Headers */,
+				B0FABCDC271BAC790056A8A3 /* NSFileManager+Tar.h in Headers */,
+				B0FABCA5271BAC790056A8A3 /* slice.h in Headers */,
+				B0FABCA6271BAC790056A8A3 /* mix.h in Headers */,
+				B0FABCA7271BAC790056A8A3 /* unicode_groups.h in Headers */,
+				B0FABCA8271BAC790056A8A3 /* flags.h in Headers */,
+				B0FABCA9271BAC790056A8A3 /* table_builder.h in Headers */,
+				B0FABCAA271BAC790056A8A3 /* iterator_wrapper.h in Headers */,
+				B0FABCAB271BAC790056A8A3 /* crc32c.h in Headers */,
+				B0FABCAC271BAC790056A8A3 /* builder.h in Headers */,
+				B0FABCAD271BAC790056A8A3 /* unicode_casefold.h in Headers */,
+				B0FABCAE271BAC790056A8A3 /* filtered_re2.h in Headers */,
+				B0FABCAF271BAC790056A8A3 /* status.h in Headers */,
+				B0FABCB1271BAC790056A8A3 /* regexp.h in Headers */,
+				B0FABCB3271BAC790056A8A3 /* port_example.h in Headers */,
+				B0FABCB4271BAC790056A8A3 /* RecentlyUsedCache.h in Headers */,
+				B0FABCB5271BAC790056A8A3 /* prefilter_tree.h in Headers */,
+				B0FABCB6271BAC790056A8A3 /* log_reader.h in Headers */,
+				B0FABCB7271BAC790056A8A3 /* two_level_iterator.h in Headers */,
+				B0FABCB8271BAC790056A8A3 /* logging.h in Headers */,
+				B0FABCB9271BAC790056A8A3 /* atomic_pointer.h in Headers */,
+				B0FABCBA271BAC790056A8A3 /* dumpfile.h in Headers */,
+				B0FABCBB271BAC790056A8A3 /* log_format.h in Headers */,
+				B0FABCBC271BAC790056A8A3 /* iterator.h in Headers */,
+				B0FABCBD271BAC790056A8A3 /* c.h in Headers */,
+				B0FABCBE271BAC790056A8A3 /* block_.h in Headers */,
+				B0FABCBF271BAC790056A8A3 /* snapshot.h in Headers */,
+				B0FABCC0271BAC790056A8A3 /* block_builder.h in Headers */,
+				B0FABCC1271BAC790056A8A3 /* random.h in Headers */,
+				B0FABCC2271BAC790056A8A3 /* walker-inl.h in Headers */,
+				B0FABCC3271BAC790056A8A3 /* write_batch_internal.h in Headers */,
+				B0FABCC4271BAC790056A8A3 /* coding.h in Headers */,
+				B0FABCC5271BAC790056A8A3 /* version_set.h in Headers */,
+				B0FABCC6271BAC790056A8A3 /* comparator.h in Headers */,
+				B0FABCC7271BAC790056A8A3 /* merger.h in Headers */,
+				B0FABCC8271BAC790056A8A3 /* strutil.h in Headers */,
+				B0FABCC9271BAC790056A8A3 /* memtable.h in Headers */,
+				B0FABCCA271BAC790056A8A3 /* sparse_set.h in Headers */,
+				B0FABCCB271BAC790056A8A3 /* table_cache.h in Headers */,
+				B0FABCCC271BAC790056A8A3 /* util.h in Headers */,
+				B0FABCCD271BAC790056A8A3 /* options.h in Headers */,
+				B0FABCCE271BAC790056A8A3 /* memenv.h in Headers */,
+				B0FABCCF271BAC790056A8A3 /* dbformat.h in Headers */,
+				B0FABCD0271BAC790056A8A3 /* table.h in Headers */,
+				B0FABCD1271BAC790056A8A3 /* set.h in Headers */,
+				B0FABCD2271BAC790056A8A3 /* db_iter.h in Headers */,
+				B0FABCD3271BAC790056A8A3 /* prog.h in Headers */,
+				B0FABCD4271BAC790056A8A3 /* re2.h in Headers */,
+				B0FABCD5271BAC790056A8A3 /* stringpiece.h in Headers */,
+				B0FABCD6271BAC790056A8A3 /* format.h in Headers */,
+				B0FABCD7271BAC790056A8A3 /* filter_policy.h in Headers */,
+				B0FABCD8271BAC790056A8A3 /* utf.h in Headers */,
+				B0FABCDA271BAC790056A8A3 /* version_edit.h in Headers */,
+				B0FABCDB271BAC790056A8A3 /* env.h in Headers */,
+				B0FABCDD271BAC790056A8A3 /* histogram.h in Headers */,
+				B0FABCDE271BAC790056A8A3 /* filename.h in Headers */,
+				B0FABCDF271BAC790056A8A3 /* log_writer.h in Headers */,
+				B0FABCE0271BAC790056A8A3 /* sparse_array.h in Headers */,
+				B0FABCE1271BAC790056A8A3 /* db.h in Headers */,
+				B0FABCE2271BAC790056A8A3 /* db_impl.h in Headers */,
+				B0FABCE3271BAC790056A8A3 /* arena.h in Headers */,
+				B0FABCE4271BAC790056A8A3 /* mutex.h in Headers */,
+				B0FABCE5271BAC790056A8A3 /* filter_block.h in Headers */,
+				B0FABCE6271BAC790056A8A3 /* posix_logger.h in Headers */,
+				B0FABCE7271BAC790056A8A3 /* logging.h in Headers */,
+				B0FABCE8271BAC790056A8A3 /* mutexlock.h in Headers */,
+				B0FABCE9271BAC790056A8A3 /* testharness.h in Headers */,
+				B0FABCEA271BAC790056A8A3 /* testutil.h in Headers */,
+				B0FABCEB271BAC790056A8A3 /* skiplist.h in Headers */,
+				B0FABCEC271BAC790056A8A3 /* thread_annotations.h in Headers */,
+				B0FABDA3271BBAD90056A8A3 /* Try.h in Headers */,
+				B0FABCED271BAC790056A8A3 /* bitmap256.h in Headers */,
+				B0FABCEE271BAC790056A8A3 /* prefilter.h in Headers */,
+				B0FABCEF271BAC790056A8A3 /* pcre.h in Headers */,
+				B0FABCF0271BAC790056A8A3 /* JsonCpp.h in Headers */,
+				B0FABCF1271BAC790056A8A3 /* write_batch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5394,10 +5523,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0A89F89271BA32800EB6841 /* Build configuration list for PBXNativeTarget "EmbeddedClient" */;
 			buildPhases = (
-				B0A89F80271BA32800EB6841 /* Headers */,
 				B0A89F81271BA32800EB6841 /* Sources */,
-				B0A89F82271BA32800EB6841 /* Frameworks */,
+				B0A89F80271BA32800EB6841 /* Headers */,
 				B0A89F83271BA32800EB6841 /* Resources */,
+				B0A89F82271BA32800EB6841 /* Frameworks */,
+				B0FABD6F271BACFB0056A8A3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5406,9 +5536,14 @@
 				B0A89F93271BA39700EB6841 /* PBXTargetDependency */,
 				B0A89F95271BA39700EB6841 /* PBXTargetDependency */,
 				B0A89F97271BA39700EB6841 /* PBXTargetDependency */,
-				B0A89F99271BA39700EB6841 /* PBXTargetDependency */,
 				B0A89F9B271BA39700EB6841 /* PBXTargetDependency */,
 				B0A89F9D271BA39700EB6841 /* PBXTargetDependency */,
+				B0FABD73271BAD000056A8A3 /* PBXTargetDependency */,
+				B0FABD77271BAD040056A8A3 /* PBXTargetDependency */,
+				B0FABD7D271BAD160056A8A3 /* PBXTargetDependency */,
+				B0FABD8D271BAD700056A8A3 /* PBXTargetDependency */,
+				B0FABD91271BAD790056A8A3 /* PBXTargetDependency */,
+				B0FABD99271BAD9D0056A8A3 /* PBXTargetDependency */,
 			);
 			name = EmbeddedClient;
 			productName = EmbeddedClient;
@@ -5729,6 +5864,118 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FABCF2271BAC790056A8A3 /* AllFramesAtDocumentStart.js in Resources */,
+				B0FABCF3271BAC790056A8A3 /* AmazonRootCA2.cer in Resources */,
+				B0FABCF4271BAC790056A8A3 /* AllFramesAtDocumentEnd.js in Resources */,
+				B0FABCF5271BAC790056A8A3 /* AllFramesAtDocumentStartSandboxed.js in Resources */,
+				B0FABCF6271BAC790056A8A3 /* AllFramesAtDocumentEndSandboxed.js in Resources */,
+				B0FABCF7271BAC790056A8A3 /* FullscreenHelper.js in Resources */,
+				B0FABCF8271BAC790056A8A3 /* CertError.html in Resources */,
+				B0FABCF9271BAC790056A8A3 /* ISRGRootCA_X2.cer in Resources */,
+				B0FABCFA271BAC790056A8A3 /* MediaBackgrounding.js in Resources */,
+				B0FABCFB271BAC790056A8A3 /* NetError.css in Resources */,
+				B0FABCFC271BAC790056A8A3 /* block-cookies.json in Resources */,
+				B0FABCFD271BAC790056A8A3 /* corwin-prescott_crestone.jpg in Resources */,
+				B0FABCFE271BAC790056A8A3 /* MainFrameAtDocumentEnd.js in Resources */,
+				B0FABCFF271BAC790056A8A3 /* TopSites in Resources */,
+				B0FABD00271BAC790056A8A3 /* FiraSans-SemiBold.ttf in Resources */,
+				B0FABD01271BAC790056A8A3 /* corwin-prescott_canyon.jpg in Resources */,
+				B0FABD02271BAC790056A8A3 /* GlobalSignRootCA_R46.cer in Resources */,
+				B0FABD03271BAC790056A8A3 /* Images.xcassets in Resources */,
+				B0FABD04271BAC790056A8A3 /* AdsReporting.js in Resources */,
+				B0FABD05271BAC790056A8A3 /* spencer-moore_ocean.jpg in Resources */,
+				B0FABD06271BAC790056A8A3 /* LaunchScreen.storyboard in Resources */,
+				B0FABD07271BAC790056A8A3 /* corwin-prescott_olympic.jpg in Resources */,
+				B0FABD08271BAC790056A8A3 /* su-san-lee.jpg in Resources */,
+				B0FABD09271BAC790056A8A3 /* BraveSearchHelper.js in Resources */,
+				B0FABD0A271BAC790056A8A3 /* ntp-data.json in Resources */,
+				B0FABD0B271BAC790056A8A3 /* CookieControl.js in Resources */,
+				B0FABD0C271BAC790056A8A3 /* adblock-list.txt in Resources */,
+				B0FABD0D271BAC790056A8A3 /* LaunchScreen.xcassets in Resources */,
+				B0FABD0E271BAC790056A8A3 /* simple_malware.txt in Resources */,
+				B0FABD0F271BAC790056A8A3 /* block-ads.json in Resources */,
+				B0FABD10271BAC790056A8A3 /* SessionRestore.html in Resources */,
+				B0FABD11271BAC790056A8A3 /* WindowRenderHelper.js in Resources */,
+				B0FABD12271BAC790056A8A3 /* top_sites.json in Resources */,
+				B0FABD13271BAC790056A8A3 /* TrackingProtectionStats.js in Resources */,
+				B0FABD14271BAC790056A8A3 /* CharisSILI.ttf in Resources */,
+				B0FABD15271BAC790056A8A3 /* Playlist.js in Resources */,
+				B0FABD16271BAC790056A8A3 /* GlobalSignRootCA_R1.cer in Resources */,
+				B0FABD17271BAC790056A8A3 /* Reader.html in Resources */,
+				B0FABD18271BAC790056A8A3 /* SearchPlugins in Resources */,
+				B0FABD19271BAC790056A8A3 /* GlobalSignRootCA_R3.cer in Resources */,
+				B0FABD1A271BAC790056A8A3 /* unicode.py in Resources */,
+				B0FABD1B271BAC790056A8A3 /* InfoPlist.strings in Resources */,
+				B0FABD1C271BAC790056A8A3 /* Licenses.html in Resources */,
+				B0FABD1D271BAC790056A8A3 /* Reader.css in Resources */,
+				B0FABD1E271BAC790056A8A3 /* CharisSILB.ttf in Resources */,
+				B0FABD1F271BAC790056A8A3 /* PlaylistDetector.js in Resources */,
+				B0FABD20271BAC790056A8A3 /* sora-sagano.jpg in Resources */,
+				B0FABD21271BAC790056A8A3 /* dylan-malval_alps.jpg in Resources */,
+				B0FABD22271BAC790056A8A3 /* spencer-moore_desert.jpg in Resources */,
+				B0FABD23271BAC790056A8A3 /* make_perl_groups.pl in Resources */,
+				B0FABD24271BAC790056A8A3 /* CharisSILBI.ttf in Resources */,
+				B0FABD25271BAC790056A8A3 /* LoginsHelper.js in Resources */,
+				B0FABD26271BAC790056A8A3 /* corwin-prescott_beach.jpg in Resources */,
+				B0FABD27271BAC790056A8A3 /* RewardsReporting.js in Resources */,
+				B0FABD28271BAC790056A8A3 /* FocusHelper.js in Resources */,
+				B0FABD29271BAC790056A8A3 /* FiraSans-UltraLight.ttf in Resources */,
+				B0FABD2A271BAC790056A8A3 /* ISRGRootCA_X1.cer in Resources */,
+				B0FABD2B271BAC790056A8A3 /* AmazonRootCA3.cer in Resources */,
+				B0FABD2C271BAC790056A8A3 /* alex-plesovskich.jpg in Resources */,
+				B0FABD2D271BAC790056A8A3 /* FiraSans-Regular.ttf in Resources */,
+				B0FABD2E271BAC790056A8A3 /* AmazonRootCA1.cer in Resources */,
+				B0FABD2F271BAC790056A8A3 /* GlobalSignRootCA_E46.cer in Resources */,
+				B0FABD30271BAC790056A8A3 /* make_unicode_casefold.py in Resources */,
+				B0FABD31271BAC790056A8A3 /* YoutubeAdblock.js in Resources */,
+				B0FABD32271BAC790056A8A3 /* FiraSans-Light.ttf in Resources */,
+				B0FABD33271BAC790056A8A3 /* zane-lee.jpg in Resources */,
+				B0FABD34271BAC790056A8A3 /* ResourceDownloader.js in Resources */,
+				B0FABD35271BAC790056A8A3 /* GlobalSignRootCA_R6.cer in Resources */,
+				B0FABD36271BAC790056A8A3 /* Localizable.strings in Resources */,
+				B0FABD37271BAC790056A8A3 /* DownloadHelper.js in Resources */,
+				B0FABD38271BAC790056A8A3 /* SafeBrowsingError.html in Resources */,
+				B0FABD39271BAC790056A8A3 /* MailSchemes.plist in Resources */,
+				B0FABD3A271BAC790056A8A3 /* onboarding-shields.json in Resources */,
+				B0FABD3B271BAC790056A8A3 /* ABPFilterParserData.dat in Resources */,
+				B0FABD3C271BAC790056A8A3 /* gpc.js in Resources */,
+				B0FABD3D271BAC790056A8A3 /* onboarding-ads.json in Resources */,
+				B0FABD3E271BAC790056A8A3 /* httpse.leveldb.tgz in Resources */,
+				B0FABD3F271BAC790056A8A3 /* PlaylistSwizzler.js in Resources */,
+				B0FABD40271BAC790056A8A3 /* dylan-malval_sea.jpg in Resources */,
+				B0FABD41271BAC790056A8A3 /* CertError.css in Resources */,
+				B0FABD42271BAC790056A8A3 /* LICENSE in Resources */,
+				B0FABD43271BAC790056A8A3 /* CharisSILR.ttf in Resources */,
+				B0FABD44271BAC790056A8A3 /* make_unicode_groups.py in Resources */,
+				B0FABD45271BAC790056A8A3 /* FiraSans-Bold.ttf in Resources */,
+				B0FABD46271BAC790056A8A3 /* FiraSans-Italic.ttf in Resources */,
+				B0FABD47271BAC790056A8A3 /* spencer-moore_fern.jpg in Resources */,
+				B0FABD48271BAC790056A8A3 /* onboarding-rewards.json in Resources */,
+				B0FABD49271BAC790056A8A3 /* NetError.html in Resources */,
+				B0FABD4A271BAC790056A8A3 /* block-images.json in Resources */,
+				B0FABD4B271BAC790056A8A3 /* ReaderViewLoading.html in Resources */,
+				B0FABD4C271BAC790056A8A3 /* SFSRootCAG2.cer in Resources */,
+				B0FABD4D271BAC790056A8A3 /* AmazonRootCA4.cer in Resources */,
+				B0FABD4E271BAC790056A8A3 /* spencer-moore_lake.jpg in Resources */,
+				B0FABD4F271BAC790056A8A3 /* BraveShared.strings in Resources */,
+				B0FABD50271BAC790056A8A3 /* PrintHandler.js in Resources */,
+				B0FABD51271BAC790056A8A3 /* MainFrameAtDocumentStart.js in Resources */,
+				B0FABD52271BAC790056A8A3 /* GlobalSignRootCA_R5.cer in Resources */,
+				B0FABD53271BAC790056A8A3 /* ReaderMode.js in Resources */,
+				B0FABD54271BAC790056A8A3 /* FiraSans-Medium.ttf in Resources */,
+				B0FABD55271BAC790056A8A3 /* andre-benz.jpg in Resources */,
+				B0FABD56271BAC790056A8A3 /* PaymentRequest.js in Resources */,
+				B0FABD57271BAC790056A8A3 /* FiraSans-Book.ttf in Resources */,
+				B0FABD58271BAC790056A8A3 /* blocking-summary.json in Resources */,
+				B0FABD59271BAC790056A8A3 /* ArchiveIsCompat.js in Resources */,
+				B0FABD5A271BAC790056A8A3 /* DSTRootCA_X3.cer in Resources */,
+				B0FABD5B271BAC790056A8A3 /* block-trackers.json in Resources */,
+				B0FABD5C271BAC790056A8A3 /* SpotlightHelper.js in Resources */,
+				B0FABD5D271BAC790056A8A3 /* FiraSans-BoldItalic.ttf in Resources */,
+				B0FABD5E271BAC790056A8A3 /* Bookmarks.html in Resources */,
+				B0FABD5F271BAC790056A8A3 /* upgrade-http.json in Resources */,
+				B0FABD60271BAC790056A8A3 /* __firefox__.js in Resources */,
+				B0FABD61271BAC790056A8A3 /* FingerprintingProtection.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6994,11 +7241,6 @@
 			target = 277568CF25ACF91500C129AF /* SPMLibraries */;
 			targetProxy = B0A89F96271BA39700EB6841 /* PBXContainerItemProxy */;
 		};
-		B0A89F99271BA39700EB6841 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 27F443942135E11200296C58 /* ShareExtension */;
-			targetProxy = B0A89F98271BA39700EB6841 /* PBXContainerItemProxy */;
-		};
 		B0A89F9B271BA39700EB6841 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 288A2D851AB8B3260023ABC3 /* Shared */;
@@ -7008,6 +7250,40 @@
 			isa = PBXTargetDependency;
 			target = 2FCAE2191ABB51F800877008 /* Storage */;
 			targetProxy = B0A89F9C271BA39700EB6841 /* PBXContainerItemProxy */;
+		};
+		B0FABD73271BAD000056A8A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 5DE7688320B3456C00FF5533 /* BraveShared */;
+			targetProxy = B0FABD72271BAD000056A8A3 /* PBXContainerItemProxy */;
+		};
+		B0FABD77271BAD040056A8A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 278C468523F1E6270083347F /* BraveUI */;
+			targetProxy = B0FABD76271BAD040056A8A3 /* PBXContainerItemProxy */;
+		};
+		B0FABD7D271BAD160056A8A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5D1DC51220AC9AF900905E5A /* Data */;
+			targetProxy = B0FABD7C271BAD160056A8A3 /* PBXContainerItemProxy */;
+		};
+		B0FABD8D271BAD700056A8A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 288A2D851AB8B3260023ABC3 /* Shared */;
+			targetProxy = B0FABD8C271BAD700056A8A3 /* PBXContainerItemProxy */;
+		};
+		B0FABD91271BAD790056A8A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 277568CF25ACF91500C129AF /* SPMLibraries */;
+			targetProxy = B0FABD90271BAD790056A8A3 /* PBXContainerItemProxy */;
+		};
+		B0FABD99271BAD9D0056A8A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FCAE2191ABB51F800877008 /* Storage */;
+			targetProxy = B0FABD98271BAD9D0056A8A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -9662,6 +9938,7 @@
 		B0A89F8A271BA32800EB6841 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -9677,6 +9954,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9684,9 +9962,21 @@
 					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SRCROOT)",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)/include/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/leveldb/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/re2",
+					"$(SRCROOT)/node_modules/hashset-cpp",
+					"$(SRCROOT)/node_modules/bloom-filter-cpp",
+					"$(SRCROOT)/EmbeddedClientHeaders",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Mozilla. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9698,6 +9988,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.multiscreen.browser.EmbeddedClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -9709,6 +10000,7 @@
 		B0A89F8B271BA32800EB6841 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -9724,11 +10016,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SRCROOT)",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)/include/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/leveldb/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/re2",
+					"$(SRCROOT)/node_modules/hashset-cpp",
+					"$(SRCROOT)/node_modules/bloom-filter-cpp",
+					"$(SRCROOT)/EmbeddedClientHeaders",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Mozilla. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9739,6 +10044,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.multiscreen.browser.EmbeddedClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9750,6 +10056,7 @@
 		B0A89F8C271BA32800EB6841 /* Enterprise */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -9765,11 +10072,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SRCROOT)",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)/include/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/leveldb/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/re2",
+					"$(SRCROOT)/node_modules/hashset-cpp",
+					"$(SRCROOT)/node_modules/bloom-filter-cpp",
+					"$(SRCROOT)/EmbeddedClientHeaders",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Mozilla. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9780,6 +10100,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.multiscreen.browser.EmbeddedClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9791,6 +10112,7 @@
 		B0A89F8D271BA32800EB6841 /* Release (AppStore) */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -9806,11 +10128,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SRCROOT)",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)/include/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/leveldb/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/re2",
+					"$(SRCROOT)/node_modules/hashset-cpp",
+					"$(SRCROOT)/node_modules/bloom-filter-cpp",
+					"$(SRCROOT)/EmbeddedClientHeaders",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Mozilla. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9821,6 +10156,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.multiscreen.browser.EmbeddedClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9832,6 +10168,7 @@
 		B0A89F8E271BA32800EB6841 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -9847,11 +10184,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SRCROOT)",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)/include/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/leveldb/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/re2",
+					"$(SRCROOT)/node_modules/hashset-cpp",
+					"$(SRCROOT)/node_modules/bloom-filter-cpp",
+					"$(SRCROOT)/EmbeddedClientHeaders",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Mozilla. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9862,6 +10212,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.multiscreen.browser.EmbeddedClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9873,6 +10224,7 @@
 		B0A89F8F271BA32800EB6841 /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -9888,11 +10240,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(SRCROOT)",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)/include/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/leveldb/**",
+					"$(SRCROOT)/Client/WebFilters/ShieldStats/Httpse/ThirdParty/re2",
+					"$(SRCROOT)/node_modules/hashset-cpp",
+					"$(SRCROOT)/node_modules/bloom-filter-cpp",
+					"$(SRCROOT)/EmbeddedClientHeaders",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Mozilla. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9903,6 +10268,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.multiscreen.browser.EmbeddedClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
