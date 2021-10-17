@@ -67,7 +67,7 @@ class TabManager: NSObject {
 
     fileprivate(set) var allTabs = [Tab]()
     fileprivate var _selectedIndex = -1
-    fileprivate let navDelegate: TabManagerNavDelegate
+    fileprivate var navDelegate: TabManagerNavDelegate!
     fileprivate(set) var isRestoring = false
 
     // A WKWebViewConfiguration used for normal tabs
@@ -86,10 +86,10 @@ class TabManager: NSObject {
         assert(Thread.isMainThread)
 
         self.prefs = prefs
-        self.navDelegate = TabManagerNavDelegate()
         self.imageStore = imageStore
         self.tabEventHandlers = TabEventHandlers.create(with: prefs)
         super.init()
+        self.navDelegate = TabManagerNavDelegate(self)
 
         addNavigationDelegate(self)
 
@@ -958,6 +958,13 @@ extension TabManager: WKNavigationDelegate {
 class TabManagerNavDelegate: NSObject, WKNavigationDelegate {
     fileprivate var delegates = WeakList<WKNavigationDelegate>()
 
+    private let tabManager: TabManager
+    
+    init(_ tabManager: TabManager) {
+        self.tabManager = tabManager
+        super.init()
+    }
+    
     func insert(_ delegate: WKNavigationDelegate) {
         delegates.insert(delegate)
     }
@@ -1059,8 +1066,8 @@ class TabManagerNavDelegate: NSObject, WKNavigationDelegate {
             })
         }
 
-        if res == .allow, let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let tab = appDelegate.browserViewController.tabManager[webView]
+        if res == .allow, let bvc = tabManager.browserViewController {
+            let tab = bvc.tabManager[webView]
             tab?.mimeType = navigationResponse.response.mimeType
         }
 

@@ -154,7 +154,7 @@ class ErrorPageHelper {
                 return GCDWebServerResponse(statusCode: 404)
             }
 
-            var asset = Bundle.main.path(forResource: "NetError", ofType: "html")
+            var asset = Bundle.embeddedMain.path(forResource: "NetError", ofType: "html")
             var variables = [
                 "error_code": "\(errCode)",
                 "error_title": errDescription,
@@ -181,7 +181,7 @@ class ErrorPageHelper {
                     return GCDWebServerResponse(statusCode: 404)
                 }
 
-                asset = Bundle.main.path(forResource: "CertError", ofType: "html")
+                asset = Bundle.embeddedMain.path(forResource: "CertError", ofType: "html")
                 actions = "<button onclick='history.back()'>\(Strings.errorPagesGoBackButton)</button>"
                 variables["error_title"] = Strings.errorPagesCertWarningTitle
                 variables["cert_error"] = certError

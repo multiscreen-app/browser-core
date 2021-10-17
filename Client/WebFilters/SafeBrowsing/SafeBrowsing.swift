@@ -58,7 +58,7 @@ class SafeBrowsing {
     }
     
     private func openList(withName name: String) -> String? {
-        guard let filePath = Bundle.main.path(forResource: name, ofType: "txt") else {
+        guard let filePath = Bundle.embeddedMain.path(forResource: name, ofType: "txt") else {
             log.error("Could not find text file with :\(name) name")
             return nil
         }

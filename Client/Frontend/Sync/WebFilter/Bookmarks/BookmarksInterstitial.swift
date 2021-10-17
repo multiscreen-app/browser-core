@@ -70,7 +70,7 @@ extension BookmarksInterstitialPageHandler {
                 "bookmarks_file_url": html
             ]
             
-            let asset = Bundle.main.path(forResource: "Bookmarks", ofType: "html")
+            let asset = Bundle.embeddedMain.path(forResource: "Bookmarks", ofType: "html")
             return buildResponse(asset: asset, variables: variables)
         default:
             return GCDWebServerResponse(statusCode: 404)

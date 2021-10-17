@@ -341,7 +341,7 @@ class Tab: NSObject {
         deleteWebView()
         deleteNewTabPageController()
         contentScriptManager.helpers.removeAll()
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
   
         // MS comment out brave rewards
 //        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
@@ -603,7 +603,7 @@ class Tab: NSObject {
         guard let webView = self.webView else {
             return
         }
-        if let path = Bundle.main.path(forResource: fileName, ofType: type),
+        if let path = Bundle.embeddedMain.path(forResource: fileName, ofType: type),
             let source = try? String(contentsOfFile: path) {
             let userScript = WKUserScript(source: source, injectionTime: injectionTime, forMainFrameOnly: mainFrameOnly)
             webView.configuration.userContentController.addUserScript(userScript)

@@ -80,7 +80,7 @@ class Historyv2: WebsitePresentable {
     
     private let historyNode: HistoryNode
     private static var observer: HistoryServiceListener?
-    private static let historyAPI = (UIApplication.shared.delegate as? AppDelegate)?.braveCore?.historyAPI
+    private static let historyAPI = BraveCoreShared.shared.braveCore?.historyAPI
 
     private func fetchHistoryTimePeriod(visited: Date?) -> Section? {
         let todayOffset = 0

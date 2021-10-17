@@ -610,7 +610,10 @@
 		B081A2BD271C85850091B939 /* Storage-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FCAE33D1ABB5F1800877008 /* Storage-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B081A2BF271C885D0091B939 /* Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = B081A2BE271C885D0091B939 /* Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B081A2C1271C89180091B939 /* FSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E65075811E37F7AB006961AC /* FSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B081A2C3271C91360091B939 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C2271C91360091B939 /* BundleExtensions.swift */; };
+		B081A2C4271C92930091B939 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C2271C91360091B939 /* BundleExtensions.swift */; };
+		B081A2C5271C92980091B939 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C2271C91360091B939 /* BundleExtensions.swift */; };
+		B081A2C9271CA4A90091B939 /* BraveCoreShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */; };
+		B081A2CA271CA50C0091B939 /* BraveCoreShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */; };
 		B0A89F88271BA32800EB6841 /* EmbeddedClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B0A89F87271BA32800EB6841 /* EmbeddedClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0FAB98C271BA4EF0056A8A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84B21E51A0910F600AAB793 /* AppDelegate.swift */; };
 		B0FAB98D271BA4EF0056A8A3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977CB272703B8DF00419B38 /* TestViewController.swift */; };
@@ -2618,6 +2621,7 @@
 		B07D185527053B9000C1570A /* BrowserInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInstance.swift; sourceTree = "<group>"; };
 		B081A2BE271C885D0091B939 /* Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = "<group>"; };
 		B081A2C2271C91360091B939 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
+		B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveCoreShared.swift; sourceTree = "<group>"; };
 		B0A89F85271BA32800EB6841 /* EmbeddedClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EmbeddedClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A89F87271BA32800EB6841 /* EmbeddedClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmbeddedClient.h; sourceTree = "<group>"; };
 		B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/CoreNFC.framework; sourceTree = DEVELOPER_DIR; };
@@ -4897,6 +4901,7 @@
 				0977CB272703B8DF00419B38 /* TestViewController.swift */,
 				B07D185527053B9000C1570A /* BrowserInstance.swift */,
 				B0FABE1A271BDFA80056A8A3 /* EmbeddedClientDelegate.swift */,
+				B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -6597,6 +6602,7 @@
 				B0FABA0B271BA4F10056A8A3 /* SearchSuggestionCell.swift in Sources */,
 				B0FABA0C271BA4F10056A8A3 /* BraveSearchManager.swift in Sources */,
 				B0FABA0D271BA4F10056A8A3 /* AboutHomeHandler.swift in Sources */,
+				B081A2CA271CA50C0091B939 /* BraveCoreShared.swift in Sources */,
 				B0FABA0E271BA4F10056A8A3 /* Authenticator.swift in Sources */,
 				B0FABA0F271BA4F10056A8A3 /* BackForwardListAnimator.swift in Sources */,
 				B0FABA10271BA4F10056A8A3 /* BackForwardListViewController.swift in Sources */,
@@ -6733,6 +6739,7 @@
 				B0FABA93271BA4F40056A8A3 /* ErrorToast.swift in Sources */,
 				B0FABA94271BA4F40056A8A3 /* InsetButton.swift in Sources */,
 				B0FABA95271BA4F40056A8A3 /* SiteTableViewController.swift in Sources */,
+				B081A2C4271C92930091B939 /* BundleExtensions.swift in Sources */,
 				B0FABA96271BA4F40056A8A3 /* SnackBar.swift in Sources */,
 				B0FABA97271BA4F40056A8A3 /* TabsButton.swift in Sources */,
 				B0FABA98271BA4F40056A8A3 /* ChevronView.swift in Sources */,
@@ -7031,7 +7038,7 @@
 				5E99D02C25E56C1B003F30B4 /* PlaylistCacheLoader.swift in Sources */,
 				4422D57321BFFB7F00BF1855 /* stringpiece.cc in Sources */,
 				27DCB9EC263764EF0067EF4A /* TabTrayCell.swift in Sources */,
-				B081A2C3271C91360091B939 /* BundleExtensions.swift in Sources */,
+				B081A2C5271C92980091B939 /* BundleExtensions.swift in Sources */,
 				27187808216526090006036E /* AlertPopupView.swift in Sources */,
 				4422D56421BFFB7F00BF1855 /* re2.cc in Sources */,
 				278C46AC23F499730083347F /* AdvancedShieldsView.swift in Sources */,
@@ -7116,6 +7123,7 @@
 				D3A9949C1A3686BD008AD1AC /* BrowserViewController.swift in Sources */,
 				59A681BDFC95A19F05E07223 /* SearchViewController.swift in Sources */,
 				0A8C6993225BC7B100988715 /* ToolbarUrlActionsProtocol.swift in Sources */,
+				B081A2C9271CA4A90091B939 /* BraveCoreShared.swift in Sources */,
 				0AFC8F9523D1DF6500941895 /* TranslucentBottomSheet.swift in Sources */,
 				5E99D01525E56BFB003F30B4 /* PlaylistManager.swift in Sources */,
 				5E1645A824ABA35B0003C3B2 /* SpinnerView.swift in Sources */,

@@ -98,7 +98,7 @@ enum DomainUserScript: CaseIterable {
     }
     
     private var sourceFile: String? {
-        guard let path = Bundle.main.path(forResource: scriptName, ofType: "js"),
+        guard let path = Bundle.embeddedMain.path(forResource: scriptName, ofType: "js"),
             let source = try? String(contentsOfFile: path) else {
             log.error("Failed to load \(scriptName).js")
             return nil

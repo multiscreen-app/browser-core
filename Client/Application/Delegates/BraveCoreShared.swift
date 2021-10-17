@@ -4,7 +4,9 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Foundation
+import BraveCore
 
-extension Bundle {
-    public static let embeddedMain: Bundle = Bundle(for: BrowserViewController.self)
+class BraveCoreShared {
+    static let shared = BraveCoreShared()
+    var braveCore: BraveCoreMain?
 }

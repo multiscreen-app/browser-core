@@ -8,7 +8,7 @@ import Shared
 private let log = Logger.browserLogger
 
 // Taken from: https://github.com/Brandon-T/Jarvis and modified to simplify
-
+// not used
 public class PinningCertificateEvaluator: NSObject, URLSessionDelegate {
     struct ExcludedPinningHostUrls {
         static let urls = ["laptop-updates.brave.com",

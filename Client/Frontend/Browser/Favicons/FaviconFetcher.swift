@@ -209,7 +209,7 @@ class FaviconFetcher {
     
     private static let multiRegionDomains = ["craigslist", "google", "amazon"]
     private static let bundledIcons: [String: (color: UIColor, url: String)] = {
-        guard let filePath = Bundle.main.path(forResource: "top_sites", ofType: "json") else {
+        guard let filePath = Bundle.embeddedMain.path(forResource: "top_sites", ofType: "json") else {
             log.error("Failed to get bundle path for \"top_sites.json\"")
             return [:]
         }
@@ -223,7 +223,7 @@ class FaviconFetcher {
                         return
                 }
                 path = path.replacingOccurrences(of: ".png", with: "")
-                let filePath = Bundle.main.path(forResource: "TopSites/" + path, ofType: "png")
+                let filePath = Bundle.embeddedMain.path(forResource: "TopSites/" + path, ofType: "png")
                 if let filePath = filePath {
                     if color == "#fff" {
                         icons[url] = (UIColor.white, filePath)

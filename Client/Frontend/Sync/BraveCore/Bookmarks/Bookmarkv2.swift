@@ -18,7 +18,7 @@ class Bookmarkv2: WebsitePresentable {
     private let bookmarkNode: BookmarkNode
     private var bookmarkFavIconObserver: BookmarkModelListener?
     private static var bookmarkModelLoadedObserver: BookmarkModelListener?
-    private static let bookmarksAPI = (UIApplication.shared.delegate as? AppDelegate)?.braveCore?.bookmarksAPI
+    private static let bookmarksAPI = BraveCoreShared.shared.braveCore?.bookmarksAPI
 
     init(_ bookmarkNode: BookmarkNode) {
         self.bookmarkNode = bookmarkNode

@@ -27,7 +27,14 @@ open class EmbeddedClientDelegate {
     var playlistRestorationController: UIViewController? // When Picture-In-Picture is enabled, we need to store a reference to the controller to keep it alive, otherwise if it deallocates, the system automatically kills Picture-In-Picture.
     weak var profile: Profile?
     var tabManager: TabManager!
-    var braveCore: BraveCoreMain?
+    var braveCore: BraveCoreMain? {
+        get {
+            return BraveCoreShared.shared.braveCore
+        }
+        set {
+            BraveCoreShared.shared.braveCore = newValue
+        }
+    }
     var shutdownWebServer: DispatchSourceTimer?
     
     public init() {

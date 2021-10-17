@@ -183,7 +183,7 @@ class NTPDataSource {
     }
     
     private func loadData(file: String) -> Data? {
-        guard let filePath = Bundle.main.path(forResource: file, ofType: "json") else {
+        guard let filePath = Bundle.embeddedMain.path(forResource: file, ofType: "json") else {
             return nil
         }
         
