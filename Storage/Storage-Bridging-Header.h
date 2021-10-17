@@ -3,7 +3,7 @@
 
 #define SQLITE_HAS_CODEC 1
 
-#import "Shared-Bridging-Header.h"
+#import <Shared/Shared.h>
 #import <Foundation/Foundation.h>
 
 // We do not need to import SQLCipher explicitly here; we put ThirdParty/sqlcipher at the front of our

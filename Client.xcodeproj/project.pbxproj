@@ -606,6 +606,11 @@
 		A83E5AB71C1D993D0026D912 /* UIPasteboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83E5AB61C1D993D0026D912 /* UIPasteboardExtensions.swift */; };
 		A9072B801D07B34100459960 /* NoImageModeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9072B7F1D07B34100459960 /* NoImageModeHelper.swift */; };
 		B07D185627053B9000C1570A /* BrowserInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D185527053B9000C1570A /* BrowserInstance.swift */; };
+		B081A2B1271C857E0091B939 /* Shared-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E0BB151AFBC9E4008D6260 /* Shared-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B081A2BD271C85850091B939 /* Storage-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FCAE33D1ABB5F1800877008 /* Storage-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B081A2BF271C885D0091B939 /* Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = B081A2BE271C885D0091B939 /* Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B081A2C1271C89180091B939 /* FSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E65075811E37F7AB006961AC /* FSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B081A2C3271C91360091B939 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C2271C91360091B939 /* BundleExtensions.swift */; };
 		B0A89F88271BA32800EB6841 /* EmbeddedClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B0A89F87271BA32800EB6841 /* EmbeddedClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0FAB98C271BA4EF0056A8A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84B21E51A0910F600AAB793 /* AppDelegate.swift */; };
 		B0FAB98D271BA4EF0056A8A3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977CB272703B8DF00419B38 /* TestViewController.swift */; };
@@ -1214,6 +1219,7 @@
 		B0FABD9E271BB2540056A8A3 /* UIImageViewAligned.h in Headers */ = {isa = PBXBuildFile; fileRef = D8C75DE9207584C300BB8AD0 /* UIImageViewAligned.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0FABDA1271BB7280056A8A3 /* HttpsEverywhere.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42821BFCF8800BF1855 /* HttpsEverywhere.h */; };
 		B0FABDA3271BBAD90056A8A3 /* Try.h in Headers */ = {isa = PBXBuildFile; fileRef = E650755D1E37F756006961AC /* Try.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0FABE1B271BDFA80056A8A3 /* EmbeddedClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FABE1A271BDFA80056A8A3 /* EmbeddedClientDelegate.swift */; };
 		C400467C1CF4E43E00B08303 /* BackForwardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */; };
 		C40046FA1CF8E0B200B08303 /* BackForwardListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */; };
 		C4E3984C1D21F2FD004E89BA /* TabTrayButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3984B1D21F2FD004E89BA /* TabTrayButtonExtensions.swift */; };
@@ -1336,7 +1342,6 @@
 		E65075961E37F7AB006961AC /* AsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65075661E37F7AB006961AC /* AsyncReducer.swift */; };
 		E65075981E37F7AB006961AC /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65075681E37F7AB006961AC /* Bytes.swift */; };
 		E65075991E37F7AB006961AC /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65075691E37F7AB006961AC /* Cancellable.swift */; };
-		E650759A1E37F7AB006961AC /* CrashSimulator.h in Headers */ = {isa = PBXBuildFile; fileRef = E650756A1E37F7AB006961AC /* CrashSimulator.h */; };
 		E650759B1E37F7AB006961AC /* CrashSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = E650756B1E37F7AB006961AC /* CrashSimulator.m */; };
 		E650759C1E37F7AB006961AC /* DeferredUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E650756C1E37F7AB006961AC /* DeferredUtils.swift */; };
 		E650759D1E37F7AB006961AC /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E650756D1E37F7AB006961AC /* DeviceInfo.swift */; };
@@ -1353,7 +1358,6 @@
 		E65075AC1E37F7AB006961AC /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E650757D1E37F7AB006961AC /* StringExtensions.swift */; };
 		E65075AD1E37F7AB006961AC /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E650757E1E37F7AB006961AC /* UIColorExtensions.swift */; };
 		E65075AE1E37F7AB006961AC /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E650757F1E37F7AB006961AC /* UIImageExtensions.swift */; };
-		E65075B01E37F7AB006961AC /* FSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E65075811E37F7AB006961AC /* FSUtils.h */; };
 		E65075B11E37F7AB006961AC /* FSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E65075821E37F7AB006961AC /* FSUtils.m */; };
 		E65075B21E37F7AB006961AC /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65075831E37F7AB006961AC /* Functions.swift */; };
 		E65075B31E37F7AB006961AC /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65075841E37F7AB006961AC /* KeyboardHelper.swift */; };
@@ -2612,6 +2616,8 @@
 		A83E5AB61C1D993D0026D912 /* UIPasteboardExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPasteboardExtensions.swift; sourceTree = "<group>"; };
 		A9072B7F1D07B34100459960 /* NoImageModeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoImageModeHelper.swift; sourceTree = "<group>"; };
 		B07D185527053B9000C1570A /* BrowserInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInstance.swift; sourceTree = "<group>"; };
+		B081A2BE271C885D0091B939 /* Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = "<group>"; };
+		B081A2C2271C91360091B939 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		B0A89F85271BA32800EB6841 /* EmbeddedClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EmbeddedClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A89F87271BA32800EB6841 /* EmbeddedClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmbeddedClient.h; sourceTree = "<group>"; };
 		B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/CoreNFC.framework; sourceTree = DEVELOPER_DIR; };
@@ -2619,6 +2625,7 @@
 		B0FABD7F271BAD270056A8A3 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
 		B0FABD82271BAD470056A8A3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		B0FABD9A271BAE580056A8A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		B0FABE1A271BDFA80056A8A3 /* EmbeddedClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedClientDelegate.swift; sourceTree = "<group>"; };
 		C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListViewController.swift; sourceTree = "<group>"; };
 		C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListAnimator.swift; sourceTree = "<group>"; };
 		C4E3984B1D21F2FD004E89BA /* TabTrayButtonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabTrayButtonExtensions.swift; path = ../Browser/TabTrayButtonExtensions.swift; sourceTree = "<group>"; };
@@ -3769,6 +3776,7 @@
 				5D8AE6AE230C76B60096C845 /* AppearanceExtensions.swift */,
 				2727369A24A65F650096DCB9 /* UIActionExtensions.swift */,
 				094774442702B1CF005FB8B6 /* OtherExtensions.swift */,
+				B081A2C2271C91360091B939 /* BundleExtensions.swift */,
 			);
 			indentWidth = 4;
 			path = Extensions;
@@ -4836,6 +4844,7 @@
 				E4E0BB151AFBC9E4008D6260 /* Shared-Bridging-Header.h */,
 				E4E0BB171AFBC9E4008D6260 /* Info.plist */,
 				59B6913421B695A400E9388E /* Localizable.strings */,
+				B081A2BE271C885D0091B939 /* Shared.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -4887,6 +4896,7 @@
 				F84B21E51A0910F600AAB793 /* AppDelegate.swift */,
 				0977CB272703B8DF00419B38 /* TestViewController.swift */,
 				B07D185527053B9000C1570A /* BrowserInstance.swift */,
+				B0FABE1A271BDFA80056A8A3 /* EmbeddedClientDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -5243,8 +5253,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E650759A1E37F7AB006961AC /* CrashSimulator.h in Headers */,
-				E65075B01E37F7AB006961AC /* FSUtils.h in Headers */,
+				B081A2BF271C885D0091B939 /* Shared.h in Headers */,
+				B081A2C1271C89180091B939 /* FSUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5282,6 +5292,8 @@
 				B0FABCA2271BAC790056A8A3 /* cache.h in Headers */,
 				B0FABCA3271BAC790056A8A3 /* port.h in Headers */,
 				B0FABCA4271BAC790056A8A3 /* hash.h in Headers */,
+				B081A2BD271C85850091B939 /* Storage-Bridging-Header.h in Headers */,
+				B081A2B1271C857E0091B939 /* Shared-Bridging-Header.h in Headers */,
 				B0FABCB2271BAC790056A8A3 /* NSData+GZIP.h in Headers */,
 				B0FABD9E271BB2540056A8A3 /* UIImageViewAligned.h in Headers */,
 				B0FABCD9271BAC790056A8A3 /* HttpsEverywhereObjC.h in Headers */,
@@ -6500,6 +6512,7 @@
 				B0FAB9B7271BA4F00056A8A3 /* PlaylistPopoverView.swift in Sources */,
 				B0FAB9B8271BA4F00056A8A3 /* OnboardingViewController.swift in Sources */,
 				B0FAB9B9271BA4F00056A8A3 /* OnboardingNavigationController.swift in Sources */,
+				B0FABE1B271BDFA80056A8A3 /* EmbeddedClientDelegate.swift in Sources */,
 				B0FAB9BA271BA4F00056A8A3 /* OnboardingPrivacyConsentViewController.swift in Sources */,
 				B0FAB9BB271BA4F00056A8A3 /* OnboardingPrivacyConsentView.swift in Sources */,
 				B0FAB9BC271BA4F00056A8A3 /* OnboardingSearchEnginesViewController.swift in Sources */,
@@ -7018,6 +7031,7 @@
 				5E99D02C25E56C1B003F30B4 /* PlaylistCacheLoader.swift in Sources */,
 				4422D57321BFFB7F00BF1855 /* stringpiece.cc in Sources */,
 				27DCB9EC263764EF0067EF4A /* TabTrayCell.swift in Sources */,
+				B081A2C3271C91360091B939 /* BundleExtensions.swift in Sources */,
 				27187808216526090006036E /* AlertPopupView.swift in Sources */,
 				4422D56421BFFB7F00BF1855 /* re2.cc in Sources */,
 				278C46AC23F499730083347F /* AdvancedShieldsView.swift in Sources */,
@@ -8360,7 +8374,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Shared/Shared-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Enterprise;
@@ -8827,7 +8840,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Shared/Shared-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -9300,7 +9312,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Shared/Shared-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -10419,7 +10430,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Shared/Shared-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = "Release (AppStore)";
@@ -10619,7 +10629,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Shared/Shared-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Dev;
@@ -10799,7 +10808,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Shared/Shared-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Beta;

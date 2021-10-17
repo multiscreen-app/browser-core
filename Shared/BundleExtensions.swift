@@ -5,6 +5,7 @@
 import Foundation
 
 extension Bundle {
+    
     /// Get a string from the info plist dictionary for a given key
     public func infoDictionaryString(forKey key: String) -> String {
         guard let value = object(forInfoDictionaryKey: key) as? String else {

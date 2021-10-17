@@ -7,10 +7,11 @@
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonCrypto.h>
 
+#import "Storage-Bridging-Header.h"
+
 #import "Try.h"
 
 #import "UIImageViewAligned.h"
-
 #import "HttpsEverywhereObjC.h"
 #import "NSData+GZIP.h"
 #import "NSFileManager+Tar.h"
