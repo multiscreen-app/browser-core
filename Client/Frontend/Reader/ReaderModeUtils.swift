@@ -14,10 +14,10 @@ struct ReaderModeUtils {
         } ?? domain
     }
 
-    static func generateReaderContent(_ readabilityResult: ReadabilityResult, initialStyle: ReaderModeStyle) -> String? {
-        guard let stylePath = Bundle.embeddedMain.path(forResource: "Reader", ofType: "css"),
+    static func generateReaderContent(_ readabilityResult: ReadabilityResult, initialStyle: ReaderModeStyle, titleNonce: String) -> String? {
+        guard let stylePath = Bundle.main.path(forResource: "Reader", ofType: "css"),
             let css = try? String(contentsOfFile: stylePath, encoding: .utf8),
-            let tmplPath = Bundle.embeddedMain.path(forResource: "Reader", ofType: "html"),
+            let tmplPath = Bundle.main.path(forResource: "Reader", ofType: "html"),
             let tmpl = try? String(contentsOfFile: tmplPath, encoding: .utf8) else { return nil }
 
         return tmpl.replacingOccurrences(of: "%READER-CSS%", with: css)
@@ -27,6 +27,7 @@ struct ReaderModeUtils {
             .replacingOccurrences(of: "%READER-TITLE%", with: readabilityResult.title)
             .replacingOccurrences(of: "%READER-CREDITS%", with: readabilityResult.credits)
             .replacingOccurrences(of: "%READER-CONTENT%", with: readabilityResult.content)
+            .replacingOccurrences(of: "%READER-TITLE-NONCE%", with: titleNonce)
 
     }
 }

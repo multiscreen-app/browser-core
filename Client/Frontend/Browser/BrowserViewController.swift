@@ -955,10 +955,12 @@ class BrowserViewController: UIViewController {
             UIAccessibility.post(notification: .screenChanged, argument: nil)
             
             // Refresh the reading view toolbar since the article record may have changed
-            if let readerMode = self.tabManager.selectedTab?.getContentScript(name: ReaderMode.name()) as? ReaderMode,
+            if let tab = self.tabManager.selectedTab,
+               let readerMode = tab.getContentScript(name: ReaderMode.name()) as? ReaderMode,
                readerMode.state == .active,
                isReaderModeURL {
                 self.showReaderModeBar(animated: false)
+                self.updatePlaylistURLBar(tab: tab, state: tab.playlistItemState, item: tab.playlistItem)
             }
         })
     }
@@ -1254,6 +1256,7 @@ class BrowserViewController: UIViewController {
             }
 
             updateInContentHomePanel(url as URL)
+            updatePlaylistURLBar(tab: tab, state: tab.playlistItemState, item: tab.playlistItem)
         }
     }
     
@@ -1588,7 +1591,7 @@ class BrowserViewController: UIViewController {
                 runScriptsOnWebView(webView)
                 
                 // Only add history of a url which is not a localhost url
-                if !tab.isPrivate {
+                if !tab.isPrivate, !PrivilegedRequest.isWebServerRequest(url: url) {
                     // The visitType is checked If it is "typed" or not to determine the History object we are adding
                     // should be synced or not. This limitation exists on browser side so we are aligning with this
                     if let visitType =
@@ -1839,29 +1842,20 @@ extension BrowserViewController: TabManagerDelegate {
             wv.accessibilityElementsHidden = true
             wv.accessibilityIdentifier = nil
             
-            // Firefox code removed webview from superview,
-            // but this causes PDFs to stop rendering,
-            // audio and video to stop playing, etc..
-            for tab in tabManager.allTabs where tab != selected {
-                if let webView = tab.webView {
-                    #if swift(>=5.4)
-                    if #available(iOS 15.0, *) {
-                        webView.requestMediaPlaybackState { state in
-                            if state == .playing {
-                                webView.isHidden = true
-                                webView.alpha = 0.0
-                            } else {
-                                webView.removeFromSuperview()
-                            }
-                        }
-                    } else {
-                        webView.removeFromSuperview()
+            #if swift(>=5.4)
+            if #available(iOS 15.0, *) {
+                wv.alpha = 0.0
+                wv.requestMediaPlaybackState { state in
+                    if state != .playing && wv != tabManager.selectedTab?.webView {
+                        wv.alpha = 1.0
                     }
-                    #else
-                    webView.removeFromSuperview()
-                    #endif
                 }
+            } else {
+                wv.removeFromSuperview()
             }
+            #else
+            wv.removeFromSuperview()
+            #endif
         }
         
         toolbar?.setSearchButtonState(url: selected?.url)
@@ -1892,7 +1886,6 @@ extension BrowserViewController: TabManagerDelegate {
             webView.accessibilityElementsHidden = false
             
             // Restore WebView visibility state
-            webView.isHidden = false
             webView.alpha = 1.0
 
             if webView.url == nil {
@@ -1923,18 +1916,33 @@ extension BrowserViewController: TabManagerDelegate {
         
         let shouldShowPlaylistURLBarButton = selected?.url?.isPlaylistSupportedSiteURL == true
         
-        if let readerMode = selected?.getContentScript(name: ReaderMode.name()) as? ReaderMode, !shouldShowPlaylistURLBarButton {
+        if let selected = selected,
+            let readerMode = selected.getContentScript(name: ReaderMode.name()) as? ReaderMode, !shouldShowPlaylistURLBarButton {
             topToolbar.updateReaderModeState(readerMode.state)
             if readerMode.state == .active {
                 showReaderModeBar(animated: false)
             } else {
                 hideReaderModeBar(animated: false)
             }
+            
+            updatePlaylistURLBar(tab: selected, state: selected.playlistItemState, item: selected.playlistItem)
         } else {
             topToolbar.updateReaderModeState(ReaderModeState.unavailable)
         }
 
         updateInContentHomePanel(selected?.url as URL?)
+        
+        #if swift(>=5.4)
+        for tab in tabManager.allTabs {
+            if #available(iOS 15.0, *), let wv = tab.webView {
+                wv.requestMediaPlaybackState { state in
+                    if state != .playing && wv != tabManager.selectedTab?.webView {
+                        wv.alpha = 1.0
+                    }
+                }
+            }
+        }
+        #endif
     }
 
     func tabManager(_ tabManager: TabManager, willAddTab tab: Tab) {
