@@ -42,10 +42,11 @@ private struct BrowserViewControllerUX {
     fileprivate static let bookmarkStarAnimationOffset: CGFloat = 80
 }
 
-class BrowserViewController: UIViewController {
-    var privateBrowsingManager = PrivateBrowsingManager()
-    weak var browserInstance: BrowserInstance?
-    
+protocol BrowserViewControllerDelegate: AnyObject {
+    func openInNewTab(_ url: URL, isPrivate: Bool)
+}
+
+class BrowserViewController: UIViewController, BrowserViewControllerDelegate {
     var webViewContainer: UIView!
     var topToolbar: TopToolbarView!
     var tabsBar: TabsBarViewController!
@@ -97,6 +98,8 @@ class BrowserViewController: UIViewController {
     weak var tabTrayController: TabTrayController!
     let profile: Profile
     let tabManager: TabManager
+    let historyAPI: BraveHistoryAPI
+    let bookmarkManager: BookmarkManager
     
     /// Whether last session was a crash or not
     fileprivate let crashedLastSession: Bool
@@ -179,14 +182,64 @@ class BrowserViewController: UIViewController {
     
     private let launchOptions: LaunchOptions
 
-    init(profile: Profile, tabManager: TabManager, crashedLastSession: Bool,
+    init(profile: Profile, historyAPI: BraveHistoryAPI, bookmarksAPI: BraveBookmarksAPI, tabManager: TabManager, crashedLastSession: Bool,
          safeBrowsingManager: SafeBrowsing? = nil, launchOptions: LaunchOptions = LaunchOptions()) {
         self.profile = profile
-        self.tabManager = tabManager
-        self.readerModeCache = ReaderMode.cache(for: tabManager.selectedTab)
+        self.historyAPI = historyAPI
+        self.bookmarkManager = BookmarkManager(bookmarksAPI: bookmarksAPI)
         self.crashedLastSession = crashedLastSession
+        self.safeBrowsing = safeBrowsingManager
         self.launchOptions = launchOptions
+
+        let configuration: BraveRewards.Configuration
+        if AppConstants.buildChannel.isPublic {
+            configuration = .production
+        } else {
+            if let override = Preferences.Rewards.EnvironmentOverride(rawValue: Preferences.Rewards.environmentOverride.value), override != .none {
+                switch override {
+                case .dev:
+                    configuration = .default
+                case .staging:
+                    configuration = .staging
+                case .prod:
+                    configuration = .production
+                default:
+                    configuration = .staging
+                }
+            } else {
+                configuration = AppConstants.buildChannel == .debug ? .staging : .production
+            }
+        }
+
+        let buildChannel = Ads.BuildChannel().then {
+          $0.name = AppConstants.buildChannel.rawValue
+          $0.isRelease = AppConstants.buildChannel == .release
+        }
+        Self.migrateAdsConfirmations(for: configuration)
+        legacyWallet = Self.legacyWallet(for: configuration)
+        if let wallet = legacyWallet {
+            // Legacy ledger is disabled by default
+            wallet.isAutoContributeEnabled = false
+            // Ensure we remove any pending contributions or recurring tips from the legacy wallet
+            wallet.removeAllPendingContributions { _ in }
+            wallet.listRecurringTips { publishers in
+                publishers.forEach {
+                    wallet.removeRecurringTip(publisherId: $0.id)
+                }
+            }
+        }
         
+        // Initialize Rewards
+        self.rewards = BraveRewards(configuration: configuration, buildChannel: buildChannel)
+        
+        // Initialize TabManager
+        self.tabManager = TabManager(prefs: profile.prefs,
+                                     imageStore: diskImageStore,
+                                     rewards: rewards)
+        
+        // Setup ReaderMode Cache
+        self.readerModeCache = ReaderMode.cache(for: tabManager.selectedTab)
+
         if Locale.current.regionCode == "JP" {
             benchmarkBlockingDataSource = BlockingSummaryDataSource()
         }
@@ -505,6 +558,7 @@ class BrowserViewController: UIViewController {
         topToolbar.translatesAutoresizingMaskIntoConstraints = false
         topToolbar.delegate = self
         topToolbar.tabToolbarDelegate = self
+        // MS: Create drag gesture recognizer for top toolbar via delegate
         if let recognizer = browserInstance?.delegate?.createDragGestureRecognizer() {
             topToolbar.addGestureRecognizer(recognizer)
         }
@@ -638,7 +692,7 @@ class BrowserViewController: UIViewController {
                 
                 let content = UNMutableNotificationContent().then {
                     $0.title = Strings.DefaultBrowserCallout.notificationTitle
-                    $0.body = Strings.DefaultBrowserCallout.notificationBody
+                    $0.body = String(format: Strings.DefaultBrowserCallout.notificationBody, String(ProcessInfo().operatingSystemVersion.majorVersion))
                 }
                 
                 let timeToShow = AppConstants.buildChannel.isPublic ? 2.hours : 2.minutes
@@ -2628,7 +2682,8 @@ extension BrowserViewController: PreferencesObserver {
                 $0.userScriptManager?.isMediaBackgroundPlaybackEnabled = Preferences.General.mediaAutoBackgrounding.value
                 $0.webView?.reload()
             }
-        case Preferences.Playlist.enablePlaylistMenuBadge.key:
+        case Preferences.Playlist.enablePlaylistMenuBadge.key,
+            Preferences.Playlist.enablePlaylistURLBarButton.key:
             let selectedTab = tabManager.selectedTab
             updatePlaylistURLBar(tab: selectedTab,
                                  state: selectedTab?.playlistItemState ?? .none,
