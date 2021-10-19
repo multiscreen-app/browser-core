@@ -5,22 +5,68 @@
 
 import Foundation
 import Storage
+import UIKit
+import BraveShared
 
-class BrowserInstance {
+public class BrowserInstance {
     
     var profile: Profile
     var tabManager: TabManager!
     var browserViewController: BrowserViewController!
-    
+        
     init(profile: Profile, store: DiskImageStore) {
         self.profile = profile
         self.tabManager = TabManager(prefs: profile.prefs, imageStore: store)
+        create()
     }
     
-    public func create() -> BrowserViewController {
-        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: false)
+    func create() -> BrowserViewController {
+        // Don't track crashes if we're building the development environment due to the fact that terminating/stopping
+        // the simulator via Xcode will count as a "crash" and lead to restore popups in the subsequent launch
+        let crashedLastSession = !Preferences.AppState.backgroundedCleanly.value && AppConstants.buildChannel != .debug
+        Preferences.AppState.backgroundedCleanly.value = false
+        
+        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: crashedLastSession)
         browserViewController.edgesForExtendedLayout = []
+        
+        Preferences.General.themeNormalMode.objectWillChange
+            .merge(with: PrivateBrowsingManager.shared.objectWillChange)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.updateTheme()
+            }
+        
         return browserViewController
+    }
+    
+    public func getBrowserViewController() -> UIViewController {
+        return browserViewController
+    }
+    
+    public func showRequestDefaultBrowserPopup() {
+//        browserViewController.shouldShowIntroScreen = DefaultBrowserIntroManager.prepareAndShowIfNeeded(isNewUser: isFirstLaunch)
+        browserViewController.shouldShowIntroScreen = true
+        browserViewController.presentDefaultBrowserIntroScreen()
+    }
+    
+    private var expectedThemeOverride: UIUserInterfaceStyle {
+        let themeOverride = DefaultTheme(
+            rawValue: Preferences.General.themeNormalMode.value
+        )?.userInterfaceStyleOverride ?? .unspecified
+        let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+        return isPrivateBrowsing ? .dark : themeOverride
+    }
+    
+    private func updateTheme() {
+        guard let window = browserViewController.view else { return }
+        UIView.transition(with: window, duration: 0.15, options: [.transitionCrossDissolve], animations: {
+            window.overrideUserInterfaceStyle = self.expectedThemeOverride
+        }, completion: nil)
+    }
+    
+    deinit {
+        tabManager = nil
+        browserViewController = nil
     }
     
 }

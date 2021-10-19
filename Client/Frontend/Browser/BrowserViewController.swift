@@ -780,7 +780,7 @@ class BrowserViewController: UIViewController {
     /// Whether or not to show the playlist onboarding callout this session
     var shouldShowPlaylistOnboardingThisSession = true
 
-    private func presentDefaultBrowserIntroScreen() {
+    public func presentDefaultBrowserIntroScreen() {
         if Preferences.DebugFlag.skipNTPCallouts == true { return }
         
         if !shouldShowIntroScreen {

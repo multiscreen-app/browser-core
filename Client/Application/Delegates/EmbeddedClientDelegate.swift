@@ -23,10 +23,11 @@ private let log = Logger.browserLogger
 
 open class EmbeddedClientDelegate {
     
-    var browserViewController: BrowserViewController!
-    var playlistRestorationController: UIViewController? // When Picture-In-Picture is enabled, we need to store a reference to the controller to keep it alive, otherwise if it deallocates, the system automatically kills Picture-In-Picture.
+    var browserInstances: [BrowserInstance] = []
+    var imageStore: DiskImageStore?
     weak var profile: Profile?
-    var tabManager: TabManager!
+    var playlistRestorationController: UIViewController? // When Picture-In-Picture is enabled, we need to store a reference to the controller to keep it alive, otherwise if it deallocates, the system automatically kills Picture-In-Picture.
+    
     var braveCore: BraveCoreMain? {
         get {
             return BraveCoreShared.shared.braveCore
@@ -35,14 +36,11 @@ open class EmbeddedClientDelegate {
             BraveCoreShared.shared.braveCore = newValue
         }
     }
+    
     var shutdownWebServer: DispatchSourceTimer?
     
     public init() {
         
-    }
-    
-    public func getViewController() -> UIViewController {
-        return browserViewController
     }
     
     public func initialize() {
@@ -111,12 +109,12 @@ open class EmbeddedClientDelegate {
         Logger.browserLogger.newLogWithDate(logDate)
 
         let profile = getProfile()
-        let profilePrefix = profile.prefs.getBranchPrefix()
-        Migration.launchMigrations(keyPrefix: profilePrefix)
+        // MS we don't need this as we don't have anything to migrate from
+//        let profilePrefix = profile.prefs.getBranchPrefix()
+//        Migration.launchMigrations(keyPrefix: profilePrefix)
         
         setUpWebServer(profile)
         
-        var imageStore: DiskImageStore?
         do {
             imageStore = try DiskImageStore(files: profile.files, namespace: "TabManagerScreenshots", quality: UIConstants.screenshotQuality)
         } catch {
@@ -129,26 +127,20 @@ open class EmbeddedClientDelegate {
             class_addMethod(clazz, MenuHelper.selectorFindInPage, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
         }
 
-        self.tabManager = TabManager(prefs: profile.prefs, imageStore: imageStore)
-
-        // Make sure current private browsing flag respects the private browsing only user preference
-        PrivateBrowsingManager.shared.isPrivateBrowsing = Preferences.Privacy.privateBrowsingOnly.value
-        
-        // Don't track crashes if we're building the development environment due to the fact that terminating/stopping
-        // the simulator via Xcode will count as a "crash" and lead to restore popups in the subsequent launch
-        let crashedLastSession = !Preferences.AppState.backgroundedCleanly.value && AppConstants.buildChannel != .debug
-        Preferences.AppState.backgroundedCleanly.value = false
-        browserViewController = BrowserViewController(profile: self.profile!, tabManager: self.tabManager, crashedLastSession: crashedLastSession)
-        browserViewController.edgesForExtendedLayout = []
-
-        // Add restoration class, the factory that will return the ViewController we will restore with.
-        browserViewController.restorationIdentifier = NSStringFromClass(BrowserViewController.self)
-        browserViewController.restorationClass = AppDelegate.self
-
         SystemUtils.onFirstRun()
         
         // Schedule Brave Core Priority Tasks
         self.braveCore?.scheduleLowPriorityStartupTasks()
+    }
+    
+    public func createBrowserInstance() -> BrowserInstance {
+        // Make sure current private browsing flag respects the private browsing only user preference
+        PrivateBrowsingManager.shared.isPrivateBrowsing = Preferences.Privacy.privateBrowsingOnly.value
+        
+        return BrowserInstance(profile: getProfile(), store: self.imageStore!)
+        // Add restoration class, the factory that will return the ViewController we will restore with.
+//        browserViewController.restorationIdentifier = NSStringFromClass(BrowserViewController.self)
+//        browserViewController.restorationClass = AppDelegate.self
     }
     
     func terminate() {
@@ -157,8 +149,7 @@ open class EmbeddedClientDelegate {
 
         // Allow deinitializers to close our database connections.
         self.profile = nil
-        self.tabManager = nil
-        self.browserViewController = nil
+        browserInstances = []
 //        SKPaymentQueue.default().remove(iapObserver)
         
         // Clean up BraveCore
@@ -174,12 +165,8 @@ open class EmbeddedClientDelegate {
         self.profile = p
         return p
     }
-    
-    private var cancellables: Set<AnyCancellable> = []
 
     public func didLaunch() {
-        var shouldPerformAdditionalDelegateHandling = true
-        
         AdblockRustEngine.setDomainResolver { urlCString, start, end in
             guard let urlCString = urlCString else { return }
             let urlString = String(cString: urlCString)
@@ -205,7 +192,7 @@ open class EmbeddedClientDelegate {
         }
         
         UIScrollView.doBadSwizzleStuff()
-        
+        applyAppearanceDefaults()
         
         // Now roll logs.
         DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
@@ -225,14 +212,7 @@ open class EmbeddedClientDelegate {
         }
         Preferences.General.isFirstLaunch.value = false
         Preferences.Review.launchCount.value += 1
-        
-        if !Preferences.VPN.popupShowed.value {
-            Preferences.VPN.appLaunchCountForVPNPopup.value += 1
-        }
-        
-        browserViewController.shouldShowIntroScreen =
-            DefaultBrowserIntroManager.prepareAndShowIfNeeded(isNewUser: isFirstLaunch)
-        
+            
         // Search engine setup must be checked outside of 'firstLaunch' loop because of #2770.
         // There was a bug that when you skipped onboarding, default search engine preference
         // was not set.
@@ -253,7 +233,7 @@ open class EmbeddedClientDelegate {
         PlaylistManager.shared.restoreSession()
     }
     
-    fileprivate func setUserAgent() {
+    private func setUserAgent() {
         let userAgent = UserAgent.userAgentForDesktopMode
 
         // Set the favicon fetcher, and the image loader.
@@ -272,7 +252,7 @@ open class EmbeddedClientDelegate {
         FaviconFetcher.htmlParsingUserAgent = UserAgent.desktop
     }
     
-    fileprivate func setUpWebServer(_ profile: Profile) {
+    private func setUpWebServer(_ profile: Profile) {
         let server = WebServer.sharedInstance
         if server.server.isRunning { return }
         
@@ -293,6 +273,58 @@ open class EmbeddedClientDelegate {
         } catch let err as NSError {
             print("Error: Unable to start WebServer \(err)")
         }
+    }
+    
+    private func applyAppearanceDefaults() {
+        // important! for privacy concerns, otherwise UI can bleed through
+        UIToolbar.appearance().do {
+            $0.tintColor = .braveOrange
+            $0.standardAppearance = {
+                let appearance = UIToolbarAppearance()
+                appearance.configureWithDefaultBackground()
+                appearance.backgroundColor = .braveBackground
+                return appearance
+            }()
+        }
+        
+        UINavigationBar.appearance().do {
+            $0.tintColor = .braveOrange
+            $0.standardAppearance = {
+                let appearance = UINavigationBarAppearance()
+                appearance.configureWithDefaultBackground()
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.braveLabel]
+                appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.braveLabel]
+                appearance.backgroundColor = .braveBackground
+                return appearance
+            }()
+        }
+        
+        UISwitch.appearance().onTintColor = UIColor.braveOrange
+        
+        /// Used as color a table will use as the base (e.g. background)
+        let tablePrimaryColor = UIColor.braveGroupedBackground
+        /// Used to augment `tablePrimaryColor` above
+        let tableSecondaryColor = UIColor.secondaryBraveGroupedBackground
+        
+        UITableView.appearance().backgroundColor = tablePrimaryColor
+        UITableView.appearance().separatorColor = .braveSeparator
+        
+        UITableViewCell.appearance().do {
+            $0.tintColor = .braveOrange
+            $0.backgroundColor = tableSecondaryColor
+        }
+        
+        UIImageView.appearance(whenContainedInInstancesOf: [SettingsViewController.self])
+            .tintColor = .braveLabel
+
+        UIView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
+            .backgroundColor = tablePrimaryColor
+        
+        UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = .braveLabel
+        UILabel.appearance(whenContainedInInstancesOf: [UICollectionReusableView.self])
+            .textColor = .braveLabel
+        
+        UITextField.appearance().textColor = .braveLabel
     }
     
 }

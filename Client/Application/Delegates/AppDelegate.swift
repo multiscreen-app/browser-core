@@ -300,10 +300,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         Preferences.General.isFirstLaunch.value = false
         Preferences.Review.launchCount.value += 1
         
-        if !Preferences.VPN.popupShowed.value {
-            Preferences.VPN.appLaunchCountForVPNPopup.value += 1
-        }
-        
         browserViewController.shouldShowIntroScreen =
             DefaultBrowserIntroManager.prepareAndShowIfNeeded(isNewUser: isFirstLaunch)
         

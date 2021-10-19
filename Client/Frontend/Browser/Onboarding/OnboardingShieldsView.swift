@@ -31,7 +31,7 @@ extension OnboardingShieldsViewController {
             $0.spacing = UX.negativeSpacing
         }
         
-        let imageView = AnimationView(name: "onboarding-shields").then {
+        let imageView = AnimationView(name: "onboarding-shields", bundle: Bundle.embeddedMain).then {
             $0.contentMode = .scaleAspectFit
             $0.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
             $0.play()
