@@ -334,7 +334,7 @@ extension BrowserViewController: TopToolbarDelegate {
         searchController.searchDelegate = self
         searchController.profile = self.profile
 
-        searchLoader = SearchLoader(historyAPI: historyAPI, bookmarkAPI: bookmarkAPI)
+        searchLoader = SearchLoader(historyAPI: historyAPI, bookmarkManager: bookmarkManager)
         searchLoader?.addListener(searchController)
         searchLoader?.autocompleteSuggestionHandler = { [weak self] completion in
             self?.topToolbar.setAutocompleteSuggestion(completion)
@@ -444,8 +444,8 @@ extension BrowserViewController: TopToolbarDelegate {
     
     private func showBookmarkController() {
         let bookmarkViewController = BookmarksViewController(
-            folder: Bookmarkv2.lastVisitedFolder(),
-            bookmarkAPI: bookmarkAPI,
+            folder: bookmarkManager.lastVisitedFolder(),
+            bookmarkManager: bookmarkManager,
             isPrivateBrowsing: self.privateBrowsingManager.isPrivateBrowsing)
         
         bookmarkViewController.toolbarUrlActionsDelegate = self
@@ -463,9 +463,8 @@ extension BrowserViewController: TopToolbarDelegate {
         let bookmarkUrl = selectedUrl.decodeReaderModeURL ?? selectedUrl
 
         let mode = BookmarkEditMode.addBookmark(title: selectedTab.displayTitle, url: bookmarkUrl.absoluteString)
-
-        let addBookMarkController = AddEditBookmarkTableViewController(bookmarkAPI: bookmarkAPI, mode: mode)
-
+        
+        let addBookMarkController = AddEditBookmarkTableViewController(bookmarkManager: bookmarkManager, mode: mode)
         presentSettingsNavigation(with: addBookMarkController, cancelEnabled: true)
     }
     
