@@ -130,8 +130,8 @@ class FavoritesSectionProvider: NSObject, NTPObservableSectionProvider {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let isLandscape = collectionView.frame.width > collectionView.frame.height
         // Adjust the left-side padding a bit for portrait iPad
-        let inset = isLandscape ? 12 : collectionView.readableContentGuide.layoutFrame.origin.x
-        return UIEdgeInsets(top: 6, left: inset, bottom: 6, right: inset)
+        let inset = isLandscape ? 40 : collectionView.readableContentGuide.layoutFrame.origin.x
+        return UIEdgeInsets(top: 40, left: inset, bottom: 6, right: inset)
     }
         
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

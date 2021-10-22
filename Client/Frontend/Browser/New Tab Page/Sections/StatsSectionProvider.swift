@@ -9,6 +9,9 @@ import BraveShared
 import BraveUI
 
 class StatsSectionProvider: NSObject, NTPSectionProvider {
+    
+    var landscapeBehavior: NTPLandscapeSizingBehavior = .fullWidth
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -28,7 +31,7 @@ class StatsSectionProvider: NSObject, NTPSectionProvider {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        return UIEdgeInsets(top: 40, left: 40, bottom: 0, right: 40)
     }
 }
 
@@ -63,6 +66,14 @@ class BraveShieldStatsView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+        addSubview(blurView)
+        blurView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        blurView.layer.cornerRadius = 15
+        blurView.layer.masksToBounds = true
         
         for s: StatView in stats {
             addSubview(s)

@@ -156,7 +156,7 @@ class Tab: NSObject {
     }
 
     // There is no 'available macro' on props, we currently just need to store ownership.
-    lazy var contentBlocker = ContentBlockerHelper(tab: self)
+    var contentBlocker: ContentBlockerHelper!
 
     /// The last title shown by this tab. Used by the tab tray to show titles for zombie tabs.
     var lastTitle: String?
@@ -194,11 +194,12 @@ class Tab: NSObject {
     /// tab instance, queue it for later until we become foregrounded.
     fileprivate var alertQueue = [JSAlertInfo]()
 
-    init(configuration: WKWebViewConfiguration, type: TabType = .regular) {
+    init(configuration: WKWebViewConfiguration, type: TabType = .regular, browserViewController: BrowserViewController? = nil) {
         self.configuration = configuration
         rewardsId = UInt32.random(in: 1...UInt32.max)
         super.init()
         self.type = type
+        contentBlocker = ContentBlockerHelper(tab: self, browserViewController: browserViewController)
     }
 
     weak var navigationDelegate: WKNavigationDelegate? {
@@ -697,7 +698,12 @@ class TabWebView: BraveWebView, MenuHelperInterface {
     fileprivate weak var delegate: TabWebViewDelegate?
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        print(action.description)
         return super.canPerformAction(action, withSender: sender) || action == MenuHelper.selectorFindInPage
+    }
+    
+    func menuHelperCopy() {
+        print("ccc")
     }
 
     @objc func menuHelperFindInPage() {

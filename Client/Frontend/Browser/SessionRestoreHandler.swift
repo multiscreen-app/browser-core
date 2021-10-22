@@ -11,10 +11,6 @@ import Shared
 struct SessionRestoreHandler {
     static func register(_ webServer: WebServer) {
         // Register the handler that accepts /about/sessionrestore?history=...&currentpage=... requests.
-<<<<<<< HEAD
-        webServer.registerHandlerForMethod("GET", module: "about", resource: "sessionrestore") { _ in
-            if let sessionRestorePath = Bundle.embeddedMain.path(forResource: "SessionRestore", ofType: "html") {
-=======
         webServer.registerHandlerForMethod("GET", module: "about", resource: "sessionrestore") { request in
             
             // Session Restore should only ever be called from a privileged request
@@ -25,8 +21,7 @@ struct SessionRestoreHandler {
                 return GCDWebServerResponse(statusCode: 404)
             }
             
-            if let sessionRestorePath = Bundle.main.path(forResource: "SessionRestore", ofType: "html") {
->>>>>>> public-release-temp
+            if let sessionRestorePath = Bundle.embeddedMain.path(forResource: "SessionRestore", ofType: "html") {
                 do {
                     var sessionRestoreString = try String(contentsOfFile: sessionRestorePath)
 

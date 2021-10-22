@@ -89,7 +89,7 @@ class NewTabPageFlowLayout: UICollectionViewFlowLayout {
     }
     
     override var collectionViewContentSize: CGSize {
-        var size = super.collectionViewContentSize
+        let size = super.collectionViewContentSize
         return size
     }
     

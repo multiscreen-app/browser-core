@@ -36,6 +36,8 @@ class NewTabPageBackgroundButtonsView: UIView, PreferencesObserver {
             }
             switch activeButton {
             case .imageCredit(let name):
+//                imageCreditButton.label.attributedText = NSAttributedString(string: String(format: Strings.photoBy, name), attributes:
+//                                                                                [.underlineStyle: NSUnderlineStyle.single.rawValue])
                 imageCreditButton.label.text = String(format: Strings.photoBy, name)
                 activeView = imageCreditButton
             case .brandLogo(let logo):
@@ -142,29 +144,34 @@ class NewTabPageBackgroundButtonsView: UIView, PreferencesObserver {
 
 extension NewTabPageBackgroundButtonsView {
     private class ImageCreditButton: SpringButton {
-        private let backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light)).then {
-            $0.clipsToBounds = true
-            $0.isUserInteractionEnabled = false
-            $0.layer.cornerRadius = 4
-            $0.layer.cornerCurve = .continuous
-        }
+//        private let backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light)).then {
+//            $0.clipsToBounds = true
+//            $0.isUserInteractionEnabled = false
+//            $0.layer.cornerRadius = 4
+//            $0.layer.cornerCurve = .continuous
+//        }
         
         let label = UILabel().then {
             $0.textColor = .white
-            $0.font = UIFont.systemFont(ofSize: 12.0, weight: .medium)
+            $0.font = UIFont.systemFont(ofSize: 12.0, weight: .ultraLight)
+            
         }
         
         override init(frame: CGRect) {
             super.init(frame: frame)
             
-            addSubview(backgroundView)
-            backgroundView.contentView.addSubview(label)
-            
-            backgroundView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
+//            addSubview(backgroundView)
+//            backgroundView.contentView.addSubview(label)
+//
+//            backgroundView.snp.makeConstraints {
+//                $0.edges.equalToSuperview()
+//            }
+            addSubview(label)
+//            label.snp.makeConstraints {
+//                $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
+//            }
             label.snp.makeConstraints {
-                $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
+                $0.edges.equalToSuperview()
             }
         }
     }

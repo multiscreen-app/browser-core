@@ -45,6 +45,7 @@ class WeakTabManagerDelegate {
 
 // TabManager must extend NSObjectProtocol in order to implement WKNavigationDelegate
 class TabManager: NSObject {
+    static var restoredTabs: [TabMO] = []
     fileprivate var delegates = [WeakTabManagerDelegate]()
     fileprivate let tabEventHandlers: [TabEventHandler]
     weak var stateDelegate: TabManagerStateDelegate?
@@ -811,6 +812,11 @@ class TabManager: NSObject {
         } else {
             savedTabs = TabMO.getAll()
         }
+        
+        savedTabs = savedTabs.filter {
+            !TabManager.restoredTabs.contains($0)
+        }
+        TabManager.restoredTabs.append(contentsOf: savedTabs)
         
         if savedTabs.isEmpty { return nil }
 

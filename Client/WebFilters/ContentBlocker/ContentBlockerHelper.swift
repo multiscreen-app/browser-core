@@ -78,10 +78,13 @@ class ContentBlockerHelper {
 
     static private var blockImagesRule: WKContentRuleList?
     static var heavyInitHasRunOnce = false
+    
+    let tpStatsBlocklistChecker: TPStatsBlocklistChecker
 
-    init(tab: Tab) {
+    init(tab: Tab, browserViewController: BrowserViewController?) {
         self.tab = tab
-
+        self.tpStatsBlocklistChecker = TPStatsBlocklistChecker(browserViewController)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setupTabTrackingProtection), name: .contentBlockerTabSetupRequired, object: nil)
     }
 

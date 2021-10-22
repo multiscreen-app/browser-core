@@ -59,7 +59,7 @@ extension ContentBlockerHelper: TabContentScript {
         var req = URLRequest(url: url)
         req.mainDocumentURL = mainDocumentUrl
 
-        TPStatsBlocklistChecker.shared.isBlocked(request: req, domain: domain, resourceType: resourceType).uponQueue(.main) { listItem in
+        self.tpStatsBlocklistChecker.isBlocked(request: req, domain: domain, resourceType: resourceType).uponQueue(.main) { listItem in
             if let listItem = listItem {
                 if listItem == .https {
                     if mainDocumentUrl.scheme == "https" && url.scheme == "http" && resourceType != .image {

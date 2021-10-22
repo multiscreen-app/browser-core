@@ -51,8 +51,12 @@ enum TPStatsResourceType: String {
 }
 
 class TPStatsBlocklistChecker {
-    static let shared = TPStatsBlocklistChecker()
+    private let browserViewController: BrowserViewController?
     private let adblockSerialQueue = AdBlockStats.adblockSerialQueue
+    
+    init (_ browserViewController: BrowserViewController?) {
+        self.browserViewController = browserViewController
+    }
 
     func isBlocked(request: URLRequest, domain: Domain, resourceType: TPStatsResourceType? = nil) -> Deferred<BlocklistName?> {
         let deferred = Deferred<BlocklistName?>()
@@ -68,11 +72,11 @@ class TPStatsBlocklistChecker {
         assertIsMainThread("Getting enabled blocklists should happen on main thread")
         let domainBlockLists = BlocklistName.blocklists(forDomain: domain).on
         
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            deferred.fill(nil)
-            return deferred
-        }
-        let currentTabUrl = delegate.browserViewController.tabManager.selectedTab?.url
+//        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+//            deferred.fill(nil)
+//            return deferred
+//        }
+        let currentTabUrl = browserViewController?.tabManager.selectedTab?.url
         
         adblockSerialQueue.async {
             let enabledLists = domainBlockLists
