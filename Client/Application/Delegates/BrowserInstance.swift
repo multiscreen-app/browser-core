@@ -7,6 +7,7 @@ import Foundation
 import Storage
 import UIKit
 import BraveShared
+import WebKit
 
 public class BrowserInstance {
     
@@ -41,6 +42,10 @@ public class BrowserInstance {
     
     public func getBrowserViewController() -> UIViewController {
         return browserViewController
+    }
+    
+    public func getSelectedTabWebview() -> WKWebView? {
+        return browserViewController.tabManager.selectedTab?.webView
     }
     
     public func showRequestDefaultBrowserPopup() {
