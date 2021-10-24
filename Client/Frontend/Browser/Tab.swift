@@ -698,12 +698,7 @@ class TabWebView: BraveWebView, MenuHelperInterface {
     fileprivate weak var delegate: TabWebViewDelegate?
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        print(action.description)
         return super.canPerformAction(action, withSender: sender) || action == MenuHelper.selectorFindInPage
-    }
-    
-    func menuHelperCopy() {
-        print("ccc")
     }
 
     @objc func menuHelperFindInPage() {
