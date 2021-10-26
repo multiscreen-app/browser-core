@@ -15,11 +15,23 @@ enum DomainUserScript: CaseIterable {
     case archive
     case braveSearch
     
-    static func get(for domain: String) -> Self? {
+    static func get(for url: URL) -> Self? {
         var found: DomainUserScript?
         
+        // First we look for exact domain match, if no matches we look for base domain matches.
+        guard let host = url.host else { return nil }
         allCases.forEach {
-            if $0.associatedDomains.contains(domain) {
+            if $0.associatedDomains.contains(host) {
+                found = $0
+                return
+            }
+        }
+        
+        if found != nil { return found }
+        
+        guard let baseDomain = url.baseDomain else { return nil }
+        allCases.forEach {
+            if $0.associatedDomains.contains(baseDomain) {
                 found = $0
                 return
             }
@@ -39,7 +51,7 @@ enum DomainUserScript: CaseIterable {
         }
     }
     
-    private var associatedDomains: Set<String> {
+    var associatedDomains: Set<String> {
         switch self {
         case .youtube:
             return .init(arrayLiteral: "youtube.com")
@@ -70,8 +82,7 @@ enum DomainUserScript: CaseIterable {
             // This variable will be unique amongst scripts loaded in the page.
             // When the script is called, the token is provided in order to access the script variable.
             var alteredSource = source
-            let token = UserScriptManager.securityToken.uuidString.replacingOccurrences(of: "-", with: "",
-                                                                                        options: .literal)
+            let token = UserScriptManager.securityTokenString
             alteredSource = alteredSource.replacingOccurrences(of: "$<prunePaths>", with: "ABSPP\(token)",
                                                                options: .literal)
             alteredSource = alteredSource.replacingOccurrences(of: "$<findOwner>", with: "ABSFO\(token)",
@@ -85,8 +96,7 @@ enum DomainUserScript: CaseIterable {
         case .braveSearch:
             var alteredSource = source
             
-            let securityToken = UserScriptManager.securityToken.uuidString
-                .replacingOccurrences(of: "-", with: "", options: .literal)
+            let securityToken = UserScriptManager.securityTokenString
             alteredSource = alteredSource
                 .replacingOccurrences(of: "$<brave-search-helper>",
                                       with: "BSH\(UserScriptManager.messageHandlerTokenString)",

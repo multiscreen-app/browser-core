@@ -67,7 +67,7 @@ class TabManager: NSObject {
 
     fileprivate(set) var allTabs = [Tab]()
     fileprivate var _selectedIndex = -1
-    fileprivate var navDelegate: TabManagerNavDelegate!
+    fileprivate let navDelegate: TabManagerNavDelegate
     fileprivate(set) var isRestoring = false
 
     // A WKWebViewConfiguration used for normal tabs
@@ -86,11 +86,13 @@ class TabManager: NSObject {
         assert(Thread.isMainThread)
 
         self.prefs = prefs
+        self.navDelegate = TabManagerNavDelegate()
         self.imageStore = imageStore
+        self.rewards = rewards
         self.tabEventHandlers = TabEventHandlers.create(with: prefs)
         super.init()
-        self.navDelegate = TabManagerNavDelegate(self)
 
+        self.navDelegate.tabManager = self
         addNavigationDelegate(self)
 
         Preferences.Shields.blockImages.observe(from: self)
@@ -157,6 +159,15 @@ class TabManager: NSObject {
         let tabType: TabType = (self.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false) ? .private : .regular
         return tabs(withType: tabType)
     }
+    
+    var openedWebsitesCount: Int {
+        tabsForCurrentMode.filter {
+            if let url = $0.url {
+                return url.isWebPage() && !(InternalURL(url)?.isAboutHomeURL ?? false)
+            }
+            return false
+        }.count
+    }
 
     private func tabs(withType type: TabType) -> [Tab] {
         assert(Thread.isMainThread)
@@ -167,7 +178,17 @@ class TabManager: NSObject {
         let configuration = WKWebViewConfiguration()
         configuration.processPool = WKProcessPool()
         configuration.preferences.javaScriptCanOpenWindowsAutomatically = !Preferences.General.blockPopups.value
-        configuration.dataDetectorTypes = .all
+        
+        // Do NOT add `.link` to the list, it breaks interstitial pages
+        // and pages that don't want the URL highlighted!
+        configuration.dataDetectorTypes = [
+            .phoneNumber,
+            .address,
+            .calendarEvent,
+            .trackingNumber,
+            .flightNumber,
+            .lookupSuggestion
+        ]
         
         return configuration
     }
@@ -487,25 +508,27 @@ class TabManager: NSObject {
         guard let webView = tab.webView, let order = indexOfWebView(webView) else { return nil }
         
         // Ignore session restore data.
-        guard let urlString = tab.url?.absoluteString, !urlString.contains("localhost") else { return nil }
+        guard let url = tab.url,
+                !InternalURL.isValid(url: url),
+                !(InternalURL(url)?.isSessionRestore ?? false) else { return nil }
         
-        var urls = [String]()
+        var urls = [URL]()
         var currentPage = 0
         
         if let currentItem = webView.backForwardList.currentItem {
             // Freshly created web views won't have any history entries at all.
             let backList = webView.backForwardList.backList
             let forwardList = webView.backForwardList.forwardList
-            let backListMap = backList.map { $0.url.absoluteString }
-            let forwardListMap = forwardList.map { $0.url.absoluteString }
-            let currentItemString = currentItem.url.absoluteString
+            let backListMap = backList.map { $0.url }
+            let forwardListMap = forwardList.map { $0.url }
+            let currentItem = currentItem.url
             
             log.debug("backList: \(backListMap)")
             log.debug("forwardList: \(forwardListMap)")
-            log.debug("currentItem: \(currentItemString)")
+            log.debug("currentItem: \(currentItem)")
             
             // Business as usual.
-            urls = backListMap + [currentItemString] + forwardListMap
+            urls = backListMap + [currentItem] + forwardListMap
             currentPage = -forwardList.count
             
             log.debug("---stack: \(urls)")
@@ -516,8 +539,12 @@ class TabManager: NSObject {
             
             let isSelected = selectedTab === tab
             
-            let data = SavedTab(id: id, title: title, url: urlString, isSelected: isSelected, order: Int16(order), 
-                                screenshot: nil, history: urls, historyIndex: Int16(currentPage))
+            let urls = SessionData.updateSessionURLs(urls: urls).map({ $0.absoluteString })
+            let data = SavedTab(id: id, title: title, url: url.absoluteString,
+                                isSelected: isSelected, order: Int16(order),
+                                screenshot: nil, history: urls,
+                                historyIndex: Int16(currentPage),
+                                isPrivate: tab.isPrivate)
             return data
         }
         
@@ -877,7 +904,7 @@ class TabManager: NSObject {
         guard let savedTab = TabMO.get(fromId: tab.id) else { return }
         
         if let history = savedTab.urlHistorySnapshot as? [String], let tabUUID = savedTab.syncUUID, let url = savedTab.url {
-            let data = SavedTab(id: tabUUID, title: savedTab.title, url: url, isSelected: savedTab.isSelected, order: savedTab.order, screenshot: nil, history: history, historyIndex: savedTab.urlHistoryCurrentIndex)
+            let data = SavedTab(id: tabUUID, title: savedTab.title, url: url, isSelected: savedTab.isSelected, order: savedTab.order, screenshot: nil, history: history, historyIndex: savedTab.urlHistoryCurrentIndex, isPrivate: tab.isPrivate)
             if let webView = tab.webView {
                 tab.navigationDelegate = navDelegate
                 tab.restore(webView, restorationData: data)
@@ -927,7 +954,7 @@ extension TabManager: WKNavigationDelegate {
         tab.noImageMode = isNoImageMode
         
         if !tab.contentBlocker.isEnabled {
-            webView.evaluateSafeJavaScript(functionName: "window.__firefox__.TrackingProtectionStats.setEnabled", args: [false, UserScriptManager.securityToken], sandboxed: false)
+            webView.evaluateSafeJavaScript(functionName: "window.__firefox__.TrackingProtectionStats.setEnabled", args: [false, UserScriptManager.securityTokenString], sandboxed: false)
         }
     }
 
@@ -936,8 +963,17 @@ extension TabManager: WKNavigationDelegate {
         // as we current handle tab restore as error page redirects then this ensures that we don't
         // call storeChanges unnecessarily on startup
         
-        if let tab = tabForWebView(webView), !tab.isPrivate, let url = webView.url, !url.absoluteString.contains("localhost") {
-            saveTab(tab)
+        if let url = webView.url {
+            // tab restore uses internal pages,
+            // so don't call storeChanges unnecessarily on startup
+            if InternalURL(url)?.isSessionRestore == true {
+                return
+            }
+
+            // Saving Tab Private Mode - not supported yet.
+            if let tab = tabForWebView(webView), !tab.isPrivate {
+                saveTab(tab)
+            }
         }
     }
     
@@ -1071,8 +1107,8 @@ class TabManagerNavDelegate: NSObject, WKNavigationDelegate {
             })
         }
 
-        if res == .allow, let bvc = tabManager.browserViewController {
-            let tab = bvc.tabManager[webView]
+        if res == .allow {
+            let tab = tabManager[webView]
             tab?.mimeType = navigationResponse.response.mimeType
         }
 
