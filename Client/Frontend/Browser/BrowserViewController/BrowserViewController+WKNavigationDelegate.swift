@@ -14,12 +14,17 @@ private let rewardsLog = Logger.braveCoreLogger
 
 extension WKNavigationAction {
     /// Allow local requests only if the request is privileged.
-    var isAllowed: Bool {
+    /// If the request is internal or unprivileged, we should deny it.
+    var isInternalUnprivileged: Bool {
         guard let url = request.url else {
             return true
         }
 
-        return !url.isWebPage(includeDataURIs: false) || !url.isLocal || request.isPrivileged
+        if let url = InternalURL(url) {
+            return !url.isAuthorized
+        } else {
+            return false
+        }
     }
 }
 
@@ -112,15 +117,16 @@ extension BrowserViewController: WKNavigationDelegate {
             return
         }
         
-        // user referral custom handler
-//        if let customHeader = UserReferralProgram.shouldAddCustomHeader(for: navigationAction.request) {
-//            decisionHandler(.cancel, preferences)
-//            var newRequest = navigationAction.request
-//            UrpLog.log("Adding custom header: [\(customHeader.field): \(customHeader.value)] for domain: \(newRequest.url?.absoluteString ?? "404")")
-//            newRequest.addValue(customHeader.value, forHTTPHeaderField: customHeader.field)
-//            webView.load(newRequest)
-//            return
-//        }
+        if InternalURL.isValid(url: url) {
+            if navigationAction.navigationType != .backForward, navigationAction.isInternalUnprivileged {
+                log.warning("Denying unprivileged request: \(navigationAction.request)")
+                decisionHandler(.cancel, preferences)
+                return
+            }
+
+            decisionHandler(.allow, preferences)
+            return
+        }
 
         if url.scheme == "about" {
             decisionHandler(.allow, preferences)
@@ -128,12 +134,6 @@ extension BrowserViewController: WKNavigationDelegate {
         }
         
         if url.isBookmarklet {
-            decisionHandler(.cancel, preferences)
-            return
-        }
-
-        if !navigationAction.isAllowed && navigationAction.navigationType != .backForward {
-            log.warning("Denying unprivileged request: \(navigationAction.request)")
             decisionHandler(.cancel, preferences)
             return
         }
@@ -158,7 +158,7 @@ extension BrowserViewController: WKNavigationDelegate {
 
         // First special case are some schemes that are about Calling. We prompt the user to confirm this action. This
         // gives us the exact same behaviour as Safari.
-        if url.scheme == "tel" || url.scheme == "facetime" || url.scheme == "facetime-audio" {
+        if ["sms", "tel", "facetime", "facetime-audio"].contains(url.scheme) {
             handleExternalURL(url)
             decisionHandler(.cancel, preferences)
             return
@@ -255,7 +255,7 @@ extension BrowserViewController: WKNavigationDelegate {
             if
                 let mainDocumentURL = navigationAction.request.mainDocumentURL,
                 mainDocumentURL.schemelessAbsoluteString == url.schemelessAbsoluteString,
-                !url.isSessionRestoreURL,
+                !(InternalURL(url)?.isSessionRestore ?? false),
                 navigationAction.sourceFrame.isMainFrame || navigationAction.targetFrame?.isMainFrame == true {
                 
                 // Identify specific block lists that need to be applied to the requesting domain
@@ -323,7 +323,9 @@ extension BrowserViewController: WKNavigationDelegate {
         let response = navigationResponse.response
         let responseURL = response.url
         
-        if let tab = tabManager[webView], responseURL?.isSessionRestoreURL == true {
+        if let tab = tabManager[webView],
+            let responseURL = responseURL,
+            InternalURL(responseURL)?.isSessionRestore == true {
             tab.shouldClassifyLoadsForAds = false
         }
         

@@ -70,8 +70,7 @@ enum DomainUserScript: CaseIterable {
             // This variable will be unique amongst scripts loaded in the page.
             // When the script is called, the token is provided in order to access the script variable.
             var alteredSource = source
-            let token = UserScriptManager.securityToken.uuidString.replacingOccurrences(of: "-", with: "",
-                                                                                        options: .literal)
+            let token = UserScriptManager.securityTokenString
             alteredSource = alteredSource.replacingOccurrences(of: "$<prunePaths>", with: "ABSPP\(token)",
                                                                options: .literal)
             alteredSource = alteredSource.replacingOccurrences(of: "$<findOwner>", with: "ABSFO\(token)",
@@ -85,8 +84,7 @@ enum DomainUserScript: CaseIterable {
         case .braveSearch:
             var alteredSource = source
             
-            let securityToken = UserScriptManager.securityToken.uuidString
-                .replacingOccurrences(of: "-", with: "", options: .literal)
+            let securityToken = UserScriptManager.securityTokenString
             alteredSource = alteredSource
                 .replacingOccurrences(of: "$<brave-search-helper>",
                                       with: "BSH\(UserScriptManager.messageHandlerTokenString)",
