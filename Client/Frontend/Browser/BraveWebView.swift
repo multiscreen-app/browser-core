@@ -8,6 +8,9 @@ import Shared
 import BraveShared
 
 class BraveWebView: WKWebView {
+    lazy var findInPageDelegate: WKWebViewFindStringFindDelegate? = {
+        return WKWebViewFindStringFindDelegate(webView: self)
+    }()
     
     override var safeAreaInsets: UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
