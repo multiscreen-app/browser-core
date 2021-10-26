@@ -569,6 +569,8 @@ class SearchViewController: SiteTableViewController, LoaderListener {
             cell.textLabel?.textColor = .bravePrimary
             cell.imageView?.image = #imageLiteral(resourceName: "search_bar_find_in_page_icon")
             cell.imageView?.contentMode = .center
+            cell.backgroundColor = .secondaryBraveBackground
+
             return cell
         case .searchSuggestionsOptIn:
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchSuggestionPromptCell.identifier, for: indexPath)
@@ -615,6 +617,7 @@ class SearchViewController: SiteTableViewController, LoaderListener {
                 cell.imageView?.layer.borderWidth = SearchViewControllerUX.iconBorderWidth
                 cell.imageView?.image = UIImage()
                 cell.imageView?.loadFavicon(for: site.tileURL)
+                cell.backgroundColor = .secondaryBraveBackground
             }
             return cell
             
