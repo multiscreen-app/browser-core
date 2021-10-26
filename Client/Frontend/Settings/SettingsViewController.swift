@@ -285,8 +285,12 @@ class SettingsViewController: TableViewController {
         return Section(
             header: .title(Strings.security),
             rows: [
-//                .boolRow(title: Strings.browserLock, detailText: Strings.browserLockDescription, option: Preferences.Privacy.lockWithPasscode, image: #imageLiteral(resourceName: "settings-passcode").template),
-                .boolRow(title: Strings.saveLogins, option: Preferences.General.saveLogins, image: #imageLiteral(resourceName: "settings-save-logins").template)
+                //.boolRow(title: Strings.browserLock, detailText: Strings.browserLockDescription, option: Preferences.Privacy.lockWithPasscode, image: #imageLiteral(resourceName: "settings-passcode").template),
+                Row(text: Strings.Login.loginListNavigationTitle, selection: { [unowned self] in
+                    let loginsPasswordsViewController = LoginListViewController(profile: self.profile)
+                    loginsPasswordsViewController.settingsDelegate = self.settingsDelegate
+                    self.navigationController?.pushViewController(loginsPasswordsViewController, animated: true)
+                }, image: #imageLiteral(resourceName: "settings-save-logins").template, accessory: .disclosureIndicator)
             ]
         )
     }()
