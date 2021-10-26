@@ -97,6 +97,9 @@ extension BrowserViewController: OnboardingControllerDelegate {
     private func dismissOnboarding(_ onboardingController: OnboardingNavigationController) {
         // Present NTP Education If Locale is JP and onboading is finished or skipped
         // Present private browsing prompt if necessary when onboarding has been skipped
+        if let delegate = browserInstance?.delegate {
+            delegate.dismissPopup()
+        }
         onboardingController.dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             

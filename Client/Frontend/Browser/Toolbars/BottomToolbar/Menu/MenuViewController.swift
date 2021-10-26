@@ -73,6 +73,15 @@ class MenuViewController: UINavigationController, UIPopoverPresentationControlle
         viewControllers = [MenuHostingController(content: content(self))]
         menuNavigationDelegate = MenuNavigationControllerDelegate(panModal: self)
         delegate = menuNavigationDelegate
+        
+        let appearence = UINavigationBarAppearance()
+        appearence.backgroundColor = .braveBackground
+        navigationBar.standardAppearance = appearence
+        navigationBar.compactAppearance = appearence
+        if #available(iOS 15.0, *) {
+            navigationBar.compactScrollEdgeAppearance = appearence
+        }
+        navigationBar.scrollEdgeAppearance = appearence
     }
     
     @available(*, unavailable)

@@ -136,7 +136,7 @@ extension BrowserViewController: PlaylistHelperDelegate {
         }
         
         let popover = createPlaylistPopover(tab: tab, state: state)
-        popover.present(from: topToolbar.locationView.playlistButton, on: self)
+//        popover.present(from: topToolbar.locationView.playlistButton, on: self)
     }
     
     func showPlaylistToast(tab: Tab?, state: PlaylistItemAddedState, item: PlaylistInfo?) {
@@ -246,7 +246,7 @@ extension BrowserViewController: PlaylistHelperDelegate {
                 Preferences.Playlist.addToPlaylistURLBarOnboardingCount.value += 1
                 
                 let popover = createPlaylistPopover(tab: tab, state: .addToPlaylist)
-                popover.present(from: topToolbar.locationView.playlistButton, on: self)
+//                popover.present(from: topToolbar.locationView.playlistButton, on: self)
             }
             
             shouldShowPlaylistOnboardingThisSession = false

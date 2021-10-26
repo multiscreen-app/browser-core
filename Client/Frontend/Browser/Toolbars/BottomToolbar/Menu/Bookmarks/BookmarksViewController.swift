@@ -90,7 +90,11 @@ class BookmarksViewController: SiteTableViewController, ToolbarUrlActionsProtoco
     }
     
     @objc private func tappedDone() {
-        dismiss(animated: true)
+        if let controller = self.navigationController as? SettingsNavigationController {
+            controller.done()
+        } else {
+            dismiss(animated: true)
+        }
     }
     
     private func updateEditBookmarksButtonStatus() {

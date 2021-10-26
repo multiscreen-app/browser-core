@@ -37,6 +37,7 @@ class MenuButton: ToolbarButton {
     }
     
     func addBadge(_ badge: Badge, animated: Bool) {
+        return
         if badges[badge] != nil {
             // Badge already exists
             return

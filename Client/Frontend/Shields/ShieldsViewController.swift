@@ -185,11 +185,13 @@ class ShieldsViewController: UIViewController, PopoverContentComponent {
     }
     
     private func updatePreferredContentSize() {
+        return
+        
         guard let visibleView = shieldsView.contentView else { return }
         let width = min(360, UIScreen.main.bounds.width - 20)
         // Ensure the a static width is given to the main view so we can calculate the height
         // correctly when we force a layout
-        shieldsView.frame = CGRect(origin: .zero, size: .init(width: width, height: 0))
+        shieldsView.frame = CGRect(origin: .zero, size: .init(width: width, height: shieldsView.bounds.height))
         shieldsView.setNeedsLayout()
         shieldsView.layoutIfNeeded()
         

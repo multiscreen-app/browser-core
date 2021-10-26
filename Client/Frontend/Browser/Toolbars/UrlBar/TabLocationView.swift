@@ -225,7 +225,8 @@ class TabLocationView: UIView {
         addGestureRecognizer(longPressRecognizer)
         addGestureRecognizer(tapRecognizer)
         
-        let optionSubviews = [readerModeButton, playlistButton, reloadButton, separatorLine, shieldsButton]
+//        let optionSubviews = [readerModeButton, playlistButton, reloadButton, separatorLine, shieldsButton]
+        let optionSubviews = [readerModeButton, reloadButton, separatorLine, shieldsButton]
         separatorLine.isUserInteractionEnabled = false
         
         // MS position of rewards button
@@ -278,7 +279,8 @@ class TabLocationView: UIView {
 
     override var accessibilityElements: [Any]? {
         get {
-            return [lockImageView, urlTextField, readerModeButton, playlistButton, reloadButton, shieldsButton].filter { !$0.isHidden }
+            return [lockImageView, urlTextField, readerModeButton, reloadButton, shieldsButton].filter { !$0.isHidden }
+//            return [lockImageView, urlTextField, readerModeButton, playlistButton, reloadButton, shieldsButton].filter { !$0.isHidden }
         }
         set {
             super.accessibilityElements = newValue

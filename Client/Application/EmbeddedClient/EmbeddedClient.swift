@@ -21,7 +21,7 @@ import Combine
 
 private let log = Logger.browserLogger
 
-open class EmbeddedClientDelegate {
+open class EmbeddedClient {
     
     var browserInstances: [BrowserInstance] = []
     var imageStore: DiskImageStore?
@@ -40,7 +40,6 @@ open class EmbeddedClientDelegate {
     var shutdownWebServer: DispatchSourceTimer?
     
     public init() {
-        
     }
     
     public func initialize() {
@@ -133,11 +132,11 @@ open class EmbeddedClientDelegate {
         self.braveCore?.scheduleLowPriorityStartupTasks()
     }
     
-    public func createBrowserInstance() -> BrowserInstance {
+    public func createBrowserInstance(_ delegate: BrowserInstanceDelegate) -> BrowserInstance {
         // Make sure current private browsing flag respects the private browsing only user preference
         PrivateBrowsingManager.shared.isPrivateBrowsing = Preferences.Privacy.privateBrowsingOnly.value
         
-        return BrowserInstance(profile: getProfile(), store: self.imageStore!)
+        return BrowserInstance(delegate, profile: getProfile(), store: self.imageStore!)
         // Add restoration class, the factory that will return the ViewController we will restore with.
 //        browserViewController.restorationIdentifier = NSStringFromClass(BrowserViewController.self)
 //        browserViewController.restorationClass = AppDelegate.self

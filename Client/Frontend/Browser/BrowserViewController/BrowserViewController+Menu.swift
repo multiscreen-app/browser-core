@@ -18,7 +18,7 @@ extension BrowserViewController {
             MenuItemButton(icon: #imageLiteral(resourceName: "menu_bookmarks").template, title: Strings.bookmarksMenuItem) { [unowned self, unowned menuController] in
                 let vc = BookmarksViewController(folder: Bookmarkv2.lastVisitedFolder(), isPrivateBrowsing: PrivateBrowsingManager.shared.isPrivateBrowsing)
                 vc.toolbarUrlActionsDelegate = self
-                menuController.presentInnerMenu(vc)
+                menuController.pushInnerMenu(vc)
             }
             MenuItemButton(icon: #imageLiteral(resourceName: "menu-history").template, title: Strings.historyMenuItem) { [unowned self, unowned menuController] in
                 let vc = HistoryViewController(isPrivateBrowsing: PrivateBrowsingManager.shared.isPrivateBrowsing)
@@ -81,7 +81,7 @@ extension BrowserViewController {
             VStack(alignment: .leading, spacing: 0) {
                 MenuTabDetailsView(tab: browserViewController.tabManager.selectedTab, url: tabURL)
                 VStack(spacing: 0) {
-                    if let activity = playlistActivity, activity.enabled, let item = activity.item {
+                    if false, let activity = playlistActivity, activity.enabled, let item = activity.item {
                         PlaylistMenuButton(isAdded: isPlaylistItemAdded) {
                             if !isPlaylistItemAdded {
                                 // Add to playlist

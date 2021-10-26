@@ -69,17 +69,21 @@ class BackForwardListViewController: UIViewController, UITableViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(shadow)
+//        view.addSubview(shadow)
         view.addSubview(tableView)
-        snappedToBottom = bvc?.toolbar != nil
-        tableView.snp.makeConstraints { make in
-            make.height.equalTo(0)
-            make.left.right.equalTo(self.view)
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
-        shadow.snp.makeConstraints { make in
-            make.left.right.equalTo(self.view)
-        }
-        remakeVerticalConstraints()
+        
+//        snappedToBottom = bvc?.toolbar != nil
+//        tableView.snp.makeConstraints { make in
+//            make.height.equalTo(0)
+//            make.left.right.equalTo(self.view)
+//        }
+//        shadow.snp.makeConstraints { make in
+//            make.left.right.equalTo(self.view)
+//        }
+//        remakeVerticalConstraints()
         view.layoutIfNeeded()
         scrollTableViewToIndex(currentRow)
         setupDismissTap()

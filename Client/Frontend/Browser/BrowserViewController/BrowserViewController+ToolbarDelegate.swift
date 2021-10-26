@@ -21,7 +21,7 @@ extension BrowserViewController: TopToolbarDelegate {
         }
         updateFindInPageVisibility(visible: false)
         
-        let tabTrayController = TabTrayController(tabManager: tabManager, profile: profile, tabTrayDelegate: self)
+        let tabTrayController = TabTrayController(self, tabManager: tabManager, profile: profile, tabTrayDelegate: self)
         
         if tabManager.selectedTab == nil {
             tabManager.selectTab(tabManager.tabsForCurrentMode.first)
@@ -32,7 +32,11 @@ extension BrowserViewController: TopToolbarDelegate {
         
         isTabTrayActive = true
         
-        navigationController?.pushViewController(tabTrayController, animated: true)
+        if let delegate = browserInstance?.delegate {
+            delegate.displayPopup(tabTrayController, configuration: CenterConfiguration(size: .fullscreen), modal: true, dismiss: nil)
+        } else {
+            navigationController?.pushViewController(tabTrayController, animated: true)
+        }
         self.tabTrayController = tabTrayController
     }
     
@@ -45,6 +49,9 @@ extension BrowserViewController: TopToolbarDelegate {
     }
     
     func topToolbarDidLongPressReloadButton(_ topToolbar: TopToolbarView, from button: UIButton) {
+        if browserInstance != nil {
+            return
+        }
         guard let tab = tabManager.selectedTab else { return }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: Strings.cancelButtonTitle, style: .cancel, handler: nil))
@@ -258,6 +265,7 @@ extension BrowserViewController: TopToolbarDelegate {
                     tabManager: self.tabManager
                 )
                 let container = SettingsNavigationController(rootViewController: shieldsAndPrivacy)
+                container.browserInstanceDelegate = browserInstance?.delegate
                 container.isModalInPresentation = true
                 container.modalPresentationStyle =
                     UIDevice.current.userInterfaceIdiom == .phone ? .pageSheet : .formSheet
@@ -266,12 +274,22 @@ extension BrowserViewController: TopToolbarDelegate {
                     target: container,
                     action: #selector(SettingsNavigationController.done)
                 )
-                self.present(container, animated: true)
+                
+                if let browserInstance = browserInstance {
+                    browserInstance.delegate.displayPopup(container, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
+                } else {
+                    self.present(container, animated: true)
+                }
             }
         }
         let container = PopoverNavigationController(rootViewController: shields)
-        let popover = PopoverController(contentController: container, contentSizeBehavior: .preferredContentSize)
-        popover.present(from: topToolbar.locationView.shieldsButton, on: self)
+        
+        if let browserInstance = browserInstance {
+            browserInstance.delegate.displayPopup(container, configuration: CenterConfiguration(size: .small), modal: true, dismiss: nil)
+        } else {
+            let popover = PopoverController(contentController: container, contentSizeBehavior: .preferredContentSize)
+            popover.present(from: topToolbar.locationView.shieldsButton, on: self)
+        }
     }
     
     // TODO: This logic should be fully abstracted away and share logic from current MenuViewController
@@ -467,7 +485,12 @@ extension BrowserViewController: TopToolbarDelegate {
         
         navigationController.navigationBar.topItem?.rightBarButtonItem = doneBarbutton
         
-        present(navigationController, animated: true)
+        if let delegate = browserInstance?.delegate {
+            navigationController.browserInstanceDelegate = delegate
+            delegate.displayPopup(navigationController, configuration: CenterConfiguration(size: .large), modal: true, dismiss: nil)
+        } else {
+            present(navigationController, animated: true)
+        }
     }
 }
 
@@ -539,10 +562,14 @@ extension BrowserViewController: ToolbarDelegate {
             }
             .navigationBarHidden(true)
         })
-        presentPanModal(menuController, sourceView: tabToolbar.menuButton, sourceRect: tabToolbar.menuButton.bounds)
-        if menuController.modalPresentationStyle == .popover {
-            menuController.popoverPresentationController?.popoverLayoutMargins = .init(equalInset: 4)
-            menuController.popoverPresentationController?.permittedArrowDirections = [.up]
+        if let delegate = browserInstance?.delegate {
+            delegate.displayPopup(menuController, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
+        } else {
+            presentPanModal(menuController, sourceView: tabToolbar.menuButton, sourceRect: tabToolbar.menuButton.bounds)
+            if menuController.modalPresentationStyle == .popover {
+                menuController.popoverPresentationController?.popoverLayoutMargins = .init(equalInset: 4)
+                menuController.popoverPresentationController?.permittedArrowDirections = [.up]
+            }
         }
     }
     
@@ -551,6 +578,9 @@ extension BrowserViewController: ToolbarDelegate {
     }
     
     func tabToolbarDidLongPressAddTab(_ tabToolbar: ToolbarProtocol, button: UIButton) {
+        if browserInstance != nil {
+            return
+        }
         showAddTabContextMenu(sourceView: toolbar ?? topToolbar, button: button)
     }
     
@@ -591,6 +621,10 @@ extension BrowserViewController: ToolbarDelegate {
     }
     
     func tabToolbarDidLongPressTabs(_ tabToolbar: ToolbarProtocol, button: UIButton) {
+        if browserInstance != nil {
+            return
+        }
+        
         guard self.presentedViewController == nil else {
             return
         }
@@ -624,8 +658,14 @@ extension BrowserViewController: ToolbarDelegate {
             backForwardViewController.tabManager = tabManager
             backForwardViewController.bvc = self
             backForwardViewController.modalPresentationStyle = .overCurrentContext
-            backForwardViewController.backForwardTransitionDelegate = BackForwardListAnimator()
-            self.present(backForwardViewController, animated: true, completion: nil)
+//            backForwardViewController.backForwardTransitionDelegate = BackForwardListAnimator()
+            
+            if let delegate = browserInstance?.delegate {
+                delegate.displayPopup(backForwardViewController, configuration: CenterConfiguration(size: .large), modal: false, dismiss: nil)
+            } else {
+                self.present(backForwardViewController, animated: true, completion: nil)
+
+            }
         }
     }
     

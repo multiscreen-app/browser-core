@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		094774452702B1CF005FB8B6 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094774442702B1CF005FB8B6 /* OtherExtensions.swift */; };
-		0977CB282703B8DF00419B38 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977CB272703B8DF00419B38 /* TestViewController.swift */; };
 		0A0A5ED125B1F080007B3E74 /* DefaultBrowserIntroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A5ED025B1F080007B3E74 /* DefaultBrowserIntroManager.swift */; };
 		0A0D3D3921A4BD0600BEE65B /* SafeBrowsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3821A4BD0600BEE65B /* SafeBrowsing.swift */; };
 		0A0D3D3C21A4BE6400BEE65B /* adblock-list.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3B21A4BE6400BEE65B /* adblock-list.txt */; };
@@ -605,6 +604,9 @@
 		A1FEEE2020BF28D900298DA2 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FEEE1F20BF28D900298DA2 /* Then.swift */; };
 		A83E5AB71C1D993D0026D912 /* UIPasteboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83E5AB61C1D993D0026D912 /* UIPasteboardExtensions.swift */; };
 		A9072B801D07B34100459960 /* NoImageModeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9072B7F1D07B34100459960 /* NoImageModeHelper.swift */; };
+		B034B79A272528F50077446B /* BrowserInstanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B034B797272527200077446B /* BrowserInstanceDelegate.swift */; };
+		B034B79C27253B300077446B /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B034B79B27253B300077446B /* Popup.swift */; };
+		B034B79D27253B340077446B /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B034B79B27253B300077446B /* Popup.swift */; };
 		B07D185627053B9000C1570A /* BrowserInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D185527053B9000C1570A /* BrowserInstance.swift */; };
 		B081A2B1271C857E0091B939 /* Shared-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E0BB151AFBC9E4008D6260 /* Shared-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B081A2BD271C85850091B939 /* Storage-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FCAE33D1ABB5F1800877008 /* Storage-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -619,7 +621,6 @@
 		B0A89F88271BA32800EB6841 /* EmbeddedClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B0A89F87271BA32800EB6841 /* EmbeddedClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0C5B9A6271F5EFD00805701 /* PrivilegedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5B9A5271F5EFD00805701 /* PrivilegedRequest.swift */; };
 		B0FAB98C271BA4EF0056A8A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84B21E51A0910F600AAB793 /* AppDelegate.swift */; };
-		B0FAB98D271BA4EF0056A8A3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977CB272703B8DF00419B38 /* TestViewController.swift */; };
 		B0FAB98E271BA4EF0056A8A3 /* BrowserInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D185527053B9000C1570A /* BrowserInstance.swift */; };
 		B0FAB98F271BA4EF0056A8A3 /* WebServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40FAB0B1A7ABB77009CB80D /* WebServer.swift */; };
 		B0FAB990271BA4EF0056A8A3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BE7B251B054D4400641031 /* main.swift */; };
@@ -1206,7 +1207,7 @@
 		B0FABD9E271BB2540056A8A3 /* UIImageViewAligned.h in Headers */ = {isa = PBXBuildFile; fileRef = D8C75DE9207584C300BB8AD0 /* UIImageViewAligned.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0FABDA1271BB7280056A8A3 /* HttpsEverywhere.h in Headers */ = {isa = PBXBuildFile; fileRef = 4422D42821BFCF8800BF1855 /* HttpsEverywhere.h */; };
 		B0FABDA3271BBAD90056A8A3 /* Try.h in Headers */ = {isa = PBXBuildFile; fileRef = E650755D1E37F756006961AC /* Try.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B0FABE1B271BDFA80056A8A3 /* EmbeddedClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FABE1A271BDFA80056A8A3 /* EmbeddedClientDelegate.swift */; };
+		B0FABE1B271BDFA80056A8A3 /* EmbeddedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FABE1A271BDFA80056A8A3 /* EmbeddedClient.swift */; };
 		C400467C1CF4E43E00B08303 /* BackForwardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */; };
 		C40046FA1CF8E0B200B08303 /* BackForwardListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */; };
 		C4E3984C1D21F2FD004E89BA /* TabTrayButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3984B1D21F2FD004E89BA /* TabTrayButtonExtensions.swift */; };
@@ -1699,7 +1700,6 @@
 
 /* Begin PBXFileReference section */
 		094774442702B1CF005FB8B6 /* OtherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
-		0977CB272703B8DF00419B38 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0A0A5ED025B1F080007B3E74 /* DefaultBrowserIntroManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowserIntroManager.swift; sourceTree = "<group>"; };
 		0A0D3D3821A4BD0600BEE65B /* SafeBrowsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeBrowsing.swift; sourceTree = "<group>"; };
 		0A0D3D3B21A4BE6400BEE65B /* adblock-list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "adblock-list.txt"; sourceTree = "<group>"; };
@@ -2579,6 +2579,8 @@
 		A1FEEE1F20BF28D900298DA2 /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		A83E5AB61C1D993D0026D912 /* UIPasteboardExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPasteboardExtensions.swift; sourceTree = "<group>"; };
 		A9072B7F1D07B34100459960 /* NoImageModeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoImageModeHelper.swift; sourceTree = "<group>"; };
+		B034B797272527200077446B /* BrowserInstanceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInstanceDelegate.swift; sourceTree = "<group>"; };
+		B034B79B27253B300077446B /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		B07D185527053B9000C1570A /* BrowserInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInstance.swift; sourceTree = "<group>"; };
 		B081A2BE271C885D0091B939 /* Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = "<group>"; };
 		B081A2C2271C91360091B939 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
@@ -2591,7 +2593,7 @@
 		B0FABD7F271BAD270056A8A3 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
 		B0FABD82271BAD470056A8A3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		B0FABD9A271BAE580056A8A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B0FABE1A271BDFA80056A8A3 /* EmbeddedClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedClientDelegate.swift; sourceTree = "<group>"; };
+		B0FABE1A271BDFA80056A8A3 /* EmbeddedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedClient.swift; sourceTree = "<group>"; };
 		C400467B1CF4E43E00B08303 /* BackForwardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListViewController.swift; sourceTree = "<group>"; };
 		C40046F91CF8E0B200B08303 /* BackForwardListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackForwardListAnimator.swift; sourceTree = "<group>"; };
 		C4E3984B1D21F2FD004E89BA /* TabTrayButtonExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabTrayButtonExtensions.swift; path = ../Browser/TabTrayButtonExtensions.swift; sourceTree = "<group>"; };
@@ -2779,7 +2781,7 @@
 		F35B8D2C1D6383E9008E3D61 /* SessionRestoreHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRestoreHelper.swift; sourceTree = "<group>"; };
 		F35B8D2E1D638408008E3D61 /* SessionRestoreHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRestoreHandler.swift; sourceTree = "<group>"; };
 		F84B21BE1A090F8100AAB793 /* Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F84B21E51A0910F600AAB793 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F84B21E51A0910F600AAB793 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F84B21EF1A0910F600AAB793 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F84B22431A09165600AAB793 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F91785DA255F38D6002976F2 /* WKWebViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewExtensions.swift; sourceTree = "<group>"; };
@@ -4481,6 +4483,17 @@
 			path = Shields;
 			sourceTree = "<group>";
 		};
+		B034B799272527260077446B /* EmbeddedClient */ = {
+			isa = PBXGroup;
+			children = (
+				B07D185527053B9000C1570A /* BrowserInstance.swift */,
+				B0FABE1A271BDFA80056A8A3 /* EmbeddedClient.swift */,
+				B034B797272527200077446B /* BrowserInstanceDelegate.swift */,
+				B034B79B27253B300077446B /* Popup.swift */,
+			);
+			path = EmbeddedClient;
+			sourceTree = "<group>";
+		};
 		B0A89F86271BA32800EB6841 /* EmbeddedClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -4859,9 +4872,6 @@
 			isa = PBXGroup;
 			children = (
 				F84B21E51A0910F600AAB793 /* AppDelegate.swift */,
-				0977CB272703B8DF00419B38 /* TestViewController.swift */,
-				B07D185527053B9000C1570A /* BrowserInstance.swift */,
-				B0FABE1A271BDFA80056A8A3 /* EmbeddedClientDelegate.swift */,
 				B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */,
 			);
 			path = Delegates;
@@ -4978,6 +4988,7 @@
 		F84B21E41A0910F600AAB793 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				B034B799272527260077446B /* EmbeddedClient */,
 				E652F6F91BF66A79007FFDD6 /* Delegates */,
 				28CE83E81A1D206D00576538 /* Client-Bridging-Header.h */,
 				E40FAB0B1A7ABB77009CB80D /* WebServer.swift */,
@@ -6428,7 +6439,6 @@
 				B0FABAFE271BA53E0056A8A3 /* stringpiece.cc in Sources */,
 				B0FABAFF271BA53E0056A8A3 /* prog.cc in Sources */,
 				B0FAB98C271BA4EF0056A8A3 /* AppDelegate.swift in Sources */,
-				B0FAB98D271BA4EF0056A8A3 /* TestViewController.swift in Sources */,
 				B0FAB98E271BA4EF0056A8A3 /* BrowserInstance.swift in Sources */,
 				B0FAB98F271BA4EF0056A8A3 /* WebServer.swift in Sources */,
 				B0FAB990271BA4EF0056A8A3 /* main.swift in Sources */,
@@ -6452,6 +6462,7 @@
 				B0FAB9A2271BA4F00056A8A3 /* AppearanceExtensions.swift in Sources */,
 				B0FAB9A3271BA4F00056A8A3 /* UIActionExtensions.swift in Sources */,
 				B0FAB9A4271BA4F00056A8A3 /* OtherExtensions.swift in Sources */,
+				B034B79A272528F50077446B /* BrowserInstanceDelegate.swift in Sources */,
 				B0FAB9A5271BA4F00056A8A3 /* UX.swift in Sources */,
 				B0FAB9A6271BA4F00056A8A3 /* UIConstants.swift in Sources */,
 				B0FAB9A7271BA4F00056A8A3 /* NewTabAccessors.swift in Sources */,
@@ -6473,7 +6484,7 @@
 				B0FAB9B7271BA4F00056A8A3 /* PlaylistPopoverView.swift in Sources */,
 				B0FAB9B8271BA4F00056A8A3 /* OnboardingViewController.swift in Sources */,
 				B0FAB9B9271BA4F00056A8A3 /* OnboardingNavigationController.swift in Sources */,
-				B0FABE1B271BDFA80056A8A3 /* EmbeddedClientDelegate.swift in Sources */,
+				B0FABE1B271BDFA80056A8A3 /* EmbeddedClient.swift in Sources */,
 				B0FAB9BA271BA4F00056A8A3 /* OnboardingPrivacyConsentViewController.swift in Sources */,
 				B0FAB9BB271BA4F00056A8A3 /* OnboardingPrivacyConsentView.swift in Sources */,
 				B0FAB9BC271BA4F00056A8A3 /* OnboardingSearchEnginesViewController.swift in Sources */,
@@ -6598,6 +6609,7 @@
 				B0FABA32271BA4F20056A8A3 /* LoginsHelper.swift in Sources */,
 				B0FABA33271BA4F20056A8A3 /* MailProviders.swift in Sources */,
 				B0FABA34271BA4F20056A8A3 /* MailtoLinkHandler.swift in Sources */,
+				B034B79D27253B340077446B /* Popup.swift in Sources */,
 				B0FABA35271BA4F20056A8A3 /* MetadataParserHelper.swift in Sources */,
 				B0FABA36271BA4F20056A8A3 /* NoImageModeHelper.swift in Sources */,
 				B0FABA37271BA4F20056A8A3 /* OpenInHelper.swift in Sources */,
@@ -6901,7 +6913,6 @@
 				278C46A923F216CE0083347F /* AdvancedControlsBarView.swift in Sources */,
 				396CDB55203C5B870034A3A3 /* TabTrayController+KeyCommands.swift in Sources */,
 				74E36D781B71323500D69DA1 /* SettingsContentViewController.swift in Sources */,
-				0977CB282703B8DF00419B38 /* TestViewController.swift in Sources */,
 				2F51767425E4024B00429692 /* PlaylistSettingsViewController.swift in Sources */,
 				448DC7D6268A5C3E00F4795C /* BraveSearchDebugMenu.swift in Sources */,
 				0AF4C59424F8003A00E500DD /* NTPDefaultBrowserCalloutProvider.swift in Sources */,
@@ -7121,6 +7132,7 @@
 				C8F457AA1F1FDD9B000CB895 /* BrowserViewController+KeyCommands.swift in Sources */,
 				E40FAB0C1A7ABB77009CB80D /* WebServer.swift in Sources */,
 				4422D54C21BFFB7E00BF1855 /* strutil.cc in Sources */,
+				B034B79C27253B300077446B /* Popup.swift in Sources */,
 				59A68D66379CFA85C4EAF00B /* TwoLineCell.swift in Sources */,
 				A1AD4BE320C0861D007A6EA1 /* UIBarButtonItemExtensions.swift in Sources */,
 				C6D267522136800100465DFA /* PrivateBrowsingManager.swift in Sources */,

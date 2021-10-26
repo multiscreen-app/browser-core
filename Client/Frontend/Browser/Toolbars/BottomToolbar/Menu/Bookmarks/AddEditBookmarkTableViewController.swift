@@ -218,6 +218,14 @@ class AddEditBookmarkTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        if let controller = self.navigationController as? SettingsNavigationController {
+            controller.done()
+        } else {
+            super.dismiss(animated: flag, completion: completion)
+        }
+    }
+    
     // MARK: - Saving data
     
     @objc func save() {

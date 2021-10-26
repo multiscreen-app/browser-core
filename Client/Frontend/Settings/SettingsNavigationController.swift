@@ -6,12 +6,17 @@ import UIKit
 
 class SettingsNavigationController: UINavigationController {
     var popoverDelegate: PresentingModalViewControllerDelegate?
+    var browserInstanceDelegate: BrowserInstanceDelegate?
 
     @objc func done() {
-        if let delegate = popoverDelegate {
-            delegate.dismissPresentedModalViewController(self, animated: true)
+        if browserInstanceDelegate != nil {
+            browserInstanceDelegate!.dismissPopup()
         } else {
-            self.dismiss(animated: true, completion: nil)
+            if let delegate = popoverDelegate {
+                delegate.dismissPresentedModalViewController(self, animated: true)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
 
@@ -33,6 +38,7 @@ class SettingsNavigationController: UINavigationController {
     override var shouldAutorotate: Bool {
         return false
     }
+
 }
 
 protocol PresentingModalViewControllerDelegate {

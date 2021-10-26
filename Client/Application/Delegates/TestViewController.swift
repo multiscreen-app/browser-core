@@ -23,8 +23,7 @@ class TestViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(partial)
+        super.viewDidLoad()        self.view.addSubview(partial)
         self.view.addSubview(partial2)
         partial.snp.makeConstraints {
             $0.top.equalToSuperview()

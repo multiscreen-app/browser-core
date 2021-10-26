@@ -39,6 +39,7 @@ protocol TabTrayDelegate: AnyObject {
 }
 
 class TabTrayController: UIViewController {
+    private let browserViewController: BrowserViewController
     let tabManager: TabManager
     let profile: Profile
     weak var delegate: TabTrayDelegate?
@@ -90,7 +91,8 @@ class TabTrayController: UIViewController {
         return tabDataSource.tabs
     }
 
-    init(tabManager: TabManager, profile: Profile) {
+    init(_ bvc: BrowserViewController, tabManager: TabManager, profile: Profile) {
+        self.browserViewController = bvc
         self.tabManager = tabManager
         self.profile = profile
         self.otherBrowsingModeOffset = CGPoint(x: 0.0, y: 0.0)
@@ -103,8 +105,8 @@ class TabTrayController: UIViewController {
         setPrivateMode()
     }
 
-    convenience init(tabManager: TabManager, profile: Profile, tabTrayDelegate: TabTrayDelegate) {
-        self.init(tabManager: tabManager, profile: profile)
+    convenience init(_ bvc: BrowserViewController, tabManager: TabManager, profile: Profile, tabTrayDelegate: TabTrayDelegate) {
+        self.init(bvc, tabManager: tabManager, profile: profile)
         self.delegate = tabTrayDelegate
     }
 
@@ -232,7 +234,11 @@ class TabTrayController: UIViewController {
             if tabManager.selectedTab == nil || TabType.of(tabManager.selectedTab).isPrivate != privateMode {
                 tabManager.selectTab(tabDataSource.tabs.first!)
             }
-            self.navigationController?.popViewController(animated: true)
+            if let delegate = browserViewController.browserInstance?.delegate {
+                delegate.dismissPopup()
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 
@@ -412,7 +418,11 @@ extension TabTrayController: TabSelectionDelegate {
     func didSelectTabAtIndex(_ index: Int) {
         let tab = tabManager.tabsForCurrentMode[index]
         tabManager.selectTab(tab)
-        _ = self.navigationController?.popViewController(animated: true)
+        if let delegate = browserViewController.browserInstance?.delegate {
+            delegate.dismissPopup()
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -469,7 +479,11 @@ extension TabTrayController: TabManagerDelegate {
         insertTabToCollection(tab, index: index) {
             // don't pop the tab tray view controller if it is not in the foreground
             if self.presentedViewController == nil {
-                _ = self.navigationController?.popViewController(animated: true)
+                if let delegate = self.browserViewController.browserInstance?.delegate {
+                    delegate.dismissPopup()
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }

@@ -44,6 +44,7 @@ private struct BrowserViewControllerUX {
 }
 
 class BrowserViewController: UIViewController {
+    var browserInstance: BrowserInstance?
     var webViewContainer: UIView!
     var topToolbar: TopToolbarView!
     var tabsBar: TabsBarViewController!
@@ -145,14 +146,9 @@ class BrowserViewController: UIViewController {
     
     let safeBrowsing: SafeBrowsing?
     
-//    let rewards: BraveRewards
-//    let legacyWallet: BraveLedger?
     var promotionFetchTimer: Timer?
-//    private var notificationsHandler: AdsNotificationHandler?
-    var publisher: Ledger.PublisherInfo?
-    
-//    let vpnProductInfo = VPNProductInfo()
-    
+//    var publisher: Ledger.PublisherInfo?
+        
     // Product Notification Related Properties
     
     /// Boolean which is tracking If a product notification is presented
@@ -398,6 +394,23 @@ class BrowserViewController: UIViewController {
 
     @objc func tappedTopArea() {
         scrollController.showToolbars(animated: true)
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        if let delegate = browserInstance?.delegate {
+            delegate.dismissPopup()
+        }
+        if presentedViewController != nil {
+            super.dismiss(animated: flag, completion: completion)
+        }
+    }
+    
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        if let delegate = browserInstance?.delegate, !(viewControllerToPresent is UIActivityViewController) {
+            delegate.displayPopup(viewControllerToPresent, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
+        } else {
+            super.present(viewControllerToPresent, animated: flag, completion: completion)
+        }
     }
 
     @objc func appWillResignActiveNotification() {
@@ -1288,7 +1301,7 @@ class BrowserViewController: UIViewController {
     // MARK: Opening New Tabs
 
     func switchToPrivacyMode(isPrivate: Bool ) {
-        let tabTrayController = self.tabTrayController ?? TabTrayController(tabManager: tabManager, profile: profile, tabTrayDelegate: self)
+        let tabTrayController = self.tabTrayController ?? TabTrayController(self, tabManager: tabManager, profile: profile, tabTrayDelegate: self)
         if tabTrayController.privateMode != isPrivate {
             tabTrayController.changePrivacyMode(isPrivate)
         }

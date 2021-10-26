@@ -9,13 +9,18 @@ import UIKit
 import BraveShared
 import WebKit
 
+
+
 public class BrowserInstance {
     
+    let delegate: BrowserInstanceDelegate
+
     var profile: Profile
     var tabManager: TabManager!
     var browserViewController: BrowserViewController!
         
-    init(profile: Profile, store: DiskImageStore) {
+    init(_ delegate: BrowserInstanceDelegate, profile: Profile, store: DiskImageStore) {
+        self.delegate = delegate
         self.profile = profile
         self.tabManager = TabManager(prefs: profile.prefs, imageStore: store)
         create()
@@ -29,6 +34,7 @@ public class BrowserInstance {
         
         browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: crashedLastSession)
         browserViewController.edgesForExtendedLayout = []
+        browserViewController.browserInstance = self
         
         Preferences.General.themeNormalMode.objectWillChange
             .merge(with: PrivateBrowsingManager.shared.objectWillChange)
