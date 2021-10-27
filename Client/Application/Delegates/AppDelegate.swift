@@ -316,7 +316,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         }
         
         AdblockResourceDownloader.shared.startLoading()
-        PlaylistManager.shared.restoreSession()
       
         return shouldPerformAdditionalDelegateHandling
     }

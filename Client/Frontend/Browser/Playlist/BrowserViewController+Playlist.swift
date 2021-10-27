@@ -43,10 +43,10 @@ extension BrowserViewController: PlaylistHelperDelegate {
                         DispatchQueue.main.async {
                             if let webView = tab?.webView {
                                 PlaylistHelper.getCurrentTime(webView: webView, nodeTag: item.tagId) { [weak self] currentTime in
-                                    self?.openPlaylist(item: item, playbackOffset: currentTime)
+                                    self?.openPlaylist(tab: tab, item: item, playbackOffset: currentTime)
                                 }
                             } else {
-                                self.openPlaylist(item: item, playbackOffset: 0.0)
+                                self.openPlaylist(tab: tab, item: item, playbackOffset: 0.0)
                             }
                         }
                     }
@@ -80,7 +80,9 @@ extension BrowserViewController: PlaylistHelperDelegate {
             tab.playlistItemState = state
             tab.playlistItem = item
             
-            let shouldShowPlaylistURLBarButton = tab.url?.isPlaylistSupportedSiteURL == true
+            let shouldShowPlaylistURLBarButton = tab.url?.isPlaylistSupportedSiteURL == true &&
+                                                 Preferences.Playlist.enablePlaylistURLBarButton.value
+            
             let playlistButton = topToolbar.locationView.playlistButton
             switch state {
             case .none:
@@ -186,10 +188,10 @@ extension BrowserViewController: PlaylistHelperDelegate {
                     DispatchQueue.main.async {
                         if let webView = tab?.webView {
                             PlaylistHelper.getCurrentTime(webView: webView, nodeTag: item.tagId) { [weak self] currentTime in
-                                self?.openPlaylist(item: item, playbackOffset: currentTime)
+                                self?.openPlaylist(tab: tab, item: item, playbackOffset: currentTime)
                             }
                         } else {
-                            self.openPlaylist(item: item, playbackOffset: 0.0)
+                            self.openPlaylist(tab: tab, item: item, playbackOffset: 0.0)
                         }
                     }
                 }
@@ -233,7 +235,8 @@ extension BrowserViewController: PlaylistHelperDelegate {
     func showPlaylistOnboarding(tab: Tab?) {
         // Do NOT show the playlist onboarding popup if the tab isn't visible
         
-        guard let selectedTab = tabManager.selectedTab,
+        guard Preferences.Playlist.enablePlaylistURLBarButton.value,
+              let selectedTab = tabManager.selectedTab,
               selectedTab === tab,
               selectedTab.playlistItemState != .none else {
             return
@@ -255,9 +258,9 @@ extension BrowserViewController: PlaylistHelperDelegate {
     
     func openPlaylist(item: PlaylistInfo?, playbackOffset: Double) {
         stopMediaPlayback()
-        
-        let playlistController = (UIApplication.shared.delegate as? AppDelegate)?.playlistRestorationController as? PlaylistViewController ?? PlaylistViewController(initialItem: item, initialItemPlaybackOffset: playbackOffset)
-        playlistController.modalPresentationStyle = .pageSheet
+
+        let playlistController = PlaylistCarplayManager.shared.getPlaylistController(tab: tab, initialItem: item, initialItemPlaybackOffset: playbackOffset)
+        playlistController.modalPresentationStyle = .fullScreen
 
         present(playlistController, animated: true)
     }
