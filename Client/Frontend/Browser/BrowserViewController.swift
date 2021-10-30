@@ -94,7 +94,6 @@ class BrowserViewController: UIViewController {
     var pasteAction: AccessibleAction!
     var copyAddressAction: AccessibleAction!
 
-    weak var tabTrayController: TabTrayController!
     let profile: Profile
     let tabManager: TabManager
     let historyAPI: BraveHistoryAPI
@@ -1370,16 +1369,6 @@ class BrowserViewController: UIViewController {
         navigationToolbar.updatePageStatus(isPage)
     }
 
-    // MARK: Opening New Tabs
-
-    func switchToPrivacyMode(isPrivate: Bool ) {
-        let tabTrayController = self.tabTrayController ?? TabTrayController(self, tabManager: tabManager, profile: profile, tabTrayDelegate: self)
-        if tabTrayController.privateMode != isPrivate {
-            tabTrayController.changePrivacyMode(isPrivate)
-        }
-        self.tabTrayController = tabTrayController
-    }
-
     func switchToTabForURLOrOpen(_ url: URL, isPrivate: Bool = false, isPrivileged: Bool, isExternal: Bool = false) {
         if !isExternal {
             popToBVC()
@@ -1405,7 +1394,6 @@ class BrowserViewController: UIViewController {
             request = nil
         }
 
-        switchToPrivacyMode(isPrivate: isPrivate)
         _ = tabManager.addTabAndSelect(request, isPrivate: isPrivate)
     }
 
@@ -2087,7 +2075,7 @@ extension BrowserViewController: TabManagerDelegate {
     }
     
     func tabManagerDidRemoveAllTabs(_ tabManager: TabManager, toast: ButtonToast?) {
-        guard let toast = toast, !tabTrayController.privateMode else {
+        guard let toast = toast, !self.privateBrowsingManager.isPrivateBrowsing else {
             return
         }
         show(toast: toast, afterWaiting: ButtonToastUX.toastDelay)
@@ -2444,25 +2432,8 @@ extension BrowserViewController: SessionRestoreHelperDelegate {
 }
 
 extension BrowserViewController: TabTrayDelegate {
-    // This function animates and resets the tab chrome transforms when
-    // the tab tray dismisses.
-    func tabTrayDidDismiss(_ tabTray: TabTrayController) {
-        isTabTrayActive = false
-        
-        // BRAVE TODO: Add update tabs method?
-        resetBrowserChrome()
-    }
-
-    func tabTrayDidAddTab(_ tabTray: TabTrayController, tab: Tab) {
-        // BRAVE TODO: Add update tabs method?
-    }
-
-    func tabTrayDidAddBookmark(_ tab: Tab) {
-        // BRAVE TODO: Not Sure..
-    }
-
-    func tabTrayRequestsPresentationOf(_ viewController: UIViewController) {
-        self.present(viewController, animated: false, completion: nil)
+    func tabOrderChanged() {
+        tabsBar.updateData()
     }
 }
 
@@ -2636,7 +2607,6 @@ extension BrowserViewController: PreferencesObserver {
             updateTabsBarVisibility()
         case Preferences.Privacy.privateBrowsingOnly.key:
             let isPrivate = Preferences.Privacy.privateBrowsingOnly.value
-            switchToPrivacyMode(isPrivate: isPrivate)
             self.privateBrowsingManager.isPrivateBrowsing = isPrivate
             setupTabs()
             updateTabsBarVisibility()
