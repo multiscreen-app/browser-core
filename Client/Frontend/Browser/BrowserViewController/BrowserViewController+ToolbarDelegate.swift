@@ -21,8 +21,6 @@ extension BrowserViewController: TopToolbarDelegate {
         }
         updateFindInPageVisibility(visible: false)
         
-        let tabTrayController = TabTrayController(self, tabManager: tabManager, profile: profile, tabTrayDelegate: self)
-        
         if tabManager.selectedTab == nil {
             tabManager.selectTab(tabManager.tabsForCurrentMode.first)
         }
@@ -31,13 +29,15 @@ extension BrowserViewController: TopToolbarDelegate {
         }
         
         isTabTrayActive = true
-        
+
+        let vc = TabTrayController(tabManager: tabManager)
+        vc.delegate = self
+
         if let delegate = browserInstance?.delegate {
             delegate.displayPopup(tabTrayController, configuration: CenterConfiguration(size: .fullscreen), modal: true, dismiss: nil)
         } else {
-            navigationController?.pushViewController(tabTrayController, animated: true)
+            present(vc, animated: true)
         }
-        self.tabTrayController = tabTrayController
     }
     
     func topToolbarDidPressReload(_ topToolbar: TopToolbarView) {
@@ -336,7 +336,7 @@ extension BrowserViewController: TopToolbarDelegate {
         searchController.searchDelegate = self
         searchController.profile = self.profile
 
-        searchLoader = SearchLoader(historyAPI: self.historyAPI, privateBrowsingManager: self.privateBrowsingManager)
+        searchLoader = SearchLoader(historyAPI: self.historyAPI, bookmarkManager: bookmarkManager, privateBrowsingManager: self.privateBrowsingManager)
         searchLoader?.addListener(searchController)
         searchLoader?.autocompleteSuggestionHandler = { [weak self] completion in
             self?.topToolbar.setAutocompleteSuggestion(completion)
