@@ -5,9 +5,9 @@
 import UIKit
 
 class ToolbarButton: UIButton {
-    fileprivate var selectedTintColor: UIColor?
-    fileprivate var primaryTintColor: UIColor?
-    fileprivate var disabledTintColor: UIColor?
+    var selectedTintColor: UIColor?
+    var primaryTintColor: UIColor?
+    var disabledTintColor: UIColor?
     
     let top: Bool
     

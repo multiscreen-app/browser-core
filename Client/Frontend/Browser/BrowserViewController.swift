@@ -44,7 +44,7 @@ private struct BrowserViewControllerUX {
 }
 
 class BrowserViewController: UIViewController {
-    var browserInstance: BrowserInstance?
+    weak var browserInstance: BrowserInstance?
     var webViewContainer: UIView!
     var topToolbar: TopToolbarView!
     var tabsBar: TabsBarViewController!
@@ -398,7 +398,7 @@ class BrowserViewController: UIViewController {
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         if let delegate = browserInstance?.delegate {
-            delegate.dismissPopup()
+            delegate.dismissPopup(completion: completion)
         }
         if presentedViewController != nil {
             super.dismiss(animated: flag, completion: completion)
@@ -406,7 +406,7 @@ class BrowserViewController: UIViewController {
     }
     
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        if let delegate = browserInstance?.delegate, !(viewControllerToPresent is UIActivityViewController) {
+        if let delegate = browserInstance?.delegate, !(viewControllerToPresent is UIActivityViewController), !(viewControllerToPresent is UIAlertController) {
             delegate.displayPopup(viewControllerToPresent, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
         } else {
             super.present(viewControllerToPresent, animated: flag, completion: completion)
@@ -499,6 +499,9 @@ class BrowserViewController: UIViewController {
         topToolbar.translatesAutoresizingMaskIntoConstraints = false
         topToolbar.delegate = self
         topToolbar.tabToolbarDelegate = self
+        if let recognizer = browserInstance?.delegate?.createDragGestureRecognizer() {
+            topToolbar.addGestureRecognizer(recognizer)
+        }
         header = UIStackView().then {
             $0.axis = .vertical
             $0.clipsToBounds = true
@@ -1667,9 +1670,9 @@ extension BrowserViewController: SettingsDelegate {
         self.tabManager.addTabsForURLs(urls, zombie: false, isPrivate: tabIsPrivate)
     }
     
-    func settingsDidFinish(_ settingsViewController: SettingsViewController) {
-        settingsViewController.dismiss(animated: true)
-    }
+//    func settingsDidFinish(_ settingsViewController: SettingsViewController) {
+//        settingsViewController.dismiss(animated: true)
+//    }
 }
 
 extension BrowserViewController: PresentingModalViewControllerDelegate {
@@ -1753,9 +1756,9 @@ extension BrowserViewController: TabDelegate {
         
         tab.addContentScript(WindowRenderHelperScript(tab: tab), name: WindowRenderHelperScript.name(), sandboxed: false)
         
-        let playlistHelper = PlaylistHelper(tab: tab)
-        playlistHelper.delegate = self
-        tab.addContentScript(playlistHelper, name: PlaylistHelper.name(), sandboxed: false)
+//        let playlistHelper = PlaylistHelper(tab: tab)
+//        playlistHelper.delegate = self
+//        tab.addContentScript(playlistHelper, name: PlaylistHelper.name(), sandboxed: false)
     }
 
     func tab(_ tab: Tab, willDeleteWebView webView: WKWebView) {

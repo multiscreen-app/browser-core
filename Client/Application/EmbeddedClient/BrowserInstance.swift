@@ -13,7 +13,7 @@ import WebKit
 
 public class BrowserInstance {
     
-    let delegate: BrowserInstanceDelegate
+    weak var delegate: BrowserInstanceDelegate?
 
     var profile: Profile
     var tabManager: TabManager!
@@ -26,7 +26,7 @@ public class BrowserInstance {
         create()
     }
     
-    func create() -> BrowserViewController {
+    func create() {
         // Don't track crashes if we're building the development environment due to the fact that terminating/stopping
         // the simulator via Xcode will count as a "crash" and lead to restore popups in the subsequent launch
         let crashedLastSession = !Preferences.AppState.backgroundedCleanly.value && AppConstants.buildChannel != .debug
@@ -42,8 +42,6 @@ public class BrowserInstance {
             .sink { [weak self] _ in
                 self?.updateTheme()
             }
-        
-        return browserViewController
     }
     
     public func getBrowserViewController() -> UIViewController {

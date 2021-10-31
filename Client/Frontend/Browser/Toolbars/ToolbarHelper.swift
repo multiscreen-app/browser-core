@@ -13,7 +13,7 @@ class ToolbarHelper: NSObject {
         self.toolbar = toolbar
         super.init()
         
-        toolbar.backButton.setImage(#imageLiteral(resourceName: "nav-back").template, for: .normal)
+        toolbar.backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         toolbar.backButton.accessibilityLabel = Strings.tabToolbarBackButtonAccessibilityLabel
         let longPressGestureBackButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressBack))
         toolbar.backButton.addGestureRecognizer(longPressGestureBackButton)
@@ -23,7 +23,7 @@ class ToolbarHelper: NSObject {
         let longPressGestureTabsButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressTabs))
         toolbar.tabsButton.addGestureRecognizer(longPressGestureTabsButton)
         
-        toolbar.shareButton.setImage(#imageLiteral(resourceName: "nav-share").template, for: .normal)
+        toolbar.shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         toolbar.shareButton.accessibilityLabel = Strings.tabToolbarShareButtonAccessibilityLabel
         toolbar.shareButton.addTarget(self, action: #selector(didClickShare), for: UIControl.Event.touchUpInside)
         
@@ -38,11 +38,11 @@ class ToolbarHelper: NSObject {
         // Same long press gesture allows creating tab on NTP, esp private tab easily
         toolbar.searchButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressAddTab(_:))))
 
-        toolbar.menuButton.setImage(#imageLiteral(resourceName: "menu_more").template, for: .normal)
+        toolbar.menuButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         toolbar.menuButton.accessibilityLabel = Strings.tabToolbarMenuButtonAccessibilityLabel
         toolbar.menuButton.addTarget(self, action: #selector(didClickMenu), for: UIControl.Event.touchUpInside)
         
-        toolbar.forwardButton.setImage(#imageLiteral(resourceName: "nav-forward").template, for: .normal)
+        toolbar.forwardButton.setImage(UIImage(systemName: "chevron.forward"), for: .normal)
         toolbar.forwardButton.accessibilityLabel = Strings.tabToolbarForwardButtonAccessibilityLabel
         let longPressGestureForwardButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressForward))
         toolbar.forwardButton.addGestureRecognizer(longPressGestureForwardButton)

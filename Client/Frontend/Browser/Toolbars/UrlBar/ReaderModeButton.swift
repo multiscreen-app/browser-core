@@ -11,7 +11,7 @@ class ReaderModeButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         adjustsImageWhenHighlighted = false
-        setImage(#imageLiteral(resourceName: "reader").template, for: .normal)
+        setImage(UIImage(systemName: "text.justifyleft"), for: .normal)
     }
     
     @available(*, unavailable)

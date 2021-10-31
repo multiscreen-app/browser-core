@@ -60,10 +60,10 @@ class TabLocationView: UIView {
     var loading: Bool = false {
         didSet {
             if loading {
-                reloadButton.setImage(#imageLiteral(resourceName: "nav-stop").template, for: .normal)
+                reloadButton.setImage(UIImage(systemName: "xmark"), for: .normal)
                 reloadButton.accessibilityLabel = Strings.tabToolbarStopButtonAccessibilityLabel
             } else {
-                reloadButton.setImage(#imageLiteral(resourceName: "nav-refresh").template, for: .normal)
+                reloadButton.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
                 reloadButton.accessibilityLabel = Strings.tabToolbarReloadButtonAccessibilityLabel
             }
         }
@@ -177,7 +177,7 @@ class TabLocationView: UIView {
         $0.accessibilityIdentifier = "TabToolbar.stopReloadButton"
         $0.isAccessibilityElement = true
         $0.accessibilityLabel = Strings.tabToolbarReloadButtonAccessibilityLabel
-        $0.setImage(#imageLiteral(resourceName: "nav-refresh").template, for: .normal)
+        $0.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
         $0.tintColor = .braveLabel
         let longPressGestureStopReloadButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressStopReload(_:)))
         $0.addGestureRecognizer(longPressGestureStopReloadButton)
@@ -186,7 +186,7 @@ class TabLocationView: UIView {
 
     lazy var shieldsButton: ToolbarButton = {
         let button = ToolbarButton(top: true)
-        button.setImage(UIImage(imageLiteralResourceName: "shields-menu-icon"), for: .normal)
+        button.setImage(UIImage(systemName: "shield"), for: .normal)
         button.addTarget(self, action: #selector(didClickBraveShieldsButton), for: .touchUpInside)
         button.imageView?.contentMode = .center
         button.accessibilityLabel = Strings.bravePanel
@@ -268,9 +268,9 @@ class TabLocationView: UIView {
 
         // Setup UIDragInteraction to handle dragging the location
         // bar for dropping its URL into other apps.
-        let dragInteraction = UIDragInteraction(delegate: self)
-        dragInteraction.allowsSimultaneousRecognitionDuringLift = true
-        self.addInteraction(dragInteraction)
+//        let dragInteraction = UIDragInteraction(delegate: self)
+//        dragInteraction.allowsSimultaneousRecognitionDuringLift = true
+//        self.addInteraction(dragInteraction)
     }
 
     required init(coder: NSCoder) {

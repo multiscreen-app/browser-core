@@ -101,7 +101,11 @@ extension BrowserViewController: ReaderModeBarViewDelegate {
                     updateDisplayedPopoverProperties = setupPopover
                 }
 
-                present(readerModeStyleViewController, animated: true, completion: nil)
+                if let delegate = browserInstance?.delegate {
+                    delegate.displayPopup(readerModeStyleViewController, configuration: CenterConfiguration(preferredSize: CGSize(width: ReaderModeStyleViewControllerUX.width, height: ReaderModeStyleViewControllerUX.height)), modal: true, dismiss: nil)
+                } else {
+                    present(readerModeStyleViewController, animated: true, completion: nil)
+                }
             }
         }
     }

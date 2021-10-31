@@ -148,7 +148,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
     }()
 
     lazy var bookmarkButton = ToolbarButton(top: true).then {
-        $0.setImage(#imageLiteral(resourceName: "menu_bookmarks").template, for: .normal)
+        $0.setImage(UIImage(systemName: "book"), for: .normal)
         $0.accessibilityLabel = Strings.bookmarksMenuItem
         $0.addTarget(self, action: #selector(didClickBookmarkButton), for: .touchUpInside)
     }
@@ -175,22 +175,29 @@ class TopToolbarView: UIView, ToolbarProtocol {
     /// Update the shields icon based on whether or not shields are enabled for this site
     func refreshShieldsStatus() {
         // Default on
-        var shieldIcon = "shields-menu-icon"
-        let shieldsOffIcon = "shields-off-menu-icon"
+        var shieldIcon = "shield.fill"
+        let shieldsOffIcon = "shield.slash"
+        var tintColor = UIColor.systemGreen
         if let currentURL = currentURL {
             let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
             let domain = Domain.getOrCreate(forUrl: currentURL, persistent: !isPrivateBrowsing)
             if domain.shield_allOff == 1 {
                 shieldIcon = shieldsOffIcon
+                tintColor = .systemGray
             }
             if currentURL.isLocal || currentURL.isLocalUtility {
                 shieldIcon = shieldsOffIcon
+                tintColor = .systemGray
             }
         } else {
             shieldIcon = shieldsOffIcon
+            tintColor = .systemGray
         }
         
-        locationView.shieldsButton.setImage(UIImage(imageLiteralResourceName: shieldIcon), for: .normal)
+        locationView.shieldsButton.setImage(UIImage(systemName: shieldIcon)!, for: .normal)
+        locationView.shieldsButton.tintColor = tintColor
+        locationView.shieldsButton.primaryTintColor = tintColor
+        locationView.shieldsButton.selectedTintColor = tintColor.withAlphaComponent(0.5)
     }
     
     private var privateModeCancellable: AnyCancellable?
@@ -225,16 +232,21 @@ class TopToolbarView: UIView, ToolbarProtocol {
         
         navigationStackView.addArrangedSubview(backButton)
         navigationStackView.addArrangedSubview(forwardButton)
+        navigationStackView.addArrangedSubview(tabsButton)
         
-        [backButton, forwardButton, bookmarkButton, tabsButton, menuButton].forEach {
+        [backButton, forwardButton, tabsButton].forEach {
+            $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 16)
+        }
+        
+        [bookmarkButton, menuButton].forEach {
             $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         }
         
-        [navigationStackView, bookmarkButton, locationContainer, tabsButton, menuButton, cancelButton].forEach {
+        [navigationStackView, locationContainer, bookmarkButton, menuButton, cancelButton].forEach {
             mainStackView.addArrangedSubview($0)
         }
         
-        mainStackView.setCustomSpacing(16, after: locationContainer)
+//        mainStackView.setCustomSpacing(24, after: locationContainer)
         
         setupConstraints()
         
@@ -258,9 +270,9 @@ class TopToolbarView: UIView, ToolbarProtocol {
     
     private let mainStackView = UIStackView().then {
         $0.alignment = .center
-        $0.spacing = 8
+        $0.spacing = 10
         $0.isLayoutMarginsRelativeArrangement = true
-        $0.layoutMargins = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 10.0)
+        $0.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 10.0)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     

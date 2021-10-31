@@ -616,6 +616,7 @@
 		B081A2C5271C92980091B939 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C2271C91360091B939 /* BundleExtensions.swift */; };
 		B081A2C9271CA4A90091B939 /* BraveCoreShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */; };
 		B081A2CA271CA50C0091B939 /* BraveCoreShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */; };
+		B09236A82728AE3F006BF1A0 /* BrowserInstanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B034B797272527200077446B /* BrowserInstanceDelegate.swift */; };
 		B09DC5F12723947900951231 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */; };
 		B09DC5F32723947A00951231 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277569AE25ACFC1C00C129AF /* pop.framework */; };
 		B0A89F88271BA32800EB6841 /* EmbeddedClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B0A89F87271BA32800EB6841 /* EmbeddedClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2654,7 +2655,7 @@
 		D31A0FC61A65D6D000DC8C7E /* SearchSuggestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestClient.swift; sourceTree = "<group>"; };
 		D31F95E81AC226CB005C9F3B /* ScreenshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotHelper.swift; sourceTree = "<group>"; };
 		D34510871ACF415700EC27F0 /* SearchLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLoader.swift; sourceTree = "<group>"; };
-		D34DC84D1A16C40C00D49B7B /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Profile.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D34DC84D1A16C40C00D49B7B /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Profile.swift; sourceTree = "<group>"; };
 		D35210E01CB2F16600FC5DCB /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Strings.swift; path = ../Client/Frontend/Strings.swift; sourceTree = "<group>"; };
 		D37DE2821CA2047500A5EC69 /* CertStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertStore.swift; sourceTree = "<group>"; };
 		D38A1BEC1A9FA2CA00F6A386 /* SiteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteTableViewController.swift; sourceTree = "<group>"; };
@@ -7016,6 +7017,7 @@
 				44331DDA22552313007E3E93 /* LocationContainerView.swift in Sources */,
 				5E5E6E4625BA041E0035B6A0 /* PlaylistParticleEmitter.swift in Sources */,
 				2718780A216526240006036E /* PopupView.swift in Sources */,
+				B09236A82728AE3F006BF1A0 /* BrowserInstanceDelegate.swift in Sources */,
 				4422D4C221BFFB7600BF1855 /* comparator.cc in Sources */,
 				4422D4DF21BFFB7600BF1855 /* table_builder.cc in Sources */,
 				CA9A22FE26A71ADA00923D70 /* PlaylistPopoverView.swift in Sources */,

@@ -44,10 +44,10 @@ extension DataSource {
     }
 }
 
-protocol SettingsDelegate: AnyObject {
+public protocol SettingsDelegate: AnyObject {
     func settingsOpenURLInNewTab(_ url: URL)
     func settingsOpenURLs(_ urls: [URL])
-    func settingsDidFinish(_ settingsViewController: SettingsViewController)
+//    func settingsDidFinish(_ settingsViewController: SettingsViewController)
 }
 
 class SettingsViewController: TableViewController {
@@ -114,7 +114,7 @@ class SettingsViewController: TableViewController {
                 Row(text: Strings.braveShieldsAndPrivacy, selection: { [unowned self] in
                     let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager)
                     self.navigationController?.pushViewController(controller, animated: true)
-                }, image: #imageLiteral(resourceName: "settings-shields"), accessory: .disclosureIndicator)
+                }, image: UIImage(systemName: "shield.lefthalf.filled"), accessory: .disclosureIndicator)
             ]
         )
          

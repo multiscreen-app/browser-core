@@ -275,8 +275,8 @@ extension BrowserViewController: TopToolbarDelegate {
                     action: #selector(SettingsNavigationController.done)
                 )
                 
-                if let browserInstance = browserInstance {
-                    browserInstance.delegate.displayPopup(container, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
+                if let delegate = browserInstance?.delegate {
+                    delegate.displayPopup(container, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
                 } else {
                     self.present(container, animated: true)
                 }
@@ -284,8 +284,8 @@ extension BrowserViewController: TopToolbarDelegate {
         }
         let container = PopoverNavigationController(rootViewController: shields)
         
-        if let browserInstance = browserInstance {
-            browserInstance.delegate.displayPopup(container, configuration: CenterConfiguration(size: .small), modal: true, dismiss: nil)
+        if let delegate = browserInstance?.delegate {
+            delegate.displayPopup(container, configuration: CenterConfiguration(size: .small), modal: true, dismiss: nil)
         } else {
             let popover = PopoverController(contentController: container, contentSizeBehavior: .preferredContentSize)
             popover.present(from: topToolbar.locationView.shieldsButton, on: self)
@@ -554,11 +554,11 @@ extension BrowserViewController: ToolbarDelegate {
             VStack(spacing: 6) {
 //                featuresMenuSection(menuController)
 //                Divider()
-                destinationMenuSection(menuController)
                 if let tabURL = selectedTabURL {
-                    Divider()
                     PageActionsMenuSection(browserViewController: self, tabURL: tabURL, activities: activities)
+                    Divider()
                 }
+                destinationMenuSection(menuController)
             }
             .navigationBarHidden(true)
         })

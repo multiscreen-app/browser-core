@@ -11,7 +11,7 @@ public struct UIConstants {
 
     static let defaultPadding: CGFloat = 10
     static let snackbarButtonHeight: CGFloat = 48
-    static let topToolbarHeight: CGFloat = 44
+    static let topToolbarHeight: CGFloat = 62
     static var toolbarHeight: CGFloat = 44
     static var bottomToolbarHeight: CGFloat {
         get {

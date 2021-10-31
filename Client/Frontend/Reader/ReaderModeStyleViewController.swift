@@ -5,7 +5,7 @@
 import UIKit
 import Shared
 
-private struct ReaderModeStyleViewControllerUX {
+struct ReaderModeStyleViewControllerUX {
     // TODO Erica can't find this to visually test
     static let rowHeight = 50
 

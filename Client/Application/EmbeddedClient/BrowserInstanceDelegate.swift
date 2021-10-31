@@ -6,13 +6,20 @@
 import Foundation
 import UIKit
 
-public protocol BrowserInstanceDelegate {
-    func displayPopup(_ controller: UIViewController, configuration: PopupConfiguration, modal: Bool, dismiss: (()->Void)?)
+public protocol BrowserInstanceDelegate : AnyObject {
+    func displayPopup(_ controller: UIViewController, configuration: PopupConfiguration, modal: Bool, dismiss: (() -> Void)?)
     
-    func dismissPopup()
+    func dismissPopup(completion: (() -> Void)?)
     
     func createDragGestureRecognizer() -> UIGestureRecognizer
     
     func createResizeGestureRecognizer() -> UIGestureRecognizer
     
+}
+
+extension BrowserInstanceDelegate {
+    func dismissPopup(completion: (() -> Void)? = nil) {
+        dismissPopup(completion: completion)
+    }
+
 }

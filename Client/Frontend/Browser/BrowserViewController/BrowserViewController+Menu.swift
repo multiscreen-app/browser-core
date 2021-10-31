@@ -29,30 +29,30 @@ extension BrowserViewController {
                 let vc = DownloadsPanel(profile: self.profile)
                 menuController.pushInnerMenu(vc)
             }
-            MenuItemButton(icon: #imageLiteral(resourceName: "playlist_menu").template, title: Strings.playlistMenuItem) { [weak self] in
-                guard let self = self else { return }
-                
-                let playlistController = (UIApplication.shared.delegate as? AppDelegate)?.playlistRestorationController
-                
-                // Present existing playlist controller
-                if let playlistController = playlistController {
-                    self.dismiss(animated: true) {
-                        self.present(playlistController, animated: true)
-                    }
-                } else {
-                    // Do NOT Retrieve the item and offset-time from the current tab's webview.
-                    // This is because they tapped on the generic playlist button,
-                    // And NOT the URL-Bar or the "Added to Playlist" Menu button.
-                    self.stopMediaPlayback()
-
-                    let playlistController = PlaylistViewController(initialItem: nil, initialItemPlaybackOffset: 0.0)
-                    playlistController.modalPresentationStyle = .fullScreen
-                    
-                    self.dismiss(animated: true) {
-                        self.present(playlistController, animated: true)
-                    }
-                }
-            }
+//            MenuItemButton(icon: #imageLiteral(resourceName: "playlist_menu").template, title: Strings.playlistMenuItem) { [weak self] in
+//                guard let self = self else { return }
+//
+//                let playlistController = (UIApplication.shared.delegate as? AppDelegate)?.playlistRestorationController
+//
+//                // Present existing playlist controller
+//                if let playlistController = playlistController {
+//                    self.dismiss(animated: true) {
+//                        self.present(playlistController, animated: true)
+//                    }
+//                } else {
+//                    // Do NOT Retrieve the item and offset-time from the current tab's webview.
+//                    // This is because they tapped on the generic playlist button,
+//                    // And NOT the URL-Bar or the "Added to Playlist" Menu button.
+//                    self.stopMediaPlayback()
+//
+//                    let playlistController = PlaylistViewController(initialItem: nil, initialItemPlaybackOffset: 0.0)
+//                    playlistController.modalPresentationStyle = .fullScreen
+//
+//                    self.dismiss(animated: true) {
+//                        self.present(playlistController, animated: true)
+//                    }
+//                }
+//            }
             MenuItemButton(icon: #imageLiteral(resourceName: "menu-settings").template, title: Strings.settingsMenuItem) { [unowned self, unowned menuController] in
                 let vc = SettingsViewController(profile: self.profile, tabManager: self.tabManager)
                 vc.settingsDelegate = self
