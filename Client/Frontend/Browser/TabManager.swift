@@ -889,7 +889,7 @@ class TabManager: NSObject {
             tab.lastTitle = savedTab.title
         }
 
-        if let tabToSelect = tabToSelect ?? tabsForCurrentMode.first {
+        if let tabToSelect = tabToSelect ?? tabsForCurrentMode.last {
             // Only tell our delegates that we restored tabs if we actually restored something
             delegates.forEach {
                 $0.get()?.tabManagerDidRestoreTabs(self)
