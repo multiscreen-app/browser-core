@@ -90,7 +90,7 @@ class SettingsViewController: TableViewController {
     
     private var sections: [Static.Section] {
         var list = [
-            featuresSection,
+//            featuresSection,
             generalSection,
             displaySection,
             securitySection,
@@ -132,6 +132,10 @@ class SettingsViewController: TableViewController {
         var general = Static.Section(
             header: .title(Strings.settingsGeneralSectionTitle),
             rows: [
+                Row(text: Strings.braveShieldsAndPrivacy, selection: { [unowned self] in
+                    let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager)
+                    self.navigationController?.pushViewController(controller, animated: true)
+                }, image: UIImage(systemName: "shield.lefthalf.filled"), accessory: .disclosureIndicator),
                 Row(text: Strings.searchEngines, selection: { [unowned self] in
                     let viewController = SearchSettingsTableViewController(profile: self.profile)
                     self.navigationController?.pushViewController(viewController, animated: true)
