@@ -58,26 +58,20 @@ class TPStatsBlocklistChecker {
         self.browserViewController = browserViewController
     }
 
-    func isBlocked(request: URLRequest, domain: Domain, resourceType: TPStatsResourceType? = nil) -> Deferred<BlocklistName?> {
-        let deferred = Deferred<BlocklistName?>()
+    func isBlocked(request: URLRequest, domain: Domain, resourceType: TPStatsResourceType? = nil, _ completion: @escaping (BlocklistName?) -> Void) {
         
         guard let url = request.url, let host = url.host, !host.isEmpty else {
             // TP Stats init isn't complete yet
-            deferred.fill(nil)
-            return deferred
+            completion(nil)
+            return
         }
         
         // Getting this domain and current tab urls before going into asynchronous closure
         // to avoid threading problems(#1094, #1096)
         assertIsMainThread("Getting enabled blocklists should happen on main thread")
         let domainBlockLists = BlocklistName.blocklists(forDomain: domain).on
-        
-//        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-//            deferred.fill(nil)
-//            return deferred
-//        }
-        let currentTabUrl = browserViewController?.tabManager.selectedTab?.url
-        
+        let currentTabUrl = request.mainDocumentURL
+
         adblockSerialQueue.async {
             let enabledLists = domainBlockLists
             
@@ -87,7 +81,7 @@ class TPStatsBlocklistChecker {
                     break
                 case .image:
                     if enabledLists.contains(.image) {
-                        deferred.fill(.image)
+                        completion(.image)
                         return
                     }
                 }
@@ -97,17 +91,24 @@ class TPStatsBlocklistChecker {
             
             if isAdOrTrackerListEnabled && AdBlockStats.shared.shouldBlock(request,
                                                                            currentTabUrl: currentTabUrl) {
-                deferred.fill(BlocklistName.ad)
+                completion(BlocklistName.ad)
                 return
             }
             
-            if enabledLists.contains(.https) && HttpsEverywhereStats.shared.shouldUpgrade(url) {
-                deferred.fill(BlocklistName.https)
-                return
+            // TODO: Downgrade to 14.5 once api becomes available.
+            if #available(iOS 15, *) {
+                // do nothing
+            } else {
+                HttpsEverywhereStats.shared.shouldUpgrade(url) { shouldUpgrade in
+                    DispatchQueue.main.async {
+                        if enabledLists.contains(.https) && shouldUpgrade {
+                            completion(BlocklistName.https)
+                        } else {
+                            completion(nil)
+                        }
+                    }
+                }
             }
-            
-            deferred.fill(nil)
         }
-        return deferred
     }
 }
