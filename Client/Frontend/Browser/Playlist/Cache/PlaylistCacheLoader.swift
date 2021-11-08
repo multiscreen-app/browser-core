@@ -10,6 +10,7 @@ import MobileCoreServices
 import Data
 import Shared
 import BraveShared
+import Storage
 
 private let log = Logger.browserLogger
 
@@ -340,7 +341,6 @@ class PlaylistWebLoader: UIView {
         $0.preferences.javaScriptCanOpenWindowsAutomatically = false
         $0.allowsInlineMediaPlayback = true
         $0.ignoresViewportScaleLimits = true
-        // $0.mediaTypesRequiringUserActionForPlayback = []
     }, type: .private).then {
         $0.createWebview()
         $0.webView?.scrollView.layer.masksToBounds = true
@@ -381,9 +381,11 @@ class PlaylistWebLoader: UIView {
         return WKUserScript(source: alteredSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
     }()
     
+    private weak var certStore: CertStore?
     private var handler: (PlaylistInfo?) -> Void
     
-    init(handler: @escaping (PlaylistInfo?) -> Void) {
+    init(certStore: CertStore?, handler: @escaping (PlaylistInfo?) -> Void) {
+        self.certStore = certStore
         self.handler = handler
         super.init(frame: .zero)
 
@@ -397,7 +399,8 @@ class PlaylistWebLoader: UIView {
             $0.edges.equalToSuperview()
         }
         
-        if let browserController = (UIApplication.shared.delegate as? AppDelegate)?.browserViewController {
+        // TODO: REFACTOR to support multiple windows better
+        if let browserController = webView.currentScene?.browserViewController {
             let KVOs: [KVOConstants] = [
                 .estimatedProgress, .loading, .canGoBack,
                 .canGoForward, .URL, .title,
@@ -440,6 +443,15 @@ class PlaylistWebLoader: UIView {
         guard let webView = tab.webView else { return }
         webView.frame = self.window?.bounds ?? .zero
         webView.load(URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 60.0))
+    }
+    
+    func stop() {
+        guard let webView = tab.webView else { return }
+        webView.stopLoading()
+        DispatchQueue.main.async {
+            self.handler(nil)
+            webView.loadHTMLString("<html><body>PlayList</body></html>", baseURL: nil)
+        }
     }
     
     private class PlaylistWebLoaderContentHelper: TabContentScript {
@@ -640,12 +652,19 @@ extension PlaylistWebLoader: WKNavigationDelegate {
 
             pendingRequests[url.absoluteString] = navigationAction.request
             
-            if let urlHost = url.normalizedHost() {
-                if let mainDocumentURL = navigationAction.request.mainDocumentURL, url.scheme == "http" {
-                    let domainForShields = Domain.getOrCreate(forUrl: mainDocumentURL, persistent: false)
-                    if domainForShields.isShieldExpected(.HTTPSE, considerAllShieldsOption: true) && HttpsEverywhereStats.shared.shouldUpgrade(url) {
-                        // Check if HTTPSE is on and if it is, whether or not this http url would be upgraded
-                        pendingHTTPUpgrades[urlHost] = navigationAction.request
+            // TODO: Downgrade to 14.5 once api becomes available.
+            if #available(iOS 15, *) {
+                // do nothing, use Apple's https solution.
+            } else {
+                if Preferences.Shields.httpsEverywhere.value,
+                   url.scheme == "http",
+                    let urlHost = url.normalizedHost() {
+                    HttpsEverywhereStats.shared.shouldUpgrade(url) { shouldupgrade in
+                        DispatchQueue.main.async {
+                            if shouldupgrade {
+                                self.pendingHTTPUpgrades[urlHost] = navigationAction.request
+                            }
+                        }
                     }
                 }
             }
@@ -662,7 +681,6 @@ extension PlaylistWebLoader: WKNavigationDelegate {
                 // Force adblocking on
                 domainForShields.shield_allOff = 1
                 domainForShields.shield_adblockAndTp = true
-                domainForShields.shield_httpse = true
                 
                 let (on, off) = BlocklistName.blocklists(forDomain: domainForShields)
                 let controller = webView.configuration.userContentController
@@ -718,7 +736,8 @@ extension PlaylistWebLoader: WKNavigationDelegate {
             }
         }
         
-        if let browserController = (UIApplication.shared.delegate as? AppDelegate)?.browserViewController {
+        // TODO: REFACTOR to support Multiple Windows Better
+        if let browserController = webView.currentScene?.browserViewController {
             // Check if this response should be handed off to Passbook.
             if OpenPassBookHelper(request: request, response: response, canShowInWebView: false, forceDownload: false, browserViewController: browserController) != nil {
                 decisionHandler(.cancel)
@@ -748,16 +767,10 @@ extension PlaylistWebLoader: WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        
-        guard let profile = (UIApplication.shared.delegate as? AppDelegate)?.profile else {
-            completionHandler(.rejectProtectionSpace, nil)
-            return
-        }
-        
         let origin = "\(challenge.protectionSpace.host):\(challenge.protectionSpace.port)"
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
            let trust = challenge.protectionSpace.serverTrust,
-           let cert = SecTrustGetCertificateAtIndex(trust, 0), profile.certStore.containsCertificate(cert, forOrigin: origin) {
+           let cert = SecTrustGetCertificateAtIndex(trust, 0), certStore?.containsCertificate(cert, forOrigin: origin) == true {
             completionHandler(.useCredential, URLCredential(trust: trust))
             return
         }

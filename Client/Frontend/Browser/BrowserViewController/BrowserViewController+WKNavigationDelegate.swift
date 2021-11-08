@@ -233,12 +233,19 @@ extension BrowserViewController: WKNavigationDelegate {
 
             pendingRequests[url.absoluteString] = navigationAction.request
             
-            if let urlHost = url.normalizedHost() {
-                if let mainDocumentURL = navigationAction.request.mainDocumentURL, url.scheme == "http" {
-                    let domainForShields = Domain.getOrCreate(forUrl: mainDocumentURL, persistent: !isPrivateBrowsing)
-                    if domainForShields.isShieldExpected(.HTTPSE, considerAllShieldsOption: true) && HttpsEverywhereStats.shared.shouldUpgrade(url) {
-                        // Check if HTTPSE is on and if it is, whether or not this http url would be upgraded
-                        pendingHTTPUpgrades[urlHost] = navigationAction.request
+            // TODO: Downgrade to 14.5 once api becomes available.
+            if #available(iOS 15, *) {
+                // do nothing, use Apple's https solution.
+            } else {
+                if Preferences.Shields.httpsEverywhere.value,
+                   url.scheme == "http",
+                    let urlHost = url.normalizedHost() {
+                    HttpsEverywhereStats.shared.shouldUpgrade(url) { shouldupgrade in
+                        DispatchQueue.main.async {
+                            if shouldupgrade {
+                                self.pendingHTTPUpgrades[urlHost] = navigationAction.request
+                            }
+                        }
                     }
                 }
             }
