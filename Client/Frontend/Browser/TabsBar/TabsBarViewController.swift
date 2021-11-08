@@ -155,7 +155,7 @@ class TabsBarViewController: UIViewController {
     
     @objc private func didLongPressAddTab(_ longPress: UILongPressGestureRecognizer) {
         if longPress.state == .began {
-            delegate?.tabsBarDidLongPressAddTab(self, button: plusButton)
+//            delegate?.tabsBarDidLongPressAddTab(self, button: plusButton)
         }
     }
     
