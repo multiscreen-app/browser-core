@@ -62,7 +62,7 @@ extension BrowserViewController {
     }
     
     struct PageActionsMenuSection: View {
-        var browserViewController: BrowserViewController
+        unowned var browserViewController: BrowserViewController
         var tabURL: URL
         var activities: [UIActivity]
         

@@ -48,7 +48,7 @@ class DownloadHelper: NSObject {
     fileprivate let request: URLRequest
     fileprivate let preflightResponse: URLResponse
     fileprivate let cookieStore: WKHTTPCookieStore
-    fileprivate let browserViewController: BrowserViewController
+    unowned fileprivate let browserViewController: BrowserViewController
 
     required init?(request: URLRequest?, response: URLResponse, cookieStore: WKHTTPCookieStore, canShowInWebView: Bool, forceDownload: Bool, browserViewController: BrowserViewController) {
         guard let request = request else {
@@ -111,7 +111,7 @@ class DownloadHelper: NSObject {
 class OpenPassBookHelper: NSObject {
     fileprivate var url: URL
 
-    fileprivate let browserViewController: BrowserViewController
+    unowned fileprivate let browserViewController: BrowserViewController
 
     required init?(request: URLRequest?, response: URLResponse, canShowInWebView: Bool, forceDownload: Bool, browserViewController: BrowserViewController) {
         guard let mimeType = response.mimeType, mimeType == MIMEType.passbook, PKAddPassesViewController.canAddPasses(),

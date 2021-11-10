@@ -5,8 +5,8 @@
 import UIKit
 
 class SettingsNavigationController: UINavigationController {
-    var popoverDelegate: PresentingModalViewControllerDelegate?
-    var browserInstanceDelegate: BrowserInstanceDelegate?
+    weak var popoverDelegate: PresentingModalViewControllerDelegate?
+    unowned var browserInstanceDelegate: BrowserInstanceDelegate?
 
     @objc func done() {
         if browserInstanceDelegate != nil {
@@ -41,7 +41,7 @@ class SettingsNavigationController: UINavigationController {
 
 }
 
-protocol PresentingModalViewControllerDelegate {
+protocol PresentingModalViewControllerDelegate: AnyObject {
     func dismissPresentedModalViewController(_ modalViewController: UIViewController, animated: Bool)
 }
 

@@ -38,14 +38,14 @@ struct ReaderModeStyleViewControllerUX {
 
 // MARK: -
 
-protocol ReaderModeStyleViewControllerDelegate {
+protocol ReaderModeStyleViewControllerDelegate: AnyObject {
     func readerModeStyleViewController(_ readerModeStyleViewController: ReaderModeStyleViewController, didConfigureStyle style: ReaderModeStyle)
 }
 
 // MARK: -
 
 class ReaderModeStyleViewController: UIViewController {
-    var delegate: ReaderModeStyleViewControllerDelegate?
+    unowned var delegate: ReaderModeStyleViewControllerDelegate?
     var readerModeStyle: ReaderModeStyle = DefaultReaderModeStyle
 
     fileprivate var fontTypeButtons: [FontTypeButton]!

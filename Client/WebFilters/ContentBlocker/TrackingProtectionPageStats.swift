@@ -51,7 +51,7 @@ enum TPStatsResourceType: String {
 }
 
 class TPStatsBlocklistChecker {
-    private let browserViewController: BrowserViewController?
+    unowned private let browserViewController: BrowserViewController?
     private let adblockSerialQueue = AdBlockStats.adblockSerialQueue
     
     init (_ browserViewController: BrowserViewController?) {

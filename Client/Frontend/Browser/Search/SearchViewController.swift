@@ -87,7 +87,7 @@ class SearchViewController: SiteTableViewController, LoaderListener {
     private lazy var suggestionLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(onSuggestionLongPressed(_:)))
     
     static var userAgent: String?
-    var searchDelegate: SearchViewControllerDelegate?
+    weak var searchDelegate: SearchViewControllerDelegate?
 
     var searchEngines: SearchEngines? {
         didSet {

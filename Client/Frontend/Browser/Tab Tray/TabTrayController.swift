@@ -39,8 +39,8 @@ protocol TabTrayDelegate: AnyObject {
 }
 
 class TabTrayController: UIViewController {
-    private let browserViewController: BrowserViewController
-    let tabManager: TabManager
+    unowned private let browserViewController: BrowserViewController
+    unowned let tabManager: TabManager
     let profile: Profile
     weak var delegate: TabTrayDelegate?
     var otherBrowsingModeOffset: CGPoint

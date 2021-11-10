@@ -10,7 +10,7 @@ import BraveShared
 
 private let log = Logger.browserLogger
 
-protocol TabLocationViewDelegate {
+protocol TabLocationViewDelegate: AnyObject {
     func tabLocationViewDidTapLocation(_ tabLocationView: TabLocationView)
     func tabLocationViewDidLongPressLocation(_ tabLocationView: TabLocationView)
     func tabLocationViewDidTapReaderMode(_ tabLocationView: TabLocationView)
@@ -37,7 +37,7 @@ private struct TabLocationViewUX {
 }
 
 class TabLocationView: UIView {
-    var delegate: TabLocationViewDelegate?
+    weak var delegate: TabLocationViewDelegate?
     var longPressRecognizer: UILongPressGestureRecognizer!
     var tapRecognizer: UITapGestureRecognizer!
     var contentView: UIStackView!

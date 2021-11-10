@@ -12,7 +12,7 @@ class TemporaryDocument: NSObject {
     private let request: URLRequest
     private let filename: String
 
-    fileprivate var session: URLSession?
+    weak var session: URLSession?
 
     fileprivate var downloadTask: URLSessionDownloadTask?
     private var localFileURL: URL?

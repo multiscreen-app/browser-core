@@ -79,7 +79,7 @@ class TabManager: NSObject {
     fileprivate let imageStore: DiskImageStore?
 
     fileprivate let prefs: Prefs
-    var browserViewController: BrowserViewController?
+    unowned var browserViewController: BrowserViewController?
     var selectedIndex: Int { return _selectedIndex }
     var tempTabs: [Tab]?
 
@@ -97,6 +97,10 @@ class TabManager: NSObject {
         Preferences.Shields.blockImages.observe(from: self)
         Preferences.General.blockPopups.observe(from: self)
         Preferences.General.mediaAutoPlays.observe(from: self)
+    }
+    
+    deinit {
+        print("TabManager deinit")
     }
 
     func addNavigationDelegate(_ delegate: WKNavigationDelegate) {
@@ -521,7 +525,7 @@ class TabManager: NSObject {
         return nil
     }
 
-    func removeTab(_ tab: Tab) {
+    func removeTab(_ tab: Tab, _ addTabWhenEmpty: Bool = true) {
         assert(Thread.isMainThread)
 
         guard let removalIndex = allTabs.firstIndex(where: { $0 === tab }) else {
@@ -606,7 +610,7 @@ class TabManager: NSObject {
         delegates.forEach { $0.get()?.tabManager(self, didRemoveTab: tab) }
         TabEvent.post(.didClose, for: tab)
 
-        if currentTabs.isEmpty {
+        if currentTabs.isEmpty && addTabWhenEmpty {
             addTab(isPrivate: tab.isPrivate)
         }
 

@@ -190,7 +190,7 @@ class BlobDownload: Download {
     }
 }
 
-protocol DownloadQueueDelegate {
+protocol DownloadQueueDelegate: AnyObject {
     func downloadQueue(_ downloadQueue: DownloadQueue, didStartDownload download: Download)
     func downloadQueue(_ downloadQueue: DownloadQueue, didDownloadCombinedBytes combinedBytesDownloaded: Int64, combinedTotalBytesExpected: Int64?)
     func downloadQueue(_ downloadQueue: DownloadQueue, download: Download, didFinishDownloadingTo location: URL)
@@ -200,7 +200,7 @@ protocol DownloadQueueDelegate {
 class DownloadQueue {
     var downloads: [Download]
 
-    var delegate: DownloadQueueDelegate?
+    weak var delegate: DownloadQueueDelegate?
 
     var isEmpty: Bool {
         return downloads.isEmpty

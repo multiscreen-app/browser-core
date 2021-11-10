@@ -9,11 +9,9 @@ import UIKit
 import BraveShared
 import WebKit
 
-
-
 public class BrowserInstance {
     
-    weak var delegate: BrowserInstanceDelegate?
+    unowned var delegate: BrowserInstanceDelegate?
 
     var profile: Profile
     var tabManager: TabManager!
@@ -74,7 +72,14 @@ public class BrowserInstance {
     }
     
     deinit {
+        print("Browser Instance deinit")
+        tabManager.allTabs.forEach {
+            tabManager.removeTab($0, false)
+        }
         tabManager = nil
+        browserViewController.view.subviews.forEach {
+            $0.removeFromSuperview()
+        }
         browserViewController = nil
     }
     

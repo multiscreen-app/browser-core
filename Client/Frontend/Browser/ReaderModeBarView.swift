@@ -31,12 +31,12 @@ enum ReaderModeBarButtonType {
     }
 }
 
-protocol ReaderModeBarViewDelegate {
+protocol ReaderModeBarViewDelegate: AnyObject {
     func readerModeBar(_ readerModeBar: ReaderModeBarView, didSelectButton buttonType: ReaderModeBarButtonType)
 }
 
 class ReaderModeBarView: UIView {
-    var delegate: ReaderModeBarViewDelegate?
+    weak var delegate: ReaderModeBarViewDelegate?
 
     var settingsButton: UIButton!
 

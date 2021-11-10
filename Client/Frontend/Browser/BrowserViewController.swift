@@ -62,7 +62,8 @@ class BrowserViewController: UIViewController {
     fileprivate var findInPageBar: FindInPageBar?
     
     // Single data source used for all favorites vcs
-    let backgroundDataSource = NTPDataSource()
+    static let staticBackgroundDataSource = NTPDataSource()
+    let backgroundDataSource = staticBackgroundDataSource
     
     var loadQueue = Deferred<Void>()
 
@@ -194,6 +195,10 @@ class BrowserViewController: UIViewController {
  
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("BrowserViewController deinit")
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

@@ -7,7 +7,7 @@ import Shared
 
 @objcMembers
 class ToolbarHelper: NSObject {
-    let toolbar: ToolbarProtocol
+    unowned let toolbar: ToolbarProtocol
     
     init(toolbar: ToolbarProtocol) {
         self.toolbar = toolbar

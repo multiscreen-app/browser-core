@@ -87,7 +87,7 @@ class Tab: NSObject {
     var userActivity: NSUserActivity?
 
     var webView: BraveWebView?
-    var tabDelegate: TabDelegate?
+    weak var tabDelegate: TabDelegate?
     weak var urlDidChangeDelegate: URLChangeDelegate?     // TODO: generalize this.
     var bars = [SnackBar]()
     var favicons = [Favicon]()
@@ -356,6 +356,8 @@ class Tab: NSObject {
     }
 
     deinit {
+        print("Tab deinit")
+        temporaryDocument?.session?.invalidateAndCancel()
         deleteWebView()
         deleteNewTabPageController()
         contentScriptManager.helpers.removeAll()
@@ -722,6 +724,10 @@ class TabWebView: BraveWebView, MenuHelperInterface {
         }
 
         return super.value(forUndefinedKey: key)
+    }
+    
+    deinit {
+        print("TabWebView deinit")
     }
 }
 

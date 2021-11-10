@@ -12,7 +12,7 @@ private let log = Logger.browserLogger
 
 class BraveShieldsAndPrivacySettingsController: TableViewController {
     let profile: Profile
-    let tabManager: TabManager
+    unowned let tabManager: TabManager
     
     init(profile: Profile, tabManager: TabManager) {
         self.profile = profile
