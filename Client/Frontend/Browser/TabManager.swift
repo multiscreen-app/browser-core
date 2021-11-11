@@ -968,7 +968,7 @@ extension TabManager: WKNavigationDelegate {
 class TabManagerNavDelegate: NSObject, WKNavigationDelegate {
     fileprivate var delegates = WeakList<WKNavigationDelegate>()
 
-    private let tabManager: TabManager
+    private unowned let tabManager: TabManager
     
     init(_ tabManager: TabManager) {
         self.tabManager = tabManager

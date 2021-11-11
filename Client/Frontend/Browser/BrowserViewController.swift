@@ -524,14 +524,14 @@ class BrowserViewController: UIViewController {
         tabsBar.didMove(toParent: self)
 
         // UIAccessibilityCustomAction subclass holding an AccessibleAction instance does not work, thus unable to generate AccessibleActions and UIAccessibilityCustomActions "on-demand" and need to make them "persistent" e.g. by being stored in BVC
-        pasteGoAction = AccessibleAction(name: Strings.pasteAndGoTitle, handler: { () -> Bool in
+        pasteGoAction = AccessibleAction(name: Strings.pasteAndGoTitle, handler: { [unowned self] () -> Bool in
             if let pasteboardContents = UIPasteboard.general.string {
                 self.topToolbar(self.topToolbar, didSubmitText: pasteboardContents)
                 return true
             }
             return false
         })
-        pasteAction = AccessibleAction(name: Strings.pasteTitle, handler: { () -> Bool in
+        pasteAction = AccessibleAction(name: Strings.pasteTitle, handler: { [unowned self] () -> Bool in
             if let pasteboardContents = UIPasteboard.general.string {
                 // Enter overlay mode and make the search controller appear.
                 self.topToolbar.enterOverlayMode(pasteboardContents, pasted: true, search: true)
@@ -540,7 +540,7 @@ class BrowserViewController: UIViewController {
             }
             return false
         })
-        copyAddressAction = AccessibleAction(name: Strings.copyAddressTitle, handler: { () -> Bool in
+        copyAddressAction = AccessibleAction(name: Strings.copyAddressTitle, handler: { [unowned self] () -> Bool in
             if let url = self.topToolbar.currentURL {
                 UIPasteboard.general.url = url as URL
             }
