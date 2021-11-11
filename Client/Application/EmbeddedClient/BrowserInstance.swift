@@ -56,6 +56,10 @@ public class BrowserInstance {
         browserViewController.presentDefaultBrowserIntroScreen()
     }
     
+    public func windowResize() {
+        browserViewController.tabsBar.collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     private var expectedThemeOverride: UIUserInterfaceStyle {
         let themeOverride = DefaultTheme(
             rawValue: Preferences.General.themeNormalMode.value

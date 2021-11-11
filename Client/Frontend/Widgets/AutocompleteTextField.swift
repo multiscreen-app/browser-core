@@ -24,7 +24,7 @@ private struct AutocompleteTextFieldUX {
 }
 
 class AutocompleteTextField: UITextField, UITextFieldDelegate {
-    var autocompleteDelegate: AutocompleteTextFieldDelegate?
+    weak var autocompleteDelegate: AutocompleteTextFieldDelegate?
 
     // AutocompleteTextLabel repersents the actual autocomplete text.
     // The textfields "text" property only contains the entered text, while this label holds the autocomplete text

@@ -58,7 +58,7 @@ import Storage
 // 4. a TabEvent, with whatever parameters are needed.
 //    i) a case to map the event to the event label (var label)
 //   ii) a case to map the event to the event handler (func handle:with:)
-protocol TabEventHandler {
+protocol TabEventHandler: AnyObject {
     func tab(_ tab: Tab, didChangeURL url: URL)
     func tab(_ tab: Tab, didLoadPageMetadata metadata: PageMetadata)
     func tab(_ tab: Tab, didLoadFavicon favicon: Favicon?, with: Data?)
@@ -168,7 +168,7 @@ extension TabEventHandler {
     /// `TabObservers` should be preserved for unregistering later.
     func registerFor(_ tabEvents: TabEventLabel..., queue: OperationQueue? = nil) -> TabObservers {
         return tabEvents.map { eventType in
-            center.addObserver(forName: eventType.name, object: nil, queue: queue) { notification in
+            center.addObserver(forName: eventType.name, object: nil, queue: queue) { [unowned self] notification in
                 guard let tab = notification.object as? Tab,
                     let event = notification.userInfo?["payload"] as? TabEvent else {
                         return

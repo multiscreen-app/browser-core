@@ -9,7 +9,7 @@ class TabEventHandlers {
     static func create(with prefs: Prefs) -> [TabEventHandler] {
         return [
             FaviconHandler(),
-            UserActivityHandler(),
+//            UserActivityHandler(),
             MetadataParserHelper(),
             MediaImageLoader(prefs),
         ]
