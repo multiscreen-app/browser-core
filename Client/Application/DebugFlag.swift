@@ -19,6 +19,10 @@ extension Preferences {
         static let skipNTPCallouts = boolOrNil(for: "BRSkipAppLaunchPopups")
         
         private static func boolOrNil(for key: String) -> Bool? {
+            if AppConstants.embedded {
+                return true
+            }
+            
             if AppConstants.buildChannel != .debug || prefs.object(forKey: key) == nil {
                 return nil
             }

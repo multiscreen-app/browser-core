@@ -554,11 +554,12 @@ extension BrowserViewController: ToolbarDelegate {
             VStack(spacing: 6) {
 //                featuresMenuSection(menuController)
 //                Divider()
-                if let tabURL = selectedTabURL {
-                    PageActionsMenuSection(browserViewController: self, tabURL: tabURL, activities: activities)
-                    Divider()
-                }
+                
                 destinationMenuSection(menuController)
+                if let tabURL = selectedTabURL {
+                    Divider()
+                    PageActionsMenuSection(browserViewController: self, tabURL: tabURL, activities: activities)
+                }
             }
             .navigationBarHidden(true)
         })

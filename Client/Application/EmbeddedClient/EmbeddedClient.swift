@@ -327,3 +327,13 @@ open class EmbeddedClient {
     }
     
 }
+
+extension AppConstants {
+    public static let embedded: Bool = {
+#if MOZ_TARGET_EMBEDDEDCLIENT
+        return true
+#else
+        return false
+#endif
+    }()
+}

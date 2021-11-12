@@ -93,10 +93,18 @@ class SettingsViewController: TableViewController {
 //            featuresSection,
             generalSection,
             displaySection,
-            securitySection,
-            supportSection,
-            aboutSection
+            securitySection
         ]
+        
+        print("Embedded: \(AppConstants.embedded)")
+        print("Channel release: \(AppConstants.buildChannel)")
+        
+        if !AppConstants.embedded {
+            list.append(supportSection)
+            list.append(aboutSection)
+        } else if AppConstants.buildChannel != .release {
+            list.append(aboutSection)
+        }
         
         if let debugSection = debugSection {
             list.append(debugSection)
@@ -152,19 +160,22 @@ class SettingsViewController: TableViewController {
             )
         }
         
-        general.rows.append(contentsOf: [
-            .boolRow(title: Strings.enablePullToRefresh,
-                     option: Preferences.General.enablePullToRefresh,
-                     image: #imageLiteral(resourceName: "settings-pull-to-refresh").template),
-            .boolRow(title: Strings.mediaAutoBackgrounding,
-                     option: Preferences.General.mediaAutoBackgrounding,
-                     image: #imageLiteral(resourceName: "background_play_settings_icon").template),
-            .boolRow(title: Strings.mediaAutoPlays,
-                     option: Preferences.General.mediaAutoPlays,
-                     image: #imageLiteral(resourceName: "settings-autoplay").template)
-        ])
+        if !AppConstants.embedded {
+            general.rows.append(contentsOf: [
+                .boolRow(title: Strings.mediaAutoBackgrounding,
+                         option: Preferences.General.mediaAutoBackgrounding,
+                         image: #imageLiteral(resourceName: "background_play_settings_icon").template),
+                .boolRow(title: Strings.enablePullToRefresh,
+                                             option: Preferences.General.enablePullToRefresh,
+                                             image: #imageLiteral(resourceName: "settings-pull-to-refresh").template)
+            ])
+        }
         
-        if AppConstants.iOSVersionGreaterThanOrEqual(to: 14) && AppConstants.buildChannel == .release {
+        general.rows.append(.boolRow(title: Strings.mediaAutoPlays,
+                                     option: Preferences.General.mediaAutoPlays,
+                                     image: #imageLiteral(resourceName: "settings-autoplay").template))
+        
+        if !AppConstants.embedded && AppConstants.iOSVersionGreaterThanOrEqual(to: 14) && AppConstants.buildChannel == .release {
             general.rows.append(.init(text: Strings.setDefaultBrowserSettingsCell, selection: { [unowned self] in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                     return
@@ -182,31 +193,33 @@ class SettingsViewController: TableViewController {
             rows: []
         )
         
-        let themeSubtitle = DefaultTheme(rawValue: Preferences.General.themeNormalMode.value)?.displayString
-        var row = Row(text: Strings.themesDisplayBrightness, detailText: themeSubtitle, image: #imageLiteral(resourceName: "settings-appearance").template, accessory: .disclosureIndicator, cellClass: MultilineSubtitleCell.self)
-        row.selection = { [unowned self] in
-            let optionsViewController = OptionSelectionViewController<DefaultTheme>(
-                options: DefaultTheme.normalThemesOptions,
-                selectedOption: DefaultTheme(rawValue: Preferences.General.themeNormalMode.value),
-                optionChanged: { [unowned self] _, option in
-                    Preferences.General.themeNormalMode.value = option.rawValue
-                    self.dataSource.reloadCell(row: row, section: display, displayText: option.displayString)
-                }
-            )
-            optionsViewController.headerText = Strings.themesDisplayBrightness
-            optionsViewController.footerText = Strings.themesDisplayBrightnessFooter
-            self.navigationController?.pushViewController(optionsViewController, animated: true)
+        if !AppConstants.embedded {
+            let themeSubtitle = DefaultTheme(rawValue: Preferences.General.themeNormalMode.value)?.displayString
+            var row = Row(text: Strings.themesDisplayBrightness, detailText: themeSubtitle, image: #imageLiteral(resourceName: "settings-appearance").template, accessory: .disclosureIndicator, cellClass: MultilineSubtitleCell.self)
+            row.selection = { [unowned self] in
+                let optionsViewController = OptionSelectionViewController<DefaultTheme>(
+                    options: DefaultTheme.normalThemesOptions,
+                    selectedOption: DefaultTheme(rawValue: Preferences.General.themeNormalMode.value),
+                    optionChanged: { [unowned self] _, option in
+                        Preferences.General.themeNormalMode.value = option.rawValue
+                        self.dataSource.reloadCell(row: row, section: display, displayText: option.displayString)
+                    }
+                )
+                optionsViewController.headerText = Strings.themesDisplayBrightness
+                optionsViewController.footerText = Strings.themesDisplayBrightnessFooter
+                self.navigationController?.pushViewController(optionsViewController, animated: true)
+            }
+            display.rows.append(row)
+            
+            display.rows.append(Row(text: Strings.NTP.settingsTitle,
+                selection: { [unowned self] in
+                    self.navigationController?.pushViewController(NTPTableViewController(), animated: true)
+                },
+                image: #imageLiteral(resourceName: "settings-ntp").template,
+                accessory: .disclosureIndicator,
+                cellClass: MultilineValue1Cell.self
+            ))
         }
-        display.rows.append(row)
-        
-        display.rows.append(Row(text: Strings.NTP.settingsTitle,
-            selection: { [unowned self] in
-                self.navigationController?.pushViewController(NTPTableViewController(), animated: true)
-            },
-            image: #imageLiteral(resourceName: "settings-ntp").template,
-            accessory: .disclosureIndicator,
-            cellClass: MultilineValue1Cell.self
-        ))
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             display.rows.append(
