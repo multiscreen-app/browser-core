@@ -216,7 +216,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
         
         locationContainer.addSubview(locationView)
         
-        [scrollToTopButton, line, tabsButton, progressBar, cancelButton].forEach(addSubview(_:))
+        [scrollToTopButton, line, progressBar, cancelButton].forEach(addSubview(_:))
         addSubview(mainStackView)
         
         helper = ToolbarHelper(toolbar: self)

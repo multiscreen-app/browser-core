@@ -22,6 +22,10 @@ enum DesignSystemColor: String {
   case interactive07
   case interactive08
   
+  case minteractive01
+  case minteractive02
+  case minteractive03
+  
   case focusBorder = "focus-border"
   case disabled
   
@@ -91,13 +95,13 @@ extension UIColor {
     DesignSystemColor.text01.color
   }
   public static var braveLighterOrange: UIColor {
-    DesignSystemColor.interactive03.color
+    DesignSystemColor.minteractive03.color
   }
   public static var braveOrange: UIColor {
-    DesignSystemColor.interactive02.color
+    DesignSystemColor.minteractive02.color
   }
   public static var braveDarkerOrange: UIColor {
-    DesignSystemColor.interactive01.color
+    DesignSystemColor.minteractive01.color
   }
   public static var braveLighterBlurple: UIColor {
     DesignSystemColor.interactive06.color

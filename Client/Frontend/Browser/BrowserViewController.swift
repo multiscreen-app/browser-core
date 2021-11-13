@@ -722,14 +722,15 @@ class BrowserViewController: UIViewController {
         updateTabCountUsingTabManager(tabManager)
         clipboardBarDisplayHandler?.checkIfShouldDisplayBar()
 
-        if let selectedTab = tabManager.selectedTab,
-           let playlistItem = selectedTab.playlistItem,
-           PlaylistManager.shared.index(of: playlistItem.pageSrc) == nil {
-            
-            updatePlaylistURLBar(tab: selectedTab,
-                                 state: .newItem,
-                                 item: playlistItem)
-        }
+        // ms disable playlist
+//        if let selectedTab = tabManager.selectedTab,
+//           let playlistItem = selectedTab.playlistItem,
+//           PlaylistManager.shared.index(of: playlistItem.pageSrc) == nil {
+//
+//            updatePlaylistURLBar(tab: selectedTab,
+//                                 state: .newItem,
+//                                 item: playlistItem)
+//        }
     }
     
     fileprivate lazy var checkCrashRestoration: () -> Void = {
@@ -983,7 +984,8 @@ class BrowserViewController: UIViewController {
                readerMode.state == .active,
                isReaderModeURL {
                 self.showReaderModeBar(animated: false)
-                self.updatePlaylistURLBar(tab: tab, state: tab.playlistItemState, item: tab.playlistItem)
+                // ms disable playlist
+//                self.updatePlaylistURLBar(tab: tab, state: tab.playlistItemState, item: tab.playlistItem)
             }
         })
     }
@@ -1279,7 +1281,8 @@ class BrowserViewController: UIViewController {
             }
 
             updateInContentHomePanel(url as URL)
-            updatePlaylistURLBar(tab: tab, state: tab.playlistItemState, item: tab.playlistItem)
+            // ms disable playlist
+//            updatePlaylistURLBar(tab: tab, state: tab.playlistItemState, item: tab.playlistItem)
         }
     }
     
@@ -1287,17 +1290,18 @@ class BrowserViewController: UIViewController {
     fileprivate func updateURLBar() {
         guard let tab = tabManager.selectedTab else { return }
         
-        DispatchQueue.main.async {
-            if let item = tab.playlistItem {
-                if PlaylistItem.itemExists(item) {
-                    self.updatePlaylistURLBar(tab: tab, state: .existingItem, item: item)
-                } else {
-                    self.updatePlaylistURLBar(tab: tab, state: .newItem, item: item)
-                }
-            } else {
-                self.updatePlaylistURLBar(tab: tab, state: .none, item: nil)
-            }
-        }
+        // ms disable playlist
+//        DispatchQueue.main.async {
+//            if let item = tab.playlistItem {
+//                if PlaylistItem.itemExists(item) {
+//                    self.updatePlaylistURLBar(tab: tab, state: .existingItem, item: item)
+//                } else {
+//                    self.updatePlaylistURLBar(tab: tab, state: .newItem, item: item)
+//                }
+//            } else {
+//                self.updatePlaylistURLBar(tab: tab, state: .none, item: nil)
+//            }
+//        }
         
         topToolbar.currentURL = tab.url?.displayURL
         if tabManager.selectedTab === tab {
@@ -1948,7 +1952,8 @@ extension BrowserViewController: TabManagerDelegate {
                 hideReaderModeBar(animated: false)
             }
             
-            updatePlaylistURLBar(tab: selected, state: selected.playlistItemState, item: selected.playlistItem)
+            // ms disable playlist
+//            updatePlaylistURLBar(tab: selected, state: selected.playlistItemState, item: selected.playlistItem)
         } else {
             topToolbar.updateReaderModeState(ReaderModeState.unavailable)
         }
