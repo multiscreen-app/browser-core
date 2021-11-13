@@ -12,8 +12,6 @@ class NTPTableViewController: TableViewController {
     enum BackgroundImageType: RepresentableOptionType {
         
         case defaultImages
-        case sponsored
-        case superReferrer(String)
         
         var key: String {
             displayString
@@ -22,8 +20,6 @@ class NTPTableViewController: TableViewController {
         public var displayString: String {
             switch self {
             case .defaultImages: return "(\(Strings.NTP.settingsDefaultImagesOnly))"
-            case .sponsored: return Strings.NTP.settingsSponsoredImagesSelection
-            case .superReferrer(let referrer): return referrer
             }
         }
     }
@@ -62,18 +58,11 @@ class NTPTableViewController: TableViewController {
     }
     
     private func selectedItem() -> BackgroundImageType {
-        if let referrer = Preferences.NewTabPage.selectedCustomTheme.value {
-            return .superReferrer(referrer)
-        }
-        
-        return Preferences.NewTabPage.backgroundSponsoredImages.value ? .sponsored : .defaultImages
+        return .defaultImages
     }
     
     private lazy var backgroundImageOptions: [BackgroundImageType] = {
-        var available: [BackgroundImageType] = [.defaultImages, .sponsored]
-        available += Preferences.NewTabPage.installedCustomThemes.value.map {
-            .superReferrer($0)
-        }
+        var available: [BackgroundImageType] = [.defaultImages]
         return available
     }()
     
@@ -90,15 +79,6 @@ class NTPTableViewController: TableViewController {
                 options: self.backgroundImageOptions,
                 selectedOption: self.selectedItem(),
                 optionChanged: { _, option in
-                    // Should turn this off whenever possible to prevent unnecessary resource downloading
-                    Preferences.NewTabPage.backgroundSponsoredImages.value = option == .sponsored
-                    
-                    if case .superReferrer(let referrer) = option {
-                        Preferences.NewTabPage.selectedCustomTheme.value = referrer
-                    } else {
-                        Preferences.NewTabPage.selectedCustomTheme.value = nil
-                    }
-                    
                     self.dataSource.reloadCell(row: row, section: section, displayText: option.displayString)
                 }
             )

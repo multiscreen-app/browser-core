@@ -45,8 +45,6 @@ class NewTabPageBackground: PreferencesObserver {
         self.currentBackground = dataSource.newBackground()
         
         Preferences.NewTabPage.backgroundImages.observe(from: self)
-        Preferences.NewTabPage.backgroundSponsoredImages.observe(from: self)
-        Preferences.NewTabPage.selectedCustomTheme.observe(from: self)
     }
     
     deinit {

@@ -162,16 +162,10 @@ extension Preferences {
     final class NewTabPage {
         /// Whether bookmark image are enabled / shown
         static let backgroundImages = Option<Bool>(key: "newtabpage.background-images", default: true)
-        /// Whether sponsored images are included into the background image rotation
-        static let backgroundSponsoredImages = Option<Bool>(key: "newtabpage.background-sponsored-images", default: true)
         
         /// At least one notification must show before we lock showing subsequent notifications.
         static let atleastOneNTPNotificationWasShowed = Option<Bool>(key: "newtabpage.one-notificaiton-showed",
                                                                      default: false)
-        
-        /// Whether the callout to use branded image was shown.
-        static let brandedImageShowed = Option<Bool>(key: "newtabpage.branded-image-callout-showed",
-                                                     default: false)
         
         /// When true, a notification on new tab page will be shown that an ad grant can be claimed(if rewards and grant are available).
         /// This value is reseted on each app launch,
@@ -187,10 +181,6 @@ extension Preferences {
         /// with the ones provided super referrer once available.This should be done only once.
         static let initialFavoritesHaveBeenReplaced =
             Option<Bool>(key: "newtabpage.initial-favorites-replaced", default: false)
-        
-        /// Custom theme used in app. Nil if default theme is used.
-        static let selectedCustomTheme =
-            Option<String?>(key: "newtabpage.selected-custom-theme", default: nil)
         
         /// List of currently installed themes on the device.
         static let installedCustomThemes =

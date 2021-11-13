@@ -115,12 +115,6 @@ class FaviconFetcher {
         
         loadTaskCancellable = DispatchWorkItem { [weak self] in
             guard let self = self else { return }
-            if let icon = self.customIcon {
-                DispatchQueue.main.async {
-                    completion(self.url, icon)
-                }
-                return
-            }
             let matchesFetchKind = self.faviconOnFileMatchesFetchKind(faviconType)
             if let icon = self.bundledIcon, faviconType == nil || !matchesFetchKind {
                 DispatchQueue.main.async {
@@ -144,39 +138,6 @@ class FaviconFetcher {
     func cancelLoadTask() {
         loadTaskCancellable?.cancel()
         loadTaskCancellable = nil
-    }
-    
-    // MARK: - Custom Icons
-    
-    /// Icon attributes for any custom icon overrides
-    ///
-    /// If the app does not contain a custom icon for the site provided `nil`
-    /// will be returned
-    var customIcon: FaviconAttributes? {
-        guard let folder = FileManager.default.getOrCreateFolder(name: NTPDownloader.faviconOverridesDirectory) else {
-                return nil
-        }
-        let fileName = url.absoluteString.toBase64()
-        let backgroundName = fileName + NTPDownloader.faviconOverridesBackgroundSuffix
-        let backgroundPath = folder.appendingPathComponent(backgroundName)
-        do {
-            let colorString = try String(contentsOf: backgroundPath)
-            let colorFromHex = UIColor(colorString: colorString)
-            
-            if FileManager.default.fileExists(atPath: folder.appendingPathComponent(fileName).path) {
-                let imagePath = folder.appendingPathComponent(fileName)
-                if let image = UIImage(contentsOfFile: imagePath.path) {
-                    return FaviconAttributes(
-                        image: image,
-                        backgroundColor: colorFromHex
-                    )
-                }
-                return nil
-            }
-        } catch {
-            return nil
-        }
-        return nil
     }
     
     // MARK: - Bundled Icons

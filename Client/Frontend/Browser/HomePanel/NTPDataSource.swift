@@ -46,7 +46,6 @@ class NTPDataSource {
     // This can be easily converted to a preference to persist
     private var sponsoredBackgroundRotationIndex = 0
 
-    private lazy var downloader = NTPDownloader()
     private var customTheme: CustomTheme?
     private var sponsor: NTPSponsor?
     
@@ -61,34 +60,6 @@ class NTPDataSource {
         }
     }()
     
-    init() {
-        downloader.delegate = self
-        
-        Preferences.NewTabPage.backgroundSponsoredImages.observe(from: self)
-        Preferences.NewTabPage.selectedCustomTheme.observe(from: self)
-    }
-    
-    func startFetching() {
-        let downloadType = downloader.currentResourceType
-        // For super referrer we want to load assets from cache first, then check if new resources
-        // are on the server.
-        // This is because as super referrer install we never want to show other images than the ones
-        // provided by the super referrer.
-        // In the future we might want to extend this preload from cache logic to other resource types.
-        if case .superReferral = downloadType {
-            downloader.preloadCustomTheme()
-        }
-        
-        if downloader.delegate != nil {
-            downloader.notifyObservers(for: downloader.currentResourceType)
-        }
-    }
-    
-    func fetchSpecificResource(_ type: NTPDownloader.ResourceType) {
-        if downloader.delegate != nil {
-            downloader.notifyObservers(for: type)
-        }
-    }
     
     // This is used to prevent the same handful of backgrounds from being shown.
     //  It will track the last N pictures that have been shown and prevent them from being shown
@@ -195,64 +166,5 @@ class NTPDataSource {
         }
         
         return nil
-    }
-}
-
-extension NTPDataSource: NTPDownloaderDelegate {
-    func onSponsorUpdated(sponsor: NTPSponsor?) {
-        self.sponsor = sponsor
-        // Force to set up basic favorites if it hasn't been done already.
-        initializeFavorites?(nil)
-    }
-    
-    func onThemeUpdated(theme: CustomTheme?) {
-        self.customTheme = theme
-        
-        if Preferences.NewTabPage.preloadedFavoritiesInitialized.value {
-            replaceFavoritesIfNeeded?(theme?.topSites)
-        } else {
-            initializeFavorites?(theme?.topSites)
-        }
-    }
-    
-    func preloadCustomTheme(theme: CustomTheme?) {
-        self.customTheme = theme
-    }
-}
-
-extension NTPDataSource: PreferencesObserver {
-    func preferencesDidChange(for key: String) {
-        let sponsoredPref = Preferences.NewTabPage.backgroundSponsoredImages
-        let customThemePref = Preferences.NewTabPage.selectedCustomTheme
-        let installedThemesPref = Preferences.NewTabPage.installedCustomThemes
-        
-        switch key {
-        case sponsoredPref.key:
-            if sponsoredPref.value {
-                // Issue download only when no custom theme is currently set.
-                if customThemePref.value == nil {
-                    Preferences.NTP.ntpCheckDate.value = nil
-                    downloader.delegate = self
-                    fetchSpecificResource(.sponsor)
-                }
-
-            } else {
-                downloader.delegate = nil
-                do {
-                    try downloader.removeCampaign(type: .sponsor)
-                } catch {
-                    Logger.browserLogger.error(error)
-                }
-            }
-        case customThemePref.key:
-            downloader.delegate = self
-            
-            let installedThemes = installedThemesPref.value
-            if let theme = customThemePref.value, !installedThemes.contains(theme) {
-                installedThemesPref.value = installedThemesPref.value + [theme]
-            }
-        default:
-            break
-        }
     }
 }

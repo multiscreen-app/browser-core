@@ -549,7 +549,6 @@
 		5E5E6F1525BA8DD70035B6A0 /* PlaylistMediaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5E6F1425BA8DD70035B6A0 /* PlaylistMediaInfo.swift */; };
 		5E5E6F2925BB61320035B6A0 /* Playlist.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E5E6F2825BB61320035B6A0 /* Playlist.js */; };
 		5E5E6F9825BB658A0035B6A0 /* PlaylistHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5E6F9725BB658A0035B6A0 /* PlaylistHelper.swift */; };
-		5E6683A923D61CF7005B3A6C /* NTPDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6683A823D61CF7005B3A6C /* NTPDownloader.swift */; };
 		5E72D54F253657FF00F8D62D /* BraveCoreImportExportUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E72D54E253657FF00F8D62D /* BraveCoreImportExportUtility.swift */; };
 		5E824A34260BC6CA00127F36 /* BrowserViewController+Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E824A33260BC6CA00127F36 /* BrowserViewController+Playlist.swift */; };
 		5E824A95260BCE0D00127F36 /* MainFrameAtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E824A88260BCE0D00127F36 /* MainFrameAtDocumentEnd.js */; };
@@ -689,7 +688,6 @@
 		B0FAB9CE271BA4F00056A8A3 /* NewTabPageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27201EFD24539B5500C19DD1 /* NewTabPageBackground.swift */; };
 		B0FAB9CF271BA4F00056A8A3 /* NewTabPageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27201F012458879700C19DD1 /* NewTabPageBackgroundView.swift */; };
 		B0FAB9D0271BA4F00056A8A3 /* NewTabPageBackgroundButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27448537245B67B2001920B5 /* NewTabPageBackgroundButtonsView.swift */; };
-		B0FAB9D1271BA4F00056A8A3 /* NTPDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6683A823D61CF7005B3A6C /* NTPDownloader.swift */; };
 		B0FAB9D2271BA4F00056A8A3 /* CustomTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2744852F245B5EC2001920B5 /* CustomTheme.swift */; };
 		B0FAB9D3271BA4F10056A8A3 /* NTPDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27448530245B5EC2001920B5 /* NTPDataSource.swift */; };
 		B0FAB9D4271BA4F10056A8A3 /* NTPModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27448531245B5EC2001920B5 /* NTPModels.swift */; };
@@ -2525,7 +2523,6 @@
 		5E5E6F1425BA8DD70035B6A0 /* PlaylistMediaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistMediaInfo.swift; sourceTree = "<group>"; };
 		5E5E6F2825BB61320035B6A0 /* Playlist.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Playlist.js; sourceTree = "<group>"; };
 		5E5E6F9725BB658A0035B6A0 /* PlaylistHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHelper.swift; sourceTree = "<group>"; };
-		5E6683A823D61CF7005B3A6C /* NTPDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPDownloader.swift; sourceTree = "<group>"; };
 		5E72D54E253657FF00F8D62D /* BraveCoreImportExportUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveCoreImportExportUtility.swift; sourceTree = "<group>"; };
 		5E824A33260BC6CA00127F36 /* BrowserViewController+Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowserViewController+Playlist.swift"; sourceTree = "<group>"; };
 		5E824A88260BCE0D00127F36 /* MainFrameAtDocumentEnd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MainFrameAtDocumentEnd.js; sourceTree = "<group>"; };
@@ -3222,7 +3219,6 @@
 				27201EFD24539B5500C19DD1 /* NewTabPageBackground.swift */,
 				27201F012458879700C19DD1 /* NewTabPageBackgroundView.swift */,
 				27448537245B67B2001920B5 /* NewTabPageBackgroundButtonsView.swift */,
-				5E6683A823D61CF7005B3A6C /* NTPDownloader.swift */,
 				2744852F245B5EC2001920B5 /* CustomTheme.swift */,
 				27448530245B5EC2001920B5 /* NTPDataSource.swift */,
 				27448531245B5EC2001920B5 /* NTPModels.swift */,
@@ -6509,7 +6505,6 @@
 				B0FAB9CE271BA4F00056A8A3 /* NewTabPageBackground.swift in Sources */,
 				B0FAB9CF271BA4F00056A8A3 /* NewTabPageBackgroundView.swift in Sources */,
 				B0FAB9D0271BA4F00056A8A3 /* NewTabPageBackgroundButtonsView.swift in Sources */,
-				B0FAB9D1271BA4F00056A8A3 /* NTPDownloader.swift in Sources */,
 				B0FAB9D2271BA4F00056A8A3 /* CustomTheme.swift in Sources */,
 				B0FAB9D3271BA4F10056A8A3 /* NTPDataSource.swift in Sources */,
 				B0FAB9D4271BA4F10056A8A3 /* NTPModels.swift in Sources */,
@@ -7051,7 +7046,6 @@
 				3BF56D271CDBBE1F00AC4D75 /* SimpleToast.swift in Sources */,
 				D31F95E91AC226CB005C9F3B /* ScreenshotHelper.swift in Sources */,
 				D3968F251A38FE8500CEFD3B /* TabManager.swift in Sources */,
-				5E6683A923D61CF7005B3A6C /* NTPDownloader.swift in Sources */,
 				2816F0001B33E05400522243 /* UIConstants.swift in Sources */,
 				4422D56521BFFB7F00BF1855 /* filtered_re2.cc in Sources */,
 				277223722469B4FB0059A7EB /* FaviconFetcher.swift in Sources */,

@@ -254,7 +254,6 @@ class BrowserViewController: UIViewController {
         Preferences.Shields.allShields.forEach { $0.observe(from: self) }
         Preferences.Privacy.blockAllCookies.observe(from: self)
         Preferences.Playlist.enablePlaylistMenuBadge.observe(from: self)
-        Preferences.NewTabPage.selectedCustomTheme.observe(from: self)
         Preferences.Playlist.webMediaSourceCompatibility.observe(from: self)
         // Lists need to be compiled before attempting tab restoration
         contentBlockListDeferred = ContentBlockerHelper.compileBundledLists()
@@ -2549,9 +2548,6 @@ extension BrowserViewController: PreferencesObserver {
             } else {
                 tabManager.reloadSelectedTab()
             }
-        case Preferences.NewTabPage.selectedCustomTheme.key:
-            Preferences.NTP.ntpCheckDate.value = nil
-            backgroundDataSource.startFetching()
         case Preferences.Playlist.webMediaSourceCompatibility.key:
             if UIDevice.isIpad {
                 tabManager.allTabs.forEach {
