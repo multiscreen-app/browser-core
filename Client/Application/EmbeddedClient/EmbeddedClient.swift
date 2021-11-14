@@ -130,6 +130,8 @@ open class EmbeddedClient {
         
         // Schedule Brave Core Priority Tasks
         self.braveCore?.scheduleLowPriorityStartupTasks()
+        
+        applyAppearanceDefaults()
     }
     
     public func createBrowserInstance(_ delegate: BrowserInstanceDelegate) -> BrowserInstance {
@@ -191,7 +193,6 @@ open class EmbeddedClient {
         }
         
         UIScrollView.doBadSwizzleStuff()
-        applyAppearanceDefaults()
         
         // Now roll logs.
         DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
