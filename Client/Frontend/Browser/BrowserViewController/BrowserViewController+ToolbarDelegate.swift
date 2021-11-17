@@ -195,7 +195,7 @@ extension BrowserViewController: TopToolbarDelegate {
         // We couldn't build a URL, so pass it on to the search engine.
         submitSearchText(text)
         
-        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+        if !self.privateBrowsingManager.isPrivateBrowsing {
             RecentSearch.addItem(type: .text, text: text, websiteUrl: nil)
         }
     }
@@ -325,7 +325,7 @@ extension BrowserViewController: TopToolbarDelegate {
         if searchController != nil { return }
 
         let tabType = TabType.of(tabManager.selectedTab)
-        searchController = SearchViewController(forTabType: tabType)
+        searchController = SearchViewController(forTabType: tabType, privateBrowsingManager: privateBrowsingManager)
         
         guard let searchController = searchController else { return }
 
@@ -333,7 +333,7 @@ extension BrowserViewController: TopToolbarDelegate {
         searchController.searchDelegate = self
         searchController.profile = self.profile
 
-        searchLoader = SearchLoader()
+        searchLoader = SearchLoader(privateBrowsingManager: self.privateBrowsingManager)
         searchLoader?.addListener(searchController)
         searchLoader?.autocompleteSuggestionHandler = { [weak self] completion in
             self?.topToolbar.setAutocompleteSuggestion(completion)
@@ -353,7 +353,7 @@ extension BrowserViewController: TopToolbarDelegate {
     private func displayFavoritesController() {
         if favoritesController == nil {
             let tabType = TabType.of(tabManager.selectedTab)
-            let favoritesController = FavoritesViewController(tabType: tabType, action: { [weak self] bookmark, action in
+            let favoritesController = FavoritesViewController(tabType: tabType, privateBrowsingManager: self.privateBrowsingManager, action: { [weak self] bookmark, action in
                 self?.handleFavoriteAction(favorite: bookmark, action: action)
             }, recentSearchAction: { [weak self] recentSearch, shouldSubmitSearch in
                 guard let self = self else { return }
@@ -444,7 +444,7 @@ extension BrowserViewController: TopToolbarDelegate {
     private func showBookmarkController() {
         let bookmarkViewController = BookmarksViewController(
             folder: Bookmarkv2.lastVisitedFolder(),
-            isPrivateBrowsing: PrivateBrowsingManager.shared.isPrivateBrowsing)
+            isPrivateBrowsing: self.privateBrowsingManager.isPrivateBrowsing)
         
         bookmarkViewController.toolbarUrlActionsDelegate = self
         
@@ -575,7 +575,7 @@ extension BrowserViewController: ToolbarDelegate {
     }
     
     func tabToolbarDidPressAddTab(_ tabToolbar: ToolbarProtocol, button: UIButton) {
-        self.openBlankNewTab(attemptLocationFieldFocus: true, isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing)
+        self.openBlankNewTab(attemptLocationFieldFocus: true, isPrivate: self.privateBrowsingManager.isPrivateBrowsing)
     }
     
     func tabToolbarDidLongPressAddTab(_ tabToolbar: ToolbarProtocol, button: UIButton) {
@@ -587,7 +587,7 @@ extension BrowserViewController: ToolbarDelegate {
     
     private func addTabAlertActions() -> [UIAlertAction] {
         var actions: [UIAlertAction] = []
-        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+        if !self.privateBrowsingManager.isPrivateBrowsing {
             let newPrivateTabAction = UIAlertAction(title: Strings.newPrivateTabTitle,
                                                     style: .default,
                                                     handler: { [unowned self] _ in
@@ -595,9 +595,9 @@ extension BrowserViewController: ToolbarDelegate {
             })
             actions.append(newPrivateTabAction)
         }
-        let bottomActionTitle = PrivateBrowsingManager.shared.isPrivateBrowsing ? Strings.newPrivateTabTitle : Strings.newTabTitle
+        let bottomActionTitle = self.privateBrowsingManager.isPrivateBrowsing ? Strings.newPrivateTabTitle : Strings.newTabTitle
         actions.append(UIAlertAction(title: bottomActionTitle, style: .default, handler: { [unowned self] _ in
-            self.openBlankNewTab(attemptLocationFieldFocus: true, isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing)
+            self.openBlankNewTab(attemptLocationFieldFocus: true, isPrivate: self.privateBrowsingManager.isPrivateBrowsing)
         }))
         return actions
     }

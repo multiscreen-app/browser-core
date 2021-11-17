@@ -39,7 +39,7 @@ extension ContentBlockerHelper: TabContentScript {
             let mainDocumentUrl = tab?.webView?.url else {
             return
         }
-        let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+        let isPrivateBrowsing = self.tab?.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false
         let domain = Domain.getOrCreate(forUrl: mainDocumentUrl, persistent: !isPrivateBrowsing)
         if let shieldsAllOff = domain.shield_allOff, Bool(truncating: shieldsAllOff) {
             // if domain is "all_off", can just skip

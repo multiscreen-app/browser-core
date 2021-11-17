@@ -10,6 +10,7 @@ import BraveShared
 
 private let log = Logger.browserLogger
 
+// ms DELETE
 class BraveSearchHelper: TabContentScript {
     private weak var tab: Tab?
     private let profile: Profile

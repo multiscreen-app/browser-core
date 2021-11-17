@@ -46,7 +46,7 @@ extension BrowserViewController {
                 return false
             }
             
-            return BookmarksInterstitialPageHandler.showBookmarksPage(tabManager: self.tabManager, url: url)
+            return BookmarksInterstitialPageHandler.showBookmarksPage(tabManager: self.tabManager, url: url, isPrivateBrowsing: self.privateBrowsingManager.isPrivateBrowsing)
         }
         
         Migration.braveCoreSyncObjectsMigrator?.migrate({ error in

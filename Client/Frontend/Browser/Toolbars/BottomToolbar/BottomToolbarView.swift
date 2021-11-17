@@ -24,9 +24,11 @@ class BottomToolbarView: UIView, ToolbarProtocol {
 
     var helper: ToolbarHelper?
     private let contentView = UIStackView()
-
-    fileprivate override init(frame: CGRect) {
+    private unowned let privateBrowsingManager: PrivateBrowsingManager
+    
+    init(frame: CGRect, privateBrowsingManager: PrivateBrowsingManager) {
         actionButtons = [backButton, forwardButton, addTabButton, searchButton, tabsButton, menuButton]
+        self.privateBrowsingManager = privateBrowsingManager
         super.init(frame: frame)
         setupAccessibility()
         
@@ -40,7 +42,7 @@ class BottomToolbarView: UIView, ToolbarProtocol {
         
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didSwipeToolbar(_:))))
         
-        privateModeCancellable = PrivateBrowsingManager.shared
+        privateModeCancellable = self.privateBrowsingManager
             .$isPrivateBrowsing
             .removeDuplicates()
             .sink(receiveValue: { [weak self] isPrivateBrowsing in

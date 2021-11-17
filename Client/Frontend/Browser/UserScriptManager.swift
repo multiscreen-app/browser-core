@@ -21,6 +21,7 @@ class UserScriptManager {
 
     public static let securityTokenString = UserScriptManager.securityToken.uuidString.replacingOccurrences(of: "-", with: "", options: .literal)
 
+    private unowned let privateBrowsingManager: PrivateBrowsingManager
     private weak var tab: Tab?
     
     // Whether or not the fingerprinting protection
@@ -97,7 +98,7 @@ class UserScriptManager {
         
         if let shieldType = customDomainUserScript.shieldType {
             let domain = Domain.getOrCreate(forUrl: url,
-                                            persistent: !PrivateBrowsingManager.shared.isPrivateBrowsing)
+                                            persistent: !self.privateBrowsingManager.isPrivateBrowsing)
             
             if domain.isShieldExpected(shieldType, considerAllShieldsOption: true) {
                 domainUserScript = customDomainUserScript
@@ -117,8 +118,9 @@ class UserScriptManager {
         return false
     }
     
-    init(tab: Tab, isFingerprintingProtectionEnabled: Bool, isCookieBlockingEnabled: Bool, isU2FEnabled: Bool, isPaymentRequestEnabled: Bool, isWebCompatibilityMediaSourceAPIEnabled: Bool, isMediaBackgroundPlaybackEnabled: Bool) {
+    init(tab: Tab, privateBrowsingManager: PrivateBrowsingManager, isFingerprintingProtectionEnabled: Bool, isCookieBlockingEnabled: Bool, isU2FEnabled: Bool, isPaymentRequestEnabled: Bool, isWebCompatibilityMediaSourceAPIEnabled: Bool, isMediaBackgroundPlaybackEnabled: Bool) {
         self.tab = tab
+        self.privateBrowsingManager = privateBrowsingManager
         self.isFingerprintingProtectionEnabled = isFingerprintingProtectionEnabled
         self.isCookieBlockingEnabled = isCookieBlockingEnabled
         self.isU2FEnabled = isU2FEnabled

@@ -44,8 +44,11 @@ class Historyv2: WebsitePresentable {
     
     // MARK: Lifecycle
     
-    init(with node: HistoryNode) {
+    let isPrivateBrowsing: Bool
+    
+    init(with node: HistoryNode, isPrivateBrowsing: Bool) {
         self.historyNode = node
+        self.isPrivateBrowsing = isPrivateBrowsing
     }
     
     // MARK: Internal
@@ -69,7 +72,7 @@ class Historyv2: WebsitePresentable {
     }
     
     public var domain: Domain? {
-        return Domain.getOrCreate(forUrl: historyNode.url, persistent: !PrivateBrowsingManager.shared.isPrivateBrowsing)
+        return Domain.getOrCreate(forUrl: historyNode.url, persistent: !self.isPrivateBrowsing)
     }
     
     public var sectionID: Section? {
@@ -128,12 +131,12 @@ extension Historyv2 {
         historyAPI.addHistory(historyNode, isURLTyped: isURLTyped)
     }
     
-    public static func frc() -> HistoryV2FetchResultsController? {
+    public static func frc(isPrivateBrowsing: Bool = false) -> HistoryV2FetchResultsController? {
         guard let historyAPI = Historyv2.historyAPI else {
             return nil
         }
         
-        return Historyv2Fetcher(historyAPI: historyAPI)
+        return Historyv2Fetcher(historyAPI: historyAPI, isPrivateBrowsing: isPrivateBrowsing)
     }
     
     public func delete() {
@@ -154,24 +157,24 @@ extension Historyv2 {
         }
     }
     
-    public class func suffix(_ maxLength: Int, _ completion: @escaping ([Historyv2]) -> Void) {
+    public class func suffix(_ maxLength: Int, isPrivateBrowsing: Bool, _ completion: @escaping ([Historyv2]) -> Void) {
         guard let historyAPI = Historyv2.historyAPI else {
             return
         }
         
         historyAPI.search(withQuery: nil, maxCount: UInt(max(20, maxLength)), completion: { historyResults in
-            completion(historyResults.map { Historyv2(with: $0) })
+            completion(historyResults.map { Historyv2(with: $0, isPrivateBrowsing: isPrivateBrowsing) })
         })
     }
 
-    public static func byFrequency(query: String? = nil, _ completion: @escaping ([WebsitePresentable]) -> Void) {
+    public static func byFrequency(query: String? = nil, isPrivateBrowsing: Bool, _ completion: @escaping ([WebsitePresentable]) -> Void) {
         guard let query = query, !query.isEmpty,
               let historyAPI = Historyv2.historyAPI else {
             return
         }
         
         historyAPI.search(withQuery: query, maxCount: 200, completion: { historyResults in
-            completion(historyResults.map { Historyv2(with: $0) })
+            completion(historyResults.map { Historyv2(with: $0, isPrivateBrowsing: isPrivateBrowsing) })
         })
     }
     

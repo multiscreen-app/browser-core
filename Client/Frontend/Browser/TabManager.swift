@@ -79,7 +79,7 @@ class TabManager: NSObject {
     fileprivate let imageStore: DiskImageStore?
 
     fileprivate let prefs: Prefs
-    unowned var browserViewController: BrowserViewController?
+    weak var browserViewController: BrowserViewController?
     var selectedIndex: Int { return _selectedIndex }
     var tempTabs: [Tab]?
 
@@ -155,7 +155,7 @@ class TabManager: NSObject {
     
     // What the users sees displayed based on current private browsing mode
     var tabsForCurrentMode: [Tab] {
-        let tabType: TabType = PrivateBrowsingManager.shared.isPrivateBrowsing ? .private : .regular
+        let tabType: TabType = (self.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false) ? .private : .regular
         return tabs(withType: tabType)
     }
 
@@ -229,7 +229,7 @@ class TabManager: NSObject {
         }
         // Convert the global mode to private if opening private tab from normal tab/ history/bookmark.
         if selectedTab?.isPrivate == false && tab?.isPrivate == true {
-            PrivateBrowsingManager.shared.isPrivateBrowsing = true
+            self.browserViewController?.privateBrowsingManager.isPrivateBrowsing = true
         }
         // Make sure to wipe the private tabs if the user has the pref turned on
         if !TabType.of(tab).isPrivate {
@@ -276,7 +276,7 @@ class TabManager: NSObject {
         // MS comment out brave rewards
 //        let rewards = appDelegate.browserViewController.rewards
 //
-//        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+//        if !self.browserViewController.privateBrowsingManager.isPrivateBrowsing {
 //            let previousFaviconURL = URL(string: previousTab.displayFavicon?.url ?? "")
 //            if previousFaviconURL == nil && !previousTabUrl.isLocal {
 //                rewardsLog.warning("No favicon found in \(previousTab) to report to rewards panel")
@@ -393,7 +393,7 @@ class TabManager: NSObject {
     }
     
     private func saveTabOrder() {
-        if PrivateBrowsingManager.shared.isPrivateBrowsing { return }
+        if self.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false { return }
         let allTabIds = allTabs.compactMap { $0.id }
         TabMO.saveTabOrder(tabIds: allTabIds)
     }
@@ -474,7 +474,7 @@ class TabManager: NSObject {
     }
     
     func saveTab(_ tab: Tab, saveOrder: Bool = false) {
-        if PrivateBrowsingManager.shared.isPrivateBrowsing { return }
+        if self.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false { return }
         guard let data = savedTabData(tab: tab) else { return }
         
         TabMO.update(tabData: data)
@@ -837,7 +837,7 @@ class TabManager: NSObject {
 
             // Since this is a restored tab, reset the URL to be loaded as that will be handled by the SessionRestoreHandler
             tab.url = nil
-            let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+            let isPrivateBrowsing = self.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false
             if let url = URL(string: urlString),
                 let faviconURL = Domain.getOrCreate(forUrl: url, persistent: !isPrivateBrowsing).favicon?.url {
                 let icon = Favicon(url: faviconURL, date: Date())
@@ -1036,7 +1036,7 @@ class TabManagerNavDelegate: NSObject, WKNavigationDelegate {
     }
     
     private func defaultAllowPolicy() -> WKNavigationActionPolicy {
-        let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+        let isPrivateBrowsing = tabManager.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false
         if isPrivateBrowsing || !Preferences.General.followUniversalLinks.value {
             // Stop Brave from opening universal links by using the private enum value
             // `_WKNavigationActionPolicyAllowWithoutTryingAppLink` which is defined here:

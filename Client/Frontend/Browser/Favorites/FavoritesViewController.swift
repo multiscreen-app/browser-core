@@ -94,8 +94,10 @@ class FavoritesViewController: UIViewController {
         $0.contentView.backgroundColor = UIColor.braveBackground.withAlphaComponent(0.5)
     }
     private var hasPasteboardURL = false
+    private unowned var privateBrowsingManager: PrivateBrowsingManager
     
-    init(tabType: TabType, action: @escaping (Favorite, BookmarksAction) -> Void, recentSearchAction: @escaping (RecentSearch?, Bool) -> Void) {
+    init(tabType: TabType, privateBrowsingManager: PrivateBrowsingManager, action: @escaping (Favorite, BookmarksAction) -> Void, recentSearchAction: @escaping (RecentSearch?, Bool) -> Void) {
+        self.privateBrowsingManager = privateBrowsingManager
         self.tabType = tabType
         self.action = action
         self.recentSearchAction = recentSearchAction
@@ -347,7 +349,7 @@ extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
                 })
                 
                 var urlChildren: [UIAction] = [openInNewTab]
-                if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+                if !self.privateBrowsingManager.isPrivateBrowsing {
                     let openInNewPrivateTab = UIAction(title: Strings.openNewPrivateTabButtonTitle, handler: UIAction.deferredActionHandler { _ in
                         self.action(bookmark, .opened(inNewTab: true, switchingToPrivateMode: true))
                     })

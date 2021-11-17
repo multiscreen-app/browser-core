@@ -52,9 +52,11 @@ protocol HistoryV2FetchResultsController {
 class Historyv2Fetcher: NSObject, HistoryV2FetchResultsController {
     
     // MARK: Lifecycle
+    private let isPrivateBrowsing: Bool
     
-    init(historyAPI: BraveHistoryAPI) {
+    init(historyAPI: BraveHistoryAPI, isPrivateBrowsing: Bool) {
         self.historyAPI = historyAPI
+        self.isPrivateBrowsing = isPrivateBrowsing
         super.init()
         
         self.historyServiceListener = historyAPI.add(HistoryServiceStateObserver { [weak self] _ in
@@ -89,7 +91,7 @@ class Historyv2Fetcher: NSObject, HistoryV2FetchResultsController {
             guard let self = self else { return }
             
             self.historyList = historyNodeList.map { [unowned self] historyNode in
-                let historyItem = Historyv2(with: historyNode)
+                let historyItem = Historyv2(with: historyNode, isPrivateBrowsing: self.isPrivateBrowsing)
                 
                 if let section = historyItem.sectionID, let numOfItemInSection = self.sectionDetails[section] {
                     self.sectionDetails.updateValue(numOfItemInSection + 1, forKey: section)

@@ -13,7 +13,7 @@ private let log = Logger.browserLogger
 
 class BookmarksInterstitialPageHandler {
     
-    class func showBookmarksPage(tabManager: TabManager, url: URL) -> Bool {
+    class func showBookmarksPage(tabManager: TabManager, url: URL, isPrivateBrowsing: Bool) -> Bool {
         if !FileManager.default.fileExists(atPath: url.absoluteString) {
             return false
         }
@@ -25,7 +25,7 @@ class BookmarksInterstitialPageHandler {
                 $0.setValue(url.absoluteString, forHTTPHeaderField: "X-REQUEST-INTERSTITIAL-URL")
             }
             
-            let tab = tabManager.addTabAndSelect(isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing)
+            let tab = tabManager.addTabAndSelect(isPrivate: isPrivateBrowsing)
             tab.webView?.load(request as URLRequest)
             return true
         }

@@ -135,9 +135,6 @@ open class EmbeddedClient {
     }
     
     public func createBrowserInstance(_ delegate: BrowserInstanceDelegate) -> BrowserInstance {
-        // Make sure current private browsing flag respects the private browsing only user preference
-        PrivateBrowsingManager.shared.isPrivateBrowsing = Preferences.Privacy.privateBrowsingOnly.value
-        
         return BrowserInstance(delegate, profile: getProfile(), store: self.imageStore!)
         // Add restoration class, the factory that will return the ViewController we will restore with.
 //        browserViewController.restorationIdentifier = NSStringFromClass(BrowserViewController.self)

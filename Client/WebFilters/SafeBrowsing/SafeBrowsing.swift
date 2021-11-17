@@ -11,11 +11,13 @@ import Data
 private let log = Logger.browserLogger
 
 class SafeBrowsing {
+    unowned let privateBrowsingManager: PrivateBrowsingManager
     let listNames = MalwareList.generate()
     
     private(set) var domainList: Set<String>
     
-    init(domainList: Set<String> = Set<String>()) {
+    init(privateBrowsingManager: PrivateBrowsingManager, domainList: Set<String> = Set<String>()) {
+        self.privateBrowsingManager = privateBrowsingManager
         self.domainList = domainList
         
         if domainList.isEmpty {
@@ -28,7 +30,7 @@ class SafeBrowsing {
             log.error("url: \(url) host is nil")
             return false
         }
-        let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+        let isPrivateBrowsing = privateBrowsingManager.isPrivateBrowsing
         let domain = Domain.getOrCreate(forUrl: url, persistent: !isPrivateBrowsing)
         let isSafeBrowsingEnabled = domain.isShieldExpected(.SafeBrowsing, considerAllShieldsOption: false)
         let isUrlBlacklisted = domainList.contains(baseDomain)

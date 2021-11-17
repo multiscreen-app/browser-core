@@ -59,7 +59,7 @@ class TabTrayController: UIViewController {
     fileprivate(set) internal var privateMode: Bool = false {
         didSet {
             // Should be set immediately before other logic executes
-            PrivateBrowsingManager.shared.isPrivateBrowsing = privateMode
+            tabManager.browserViewController?.privateBrowsingManager.isPrivateBrowsing = privateMode
             tabDataSource.tabs = tabManager.tabsForCurrentMode
             
             toolbar.privateModeButton.isSelected = privateMode
@@ -322,7 +322,7 @@ class TabTrayController: UIViewController {
     }
 
     fileprivate func privateTabsAreEmpty() -> Bool {
-        let isPrivate = PrivateBrowsingManager.shared.isPrivateBrowsing
+        let isPrivate = tabManager.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false
         return isPrivate && tabManager.tabsForCurrentMode.isEmpty
     }
 
@@ -770,14 +770,14 @@ fileprivate class TabLayoutDelegate: NSObject, UICollectionViewDelegateFlowLayou
     }
 
     fileprivate func cellHeightForCurrentDevice() -> CGFloat {
-        let shortHeight = TabTrayControllerUX.textBoxHeight * 6
+        let shortHeight = TabTrayControllerUX.textBoxHeight * 4
 
         if self.traitCollection.verticalSizeClass == .compact {
             return shortHeight
         } else if self.traitCollection.horizontalSizeClass == .compact {
             return shortHeight
         } else {
-            return TabTrayControllerUX.textBoxHeight * 8
+            return TabTrayControllerUX.textBoxHeight * 6
         }
     }
 

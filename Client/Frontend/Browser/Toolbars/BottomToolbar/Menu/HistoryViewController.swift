@@ -34,7 +34,7 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
         self.isPrivateBrowsing = isPrivateBrowsing
         super.init(nibName: nil, bundle: nil)
         
-        historyFRC = Historyv2.frc()
+        historyFRC = Historyv2.frc(isPrivateBrowsing: isPrivateBrowsing)
         historyFRC?.delegate = self
     }
     
@@ -88,7 +88,7 @@ class HistoryViewController: SiteTableViewController, ToolbarUrlActionsProtocol 
     private func reloadData(_ completion: @escaping () -> Void) {
         // Recreate the frc if it was previously removed
         if historyFRC == nil {
-            historyFRC = Historyv2.frc()
+            historyFRC = Historyv2.frc(isPrivateBrowsing: isPrivateBrowsing)
             historyFRC?.delegate = self
         }
         

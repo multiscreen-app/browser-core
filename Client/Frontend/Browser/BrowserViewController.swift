@@ -44,7 +44,9 @@ private struct BrowserViewControllerUX {
 }
 
 class BrowserViewController: UIViewController {
+    var privateBrowsingManager = PrivateBrowsingManager()
     weak var browserInstance: BrowserInstance?
+    
     var webViewContainer: UIView!
     var topToolbar: TopToolbarView!
     var tabsBar: TabsBarViewController!
@@ -145,7 +147,7 @@ class BrowserViewController: UIViewController {
     
     // Web filters
     
-    let safeBrowsing: SafeBrowsing?
+    var safeBrowsing: SafeBrowsing?
     
     var promotionFetchTimer: Timer?
 //    var publisher: Ledger.PublisherInfo?
@@ -176,19 +178,21 @@ class BrowserViewController: UIViewController {
     var benchmarkBlockingDataSource: BlockingSummaryDataSource?
 
     init(profile: Profile, tabManager: TabManager, crashedLastSession: Bool,
-         safeBrowsingManager: SafeBrowsing? = SafeBrowsing()) {
+         safeBrowsingManager: SafeBrowsing? = nil) {
         self.profile = profile
         self.tabManager = tabManager
         self.readerModeCache = ReaderMode.cache(for: tabManager.selectedTab)
         self.crashedLastSession = crashedLastSession
-        self.safeBrowsing = safeBrowsingManager
         
         if Locale.current.regionCode == "JP" {
             benchmarkBlockingDataSource = BlockingSummaryDataSource()
         }
         
         super.init(nibName: nil, bundle: nil)
+        self.safeBrowsing = safeBrowsingManager ?? SafeBrowsing(privateBrowsingManager: privateBrowsingManager)
         tabManager.browserViewController = self
+        
+        privateBrowsingManager.isPrivateBrowsing = Preferences.Privacy.privateBrowsingOnly.value
 
         didInit()
     }
@@ -333,7 +337,7 @@ class BrowserViewController: UIViewController {
         toolbar = nil
 
         if showToolbar {
-            toolbar = BottomToolbarView()
+            toolbar = BottomToolbarView(frame: .zero, privateBrowsingManager: self.privateBrowsingManager)
             toolbar?.setSearchButtonState(url: tabManager.selectedTab?.url)
             footer.addSubview(toolbar!)
             toolbar?.tabToolbarDelegate = self
@@ -499,7 +503,7 @@ class BrowserViewController: UIViewController {
         view.addSubview(topTouchArea)
 
         // Setup the URL bar, wrapped in a view to get transparency effect
-        topToolbar = TopToolbarView()
+        topToolbar = TopToolbarView(frame: .zero, privateBrowsingManager: self.privateBrowsingManager)
         topToolbar.translatesAutoresizingMaskIntoConstraints = false
         topToolbar.delegate = self
         topToolbar.tabToolbarDelegate = self
@@ -592,7 +596,7 @@ class BrowserViewController: UIViewController {
             scheduleDefaultBrowserNotification()
         }
         
-        privateModeCancellable = PrivateBrowsingManager.shared
+        privateModeCancellable = self.privateBrowsingManager
             .$isPrivateBrowsing
             .removeDuplicates()
             .sink(receiveValue: { [weak self] isPrivateBrowsing in
@@ -743,7 +747,7 @@ class BrowserViewController: UIViewController {
 
     fileprivate func showRestoreTabsAlert() {
         guard canRestoreTabs() else {
-            self.tabManager.addTabAndSelect(isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing)
+            self.tabManager.addTabAndSelect(isPrivate: self.privateBrowsingManager.isPrivateBrowsing)
             return
         }
         let alert = UIAlertController.restoreTabsAlert(
@@ -752,7 +756,7 @@ class BrowserViewController: UIViewController {
             },
             noCallback: { _ in
                 TabMO.deleteAll()
-                self.tabManager.addTabAndSelect(isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing)
+                self.tabManager.addTabAndSelect(isPrivate: self.privateBrowsingManager.isPrivateBrowsing)
             }
         )
         self.present(alert, animated: true, completion: nil)
@@ -914,7 +918,9 @@ class BrowserViewController: UIViewController {
         if selectedTab.newTabPageViewController == nil {
             let ntpController = NewTabPageViewController(tab: selectedTab,
                                                          profile: profile,
-                                                         dataSource: backgroundDataSource)
+                                                         dataSource: backgroundDataSource,
+                                                         privateBrowsingManager: self.privateBrowsingManager
+            )
             /// Donate NewTabPage Activity For Custom Suggestions
 //            let newTabPageActivity =
 //                ActivityShortcutManager.shared.createShortcutActivity(type: selectedTab.isPrivate ? .newPrivateTab : .newTab)
@@ -1671,7 +1677,7 @@ extension BrowserViewController: ClipboardBarDisplayHandlerDelegate {
 
 extension BrowserViewController: SettingsDelegate {
     func settingsOpenURLInNewTab(_ url: URL) {
-        let forcedPrivate = PrivateBrowsingManager.shared.isPrivateBrowsing
+        let forcedPrivate = self.privateBrowsingManager.isPrivateBrowsing
         self.openURLInNewTab(url, isPrivate: forcedPrivate, isPrivileged: false)
     }
     
@@ -1759,8 +1765,8 @@ extension BrowserViewController: TabDelegate {
         tab.addContentScript(FingerprintingProtection(tab: tab), name: FingerprintingProtection.name(), sandboxed: false)
         
         tab.addContentScript(BraveGetUA(tab: tab), name: BraveGetUA.name(), sandboxed: false)
-        tab.addContentScript(BraveSearchHelper(tab: tab, profile: profile),
-                             name: BraveSearchHelper.name(), sandboxed: false)
+//        tab.addContentScript(BraveSearchHelper(tab: tab, profile: profile),
+//                             name: BraveSearchHelper.name(), sandboxed: false)
         
         tab.addContentScript(ResourceDownloadManager(tab: tab), name: ResourceDownloadManager.name(), sandboxed: false)
         
@@ -2289,7 +2295,7 @@ extension BrowserViewController: WKUIDelegate {
     
     fileprivate func addTab(url: URL, inPrivateMode: Bool, currentTab: Tab) {
         let tab = self.tabManager.addTab(URLRequest(url: url), afterTab: currentTab, isPrivate: inPrivateMode)
-        if inPrivateMode && !PrivateBrowsingManager.shared.isPrivateBrowsing {
+        if inPrivateMode && !self.privateBrowsingManager.isPrivateBrowsing {
             self.tabManager.selectTab(tab)
         } else {
             // We're not showing the top tabs; show a toast to quick switch to the fresh new tab.
@@ -2436,7 +2442,7 @@ extension BrowserViewController: ToolbarUrlActionsDelegate {
             finishEditingAndSubmit(url, visitType: visitType)
         case .openInNewTab(let isPrivate):
             let tab = tabManager.addTab(PrivilegedRequest(url: url) as URLRequest, afterTab: tabManager.selectedTab, isPrivate: isPrivate)
-            if isPrivate && !PrivateBrowsingManager.shared.isPrivateBrowsing {
+            if isPrivate && !self.privateBrowsingManager.isPrivateBrowsing {
                 tabManager.selectTab(tab)
             } else {
                 // If we are showing toptabs a user can just use the top tab bar
@@ -2467,7 +2473,7 @@ extension BrowserViewController: ToolbarUrlActionsDelegate {
 
 extension BrowserViewController: NewTabPageDelegate {
     func navigateToInput(_ input: String, inNewTab: Bool, switchingToPrivateMode: Bool) {
-        let isPrivate = PrivateBrowsingManager.shared.isPrivateBrowsing || switchingToPrivateMode
+        let isPrivate = self.privateBrowsingManager.isPrivateBrowsing || switchingToPrivateMode
         if inNewTab {
             tabManager.addTabAndSelect(isPrivate: isPrivate)
         }
@@ -2514,7 +2520,7 @@ extension BrowserViewController: PreferencesObserver {
         case Preferences.Privacy.privateBrowsingOnly.key:
             let isPrivate = Preferences.Privacy.privateBrowsingOnly.value
             switchToPrivacyMode(isPrivate: isPrivate)
-            PrivateBrowsingManager.shared.isPrivateBrowsing = isPrivate
+            self.privateBrowsingManager.isPrivateBrowsing = isPrivate
             setupTabs()
             updateTabsBarVisibility()
 //            updateApplicationShortcuts()
