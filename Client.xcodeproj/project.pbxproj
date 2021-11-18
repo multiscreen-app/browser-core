@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		094774452702B1CF005FB8B6 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094774442702B1CF005FB8B6 /* OtherExtensions.swift */; };
+		09502E2B2745C896002EBC04 /* LaunchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09502E2A2745C896002EBC04 /* LaunchOptions.swift */; };
+		09502E2C2745C896002EBC04 /* LaunchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09502E2A2745C896002EBC04 /* LaunchOptions.swift */; };
 		0A0A5ED125B1F080007B3E74 /* DefaultBrowserIntroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0A5ED025B1F080007B3E74 /* DefaultBrowserIntroManager.swift */; };
 		0A0D3D3921A4BD0600BEE65B /* SafeBrowsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3821A4BD0600BEE65B /* SafeBrowsing.swift */; };
 		0A0D3D3C21A4BE6400BEE65B /* adblock-list.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D3D3B21A4BE6400BEE65B /* adblock-list.txt */; };
@@ -1699,6 +1701,7 @@
 
 /* Begin PBXFileReference section */
 		094774442702B1CF005FB8B6 /* OtherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
+		09502E2A2745C896002EBC04 /* LaunchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOptions.swift; sourceTree = "<group>"; };
 		0A0A5ED025B1F080007B3E74 /* DefaultBrowserIntroManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowserIntroManager.swift; sourceTree = "<group>"; };
 		0A0D3D3821A4BD0600BEE65B /* SafeBrowsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeBrowsing.swift; sourceTree = "<group>"; };
 		0A0D3D3B21A4BE6400BEE65B /* adblock-list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "adblock-list.txt"; sourceTree = "<group>"; };
@@ -4487,6 +4490,7 @@
 				B0FABE1A271BDFA80056A8A3 /* EmbeddedClient.swift */,
 				B034B797272527200077446B /* BrowserInstanceDelegate.swift */,
 				B034B79B27253B300077446B /* Popup.swift */,
+				09502E2A2745C896002EBC04 /* LaunchOptions.swift */,
 			);
 			path = EmbeddedClient;
 			sourceTree = "<group>";
@@ -6405,6 +6409,7 @@
 				B0FABADF271BA53D0056A8A3 /* version_edit.cc in Sources */,
 				B0FABAE0271BA53D0056A8A3 /* dbformat.cc in Sources */,
 				B0FABAE1271BA53D0056A8A3 /* version_set.cc in Sources */,
+				09502E2C2745C896002EBC04 /* LaunchOptions.swift in Sources */,
 				B0FABAE2271BA53D0056A8A3 /* dumpfile.cc in Sources */,
 				B0FABAE3271BA53D0056A8A3 /* db_iter.cc in Sources */,
 				B0FABAE4271BA53D0056A8A3 /* repair.cc in Sources */,
@@ -6975,6 +6980,7 @@
 				E6D8D5E71B569D70009E5A58 /* BrowserTrayAnimators.swift in Sources */,
 				4422D4B121BFFB7600BF1855 /* bloom.cc in Sources */,
 				4422D4FD21BFFB7600BF1855 /* dumpfile.cc in Sources */,
+				09502E2B2745C896002EBC04 /* LaunchOptions.swift in Sources */,
 				0A19365423508756002E2B81 /* LinkPreviewViewController.swift in Sources */,
 				E65075611E37F77D006961AC /* MenuHelper.swift in Sources */,
 				C615FACF2129FBD000A8168C /* ImageCacheProtocol.swift in Sources */,

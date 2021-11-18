@@ -13,14 +13,16 @@ public class BrowserInstance {
     
     unowned var delegate: BrowserInstanceDelegate?
 
+    private let launchOptions: LaunchOptions
     var profile: Profile
     var tabManager: TabManager!
     var browserViewController: BrowserViewController!
         
-    init(_ delegate: BrowserInstanceDelegate, profile: Profile, store: DiskImageStore) {
+    init(_ delegate: BrowserInstanceDelegate, profile: Profile, store: DiskImageStore, launchOptions: LaunchOptions) {
         self.delegate = delegate
         self.profile = profile
         self.tabManager = TabManager(prefs: profile.prefs, imageStore: store)
+        self.launchOptions = launchOptions
         create()
     }
     
@@ -30,7 +32,7 @@ public class BrowserInstance {
         let crashedLastSession = !Preferences.AppState.backgroundedCleanly.value && AppConstants.buildChannel != .debug
         Preferences.AppState.backgroundedCleanly.value = false
         
-        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: crashedLastSession)
+        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: crashedLastSession, launchOptions:  launchOptions)
         browserViewController.edgesForExtendedLayout = []
         browserViewController.browserInstance = self
         

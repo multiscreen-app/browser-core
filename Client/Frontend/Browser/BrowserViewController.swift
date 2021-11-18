@@ -176,13 +176,16 @@ class BrowserViewController: UIViewController {
     /// Data Source object used to determine blocking stats
     // let benchmarkBlockingDataSource = BlockingSummaryDataSource()
     var benchmarkBlockingDataSource: BlockingSummaryDataSource?
+    
+    private let launchOptions: LaunchOptions
 
     init(profile: Profile, tabManager: TabManager, crashedLastSession: Bool,
-         safeBrowsingManager: SafeBrowsing? = nil) {
+         safeBrowsingManager: SafeBrowsing? = nil, launchOptions: LaunchOptions = LaunchOptions()) {
         self.profile = profile
         self.tabManager = tabManager
         self.readerModeCache = ReaderMode.cache(for: tabManager.selectedTab)
         self.crashedLastSession = crashedLastSession
+        self.launchOptions = launchOptions
         
         if Locale.current.regionCode == "JP" {
             benchmarkBlockingDataSource = BlockingSummaryDataSource()
@@ -596,6 +599,12 @@ class BrowserViewController: UIViewController {
             scheduleDefaultBrowserNotification()
         }
         
+        if launchOptions.privateBrowsing {
+            switchToPrivacyMode(isPrivate: true)
+            setupTabs()
+            updateTabsBarVisibility()
+        }
+        
         privateModeCancellable = self.privateBrowsingManager
             .$isPrivateBrowsing
             .removeDuplicates()
@@ -657,20 +666,26 @@ class BrowserViewController: UIViewController {
     
     fileprivate func setupTabs() {
         contentBlockListDeferred?.uponQueue(.main) { _ in
-            let isPrivate = Preferences.Privacy.privateBrowsingOnly.value
-            let noTabsAdded = self.tabManager.tabsForCurrentMode.isEmpty
-            
-            var tabToSelect: Tab?
-            
-            if noTabsAdded {
-                // Two scenarios if there are no tabs in tabmanager:
-                // 1. We have not restored tabs yet, attempt to restore or make a new tab if there is nothing.
-                // 2. We are in private browsing mode and need to add a new private tab.
-                tabToSelect = isPrivate ? self.tabManager.addTab(isPrivate: true) : self.tabManager.restoreAllTabs
+            if let url = self.launchOptions.initialURL {
+                let tab = self.tabManager.addTab(URLRequest(url: url), afterTab: nil, isPrivate: false)
+                self.tabManager.selectTab(tab, previous: nil)
             } else {
-                tabToSelect = self.tabManager.tabsForCurrentMode.last
+                let isPrivate = Preferences.Privacy.privateBrowsingOnly.value || self.privateBrowsingManager.isPrivateBrowsing
+                let noTabsAdded = self.tabManager.tabsForCurrentMode.isEmpty
+                var tabToSelect: Tab?
+
+                if noTabsAdded {
+                    // Two scenarios if there are no tabs in tabmanager:
+                    // 1. We have not restored tabs yet, attempt to restore or make a new tab if there is nothing.
+                    // 2. We are in private browsing mode and need to add a new private tab.
+                    
+                    tabToSelect = isPrivate ? self.tabManager.addTab(isPrivate: true) : self.tabManager.restoreAllTabs
+                } else {
+                    tabToSelect = self.tabManager.tabsForCurrentMode.last
+                }
+                self.tabManager.selectTab(tabToSelect)
             }
-            self.tabManager.selectTab(tabToSelect)
+
             self.loadQueue.fillIfUnfilled(())
         }
     }
@@ -737,7 +752,7 @@ class BrowserViewController: UIViewController {
     }
     
     fileprivate lazy var checkCrashRestoration: () -> Void = {
-        if crashedLastSession {
+        if crashedLastSession && self.launchOptions.initialURL == nil {
             showRestoreTabsAlert()
         } else {
             setupTabs()
@@ -2293,7 +2308,7 @@ extension BrowserViewController: WKUIDelegate {
         webView.load(URLRequest(url: url))
     }
     
-    fileprivate func addTab(url: URL, inPrivateMode: Bool, currentTab: Tab) {
+    fileprivate func addTab(url: URL, inPrivateMode: Bool, currentTab: Tab?) {
         let tab = self.tabManager.addTab(URLRequest(url: url), afterTab: currentTab, isPrivate: inPrivateMode)
         if inPrivateMode && !self.privateBrowsingManager.isPrivateBrowsing {
             self.tabManager.selectTab(tab)

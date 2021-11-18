@@ -134,8 +134,8 @@ open class EmbeddedClient {
         applyAppearanceDefaults()
     }
     
-    public func createBrowserInstance(_ delegate: BrowserInstanceDelegate) -> BrowserInstance {
-        return BrowserInstance(delegate, profile: getProfile(), store: self.imageStore!)
+    public func createBrowserInstance(_ delegate: BrowserInstanceDelegate, launchOptions: LaunchOptions) -> BrowserInstance {
+        return BrowserInstance(delegate, profile: getProfile(), store: self.imageStore!, launchOptions: launchOptions)
         // Add restoration class, the factory that will return the ViewController we will restore with.
 //        browserViewController.restorationIdentifier = NSStringFromClass(BrowserViewController.self)
 //        browserViewController.restorationClass = AppDelegate.self

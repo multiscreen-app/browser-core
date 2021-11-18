@@ -76,9 +76,11 @@ class TabLocationView: UIView {
         case .localHost:
             lockImageView.isHidden = true
         case .insecure:
-            lockImageView.image = #imageLiteral(resourceName: "insecure-site-icon")
+            lockImageView.image = UIImage(systemName: "lock.slash")
+            lockImageView.tintColor = .red
         case .secure, .unknown:
-            lockImageView.image = #imageLiteral(resourceName: "lock_verified").template
+            lockImageView.image = UIImage(systemName: "lock")
+            lockImageView.tintColor = #colorLiteral(red: 0.3764705882, green: 0.3843137255, blue: 0.4, alpha: 1)
         }
     }
 
@@ -138,7 +140,7 @@ class TabLocationView: UIView {
     }()
 
     fileprivate lazy var lockImageView: UIImageView = {
-        let lockImageView = UIImageView(image: #imageLiteral(resourceName: "lock_verified").template)
+        let lockImageView = UIImageView(image: UIImage(systemName: "lock"))
         lockImageView.isHidden = true
         lockImageView.tintColor = #colorLiteral(red: 0.3764705882, green: 0.3843137255, blue: 0.4, alpha: 1)
         lockImageView.isAccessibilityElement = true
