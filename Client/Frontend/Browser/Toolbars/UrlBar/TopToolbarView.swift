@@ -153,6 +153,17 @@ class TopToolbarView: UIView, ToolbarProtocol {
         $0.addTarget(self, action: #selector(didClickBookmarkButton), for: .touchUpInside)
     }
     
+    var closeButton = ToolbarButton(top: true).with {
+        $0.setImage(UIImage(systemName: "xmark.square"), for: .normal)
+        $0.addTarget(self, action: #selector(didClickClose), for: .touchUpInside)
+    }
+    
+    @objc private func didClickClose() {
+        if let toolbarDelegate = delegate as? BrowserViewController, let browserInstance = toolbarDelegate.browserInstance, let windowDelegate = browserInstance.delegate {
+            windowDelegate.close()
+        }
+    }
+    
     var forwardButton = ToolbarButton(top: true)
     var shareButton = ToolbarButton(top: true)
     var addTabButton = ToolbarButton(top: true)
@@ -170,7 +181,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
 
     lazy var actionButtons: [UIButton] =
         [self.shareButton, self.tabsButton, self.bookmarkButton,
-         self.forwardButton, self.backButton, self.menuButton].compactMap { $0 }
+         self.forwardButton, self.backButton, self.menuButton, self.closeButton].compactMap { $0 }
     
     /// Update the shields icon based on whether or not shields are enabled for this site
     func refreshShieldsStatus() {
@@ -241,11 +252,11 @@ class TopToolbarView: UIView, ToolbarProtocol {
             $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 16)
         }
         
-        [bookmarkButton, menuButton].forEach {
+        [bookmarkButton, menuButton, closeButton].forEach {
             $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         }
         
-        [navigationStackView, locationContainer, bookmarkButton, menuButton, cancelButton].forEach {
+        [navigationStackView, locationContainer, bookmarkButton, menuButton, closeButton, cancelButton].forEach {
             mainStackView.addArrangedSubview($0)
         }
         
