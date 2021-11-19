@@ -15,6 +15,8 @@ public protocol BrowserInstanceDelegate : AnyObject {
     
     func createResizeGestureRecognizer() -> UIGestureRecognizer
     
+    func close()
+    
 }
 
 extension BrowserInstanceDelegate {
