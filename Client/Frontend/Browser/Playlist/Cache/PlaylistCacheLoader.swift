@@ -330,7 +330,7 @@ public class PlaylistMimeTypeDetector {
 class PlaylistWebLoader: UIView {
     fileprivate static var pageLoadTimeout = 10.0
     
-    private let safeBrowsing = SafeBrowsing()
+    private let safeBrowsing = SafeBrowsing(privateBrowsingManager: PrivateBrowsingManager.shared)
     private var pendingHTTPUpgrades = [String: URLRequest]()
     private var pendingRequests = [String: URLRequest]()
     

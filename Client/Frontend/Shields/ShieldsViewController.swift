@@ -58,7 +58,7 @@ class ShieldsViewController: UIViewController, PopoverContentComponent {
     private func updateToggleStatus() {
         var domain: Domain?
         if let url = url {
-            let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+            let isPrivateBrowsing = tab.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false
             domain = Domain.getOrCreate(forUrl: url, persistent: !isPrivateBrowsing)
         }
 
@@ -103,7 +103,7 @@ class ShieldsViewController: UIViewController, PopoverContentComponent {
         // affecting future changes to the global pref)
         let isOn = allOff ? !on : on
         Domain.setBraveShield(forUrl: url, shield: shield, isOn: isOn,
-                              isPrivateBrowsing: PrivateBrowsingManager.shared.isPrivateBrowsing)
+                              isPrivateBrowsing: tab.browserViewController?.privateBrowsingManager.isPrivateBrowsing ?? false)
     }
     
     private func updateGlobalShieldState(_ on: Bool, animated: Bool = false) {

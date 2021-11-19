@@ -23,8 +23,11 @@ class FavoritesSectionProvider: NSObject, NTPObservableSectionProvider {
     
     private var frc: NSFetchedResultsController<Favorite>
     
-    init(action: @escaping (Favorite, BookmarksAction) -> Void,
+    private unowned let privateBrowsingManager: PrivateBrowsingManager
+    
+    init(privateBrowsingManager: PrivateBrowsingManager, action: @escaping (Favorite, BookmarksAction) -> Void,
          legacyLongPressAction: @escaping (UIAlertController) -> Void) {
+        self.privateBrowsingManager = privateBrowsingManager
         self.action = action
         self.legacyLongPressAction = legacyLongPressAction
         
@@ -156,7 +159,7 @@ class FavoritesSectionProvider: NSObject, NTPObservableSectionProvider {
             })
             
             var urlChildren: [UIAction] = [openInNewTab]
-            if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+            if !self.privateBrowsingManager.isPrivateBrowsing {
                 let openInNewPrivateTab = UIAction(title: Strings.openNewPrivateTabButtonTitle, handler: UIAction.deferredActionHandler { _ in
                     self.action(favourite, .opened(inNewTab: true, switchingToPrivateMode: true))
                 })

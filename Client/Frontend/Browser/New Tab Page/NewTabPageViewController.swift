@@ -97,11 +97,15 @@ class NewTabPageViewController: UIViewController {
 //    private let feedDataSource: FeedDataSource
     
     private let notifications: NewTabPageNotifications
+    private unowned let privateBrowsingManager: PrivateBrowsingManager
     
     init(tab: Tab,
          profile: Profile,
-         dataSource: NTPDataSource) {
+         dataSource: NTPDataSource,
+         privateBrowsingManager: PrivateBrowsingManager
+    ) {
         self.tab = tab
+        self.privateBrowsingManager = privateBrowsingManager
 //        self.feedDataSource = feedDataSource
         background = NewTabPageBackground(dataSource: dataSource)
         notifications = NewTabPageNotifications()
@@ -110,7 +114,7 @@ class NewTabPageViewController: UIViewController {
         
         sections = [
             StatsSectionProvider(),
-            FavoritesSectionProvider(action: { [weak self] bookmark, action in
+            FavoritesSectionProvider(privateBrowsingManager: self.privateBrowsingManager, action: { [weak self] bookmark, action in
                 self?.handleFavoriteAction(favorite: bookmark, action: action)
             }, legacyLongPressAction: { [weak self] alertController in
                 self?.present(alertController, animated: true)
@@ -192,7 +196,7 @@ class NewTabPageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        presentNotification()
+//        presentNotification()
     }
     
     override func viewSafeAreaInsetsDidChange() {

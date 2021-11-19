@@ -13,10 +13,10 @@ class FrequencyQuery {
     private static let queue = DispatchQueue(label: "frequency-query-queue")
     private static var cancellable: DispatchWorkItem?
     
-    public static func sitesByFrequency(containing query: String? = nil,
+    public static func sitesByFrequency(containing query: String? = nil, isPrivateBrowsing: Bool,
                                         completion: @escaping (Set<Site>) -> Void) {
         
-        Historyv2.byFrequency(query: query) { historyList in
+        Historyv2.byFrequency(query: query, isPrivateBrowsing: isPrivateBrowsing) { historyList in
             let historySites = historyList
                 .map { Site(url: $0.url ?? "", title: $0.title ?? "") }
             

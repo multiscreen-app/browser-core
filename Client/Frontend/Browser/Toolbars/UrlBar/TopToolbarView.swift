@@ -190,7 +190,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
         let shieldsOffIcon = "shield.slash"
         var tintColor = UIColor.systemGreen
         if let currentURL = currentURL {
-            let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+            let isPrivateBrowsing = self.privateBrowsingManager.isPrivateBrowsing
             let domain = Domain.getOrCreate(forUrl: currentURL, persistent: !isPrivateBrowsing)
             if domain.shield_allOff == 1 {
                 shieldIcon = shieldsOffIcon
@@ -220,7 +220,10 @@ class TopToolbarView: UIView, ToolbarProtocol {
         }
     }
     
-    override init(frame: CGRect) {
+    private unowned var privateBrowsingManager: PrivateBrowsingManager
+    
+    init(frame: CGRect, privateBrowsingManager: PrivateBrowsingManager) {
+        self.privateBrowsingManager = privateBrowsingManager
         super.init(frame: frame)
         
         backgroundColor = .secondaryBraveBackground
@@ -266,7 +269,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
         // Make sure we hide any views that shouldn't be showing in non-overlay mode.
         updateViewsForOverlayModeAndToolbarChanges()
         
-        privateModeCancellable = PrivateBrowsingManager.shared
+        privateModeCancellable = self.privateBrowsingManager
             .$isPrivateBrowsing
             .removeDuplicates()
             .sink(receiveValue: { [weak self] isPrivateBrowsing in

@@ -18,7 +18,7 @@ class SearchLoader: Loader<[Site], SearchViewController> {
                 return
             }
 
-            FrequencyQuery.sitesByFrequency(containing: query) { [weak self] result in
+            FrequencyQuery.sitesByFrequency(containing: query, isPrivateBrowsing: self.privateBrowsingManager.isPrivateBrowsing) { [weak self] result in
                 guard let self = self else { return }
                 
                 self.load(Array(result))
@@ -37,6 +37,12 @@ class SearchLoader: Loader<[Site], SearchViewController> {
                 }
             }
         }
+    }
+    
+    private unowned let privateBrowsingManager: PrivateBrowsingManager
+    
+    init(privateBrowsingManager: PrivateBrowsingManager) {
+        self.privateBrowsingManager = privateBrowsingManager
     }
 
     fileprivate func completionForURL(_ url: String) -> String? {

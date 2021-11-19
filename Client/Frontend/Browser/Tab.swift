@@ -42,6 +42,8 @@ enum TabSecureContentState {
 }
 
 class Tab: NSObject {
+    unowned let browserViewController: BrowserViewController?
+    
     var id: String?
     
     let rewardsId: UInt32
@@ -196,6 +198,7 @@ class Tab: NSObject {
 
     init(configuration: WKWebViewConfiguration, type: TabType = .regular, browserViewController: BrowserViewController? = nil) {
         self.configuration = configuration
+        self.browserViewController = browserViewController
         rewardsId = UInt32.random(in: 1...UInt32.max)
         super.init()
         self.type = type
@@ -248,6 +251,7 @@ class Tab: NSObject {
             self.webView?.addObserver(self, forKeyPath: KVOConstants.URL.rawValue, options: .new, context: nil)
             self.userScriptManager = UserScriptManager(
                 tab: self,
+                privateBrowsingManager: self.browserViewController?.privateBrowsingManager ?? PrivateBrowsingManager.shared,
                 isFingerprintingProtectionEnabled: Preferences.Shields.fingerprintingProtection.value,
                 isCookieBlockingEnabled: Preferences.Privacy.blockAllCookies.value,
                 isU2FEnabled: webView.hasOnlySecureContent,

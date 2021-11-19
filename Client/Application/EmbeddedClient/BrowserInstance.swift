@@ -35,7 +35,7 @@ public class BrowserInstance {
         browserViewController.browserInstance = self
         
         Preferences.General.themeNormalMode.objectWillChange
-            .merge(with: PrivateBrowsingManager.shared.objectWillChange)
+            .merge(with: browserViewController.privateBrowsingManager.objectWillChange)
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.updateTheme()
@@ -64,7 +64,7 @@ public class BrowserInstance {
         let themeOverride = DefaultTheme(
             rawValue: Preferences.General.themeNormalMode.value
         )?.userInterfaceStyleOverride ?? .unspecified
-        let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+        let isPrivateBrowsing = browserViewController.privateBrowsingManager.isPrivateBrowsing
         return isPrivateBrowsing ? .dark : themeOverride
     }
     

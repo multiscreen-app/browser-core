@@ -187,7 +187,7 @@ extension BrowserViewController: WKNavigationDelegate {
             return
         }
         
-        let isPrivateBrowsing = PrivateBrowsingManager.shared.isPrivateBrowsing
+        let isPrivateBrowsing = self.privateBrowsingManager.isPrivateBrowsing
         
         // Check if custom user scripts must be added to the web view.
         let tab = tabManager[webView]
@@ -464,7 +464,7 @@ extension BrowserViewController: WKNavigationDelegate {
 //                    url: url,
 //                    faviconURL: faviconURL,
 //                    isSelected: tabManager.selectedTab == tab,
-//                    isPrivate: PrivateBrowsingManager.shared.isPrivateBrowsing
+//                    isPrivate: self.privateBrowsingManager.isPrivateBrowsing
 //                )
 //            }
             // MS comment out brave rewards page load

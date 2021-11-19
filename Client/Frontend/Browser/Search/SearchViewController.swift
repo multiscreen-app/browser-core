@@ -160,11 +160,14 @@ class SearchViewController: SiteTableViewController, LoaderListener {
         sections.append(.bookmarksAndHistory)
         return sections
     }
+    
+    private unowned let privateBrowsingManager: PrivateBrowsingManager
 
     // MARK: Lifecycle
     
-    init(forTabType tabType: TabType) {
+    init(forTabType tabType: TabType, privateBrowsingManager: PrivateBrowsingManager) {
         self.tabType = tabType
+        self.privateBrowsingManager = privateBrowsingManager
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -421,7 +424,7 @@ class SearchViewController: SiteTableViewController, LoaderListener {
             return
         }
 
-        if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+        if !self.privateBrowsingManager.isPrivateBrowsing {
             RecentSearch.addItem(type: .website, text: localSearchQuery, websiteUrl: url.absoluteString)
         }
         searchDelegate?.searchViewController(self, didSelectURL: url)
@@ -438,7 +441,7 @@ class SearchViewController: SiteTableViewController, LoaderListener {
         
         switch section {
         case .quickBar:
-            if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+            if !self.privateBrowsingManager.isPrivateBrowsing {
                 RecentSearch.addItem(type: .text, text: searchQuery, websiteUrl: nil)
             }
             searchDelegate?.searchViewController(self, didSubmit: searchQuery)
@@ -454,7 +457,7 @@ class SearchViewController: SiteTableViewController, LoaderListener {
             }
 
             if let url = url {
-                if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+                if !self.privateBrowsingManager.isPrivateBrowsing {
                     RecentSearch.addItem(type: .website, text: suggestion, websiteUrl: url.absoluteString)
                 }
                 searchDelegate?.searchViewController(self, didSelectURL: url)
