@@ -581,12 +581,13 @@ class BrowserViewController: UIViewController {
         let dropInteraction = UIDropInteraction(delegate: self)
         view.addInteraction(dropInteraction)
         
-        if AppConstants.buildChannel.isPublic && AppReview.shouldRequestReview() {
-            // Request Review when the main-queue is free or on the next cycle.
-            DispatchQueue.main.async {
-                SKStoreReviewController.requestReview()
-            }
-        }
+        // MS remove review
+//        if AppConstants.buildChannel.isPublic && AppReview.shouldRequestReview() {
+//            // Request Review when the main-queue is free or on the next cycle.
+//            DispatchQueue.main.async {
+//                SKStoreReviewController.requestReview()
+//            }
+//        }
         
         LegacyBookmarksHelper.restore_1_12_Bookmarks() {
             log.info("Bookmarks from old database were successfully restored")

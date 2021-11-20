@@ -153,12 +153,12 @@ class TopToolbarView: UIView, ToolbarProtocol {
         $0.addTarget(self, action: #selector(didClickBookmarkButton), for: .touchUpInside)
     }
     
-    var closeButton = ToolbarButton(top: true).with {
+    lazy var closeButton = ToolbarButton(top: true).then {
         $0.setImage(UIImage(systemName: "xmark.square"), for: .normal)
         $0.addTarget(self, action: #selector(didClickClose), for: .touchUpInside)
     }
     
-    @objc private func didClickClose() {
+    @objc func didClickClose() {
         if let toolbarDelegate = delegate as? BrowserViewController, let browserInstance = toolbarDelegate.browserInstance, let windowDelegate = browserInstance.delegate {
             windowDelegate.close()
         }
@@ -513,6 +513,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
         
         let showBookmarkPref = Preferences.General.showBookmarkToolbarShortcut.value
         bookmarkButton.isHidden = showBookmarkPref ? inOverlayMode : true
+        closeButton.isHidden = inOverlayMode
     }
     
     private func animateToOverlayState(overlayMode overlay: Bool, didCancel cancel: Bool = false) {
@@ -523,7 +524,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
         }
         
         if inOverlayMode {
-            [progressBar, navigationStackView, bookmarkButton, menuButton, tabsButton, locationView.contentView].forEach {
+            [progressBar, navigationStackView, bookmarkButton, menuButton, closeButton, tabsButton, locationView.contentView].forEach {
                 $0?.isHidden = true
             }
             
