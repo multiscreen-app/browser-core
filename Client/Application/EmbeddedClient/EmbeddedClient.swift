@@ -324,6 +324,14 @@ open class EmbeddedClient {
         UITextField.appearance().textColor = .braveLabel
     }
     
+    public func getLicenseController() -> UIViewController {
+        return SettingsContentViewController().then {
+            guard let url = URL(string: WebServer.sharedInstance.base) else { return }
+            
+            $0.url = url.appendingPathComponent("about").appendingPathComponent("license")
+        }
+    }
+    
 }
 
 extension AppConstants {
