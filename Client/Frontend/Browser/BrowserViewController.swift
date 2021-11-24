@@ -19,7 +19,6 @@ import BraveCore
 import StoreKit
 import SafariServices
 import BraveUI
-import NetworkExtension
 import FeedKit
 import SwiftUI
 import class Combine.AnyCancellable
@@ -441,11 +440,6 @@ class BrowserViewController: UIViewController {
             presentedViewController?.view.alpha = 0
         }
     }
-    
-    @objc func vpnConfigChanged() {
-        // Load latest changes to the vpn.
-        NEVPNManager.shared().loadFromPreferences { _ in }
-    }
 
     @objc func appDidBecomeActiveNotification() {
         // Re-show any components that might have been hidden because they were being displayed
@@ -476,8 +470,8 @@ class BrowserViewController: UIViewController {
             // MS comment out brave rewards
 //            $0.addObserver(self, selector: #selector(resetNTPNotification),
 //                           name: .adsOrRewardsToggledInSettings, object: nil)
-            $0.addObserver(self, selector: #selector(vpnConfigChanged),
-                           name: .NEVPNConfigurationChange, object: nil)
+//            $0.addObserver(self, selector: #selector(vpnConfigChanged),
+//                           name: .NEVPNConfigurationChange, object: nil)
             $0.addObserver(self, selector: #selector(updateShieldNotifications),
                            name: NSNotification.Name(rawValue: BraveGlobalShieldStats.didUpdateNotification), object: nil)
         }
