@@ -37,7 +37,7 @@ open class EmbeddedClient {
         }
     }
     
-    var shutdownWebServer: DispatchSourceTimer?
+    var shutdownWebServer: Timer?
     
     public init() {
     }
@@ -141,6 +141,51 @@ open class EmbeddedClient {
 //        browserViewController.restorationClass = AppDelegate.self
     }
     
+    public func willEnterForeground(application: UIApplication) {
+        AdblockResourceDownloader.shared.startLoading()
+    }
+    
+    public func didBecomeActive(application: UIApplication) {
+        guard let profile = profile else {
+            return
+        }
+        shutdownWebServer?.invalidate()
+        shutdownWebServer = nil
+        
+        Preferences.AppState.backgroundedCleanly.value = false
+        
+        profile.reopen()
+        setUpWebServer(profile)
+    }
+    
+    public func willResignActive(application: UIApplication) {
+        var taskId: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
+        taskId = application.beginBackgroundTask {
+            print("Running out of background time, but we have a profile shutdown pending.")
+            self.shutdownProfileWhenNotActive(application)
+            application.endBackgroundTask(taskId)
+        }
+
+        profile?.shutdown()
+        
+        application.endBackgroundTask(taskId)
+        
+        shutdownWebServer?.invalidate()
+        shutdownWebServer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
+            WebServer.sharedInstance.server.stop()
+            self?.shutdownWebServer = nil
+        }
+    }
+    
+    fileprivate func shutdownProfileWhenNotActive(_ application: UIApplication) {
+        // Only shutdown the profile if we are not in the foreground
+        guard application.applicationState != .active else {
+            return
+        }
+
+        profile?.shutdown()
+    }
+    
     func terminate() {
         // We have only five seconds here, so let's hope this doesn't take too long.
         self.profile?.shutdown()
@@ -148,7 +193,6 @@ open class EmbeddedClient {
         // Allow deinitializers to close our database connections.
         self.profile = nil
         browserInstances = []
-//        SKPaymentQueue.default().remove(iapObserver)
         
         // Clean up BraveCore
         BraveSyncAPI.removeAllObservers()
@@ -164,7 +208,7 @@ open class EmbeddedClient {
         return p
     }
 
-    public func didLaunch() {
+    public func didFinishLaunchingWithOptions(application: UIApplication) {
         AdblockRustEngine.setDomainResolver { urlCString, start, end in
             guard let urlCString = urlCString else { return }
             let urlString = String(cString: urlCString)
