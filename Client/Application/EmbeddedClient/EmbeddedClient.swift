@@ -27,6 +27,7 @@ open class EmbeddedClient {
     var imageStore: DiskImageStore?
     weak var profile: Profile?
     var playlistRestorationController: UIViewController? // When Picture-In-Picture is enabled, we need to store a reference to the controller to keep it alive, otherwise if it deallocates, the system automatically kills Picture-In-Picture.
+    var restoredTabs = false
     
     var braveCore: BraveCoreMain? {
         get {
@@ -135,7 +136,7 @@ open class EmbeddedClient {
     }
     
     public func createBrowserInstance(_ delegate: BrowserInstanceDelegate, launchOptions: LaunchOptions) -> BrowserInstance {
-        return BrowserInstance(delegate, profile: getProfile(), store: self.imageStore!, launchOptions: launchOptions)
+        return BrowserInstance(self, delegate: delegate, profile: getProfile(), store: self.imageStore!, launchOptions: launchOptions)
         // Add restoration class, the factory that will return the ViewController we will restore with.
 //        browserViewController.restorationIdentifier = NSStringFromClass(BrowserViewController.self)
 //        browserViewController.restorationClass = AppDelegate.self
@@ -159,6 +160,10 @@ open class EmbeddedClient {
     }
     
     public func willResignActive(application: UIApplication) {
+        Preferences.AppState.backgroundedCleanly.value = true
+    }
+    
+    public func didEnterBackground(application: UIApplication) {
         var taskId: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
         taskId = application.beginBackgroundTask {
             print("Running out of background time, but we have a profile shutdown pending.")
