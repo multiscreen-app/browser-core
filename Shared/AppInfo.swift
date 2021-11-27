@@ -65,6 +65,7 @@ open class AppInfo {
     /// case of the former, it will chop off the extension identifier from the bundle since that is a suffix not part
     /// of the *base* bundle identifier.
     public static var baseBundleIdentifier: String {
+        return "app.multiscreen.browser"
         let bundle = Bundle.main
         let packageType = bundle.infoDictionaryString(forKey: "CFBundlePackageType")
         let baseBundleIdentifier = bundle.bundleIdentifier!
