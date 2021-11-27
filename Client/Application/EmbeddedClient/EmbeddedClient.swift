@@ -152,9 +152,7 @@ open class EmbeddedClient {
         }
         shutdownWebServer?.invalidate()
         shutdownWebServer = nil
-        
-        Preferences.AppState.backgroundedCleanly.value = false
-        
+                
         profile.reopen()
         setUpWebServer(profile)
     }

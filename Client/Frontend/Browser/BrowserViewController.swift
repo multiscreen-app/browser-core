@@ -71,6 +71,7 @@ class BrowserViewController: UIViewController {
     lazy var mailtoLinkHandler: MailtoLinkHandler = MailtoLinkHandler()
     
     private var privateModeCancellable: AnyCancellable?
+    var hideTabsbarOverride = false
     
     /// Custom Search Engine
     var openSearchEngine: OpenSearchReference?
@@ -1043,7 +1044,7 @@ class BrowserViewController: UIViewController {
         }
         
         let isShowing = !tabsBar.view.isHidden
-        let shouldShow = shouldShowTabBar()
+        let shouldShow = hideTabsbarOverride ? false : shouldShowTabBar()
         
         if isShowing != shouldShow && presentedViewController == nil {
             UIView.animate(withDuration: 0.1) {
@@ -2047,6 +2048,9 @@ extension BrowserViewController: TabManagerDelegate {
     }
 
     fileprivate func updateTabCountUsingTabManager(_ tabManager: TabManager) {
+        if topToolbar == nil {
+            return
+        }
         let count = tabManager.tabsForCurrentMode.count
         toolbar?.updateTabCount(count)
         topToolbar.updateTabCount(count)
@@ -2067,6 +2071,48 @@ extension BrowserViewController: WKUIDelegate {
 
         if let currentTab = tabManager.selectedTab {
             screenshotHelper.takeScreenshot(currentTab)
+        }
+        
+        if let browserInstance = self.browserInstance, let currentDelegate = browserInstance.delegate {
+            if navigationAction.targetFrame == nil &&
+                (
+                    windowFeatures.x != nil || windowFeatures.y != nil
+                    || windowFeatures.width != nil || windowFeatures.height != nil
+//                    || windowFeatures.toolbarsVisibility != nil
+//                    || windowFeatures.menuBarVisibility != nil || windowFeatures.statusBarVisibility != nil
+//                    || windowFeatures.allowsResizing != nil
+                )
+            {
+                // open in new window
+                let instanceDelegate = currentDelegate.createNewWindow(windowFeatures)
+                let newInstance = BrowserInstance(browserInstance.client, delegate: instanceDelegate, profile: browserInstance.profile, store: browserInstance.client.imageStore!, launchOptions: LaunchOptions())
+                instanceDelegate.initNewWindow(newInstance)
+                let bvc = newInstance.browserViewController
+                
+                bvc?.tabsBar.view.isHidden = true
+                bvc?.hideTabsbarOverride = true
+                bvc?.topToolbar.locationView.urlTextField.isEnabled = false
+                bvc?.topToolbar.tabsButton.isHidden = true
+                bvc?.topToolbar.bookmarkButton.isHidden = true
+                if windowFeatures.menuBarVisibility != 1 {
+                    bvc?.topToolbar.menuButton.isHidden = true
+                }
+                if windowFeatures.toolbarsVisibility != 1 {
+                    bvc?.topToolbar.navigationStackView.isHidden = true
+                }
+                bvc?.topToolbar.snp.remakeConstraints{ $0.height.equalTo(44) }
+                
+                let newTab = Tab(configuration: configuration, type: parentTab.type)
+                bvc?.tabManager.configureTab(newTab, request: nil, flushToDisk: true, zombie: false, isPopup: true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                    bvc?.tabManager.selectTab(newTab)
+                }
+                
+                newTab.url = URL(string: "about:blank")
+                
+                return newTab.webView
+            }
         }
 
         // If the page uses `window.open()` or `[target="_blank"]`, open the page in a new tab.

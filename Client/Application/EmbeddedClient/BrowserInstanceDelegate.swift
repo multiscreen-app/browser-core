@@ -5,6 +5,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 public protocol BrowserInstanceDelegate : AnyObject {
     func displayPopup(_ controller: UIViewController, configuration: PopupConfiguration, modal: Bool, dismiss: (() -> Void)?)
@@ -16,6 +17,10 @@ public protocol BrowserInstanceDelegate : AnyObject {
     func createResizeGestureRecognizer() -> UIGestureRecognizer
     
     func close()
+    
+    func createNewWindow(_ windowFeatures: WKWindowFeatures) -> BrowserInstanceDelegate
+    
+    func initNewWindow(_ browserInstance: BrowserInstance)
     
 }
 

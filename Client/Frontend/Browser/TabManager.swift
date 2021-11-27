@@ -610,6 +610,7 @@ class TabManager: NSObject {
         delegates.forEach { $0.get()?.tabManager(self, didRemoveTab: tab) }
         TabEvent.post(.didClose, for: tab)
 
+        // ms add tab when empty
         if currentTabs.isEmpty && addTabWhenEmpty {
             addTab(isPrivate: tab.isPrivate)
         }

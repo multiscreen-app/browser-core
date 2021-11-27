@@ -305,17 +305,17 @@ extension BrowserViewController: WKNavigationDelegate {
         // Standard schemes are handled in previous if-case.
         // This check handles custom app schemes to open external apps.
         // Our own 'brave' scheme does not require the switch-app prompt.
-        if url.scheme?.contains("brave") == false {
-            handleExternalURL(url) { didOpenURL in
-                // Do not show error message for JS navigated links or redirect
-                // as it's not the result of a user action.
-                if !didOpenURL, navigationAction.navigationType == .linkActivated {
-                    let alert = UIAlertController(title: Strings.unableToOpenURLErrorTitle, message: Strings.unableToOpenURLError, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: Strings.OKString, style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
+//        if url.scheme?.contains("brave") == false {
+//            handleExternalURL(url) { didOpenURL in
+//                // Do not show error message for JS navigated links or redirect
+//                // as it's not the result of a user action.
+//                if !didOpenURL, navigationAction.navigationType == .linkActivated {
+//                    let alert = UIAlertController(title: Strings.unableToOpenURLErrorTitle, message: Strings.unableToOpenURLError, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: Strings.OKString, style: .default, handler: nil))
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }
+//        }
         decisionHandler(.cancel, preferences)
     }
 

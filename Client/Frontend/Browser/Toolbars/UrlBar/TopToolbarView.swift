@@ -290,7 +290,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private let navigationStackView = UIStackView().then {
+    let navigationStackView = UIStackView().then {
         $0.distribution = .fillEqually
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -424,6 +424,11 @@ class TopToolbarView: UIView, ToolbarProtocol {
     }
     
     func updateReaderModeState(_ state: ReaderModeState) {
+        if let delegate = delegate as? BrowserViewController {
+            if delegate.hideTabsbarOverride {
+                locationView.readerModeState = .unavailable
+            }
+        }
         locationView.readerModeState = state
     }
     
