@@ -2091,7 +2091,7 @@ extension BrowserViewController: WKUIDelegate {
                 
                 bvc?.tabsBar.view.isHidden = true
                 bvc?.hideTabsbarOverride = true
-                bvc?.topToolbar.locationView.urlTextField.isEnabled = false
+//                bvc?.topToolbar.locationView.shieldsButton.isHidden = true
                 bvc?.topToolbar.tabsButton.isHidden = true
                 bvc?.topToolbar.bookmarkButton.isHidden = true
                 if windowFeatures.menuBarVisibility != 1 {
@@ -2099,6 +2099,7 @@ extension BrowserViewController: WKUIDelegate {
                 }
                 if windowFeatures.toolbarsVisibility != 1 {
                     bvc?.topToolbar.navigationStackView.isHidden = true
+                    bvc?.topToolbar.locationView.isUserInteractionEnabled = false
                 }
                 bvc?.topToolbar.snp.remakeConstraints{ $0.height.equalTo(44) }
                 
