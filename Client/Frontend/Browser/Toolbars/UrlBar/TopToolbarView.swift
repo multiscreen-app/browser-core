@@ -154,7 +154,7 @@ class TopToolbarView: UIView, ToolbarProtocol {
     }
     
     lazy var closeButton = ToolbarButton(top: true).then {
-        $0.setImage(UIImage(systemName: "xmark.square"), for: .normal)
+        $0.setImage(UIImage(systemName: "xmark"), for: .normal)
         $0.addTarget(self, action: #selector(didClickClose), for: .touchUpInside)
     }
     
@@ -249,15 +249,23 @@ class TopToolbarView: UIView, ToolbarProtocol {
         navigationStackView.addArrangedSubview(tabsButton)
         
         [backButton, forwardButton, tabsButton].forEach {
-            $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 16)
+            $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         }
         
         [bookmarkButton, menuButton, closeButton].forEach {
-            $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+            $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         }
         
         [navigationStackView, locationContainer, bookmarkButton, menuButton, closeButton, cancelButton].forEach {
             mainStackView.addArrangedSubview($0)
+        }
+        
+        [backButton, forwardButton, tabsButton, bookmarkButton, menuButton, closeButton].forEach {
+            $0.addHoverEffect()
+            $0.snp.makeConstraints {
+                $0.width.equalTo(30)
+                $0.height.equalTo(30)
+            }
         }
         
 //        mainStackView.setCustomSpacing(24, after: locationContainer)
@@ -286,12 +294,13 @@ class TopToolbarView: UIView, ToolbarProtocol {
         $0.alignment = .center
         $0.spacing = 10
         $0.isLayoutMarginsRelativeArrangement = true
-        $0.layoutMargins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 10.0)
+        $0.layoutMargins = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     let navigationStackView = UIStackView().then {
         $0.distribution = .fillEqually
+        $0.spacing = 10
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     

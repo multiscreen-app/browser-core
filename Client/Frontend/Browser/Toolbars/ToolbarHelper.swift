@@ -13,7 +13,7 @@ class ToolbarHelper: NSObject {
         self.toolbar = toolbar
         super.init()
         
-        toolbar.backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        toolbar.backButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
         toolbar.backButton.accessibilityLabel = Strings.tabToolbarBackButtonAccessibilityLabel
         let longPressGestureBackButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressBack))
         toolbar.backButton.addGestureRecognizer(longPressGestureBackButton)
@@ -42,7 +42,7 @@ class ToolbarHelper: NSObject {
         toolbar.menuButton.accessibilityLabel = Strings.tabToolbarMenuButtonAccessibilityLabel
         toolbar.menuButton.addTarget(self, action: #selector(didClickMenu), for: UIControl.Event.touchUpInside)
         
-        toolbar.forwardButton.setImage(UIImage(systemName: "chevron.forward"), for: .normal)
+        toolbar.forwardButton.setImage(UIImage(systemName: "arrow.forward"), for: .normal)
         toolbar.forwardButton.accessibilityLabel = Strings.tabToolbarForwardButtonAccessibilityLabel
         let longPressGestureForwardButton = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressForward))
         toolbar.forwardButton.addGestureRecognizer(longPressGestureForwardButton)
