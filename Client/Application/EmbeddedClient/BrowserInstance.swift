@@ -15,7 +15,7 @@ public class BrowserInstance {
     unowned var delegate: BrowserInstanceDelegate?
 
     let client: EmbeddedClient
-    let launchOptions: LaunchOptions
+    var launchOptions: LaunchOptions
 
     var profile: Profile
     var tabManager: TabManager!
@@ -33,14 +33,12 @@ public class BrowserInstance {
     }
 
     func create() {
-        // Don't track crashes if we're building the development environment due to the fact that terminating/stopping
-        // the simulator via Xcode will count as a "crash" and lead to restore popups in the subsequent launch
-        let crashedLastSession = !Preferences.AppState.backgroundedCleanly.value && !client.restoredTabs && AppConstants.buildChannel != .debug
-        if crashedLastSession {
+        if !client.restoredTabs {
+            launchOptions.restoreTabs = true
             client.restoredTabs = true
         }
 
-        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: crashedLastSession, launchOptions: launchOptions)
+        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: false, launchOptions: launchOptions)
         browserViewController.edgesForExtendedLayout = []
         browserViewController.browserInstance = self
 

@@ -10,6 +10,7 @@ public struct LaunchOptions {
     
     public var privateBrowsing = false
     public var initialURL: URL?
+    public var restoreTabs = false
     
     public init() {}
     

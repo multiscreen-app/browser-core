@@ -105,7 +105,7 @@ extension Preferences {
         static let followUniversalLinks = Option<Bool>(key: "general.follow-universal-links", default: false)
         
         /// Whether or not the pull-to-refresh control is added to web views
-        static let enablePullToRefresh = Option<Bool>(key: "general.enable-pull-to-refresh", default: true)
+        static let enablePullToRefresh = Option<Bool>(key: "general.enable-pull-to-refresh", default: false)
     }
     
     final class DefaultBrowserIntro {
