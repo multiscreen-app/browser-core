@@ -271,44 +271,9 @@ extension BraveSearchManager: URLSessionDataDelegate {
             return
         }
         
-        // -- Handle Authentication --
-        
-        // Too many failed attempts
-        if challenge.previousFailureCount >= 3 {
-            completionHandler(.rejectProtectionSpace, nil)
-            return
-        }
-        
-        if let credentials = BraveSearchManager.cachedCredentials {
-            completionHandler(.useCredential, credentials)
-            return
-        }
-
-        if let proposedCredential = challenge.proposedCredential,
-           !(proposedCredential.user?.isEmpty ?? true),
-           challenge.previousFailureCount == 0 {
-            completionHandler(.useCredential, proposedCredential)
-            return
-        }
-        
-        // Lookup the credentials
-        // If there is no profile or the challenge is not an auth challenge, reject the challenge
-        guard let profile = (UIApplication.shared.delegate as? AppDelegate)?.browserViewController.profile else {
-            completionHandler(.rejectProtectionSpace, nil)
-            return
-        }
-        
-        self.findLoginsForProtectionSpace(profile: profile, challenge: challenge, completion: { credential in
-            if let credential = credential {
-                BraveSearchManager.cachedCredentials = credential
-                
-                completionHandler(.useCredential, credential)
-                return
-            }
-            
-            completionHandler(.rejectProtectionSpace, nil)
-        })
         return
+        
+        // -- Handle Authentication --
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {

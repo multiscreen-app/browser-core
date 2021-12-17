@@ -47,6 +47,9 @@ protocol BrowserViewControllerDelegate: AnyObject {
 }
 
 class BrowserViewController: UIViewController, BrowserViewControllerDelegate {
+    var privateBrowsingManager = PrivateBrowsingManager()
+    weak var browserInstance: BrowserInstance?
+    
     var webViewContainer: UIView!
     var topToolbar: TopToolbarView!
     var tabsBar: TabsBarViewController!
@@ -184,57 +187,12 @@ class BrowserViewController: UIViewController, BrowserViewControllerDelegate {
     init(profile: Profile, historyAPI: BraveHistoryAPI, bookmarksAPI: BraveBookmarksAPI, tabManager: TabManager, crashedLastSession: Bool,
          safeBrowsingManager: SafeBrowsing? = nil, launchOptions: LaunchOptions = LaunchOptions()) {
         self.profile = profile
+        self.tabManager = tabManager
         self.historyAPI = historyAPI
         self.bookmarkManager = BookmarkManager(bookmarksAPI: bookmarksAPI)
         self.crashedLastSession = crashedLastSession
         self.safeBrowsing = safeBrowsingManager
         self.launchOptions = launchOptions
-
-        let configuration: BraveRewards.Configuration
-        if AppConstants.buildChannel.isPublic {
-            configuration = .production
-        } else {
-            if let override = Preferences.Rewards.EnvironmentOverride(rawValue: Preferences.Rewards.environmentOverride.value), override != .none {
-                switch override {
-                case .dev:
-                    configuration = .default
-                case .staging:
-                    configuration = .staging
-                case .prod:
-                    configuration = .production
-                default:
-                    configuration = .staging
-                }
-            } else {
-                configuration = AppConstants.buildChannel == .debug ? .staging : .production
-            }
-        }
-
-        let buildChannel = Ads.BuildChannel().then {
-          $0.name = AppConstants.buildChannel.rawValue
-          $0.isRelease = AppConstants.buildChannel == .release
-        }
-        Self.migrateAdsConfirmations(for: configuration)
-        legacyWallet = Self.legacyWallet(for: configuration)
-        if let wallet = legacyWallet {
-            // Legacy ledger is disabled by default
-            wallet.isAutoContributeEnabled = false
-            // Ensure we remove any pending contributions or recurring tips from the legacy wallet
-            wallet.removeAllPendingContributions { _ in }
-            wallet.listRecurringTips { publishers in
-                publishers.forEach {
-                    wallet.removeRecurringTip(publisherId: $0.id)
-                }
-            }
-        }
-        
-        // Initialize Rewards
-        self.rewards = BraveRewards(configuration: configuration, buildChannel: buildChannel)
-        
-        // Initialize TabManager
-        self.tabManager = TabManager(prefs: profile.prefs,
-                                     imageStore: diskImageStore,
-                                     rewards: rewards)
         
         // Setup ReaderMode Cache
         self.readerModeCache = ReaderMode.cache(for: tabManager.selectedTab)

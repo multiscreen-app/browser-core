@@ -89,8 +89,7 @@ class UserScriptManager {
     }
     
     func handleDomainUserScript(for url: URL) {
-        guard let baseDomain = url.baseDomain,
-            let customDomainUserScript = DomainUserScript.get(for: baseDomain) else {
+        guard let customDomainUserScript = DomainUserScript.get(for: url) else {
                 // No custom script for this domain, clearing existing user script
                 // in case the previous domain had one.
                 domainUserScript = nil
@@ -99,7 +98,7 @@ class UserScriptManager {
         
         if let shieldType = customDomainUserScript.shieldType {
             let domain = Domain.getOrCreate(forUrl: url,
-                                            persistent: !self.privateBrowsingManager.isPrivateBrowsing)
+                                            persistent: !PrivateBrowsingManager.shared.isPrivateBrowsing)
             
             if domain.isShieldExpected(shieldType, considerAllShieldsOption: true) {
                 domainUserScript = customDomainUserScript
