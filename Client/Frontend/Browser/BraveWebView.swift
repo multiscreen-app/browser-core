@@ -9,6 +9,10 @@ import BraveShared
 
 class BraveWebView: WKWebView {
     
+    override var safeAreaInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
     /// Stores last position when the webview was touched on.
     private(set) var lastHitPoint = CGPoint(x: 0, y: 0)
     
