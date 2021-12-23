@@ -693,3 +693,16 @@ extension TopToolbarView: AutocompleteTextFieldDelegate {
         updateLocationBarRightView()
     }
 }
+
+extension TopToolbarView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let tapRecognizer = gestureRecognizer as? UITapGestureRecognizer else {
+            return true
+        }
+        
+        if tapRecognizer.numberOfTapsRequired == 2 && touch.view != mainStackView {
+            return false
+        }
+        return true
+    }
+}

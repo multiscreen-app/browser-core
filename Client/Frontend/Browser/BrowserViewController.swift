@@ -505,8 +505,11 @@ class BrowserViewController: UIViewController {
         topToolbar.translatesAutoresizingMaskIntoConstraints = false
         topToolbar.delegate = self
         topToolbar.tabToolbarDelegate = self
-        if let recognizer = browserInstance?.delegate?.createDragGestureRecognizer() {
-            topToolbar.addGestureRecognizer(recognizer)
+        if let delegate = browserInstance?.delegate {
+            topToolbar.addGestureRecognizer(delegate.createDragGestureRecognizer())
+            let r = delegate.createDoubleTapFullScreenGestureRecognizer()
+            r.delegate = topToolbar
+            topToolbar.addGestureRecognizer(r)
         }
         header = UIStackView().then {
             $0.axis = .vertical
@@ -611,6 +614,20 @@ class BrowserViewController: UIViewController {
                     self?.statusBarOverlay.backgroundColor = .secondaryBraveBackground
                 }
             })
+        
+        
+        // ms adjust window using launch options
+        if self.launchOptions.isWebApp {
+            self.tabsBar.view.isHidden = true
+            self.hideTabsbarOverride = true
+            self.topToolbar.tabsButton.isHidden = true
+            self.topToolbar.bookmarkButton.isHidden = true
+            self.topToolbar.menuButton.isHidden = true
+            self.topToolbar.navigationStackView.isHidden = true
+            self.topToolbar.locationView.tapRecognizer.isEnabled = false
+            self.topToolbar.locationView.urlTextField.isEnabled = false
+            self.topToolbar.snp.remakeConstraints{ $0.height.equalTo(44) }
+        }
     }
     
     fileprivate let defaultBrowserNotificationId = "defaultBrowserNotification"
@@ -2094,9 +2111,9 @@ extension BrowserViewController: WKUIDelegate {
                 instanceDelegate.initNewWindow(newInstance)
                 let bvc = newInstance.browserViewController
                 
+                // ms disable features
                 bvc?.tabsBar.view.isHidden = true
                 bvc?.hideTabsbarOverride = true
-//                bvc?.topToolbar.locationView.shieldsButton.isHidden = true
                 bvc?.topToolbar.tabsButton.isHidden = true
                 bvc?.topToolbar.bookmarkButton.isHidden = true
                 if windowFeatures.menuBarVisibility != 1 {
@@ -2104,9 +2121,11 @@ extension BrowserViewController: WKUIDelegate {
                 }
                 if windowFeatures.toolbarsVisibility != 1 {
                     bvc?.topToolbar.navigationStackView.isHidden = true
-                    bvc?.topToolbar.locationView.isUserInteractionEnabled = false
+                    bvc?.topToolbar.locationView.tapRecognizer.isEnabled = false
+                    bvc?.topToolbar.locationView.urlTextField.isEnabled = false
                 }
                 bvc?.topToolbar.snp.remakeConstraints{ $0.height.equalTo(44) }
+                // end ms disable features
                 
                 let newTab = Tab(configuration: configuration, type: parentTab.type)
                 bvc?.tabManager.configureTab(newTab, request: nil, flushToDisk: true, zombie: false, isPopup: true)

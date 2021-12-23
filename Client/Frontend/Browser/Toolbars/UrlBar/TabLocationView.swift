@@ -224,7 +224,8 @@ class TabLocationView: UIView {
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapLocation))
         tapRecognizer.delegate = self
 
-        addGestureRecognizer(longPressRecognizer)
+        // ms disable long tap on location bar
+//        addGestureRecognizer(longPressRecognizer)
         addGestureRecognizer(tapRecognizer)
         
 //        let optionSubviews = [readerModeButton, playlistButton, reloadButton, separatorLine, shieldsButton]

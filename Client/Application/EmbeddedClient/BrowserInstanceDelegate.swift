@@ -16,6 +16,8 @@ public protocol BrowserInstanceDelegate : AnyObject {
     
     func createResizeGestureRecognizer() -> UIGestureRecognizer
     
+    func createDoubleTapFullScreenGestureRecognizer() -> UIGestureRecognizer
+    
     func close()
     
     func createNewWindow(_ windowFeatures: WKWindowFeatures) -> BrowserInstanceDelegate

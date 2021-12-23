@@ -101,7 +101,11 @@ open class EmbeddedClient {
 
         MenuHelper.defaultHelper.setItems()
         
-        SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
+        if #available(iOS 14.0, *) {
+            SDImageCodersManager.shared.addCoder(SDImageAWebPCoder.shared)
+        } else {
+            SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
+        }
 
         let logDate = Date()
         // Create a new sync log file on cold app launch. Note that this doesn't roll old logs.
