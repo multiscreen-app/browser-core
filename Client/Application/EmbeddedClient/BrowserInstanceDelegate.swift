@@ -24,6 +24,8 @@ public protocol BrowserInstanceDelegate : AnyObject {
     
     func initNewWindow(_ browserInstance: BrowserInstance)
     
+    func getActiveState() -> Bool
+    
 }
 
 extension BrowserInstanceDelegate {

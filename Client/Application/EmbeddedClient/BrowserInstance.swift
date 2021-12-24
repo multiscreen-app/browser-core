@@ -61,14 +61,23 @@ public class BrowserInstance {
         return browserViewController.tabManager.selectedTab?.webView
     }
 
-    public func showRequestDefaultBrowserPopup() {
-//        browserViewController.shouldShowIntroScreen = DefaultBrowserIntroManager.prepareAndShowIfNeeded(isNewUser: isFirstLaunch)
-        browserViewController.shouldShowIntroScreen = true
-        browserViewController.presentDefaultBrowserIntroScreen()
-    }
-
     public func windowResize() {
         browserViewController.tabsBar.collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    public func activeStateUpdated() {
+        let activeState = delegate?.getActiveState() ?? false
+        if !activeState {
+            if browserViewController.topToolbar.inOverlayMode {
+                browserViewController.topToolbar.leaveOverlayMode()
+            }
+            browserViewController.topToolbar.backgroundColor = .secondaryBraveBackgroundInactive
+            browserViewController.topToolbar.locationView.backgroundColor = .braveBackgroundInactive
+        } else {
+            browserViewController.topToolbar.backgroundColor = .secondaryBraveBackground
+            browserViewController.topToolbar.locationView.backgroundColor = .braveBackground
+            
+        }
     }
 
     private var expectedThemeOverride: UIUserInterfaceStyle {
