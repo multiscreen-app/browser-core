@@ -69,21 +69,6 @@
 		0AADC4CA20D2A66E00FDE368 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADC4C920D2A66E00FDE368 /* FavoriteCell.swift */; };
 		0AADC4D220D2A6A200FDE368 /* FavoritesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADC4CE20D2A6A200FDE368 /* FavoritesHelper.swift */; };
 		0AADC4D520D2A6A200FDE368 /* PreloadedFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADC4D120D2A6A200FDE368 /* PreloadedFavorites.swift */; };
-		0AB22A88257EADA900126ADC /* dylan-malval_sea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A79257EAD9100126ADC /* dylan-malval_sea.jpg */; };
-		0AB22A89257EADA900126ADC /* dylan-malval_alps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7A257EAD9300126ADC /* dylan-malval_alps.jpg */; };
-		0AB22A8A257EADA900126ADC /* corwin-prescott_olympic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7B257EAD9500126ADC /* corwin-prescott_olympic.jpg */; };
-		0AB22A8B257EADA900126ADC /* zane-lee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7C257EAD9700126ADC /* zane-lee.jpg */; };
-		0AB22A8C257EADA900126ADC /* andre-benz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7D257EAD9800126ADC /* andre-benz.jpg */; };
-		0AB22A8D257EADA900126ADC /* alex-plesovskich.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7E257EAD9A00126ADC /* alex-plesovskich.jpg */; };
-		0AB22A8E257EADA900126ADC /* spencer-moore_lake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7F257EAD9C00126ADC /* spencer-moore_lake.jpg */; };
-		0AB22A8F257EADA900126ADC /* su-san-lee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A80257EAD9E00126ADC /* su-san-lee.jpg */; };
-		0AB22A90257EADA900126ADC /* corwin-prescott_crestone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A81257EAD9F00126ADC /* corwin-prescott_crestone.jpg */; };
-		0AB22A91257EADA900126ADC /* spencer-moore_fern.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A82257EADA100126ADC /* spencer-moore_fern.jpg */; };
-		0AB22A92257EADA900126ADC /* spencer-moore_desert.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A83257EADA200126ADC /* spencer-moore_desert.jpg */; };
-		0AB22A93257EADA900126ADC /* corwin-prescott_canyon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A84257EADA400126ADC /* corwin-prescott_canyon.jpg */; };
-		0AB22A94257EADA900126ADC /* spencer-moore_ocean.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A85257EADA500126ADC /* spencer-moore_ocean.jpg */; };
-		0AB22A95257EADA900126ADC /* corwin-prescott_beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A86257EADA600126ADC /* corwin-prescott_beach.jpg */; };
-		0AB22A96257EADA900126ADC /* sora-sagano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A87257EADA900126ADC /* sora-sagano.jpg */; };
 		0AB2442C22AA789B00B4D9DD /* ReaderModeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2442B22AA789B00B4D9DD /* ReaderModeButton.swift */; };
 		0AB7FCDC235DED0B00F1D9F5 /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7FCDB235DED0B00F1D9F5 /* NumberExtensions.swift */; };
 		0ABA874320E68CF500D2694F /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C027441B2A348C001B1E88 /* SessionData.swift */; };
@@ -621,6 +606,11 @@
 		B09DC5F12723947900951231 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */; };
 		B09DC5F32723947A00951231 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277569AE25ACFC1C00C129AF /* pop.framework */; };
 		B0A89F88271BA32800EB6841 /* EmbeddedClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B0A89F87271BA32800EB6841 /* EmbeddedClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0BC06B32777B8EB00BF05B6 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = B0BC06B22777B8EB00BF05B6 /* 01.png */; };
+		B0BC06B82777C34E00BF05B6 /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = B0BC06B42777C34A00BF05B6 /* 05.png */; };
+		B0BC06B92777C34E00BF05B6 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = B0BC06B52777C34B00BF05B6 /* 02.png */; };
+		B0BC06BA2777C34E00BF05B6 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = B0BC06B62777C34D00BF05B6 /* 03.png */; };
+		B0BC06BB2777C34E00BF05B6 /* 04.png in Resources */ = {isa = PBXBuildFile; fileRef = B0BC06B72777C34E00BF05B6 /* 04.png */; };
 		B0C5B9A6271F5EFD00805701 /* PrivilegedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5B9A5271F5EFD00805701 /* PrivilegedRequest.swift */; };
 		B0FAB98C271BA4EF0056A8A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84B21E51A0910F600AAB793 /* AppDelegate.swift */; };
 		B0FAB98E271BA4EF0056A8A3 /* BrowserInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D185527053B9000C1570A /* BrowserInstance.swift */; };
@@ -1093,18 +1083,13 @@
 		B0FABCFA271BAC790056A8A3 /* MediaBackgrounding.js in Resources */ = {isa = PBXBuildFile; fileRef = CA55048F269DED8F00C19917 /* MediaBackgrounding.js */; };
 		B0FABCFB271BAC790056A8A3 /* NetError.css in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1E02F1B051A07007675AF /* NetError.css */; };
 		B0FABCFC271BAC790056A8A3 /* block-cookies.json in Resources */ = {isa = PBXBuildFile; fileRef = 59871C1821E4D83900316590 /* block-cookies.json */; };
-		B0FABCFD271BAC790056A8A3 /* corwin-prescott_crestone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A81257EAD9F00126ADC /* corwin-prescott_crestone.jpg */; };
 		B0FABCFE271BAC790056A8A3 /* MainFrameAtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E824A88260BCE0D00127F36 /* MainFrameAtDocumentEnd.js */; };
 		B0FABCFF271BAC790056A8A3 /* TopSites in Resources */ = {isa = PBXBuildFile; fileRef = 3BC659481E5BA4AE006D560F /* TopSites */; };
 		B0FABD00271BAC790056A8A3 /* FiraSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7571A793CF20022C5E0 /* FiraSans-SemiBold.ttf */; };
-		B0FABD01271BAC790056A8A3 /* corwin-prescott_canyon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A84257EADA400126ADC /* corwin-prescott_canyon.jpg */; };
 		B0FABD02271BAC790056A8A3 /* GlobalSignRootCA_R46.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23326CBD27A00658EAC /* GlobalSignRootCA_R46.cer */; };
 		B0FABD03271BAC790056A8A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F84B21EF1A0910F600AAB793 /* Images.xcassets */; };
 		B0FABD04271BAC790056A8A3 /* AdsReporting.js in Resources */ = {isa = PBXBuildFile; fileRef = 2755AB7C23107BC600F0721F /* AdsReporting.js */; };
-		B0FABD05271BAC790056A8A3 /* spencer-moore_ocean.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A85257EADA500126ADC /* spencer-moore_ocean.jpg */; };
 		B0FABD06271BAC790056A8A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A5E04F823FEADA800E5A3E9 /* LaunchScreen.storyboard */; };
-		B0FABD07271BAC790056A8A3 /* corwin-prescott_olympic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7B257EAD9500126ADC /* corwin-prescott_olympic.jpg */; };
-		B0FABD08271BAC790056A8A3 /* su-san-lee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A80257EAD9E00126ADC /* su-san-lee.jpg */; };
 		B0FABD09271BAC790056A8A3 /* BraveSearchHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AE50853261C63D70099C6A3 /* BraveSearchHelper.js */; };
 		B0FABD0A271BAC790056A8A3 /* ntp-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DB474F0237F4CC9007B7652 /* ntp-data.json */; };
 		B0FABD0B271BAC790056A8A3 /* CookieControl.js in Resources */ = {isa = PBXBuildFile; fileRef = 595E0EDA21CAD97C00813D49 /* CookieControl.js */; };
@@ -1127,24 +1112,18 @@
 		B0FABD1D271BAC790056A8A3 /* Reader.css in Resources */ = {isa = PBXBuildFile; fileRef = E4CD9F5A1A71506C00318571 /* Reader.css */; };
 		B0FABD1E271BAC790056A8A3 /* CharisSILB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B73A1A793CF20022C5E0 /* CharisSILB.ttf */; };
 		B0FABD1F271BAC790056A8A3 /* PlaylistDetector.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EC2C0E425C0B321005EA984 /* PlaylistDetector.js */; };
-		B0FABD20271BAC790056A8A3 /* sora-sagano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A87257EADA900126ADC /* sora-sagano.jpg */; };
-		B0FABD21271BAC790056A8A3 /* dylan-malval_alps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7A257EAD9300126ADC /* dylan-malval_alps.jpg */; };
-		B0FABD22271BAC790056A8A3 /* spencer-moore_desert.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A83257EADA200126ADC /* spencer-moore_desert.jpg */; };
 		B0FABD24271BAC790056A8A3 /* CharisSILBI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B73B1A793CF20022C5E0 /* CharisSILBI.ttf */; };
 		B0FABD25271BAC790056A8A3 /* LoginsHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = D0C95DF5200EADD500E4E51C /* LoginsHelper.js */; };
-		B0FABD26271BAC790056A8A3 /* corwin-prescott_beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A86257EADA600126ADC /* corwin-prescott_beach.jpg */; };
 		B0FABD27271BAC790056A8A3 /* RewardsReporting.js in Resources */ = {isa = PBXBuildFile; fileRef = 276E7A2E22F21A7700939424 /* RewardsReporting.js */; };
 		B0FABD28271BAC790056A8A3 /* FocusHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 39F4C0F92045D87400746155 /* FocusHelper.js */; };
 		B0FABD29271BAC790056A8A3 /* FiraSans-UltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B75F1A793CF20022C5E0 /* FiraSans-UltraLight.ttf */; };
 		B0FABD2A271BAC790056A8A3 /* ISRGRootCA_X1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23D26CBD3DA00658EAC /* ISRGRootCA_X1.cer */; };
 		B0FABD2B271BAC790056A8A3 /* AmazonRootCA3.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F22926CBD1C400658EAC /* AmazonRootCA3.cer */; };
-		B0FABD2C271BAC790056A8A3 /* alex-plesovskich.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7E257EAD9A00126ADC /* alex-plesovskich.jpg */; };
 		B0FABD2D271BAC790056A8A3 /* FiraSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7561A793CF20022C5E0 /* FiraSans-Regular.ttf */; };
 		B0FABD2E271BAC790056A8A3 /* AmazonRootCA1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23926CBD30800658EAC /* AmazonRootCA1.cer */; };
 		B0FABD2F271BAC790056A8A3 /* GlobalSignRootCA_E46.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23226CBD27900658EAC /* GlobalSignRootCA_E46.cer */; };
 		B0FABD31271BAC790056A8A3 /* YoutubeAdblock.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E4E078224A0E4D700B01720 /* YoutubeAdblock.js */; };
 		B0FABD32271BAC790056A8A3 /* FiraSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7521A793CF20022C5E0 /* FiraSans-Light.ttf */; };
-		B0FABD33271BAC790056A8A3 /* zane-lee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7C257EAD9700126ADC /* zane-lee.jpg */; };
 		B0FABD34271BAC790056A8A3 /* ResourceDownloader.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E3477E822D7771700B0D5F8 /* ResourceDownloader.js */; };
 		B0FABD35271BAC790056A8A3 /* GlobalSignRootCA_R6.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23426CBD27A00658EAC /* GlobalSignRootCA_R6.cer */; };
 		B0FABD36271BAC790056A8A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59D41619232681080087A6E1 /* Localizable.strings */; };
@@ -1157,27 +1136,23 @@
 		B0FABD3D271BAC790056A8A3 /* onboarding-ads.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E11C3FF23314D970003C363 /* onboarding-ads.json */; };
 		B0FABD3E271BAC790056A8A3 /* httpse.leveldb.tgz in Resources */ = {isa = PBXBuildFile; fileRef = 4422D57521C05DE500BF1855 /* httpse.leveldb.tgz */; };
 		B0FABD3F271BAC790056A8A3 /* PlaylistSwizzler.js in Resources */ = {isa = PBXBuildFile; fileRef = 5EC0017D260129AC005DDE4A /* PlaylistSwizzler.js */; };
-		B0FABD40271BAC790056A8A3 /* dylan-malval_sea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A79257EAD9100126ADC /* dylan-malval_sea.jpg */; };
 		B0FABD41271BAC790056A8A3 /* CertError.css in Resources */ = {isa = PBXBuildFile; fileRef = D308EE551CBF0BF5006843F2 /* CertError.css */; };
 		B0FABD42271BAC790056A8A3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4422D44521BFFB7500BF1855 /* LICENSE */; };
 		B0FABD43271BAC790056A8A3 /* CharisSILR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B73D1A793CF20022C5E0 /* CharisSILR.ttf */; };
 		B0FABD45271BAC790056A8A3 /* FiraSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7411A793CF20022C5E0 /* FiraSans-Bold.ttf */; };
 		B0FABD46271BAC790056A8A3 /* FiraSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B7B7511A793CF20022C5E0 /* FiraSans-Italic.ttf */; };
-		B0FABD47271BAC790056A8A3 /* spencer-moore_fern.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A82257EADA100126ADC /* spencer-moore_fern.jpg */; };
 		B0FABD48271BAC790056A8A3 /* onboarding-rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D8C6E232C0BDB00BDE662 /* onboarding-rewards.json */; };
 		B0FABD49271BAC790056A8A3 /* NetError.html in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1E00D1B03FB0B007675AF /* NetError.html */; };
 		B0FABD4A271BAC790056A8A3 /* block-images.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DE52509218CE92B000DFAA6 /* block-images.json */; };
 		B0FABD4B271BAC790056A8A3 /* ReaderViewLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = E4A961371AC06FA50069AD6F /* ReaderViewLoading.html */; };
 		B0FABD4C271BAC790056A8A3 /* SFSRootCAG2.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F22C26CBD1C600658EAC /* SFSRootCAG2.cer */; };
 		B0FABD4D271BAC790056A8A3 /* AmazonRootCA4.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F22A26CBD1C500658EAC /* AmazonRootCA4.cer */; };
-		B0FABD4E271BAC790056A8A3 /* spencer-moore_lake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7F257EAD9C00126ADC /* spencer-moore_lake.jpg */; };
 		B0FABD4F271BAC790056A8A3 /* BraveShared.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59C8119722D754D4005D5BBC /* BraveShared.strings */; };
 		B0FABD50271BAC790056A8A3 /* PrintHandler.js in Resources */ = {isa = PBXBuildFile; fileRef = F9E0F3B3257878C1003A6A30 /* PrintHandler.js */; };
 		B0FABD51271BAC790056A8A3 /* MainFrameAtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E824A94260BCE0D00127F36 /* MainFrameAtDocumentStart.js */; };
 		B0FABD52271BAC790056A8A3 /* GlobalSignRootCA_R5.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4481F23126CBD27900658EAC /* GlobalSignRootCA_R5.cer */; };
 		B0FABD53271BAC790056A8A3 /* ReaderMode.js in Resources */ = {isa = PBXBuildFile; fileRef = F9E0F38A25772E57003A6A30 /* ReaderMode.js */; };
 		B0FABD54271BAC790056A8A3 /* FiraSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4ECCDAD1AB131770005E717 /* FiraSans-Medium.ttf */; };
-		B0FABD55271BAC790056A8A3 /* andre-benz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22A7D257EAD9800126ADC /* andre-benz.jpg */; };
 		B0FABD56271BAC790056A8A3 /* PaymentRequest.js in Resources */ = {isa = PBXBuildFile; fileRef = F9B23EE123F61173000EB3D8 /* PaymentRequest.js */; };
 		B0FABD57271BAC790056A8A3 /* FiraSans-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4424B3B1AC71FB400F44C38 /* FiraSans-Book.ttf */; };
 		B0FABD58271BAC790056A8A3 /* blocking-summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F676FAC260BA4860048A1DB /* blocking-summary.json */; };
@@ -1782,21 +1757,6 @@
 		0AADC4C920D2A66E00FDE368 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		0AADC4CE20D2A6A200FDE368 /* FavoritesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesHelper.swift; sourceTree = "<group>"; };
 		0AADC4D120D2A6A200FDE368 /* PreloadedFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreloadedFavorites.swift; sourceTree = "<group>"; };
-		0AB22A79257EAD9100126ADC /* dylan-malval_sea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dylan-malval_sea.jpg"; sourceTree = "<group>"; };
-		0AB22A7A257EAD9300126ADC /* dylan-malval_alps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dylan-malval_alps.jpg"; sourceTree = "<group>"; };
-		0AB22A7B257EAD9500126ADC /* corwin-prescott_olympic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "corwin-prescott_olympic.jpg"; sourceTree = "<group>"; };
-		0AB22A7C257EAD9700126ADC /* zane-lee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zane-lee.jpg"; sourceTree = "<group>"; };
-		0AB22A7D257EAD9800126ADC /* andre-benz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "andre-benz.jpg"; sourceTree = "<group>"; };
-		0AB22A7E257EAD9A00126ADC /* alex-plesovskich.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "alex-plesovskich.jpg"; sourceTree = "<group>"; };
-		0AB22A7F257EAD9C00126ADC /* spencer-moore_lake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "spencer-moore_lake.jpg"; sourceTree = "<group>"; };
-		0AB22A80257EAD9E00126ADC /* su-san-lee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "su-san-lee.jpg"; sourceTree = "<group>"; };
-		0AB22A81257EAD9F00126ADC /* corwin-prescott_crestone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "corwin-prescott_crestone.jpg"; sourceTree = "<group>"; };
-		0AB22A82257EADA100126ADC /* spencer-moore_fern.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "spencer-moore_fern.jpg"; sourceTree = "<group>"; };
-		0AB22A83257EADA200126ADC /* spencer-moore_desert.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "spencer-moore_desert.jpg"; sourceTree = "<group>"; };
-		0AB22A84257EADA400126ADC /* corwin-prescott_canyon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "corwin-prescott_canyon.jpg"; sourceTree = "<group>"; };
-		0AB22A85257EADA500126ADC /* spencer-moore_ocean.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "spencer-moore_ocean.jpg"; sourceTree = "<group>"; };
-		0AB22A86257EADA600126ADC /* corwin-prescott_beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "corwin-prescott_beach.jpg"; sourceTree = "<group>"; };
-		0AB22A87257EADA900126ADC /* sora-sagano.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sora-sagano.jpg"; sourceTree = "<group>"; };
 		0AB2442B22AA789B00B4D9DD /* ReaderModeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModeButton.swift; sourceTree = "<group>"; };
 		0AB7FCDB235DED0B00F1D9F5 /* NumberExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
 		0AD0B33125CC6106002EF4F4 /* LegacyBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyBookmark.swift; sourceTree = "<group>"; };
@@ -2588,6 +2548,11 @@
 		B081A2C8271CA4A90091B939 /* BraveCoreShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveCoreShared.swift; sourceTree = "<group>"; };
 		B0A89F85271BA32800EB6841 /* EmbeddedClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EmbeddedClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A89F87271BA32800EB6841 /* EmbeddedClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmbeddedClient.h; sourceTree = "<group>"; };
+		B0BC06B22777B8EB00BF05B6 /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
+		B0BC06B42777C34A00BF05B6 /* 05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05.png; sourceTree = "<group>"; };
+		B0BC06B52777C34B00BF05B6 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
+		B0BC06B62777C34D00BF05B6 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
+		B0BC06B72777C34E00BF05B6 /* 04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 04.png; sourceTree = "<group>"; };
 		B0C5B9A5271F5EFD00805701 /* PrivilegedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivilegedRequest.swift; sourceTree = "<group>"; };
 		B0FABD78271BAD0B0056A8A3 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/CoreNFC.framework; sourceTree = DEVELOPER_DIR; };
 		B0FABD7E271BAD200056A8A3 /* libarchive.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libarchive.2.tbd; sourceTree = DEVELOPER_DIR; };
@@ -4315,21 +4280,11 @@
 		5DB474CE237F4BE9007B7652 /* NTP_Images */ = {
 			isa = PBXGroup;
 			children = (
-				0AB22A7E257EAD9A00126ADC /* alex-plesovskich.jpg */,
-				0AB22A7D257EAD9800126ADC /* andre-benz.jpg */,
-				0AB22A86257EADA600126ADC /* corwin-prescott_beach.jpg */,
-				0AB22A84257EADA400126ADC /* corwin-prescott_canyon.jpg */,
-				0AB22A81257EAD9F00126ADC /* corwin-prescott_crestone.jpg */,
-				0AB22A7B257EAD9500126ADC /* corwin-prescott_olympic.jpg */,
-				0AB22A7A257EAD9300126ADC /* dylan-malval_alps.jpg */,
-				0AB22A79257EAD9100126ADC /* dylan-malval_sea.jpg */,
-				0AB22A87257EADA900126ADC /* sora-sagano.jpg */,
-				0AB22A83257EADA200126ADC /* spencer-moore_desert.jpg */,
-				0AB22A82257EADA100126ADC /* spencer-moore_fern.jpg */,
-				0AB22A7F257EAD9C00126ADC /* spencer-moore_lake.jpg */,
-				0AB22A85257EADA500126ADC /* spencer-moore_ocean.jpg */,
-				0AB22A80257EAD9E00126ADC /* su-san-lee.jpg */,
-				0AB22A7C257EAD9700126ADC /* zane-lee.jpg */,
+				B0BC06B22777B8EB00BF05B6 /* 01.png */,
+				B0BC06B52777C34B00BF05B6 /* 02.png */,
+				B0BC06B62777C34D00BF05B6 /* 03.png */,
+				B0BC06B72777C34E00BF05B6 /* 04.png */,
+				B0BC06B42777C34A00BF05B6 /* 05.png */,
 			);
 			path = NTP_Images;
 			sourceTree = "<group>";
@@ -5857,30 +5812,27 @@
 				B0FABCF4271BAC790056A8A3 /* AllFramesAtDocumentEnd.js in Resources */,
 				B0FABCF5271BAC790056A8A3 /* AllFramesAtDocumentStartSandboxed.js in Resources */,
 				B0FABCF6271BAC790056A8A3 /* AllFramesAtDocumentEndSandboxed.js in Resources */,
+				B0BC06B82777C34E00BF05B6 /* 05.png in Resources */,
 				B0FABCF7271BAC790056A8A3 /* FullscreenHelper.js in Resources */,
 				B0FABCF8271BAC790056A8A3 /* CertError.html in Resources */,
 				B0FABCF9271BAC790056A8A3 /* ISRGRootCA_X2.cer in Resources */,
 				B0FABCFA271BAC790056A8A3 /* MediaBackgrounding.js in Resources */,
 				B0FABCFB271BAC790056A8A3 /* NetError.css in Resources */,
 				B0FABCFC271BAC790056A8A3 /* block-cookies.json in Resources */,
-				B0FABCFD271BAC790056A8A3 /* corwin-prescott_crestone.jpg in Resources */,
 				B0FABCFE271BAC790056A8A3 /* MainFrameAtDocumentEnd.js in Resources */,
 				B0FABCFF271BAC790056A8A3 /* TopSites in Resources */,
 				B0FABD00271BAC790056A8A3 /* FiraSans-SemiBold.ttf in Resources */,
-				B0FABD01271BAC790056A8A3 /* corwin-prescott_canyon.jpg in Resources */,
 				B0FABD02271BAC790056A8A3 /* GlobalSignRootCA_R46.cer in Resources */,
 				B0FABD03271BAC790056A8A3 /* Images.xcassets in Resources */,
 				B0FABD04271BAC790056A8A3 /* AdsReporting.js in Resources */,
-				B0FABD05271BAC790056A8A3 /* spencer-moore_ocean.jpg in Resources */,
 				B0FABD06271BAC790056A8A3 /* LaunchScreen.storyboard in Resources */,
-				B0FABD07271BAC790056A8A3 /* corwin-prescott_olympic.jpg in Resources */,
-				B0FABD08271BAC790056A8A3 /* su-san-lee.jpg in Resources */,
 				B0FABD09271BAC790056A8A3 /* BraveSearchHelper.js in Resources */,
 				B0FABD0A271BAC790056A8A3 /* ntp-data.json in Resources */,
 				B0FABD0B271BAC790056A8A3 /* CookieControl.js in Resources */,
 				B0FABD0C271BAC790056A8A3 /* adblock-list.txt in Resources */,
 				B0FABD0D271BAC790056A8A3 /* LaunchScreen.xcassets in Resources */,
 				B0FABD0E271BAC790056A8A3 /* simple_malware.txt in Resources */,
+				B0BC06BA2777C34E00BF05B6 /* 03.png in Resources */,
 				B0FABD0F271BAC790056A8A3 /* block-ads.json in Resources */,
 				B0FABD10271BAC790056A8A3 /* SessionRestore.html in Resources */,
 				B0FABD11271BAC790056A8A3 /* WindowRenderHelper.js in Resources */,
@@ -5897,29 +5849,26 @@
 				B0FABD1D271BAC790056A8A3 /* Reader.css in Resources */,
 				B0FABD1E271BAC790056A8A3 /* CharisSILB.ttf in Resources */,
 				B0FABD1F271BAC790056A8A3 /* PlaylistDetector.js in Resources */,
-				B0FABD20271BAC790056A8A3 /* sora-sagano.jpg in Resources */,
-				B0FABD21271BAC790056A8A3 /* dylan-malval_alps.jpg in Resources */,
-				B0FABD22271BAC790056A8A3 /* spencer-moore_desert.jpg in Resources */,
 				B0FABD24271BAC790056A8A3 /* CharisSILBI.ttf in Resources */,
 				B0FABD25271BAC790056A8A3 /* LoginsHelper.js in Resources */,
-				B0FABD26271BAC790056A8A3 /* corwin-prescott_beach.jpg in Resources */,
 				B0FABD27271BAC790056A8A3 /* RewardsReporting.js in Resources */,
 				B0FABD28271BAC790056A8A3 /* FocusHelper.js in Resources */,
+				B0BC06B32777B8EB00BF05B6 /* 01.png in Resources */,
 				B0FABD29271BAC790056A8A3 /* FiraSans-UltraLight.ttf in Resources */,
 				B0FABD2A271BAC790056A8A3 /* ISRGRootCA_X1.cer in Resources */,
 				B0FABD2B271BAC790056A8A3 /* AmazonRootCA3.cer in Resources */,
-				B0FABD2C271BAC790056A8A3 /* alex-plesovskich.jpg in Resources */,
 				B0FABD2D271BAC790056A8A3 /* FiraSans-Regular.ttf in Resources */,
 				B0FABD2E271BAC790056A8A3 /* AmazonRootCA1.cer in Resources */,
 				B0FABD2F271BAC790056A8A3 /* GlobalSignRootCA_E46.cer in Resources */,
+				B0BC06BB2777C34E00BF05B6 /* 04.png in Resources */,
 				B0FABD31271BAC790056A8A3 /* YoutubeAdblock.js in Resources */,
 				B0FABD32271BAC790056A8A3 /* FiraSans-Light.ttf in Resources */,
-				B0FABD33271BAC790056A8A3 /* zane-lee.jpg in Resources */,
 				B0FABD34271BAC790056A8A3 /* ResourceDownloader.js in Resources */,
 				B0FABD35271BAC790056A8A3 /* GlobalSignRootCA_R6.cer in Resources */,
 				B0FABD36271BAC790056A8A3 /* Localizable.strings in Resources */,
 				B0FABD37271BAC790056A8A3 /* DownloadHelper.js in Resources */,
 				B0FABD38271BAC790056A8A3 /* SafeBrowsingError.html in Resources */,
+				B0BC06B92777C34E00BF05B6 /* 02.png in Resources */,
 				B0FABD39271BAC790056A8A3 /* MailSchemes.plist in Resources */,
 				B0FABD3A271BAC790056A8A3 /* onboarding-shields.json in Resources */,
 				B0FABD3B271BAC790056A8A3 /* ABPFilterParserData.dat in Resources */,
@@ -5927,27 +5876,23 @@
 				B0FABD3D271BAC790056A8A3 /* onboarding-ads.json in Resources */,
 				B0FABD3E271BAC790056A8A3 /* httpse.leveldb.tgz in Resources */,
 				B0FABD3F271BAC790056A8A3 /* PlaylistSwizzler.js in Resources */,
-				B0FABD40271BAC790056A8A3 /* dylan-malval_sea.jpg in Resources */,
 				B0FABD41271BAC790056A8A3 /* CertError.css in Resources */,
 				B0FABD42271BAC790056A8A3 /* LICENSE in Resources */,
 				B0FABD43271BAC790056A8A3 /* CharisSILR.ttf in Resources */,
 				B0FABD45271BAC790056A8A3 /* FiraSans-Bold.ttf in Resources */,
 				B0FABD46271BAC790056A8A3 /* FiraSans-Italic.ttf in Resources */,
-				B0FABD47271BAC790056A8A3 /* spencer-moore_fern.jpg in Resources */,
 				B0FABD48271BAC790056A8A3 /* onboarding-rewards.json in Resources */,
 				B0FABD49271BAC790056A8A3 /* NetError.html in Resources */,
 				B0FABD4A271BAC790056A8A3 /* block-images.json in Resources */,
 				B0FABD4B271BAC790056A8A3 /* ReaderViewLoading.html in Resources */,
 				B0FABD4C271BAC790056A8A3 /* SFSRootCAG2.cer in Resources */,
 				B0FABD4D271BAC790056A8A3 /* AmazonRootCA4.cer in Resources */,
-				B0FABD4E271BAC790056A8A3 /* spencer-moore_lake.jpg in Resources */,
 				B0FABD4F271BAC790056A8A3 /* BraveShared.strings in Resources */,
 				B0FABD50271BAC790056A8A3 /* PrintHandler.js in Resources */,
 				B0FABD51271BAC790056A8A3 /* MainFrameAtDocumentStart.js in Resources */,
 				B0FABD52271BAC790056A8A3 /* GlobalSignRootCA_R5.cer in Resources */,
 				B0FABD53271BAC790056A8A3 /* ReaderMode.js in Resources */,
 				B0FABD54271BAC790056A8A3 /* FiraSans-Medium.ttf in Resources */,
-				B0FABD55271BAC790056A8A3 /* andre-benz.jpg in Resources */,
 				B0FABD56271BAC790056A8A3 /* PaymentRequest.js in Resources */,
 				B0FABD57271BAC790056A8A3 /* FiraSans-Book.ttf in Resources */,
 				B0FABD58271BAC790056A8A3 /* blocking-summary.json in Resources */,
@@ -5978,18 +5923,13 @@
 				CA550490269DED8F00C19917 /* MediaBackgrounding.js in Resources */,
 				0BA1E0301B051A07007675AF /* NetError.css in Resources */,
 				59871C1921E4D83900316590 /* block-cookies.json in Resources */,
-				0AB22A90257EADA900126ADC /* corwin-prescott_crestone.jpg in Resources */,
 				5E824A95260BCE0D00127F36 /* MainFrameAtDocumentEnd.js in Resources */,
 				3BC659491E5BA4AE006D560F /* TopSites in Resources */,
 				E4B7B77E1A793CF20022C5E0 /* FiraSans-SemiBold.ttf in Resources */,
-				0AB22A93257EADA900126ADC /* corwin-prescott_canyon.jpg in Resources */,
 				4481F23726CBD27B00658EAC /* GlobalSignRootCA_R46.cer in Resources */,
 				F84B220B1A0910F600AAB793 /* Images.xcassets in Resources */,
 				2755AB7D23107BC600F0721F /* AdsReporting.js in Resources */,
-				0AB22A94257EADA900126ADC /* spencer-moore_ocean.jpg in Resources */,
 				0A5E04F923FEADA800E5A3E9 /* LaunchScreen.storyboard in Resources */,
-				0AB22A8A257EADA900126ADC /* corwin-prescott_olympic.jpg in Resources */,
-				0AB22A8F257EADA900126ADC /* su-san-lee.jpg in Resources */,
 				0AE50854261C63D70099C6A3 /* BraveSearchHelper.js in Resources */,
 				5DB474F1237F4CC9007B7652 /* ntp-data.json in Resources */,
 				595E0EDB21CAD97C00813D49 /* CookieControl.js in Resources */,
@@ -6013,26 +5953,20 @@
 				E4CD9F5B1A71506C00318571 /* Reader.css in Resources */,
 				E4B7B7611A793CF20022C5E0 /* CharisSILB.ttf in Resources */,
 				5EC2C0E525C0B321005EA984 /* PlaylistDetector.js in Resources */,
-				0AB22A96257EADA900126ADC /* sora-sagano.jpg in Resources */,
-				0AB22A89257EADA900126ADC /* dylan-malval_alps.jpg in Resources */,
-				0AB22A92257EADA900126ADC /* spencer-moore_desert.jpg in Resources */,
 				4422D56E21BFFB7F00BF1855 /* make_perl_groups.pl in Resources */,
 				E4B7B7621A793CF20022C5E0 /* CharisSILBI.ttf in Resources */,
 				F9F859702533CE52000CEB24 /* LoginsHelper.js in Resources */,
-				0AB22A95257EADA900126ADC /* corwin-prescott_beach.jpg in Resources */,
 				F9488EB32589899800A72C84 /* RewardsReporting.js in Resources */,
 				39F4C0FA2045D87400746155 /* FocusHelper.js in Resources */,
 				E4B7B7861A793CF20022C5E0 /* FiraSans-UltraLight.ttf in Resources */,
 				4481F23F26CBD3DC00658EAC /* ISRGRootCA_X1.cer in Resources */,
 				4481F22D26CBD1C600658EAC /* AmazonRootCA3.cer in Resources */,
-				0AB22A8D257EADA900126ADC /* alex-plesovskich.jpg in Resources */,
 				E4B7B77D1A793CF20022C5E0 /* FiraSans-Regular.ttf in Resources */,
 				4481F23A26CBD30900658EAC /* AmazonRootCA1.cer in Resources */,
 				4481F23626CBD27B00658EAC /* GlobalSignRootCA_E46.cer in Resources */,
 				4422D55221BFFB7E00BF1855 /* make_unicode_casefold.py in Resources */,
 				5E4E078324A0E4D700B01720 /* YoutubeAdblock.js in Resources */,
 				E4B7B7791A793CF20022C5E0 /* FiraSans-Light.ttf in Resources */,
-				0AB22A8B257EADA900126ADC /* zane-lee.jpg in Resources */,
 				5E3477E922D7771700B0D5F8 /* ResourceDownloader.js in Resources */,
 				4481F23826CBD27B00658EAC /* GlobalSignRootCA_R6.cer in Resources */,
 				59D4161B232681080087A6E1 /* Localizable.strings in Resources */,
@@ -6045,28 +5979,24 @@
 				5EC1DDBE2356892900CA4028 /* onboarding-ads.json in Resources */,
 				4422D57621C05DE600BF1855 /* httpse.leveldb.tgz in Resources */,
 				5EC0017E260129AC005DDE4A /* PlaylistSwizzler.js in Resources */,
-				0AB22A88257EADA900126ADC /* dylan-malval_sea.jpg in Resources */,
 				D308EE561CBF0BF5006843F2 /* CertError.css in Resources */,
 				4422D4AD21BFFB7600BF1855 /* LICENSE in Resources */,
 				E4B7B7641A793CF20022C5E0 /* CharisSILR.ttf in Resources */,
 				4422D56D21BFFB7F00BF1855 /* make_unicode_groups.py in Resources */,
 				E4B7B7681A793CF20022C5E0 /* FiraSans-Bold.ttf in Resources */,
 				E4B7B7781A793CF20022C5E0 /* FiraSans-Italic.ttf in Resources */,
-				0AB22A91257EADA900126ADC /* spencer-moore_fern.jpg in Resources */,
 				5EC1DDBD2356888000CA4028 /* onboarding-rewards.json in Resources */,
 				0BA1E00E1B03FB0B007675AF /* NetError.html in Resources */,
 				5DE5250E218CE92C000DFAA6 /* block-images.json in Resources */,
 				E4A961381AC06FA50069AD6F /* ReaderViewLoading.html in Resources */,
 				4481F23026CBD1C600658EAC /* SFSRootCAG2.cer in Resources */,
 				4481F22E26CBD1C600658EAC /* AmazonRootCA4.cer in Resources */,
-				0AB22A8E257EADA900126ADC /* spencer-moore_lake.jpg in Resources */,
 				59C8119922D754D4005D5BBC /* BraveShared.strings in Resources */,
 				F9E0F3B4257878C1003A6A30 /* PrintHandler.js in Resources */,
 				5E824A96260BCE0D00127F36 /* MainFrameAtDocumentStart.js in Resources */,
 				4481F23526CBD27B00658EAC /* GlobalSignRootCA_R5.cer in Resources */,
 				F9E0F38B25772E57003A6A30 /* ReaderMode.js in Resources */,
 				E4ECCDAE1AB131770005E717 /* FiraSans-Medium.ttf in Resources */,
-				0AB22A8C257EADA900126ADC /* andre-benz.jpg in Resources */,
 				F9B23EE223F61173000EB3D8 /* PaymentRequest.js in Resources */,
 				E4424B3C1AC71FB400F44C38 /* FiraSans-Book.ttf in Resources */,
 				2F676FAD260BA4860048A1DB /* blocking-summary.json in Resources */,

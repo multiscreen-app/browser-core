@@ -71,12 +71,21 @@ public class BrowserInstance {
             if browserViewController.topToolbar.inOverlayMode {
                 browserViewController.topToolbar.leaveOverlayMode()
             }
-            browserViewController.topToolbar.backgroundColor = .secondaryBraveBackgroundInactive
-            browserViewController.topToolbar.locationView.backgroundColor = .braveBackgroundInactive
+            if !browserViewController.privateBrowsingManager.isPrivateBrowsing {
+                browserViewController.topToolbar.backgroundColor = .secondaryBraveBackgroundInactive
+                browserViewController.topToolbar.locationView.backgroundColor = .braveBackgroundInactive
+            } else {
+                browserViewController.topToolbar.backgroundColor = .privateModeBackground.darker(by: 8)
+                browserViewController.topToolbar.locationView.backgroundColor = .braveBackgroundInactive.darker(by: 8)
+            }
         } else {
-            browserViewController.topToolbar.backgroundColor = .secondaryBraveBackground
-            browserViewController.topToolbar.locationView.backgroundColor = .braveBackground
-            
+            if !browserViewController.privateBrowsingManager.isPrivateBrowsing {
+                browserViewController.topToolbar.backgroundColor = .secondaryBraveBackground
+                browserViewController.topToolbar.locationView.backgroundColor = .braveBackground
+            } else {
+                browserViewController.topToolbar.backgroundColor = .privateModeBackground
+                browserViewController.topToolbar.locationView.backgroundColor = .braveBackgroundInactive
+            }
         }
     }
 

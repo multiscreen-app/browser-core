@@ -26,7 +26,7 @@ class StatsSectionProvider: NSObject, NTPSectionProvider {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = fittingSizeForCollectionView(collectionView, section: indexPath.section)
-        size.height = 110
+        size.height = 150
         return size
     }
     
@@ -42,21 +42,21 @@ class BraveShieldStatsView: UIView {
     private lazy var adsStatView: StatView = {
         let statView = StatView(frame: CGRect.zero)
         statView.title = Strings.shieldsAdAndTrackerStats.capitalized
-        statView.color = .statsAdsBlockedTint
+//        statView.color = .statsAdsBlockedTint
         return statView
     }()
     
     private lazy var dataSavedStatView: StatView = {
         let statView = StatView(frame: .zero)
         statView.title = Strings.dataSavedStat
-        statView.color = .statsDataSavedTint
+//        statView.color = .statsDataSavedTint
         return statView
     }()
     
     private lazy var timeStatView: StatView = {
         let statView = StatView(frame: .zero)
         statView.title = Strings.shieldsTimeStats
-        statView.color = .statsTimeSavedTint
+//        statView.color = .statsTimeSavedTint
         return statView
     }()
     
@@ -183,7 +183,7 @@ private class StatView: UIView {
     
     fileprivate var statLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.font = .systemFont(ofSize: 32, weight: UIFont.Weight.medium)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
@@ -192,10 +192,10 @@ private class StatView: UIView {
     
     fileprivate var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.textAlignment = .center
+        label.textColor = .secondaryLabel
+        label.textAlignment = .left
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.medium)
+        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium)
         return label
     }()
     
@@ -206,15 +206,15 @@ private class StatView: UIView {
         addSubview(titleLabel)
         
         statLabel.snp.makeConstraints({ (make) -> Void in
-            make.left.equalTo(0)
+            make.left.equalTo(25)
             make.right.equalTo(0)
-            make.centerY.equalTo(self).offset(-(statLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)).height)-10)
+            make.centerY.equalTo(self).offset(-(statLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)).height)+15)
         })
         
         titleLabel.snp.makeConstraints({ (make) -> Void in
-            make.left.equalTo(0)
+            make.left.equalTo(25)
             make.right.equalTo(0)
-            make.top.equalTo(statLabel.snp.bottom).offset(5)
+            make.bottom.equalTo(statLabel.snp.top).offset(-5)
         })
     }
     
