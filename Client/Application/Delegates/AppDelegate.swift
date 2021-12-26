@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
 
         MenuHelper.defaultHelper.setItems()
         
-        SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
+//        SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
 
         let logDate = Date()
         // Create a new sync log file on cold app launch. Note that this doesn't roll old logs.

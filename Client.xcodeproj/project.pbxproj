@@ -195,7 +195,6 @@
 		279CC2C4260CEFE7009B3895 /* TableCellButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CC2C3260CEFE7009B3895 /* TableCellButtonStyle.swift */; };
 		279CC2D8260CF37C009B3895 /* BrowserViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CC2D7260CF37C009B3895 /* BrowserViewController+Menu.swift */; };
 		27A1ABF62485568700344503 /* FlexibleSpaceSectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1ABF52485568700344503 /* FlexibleSpaceSectionProvider.swift */; };
-		27A1AC0524855D3200344503 /* PrivateCDN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1AC0424855D3200344503 /* PrivateCDN.swift */; };
 		27AC169823834510004BE19C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AC169623834510004BE19C /* UserNotifications.framework */; };
 		27AD20C326851C5400889AA7 /* BraveCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; };
 		27AD20C426851C5400889AA7 /* BraveCore.xcframework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1982,7 +1981,6 @@
 		279CC2C3260CEFE7009B3895 /* TableCellButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellButtonStyle.swift; sourceTree = "<group>"; };
 		279CC2D7260CF37C009B3895 /* BrowserViewController+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowserViewController+Menu.swift"; sourceTree = "<group>"; };
 		27A1ABF52485568700344503 /* FlexibleSpaceSectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleSpaceSectionProvider.swift; sourceTree = "<group>"; };
-		27A1AC0424855D3200344503 /* PrivateCDN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateCDN.swift; sourceTree = "<group>"; };
 		27A1AC1424884EB300344503 /* Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Enterprise.xcconfig; sourceTree = "<group>"; };
 		27AC169623834510004BE19C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		27AC7CF724C759BE00441317 /* Enterprise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Enterprise.entitlements; sourceTree = "<group>"; };
@@ -3629,7 +3627,6 @@
 		27A1AC0324855D2000344503 /* Private CDN */ = {
 			isa = PBXGroup;
 			children = (
-				27A1AC0424855D3200344503 /* PrivateCDN.swift */,
 			);
 			path = "Private CDN";
 			sourceTree = "<group>";
@@ -6274,7 +6271,6 @@
 				0AD5E9C42200591F00D0D91B /* BraveShield.swift in Sources */,
 				5DE768A920B3461300FF5533 /* BraveUX.swift in Sources */,
 				2777273722EB43A100F0214C /* StringExtensions.swift in Sources */,
-				27A1AC0524855D3200344503 /* PrivateCDN.swift in Sources */,
 				27012EE924FD80B8002694C3 /* WebcompatReporter.swift in Sources */,
 				5DE768B020B4601700FF5533 /* UIColorExtensions.swift in Sources */,
 				5DE768AE20B443E500FF5533 /* JSONSerializationExtensions.swift in Sources */,

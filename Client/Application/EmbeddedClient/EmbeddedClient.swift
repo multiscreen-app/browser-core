@@ -103,8 +103,6 @@ open class EmbeddedClient {
         
         if #available(iOS 14.0, *) {
             SDImageCodersManager.shared.addCoder(SDImageAWebPCoder.shared)
-        } else {
-            SDImageCodersManager.shared.addCoder(PrivateCDNImageCoder())
         }
 
         let logDate = Date()
