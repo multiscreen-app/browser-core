@@ -44,7 +44,7 @@ class TabTrayController: UIViewController {
     private(set) var privateMode: Bool = false {
         didSet {
             // Should be set immediately before other logic executes
-            PrivateBrowsingManager.shared.isPrivateBrowsing = privateMode
+            browserViewController.privateBrowsingManager.isPrivateBrowsing = privateMode
             applySnapshot()
             
             tabTrayView.privateModeButton.isSelected = privateMode
@@ -141,6 +141,14 @@ class TabTrayController: UIViewController {
         }
         
         return cell
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        if let delegate = browserViewController.browserInstance?.delegate {
+            delegate.dismissPopup()
+        } else {
+            super.dismiss(animated: flag, completion: completion)
+        }
     }
     
     // MARK: - Actions

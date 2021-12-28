@@ -250,7 +250,7 @@ class BrowserViewController: UIViewController {
     private var rewardsEnabledObserveration: NSKeyValueObservation?
 
     fileprivate func didInit() {
-        screenshotHelper = ScreenshotHelper(controller: self)
+        screenshotHelper = ScreenshotHelper(tabManager: tabManager)
         tabManager.addDelegate(self)
         tabManager.addNavigationDelegate(self)
         downloadQueue.delegate = self
@@ -602,7 +602,6 @@ class BrowserViewController: UIViewController {
         }
         
         if launchOptions.privateBrowsing {
-            switchToPrivacyMode(isPrivate: true)
             setupTabs()
             updateTabsBarVisibility()
         }

@@ -16,7 +16,7 @@ private let AllTables: [String] = [
     TableLoginsLocal
 ]
 
-private let log = Logger.syncLogger
+private let log = Logger.braveCoreLogger
 
 open class LoginsSchema: Schema {
     public enum SyncStatus: Int {

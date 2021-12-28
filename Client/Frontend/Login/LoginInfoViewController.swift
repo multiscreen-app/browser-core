@@ -381,7 +381,8 @@ extension LoginInfoViewController: LoginInfoTableViewCellDelegate {
     }
     
     func didSelectReveal(_ cell: LoginInfoTableViewCell) -> Bool {
-        askForAuthentication()
+//        askForAuthentication()
+        return true
     }
     
     func textFieldDidEndEditing(_ cell: LoginInfoTableViewCell) {

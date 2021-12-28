@@ -37,7 +37,7 @@ import Shared
 import XCGLogger
 
 private let DatabaseBusyTimeout: Int32 = 3 * 1000
-private let log = Logger.syncLogger
+private let log = Logger.braveCoreLogger
 
 public class DBOperationCancelled : MaybeErrorType {
     public var description: String {

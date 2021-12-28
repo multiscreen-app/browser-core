@@ -5,6 +5,7 @@
 
 import Foundation
 import Shared
+import UIKit
 
 extension LoginListViewController {
     class LoginEmptyView: UIView {
@@ -12,7 +13,7 @@ extension LoginListViewController {
         private let titleLabel = UILabel().then {
             $0.text = Strings.Login.loginListEmptyScreenTitle
             $0.numberOfLines = 0
-            $0.font = .preferredFont(for: .title3, weight: .semibold)
+            $0.font = .preferredFont(forTextStyle: .title3)
             $0.adjustsFontForContentSizeCategory = true
             $0.textColor = .bravePrimary
         }

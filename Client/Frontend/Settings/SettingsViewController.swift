@@ -143,7 +143,7 @@ class SettingsViewController: TableViewController {
             header: .title(Strings.settingsGeneralSectionTitle),
             rows: [
                 Row(text: Strings.braveShieldsAndPrivacy, selection: { [unowned self] in
-                    let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager)
+                    let controller = BraveShieldsAndPrivacySettingsController(profile: self.profile, tabManager: self.tabManager, historyAPI: historyAPI)
                     self.navigationController?.pushViewController(controller, animated: true)
                 }, image: UIImage(systemName: "shield.lefthalf.filled"), accessory: .disclosureIndicator),
                 Row(text: Strings.searchEngines, selection: { [unowned self] in

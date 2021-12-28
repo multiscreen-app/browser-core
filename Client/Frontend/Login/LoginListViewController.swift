@@ -48,7 +48,7 @@ class LoginListViewController: LoginAuthViewController {
     
     init(profile: Profile) {
         self.profile = profile
-        super.init(requiresAuthentication: true)
+        super.init()
     }
     
     required init?(coder: NSCoder) {

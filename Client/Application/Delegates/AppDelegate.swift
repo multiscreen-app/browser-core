@@ -33,14 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
     var playlistRestorationController: UIViewController? // When Picture-In-Picture is enabled, we need to store a reference to the controller to keep it alive, otherwise if it deallocates, the system automatically kills Picture-In-Picture.
     weak var profile: Profile?
     var tabManager: TabManager!
-    var braveCore: BraveCoreMain? {
-        get {
-            return BraveCoreShared.shared.braveCore
-        }
-        set {
-            BraveCoreShared.shared.braveCore = newValue
-        }
-    }
+    var braveCore = BraveCoreMain()
     weak var application: UIApplication?
     var launchOptions: [AnyHashable: Any]?
 
@@ -81,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         }
         
         self.braveCore = BraveCoreMain()
-        self.braveCore?.setUserAgent(UserAgent.mobile)
+        self.braveCore.setUserAgent(UserAgent.mobile)
         
         AdBlockStats.shared.startLoading()
         HttpsEverywhereStats.shared.startLoading()
@@ -118,7 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
 
         let logDate = Date()
         // Create a new sync log file on cold app launch. Note that this doesn't roll old logs.
-        Logger.syncLogger.newLogWithDate(logDate)
         Logger.browserLogger.newLogWithDate(logDate)
 
         let profile = getProfile(application)
@@ -149,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         // the simulator via Xcode will count as a "crash" and lead to restore popups in the subsequent launch
         let crashedLastSession = !Preferences.AppState.backgroundedCleanly.value && AppConstants.buildChannel != .debug
         Preferences.AppState.backgroundedCleanly.value = false
-        browserViewController = BrowserViewController(profile: self.profile!, tabManager: self.tabManager, crashedLastSession: crashedLastSession)
+        browserViewController = BrowserViewController(profile: self.profile!, tabManager: self.tabManager, historyAPI: braveCore.historyAPI, bookmarksAPI: braveCore.bookmarksAPI, crashedLastSession: crashedLastSession)
         browserViewController.edgesForExtendedLayout = []
 
         // Add restoration class, the factory that will return the ViewController we will restore with.
@@ -157,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         browserViewController.restorationClass = AppDelegate.self
 
         let navigationController = UINavigationController(rootViewController: browserViewController)
-        navigationController.delegate = self
+//        navigationController.delegate = self
         navigationController.isNavigationBarHidden = true
         navigationController.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
 //        rootViewController = TestViewController(controller: navigationController, controller2: UIViewController(nibName: nil, bundle: nil))
@@ -167,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         SystemUtils.onFirstRun()
         
         // Schedule Brave Core Priority Tasks
-        self.braveCore?.scheduleLowPriorityStartupTasks()
+        self.braveCore.scheduleLowPriorityStartupTasks()
 
         log.info("startApplication end")
         return true
@@ -186,7 +178,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         
         // Clean up BraveCore
         BraveSyncAPI.removeAllObservers()
-        self.braveCore = nil
     }
 
     /**
@@ -279,7 +270,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         
         // Now roll logs.
         DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
-            Logger.syncLogger.deleteOldLogsDownToSizeLimit()
             Logger.browserLogger.deleteOldLogsDownToSizeLimit()
         }
 

@@ -38,7 +38,7 @@ public class BrowserInstance {
             client.restoredTabs = true
         }
 
-        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, crashedLastSession: false, launchOptions: launchOptions)
+        browserViewController = BrowserViewController(profile: self.profile, tabManager: self.tabManager, historyAPI: client.braveCore.historyAPI, bookmarksAPI: client.braveCore.bookmarksAPI, crashedLastSession: false, launchOptions: launchOptions)
         browserViewController.edgesForExtendedLayout = []
         browserViewController.browserInstance = self
 

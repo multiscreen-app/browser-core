@@ -11,9 +11,6 @@ public struct Logger {}
 public extension Logger {
     static let logPII = false
 
-    /// Logger used for recording happenings with Sync, Accounts, Providers, Storage, and Profiles
-    static let syncLogger = RollingFileLogger(filenameRoot: "sync", logDirectoryPath: Logger.logFileDirectoryPath())
-
     /// Logger used for recording frontend/browser happenings
     static let browserLogger = RollingFileLogger(filenameRoot: "browser", logDirectoryPath: Logger.logFileDirectoryPath())
     
@@ -119,7 +116,6 @@ public extension Logger {
 
         // Grab all sync log files
         do {
-            filenamesAndURLs += try syncLogger.logFilenamesAndURLs()
             filenamesAndURLs += try corruptLogger.logFilenamesAndURLs()
             filenamesAndURLs += try browserLogger.logFilenamesAndURLs()
         } catch _ {

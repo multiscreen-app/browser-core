@@ -29,14 +29,7 @@ open class EmbeddedClient {
     var playlistRestorationController: UIViewController? // When Picture-In-Picture is enabled, we need to store a reference to the controller to keep it alive, otherwise if it deallocates, the system automatically kills Picture-In-Picture.
     var restoredTabs = false
     
-    var braveCore: BraveCoreMain? {
-        get {
-            return BraveCoreShared.shared.braveCore
-        }
-        set {
-            BraveCoreShared.shared.braveCore = newValue
-        }
-    }
+    var braveCore = BraveCoreMain()
     
     var shutdownWebServer: Timer?
     
@@ -67,28 +60,18 @@ open class EmbeddedClient {
             return true
         }
         
-        self.braveCore = BraveCoreMain()
-        self.braveCore?.setUserAgent(UserAgent.mobile)
+        self.braveCore.setUserAgent(UserAgent.mobile)
         
         AdBlockStats.shared.startLoading()
-        HttpsEverywhereStats.shared.startLoading()
-                
-        // Must happen before passcode check, otherwise may unnecessarily reset keychain
-        Migration.moveDatabaseToApplicationDirectory()
-        
-        // Passcode checking, must happen on immediate launch
-        if !DataController.shared.storeExists() {
-            // Since passcode is stored in keychain it persists between installations.
-            //  If there is no database (either fresh install, or deleted in file system), there is no real reason
-            //  to passcode the browser (no data to protect).
-            // Main concern is user installs Brave after a long period of time, cannot recall passcode, and can
-            //  literally never use Brave. This bypasses this situation, while not using a modifiable pref.
-//            KeychainWrapper.sharedAppContainerKeychain.setAuthenticationInfo(nil)
+        if #available(iOS 15, *) {
+            // do nothing, use Apple's https solution.
+        } else {
+            HttpsEverywhereStats.shared.startLoading()
         }
         
-        // We have to wait until pre1.12 migration is done until we proceed with database
-        // initialization. This is because Database container may change. See bugs #3416, #3377.
-        DataController.shared.initialize()
+        // Must happen before passcode check, otherwise may unnecessarily reset keychain
+        DataController.shared.initializeOnce()
+        Migration.moveDatabaseToApplicationDirectory()
     }
     
     public func start() {
@@ -107,22 +90,24 @@ open class EmbeddedClient {
 
         let logDate = Date()
         // Create a new sync log file on cold app launch. Note that this doesn't roll old logs.
-        Logger.syncLogger.newLogWithDate(logDate)
         Logger.browserLogger.newLogWithDate(logDate)
 
-        let profile = getProfile()
-        // MS we don't need this as we don't have anything to migrate from
-//        let profilePrefix = profile.prefs.getBranchPrefix()
-//        Migration.launchMigrations(keyPrefix: profilePrefix)
-        
-        setUpWebServer(profile)
-        
+        let profile = BrowserProfile(localName: "profile")
+        self.profile = profile
+                
+        // Setup DiskImageStore for Screenshots
         do {
             imageStore = try DiskImageStore(files: profile.files, namespace: "TabManagerScreenshots", quality: UIConstants.screenshotQuality)
         } catch {
             log.error("Failed to create an image store for files: \(profile.files) and namespace: \"TabManagerScreenshots\": \(error.localizedDescription)")
             assertionFailure()
         }
+        
+        // MS we don't need this as we don't have anything to migrate from
+        let profilePrefix = profile.prefs.getBranchPrefix()
+        Migration.launchMigrations(keyPrefix: profilePrefix)
+        
+        setUpWebServer(profile)
         
         // Temporary fix for Bug 1390871 - NSInvalidArgumentException: -[WKContentView menuHelperFindInPage]: unrecognized selector
         if let clazz = NSClassFromString("WKCont" + "ent" + "View"), let swizzledMethod = class_getInstanceMethod(TabWebViewMenuHelper.self, #selector(TabWebViewMenuHelper.swizzledMenuHelperFindInPage)) {
@@ -132,13 +117,13 @@ open class EmbeddedClient {
         SystemUtils.onFirstRun()
         
         // Schedule Brave Core Priority Tasks
-        self.braveCore?.scheduleLowPriorityStartupTasks()
+        self.braveCore.scheduleLowPriorityStartupTasks()
         
         applyAppearanceDefaults()
     }
     
     public func createBrowserInstance(_ delegate: BrowserInstanceDelegate, launchOptions: LaunchOptions) -> BrowserInstance {
-        return BrowserInstance(self, delegate: delegate, profile: getProfile(), store: self.imageStore!, launchOptions: launchOptions)
+        return BrowserInstance(self, delegate: delegate, profile: self.profile!, store: self.imageStore!, launchOptions: launchOptions)
         // Add restoration class, the factory that will return the ViewController we will restore with.
 //        browserViewController.restorationIdentifier = NSStringFromClass(BrowserViewController.self)
 //        browserViewController.restorationClass = AppDelegate.self
@@ -201,16 +186,6 @@ open class EmbeddedClient {
         
         // Clean up BraveCore
         BraveSyncAPI.removeAllObservers()
-        self.braveCore = nil
-    }
-    
-    func getProfile() -> Profile {
-        if let profile = self.profile {
-            return profile
-        }
-        let p = BrowserProfile(localName: "profile")
-        self.profile = p
-        return p
     }
 
     public func didFinishLaunchingWithOptions(application: UIApplication) {
@@ -242,7 +217,6 @@ open class EmbeddedClient {
         
         // Now roll logs.
         DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
-            Logger.syncLogger.deleteOldLogsDownToSizeLimit()
             Logger.browserLogger.deleteOldLogsDownToSizeLimit()
         }
 
@@ -276,7 +250,6 @@ open class EmbeddedClient {
         }
         
         AdblockResourceDownloader.shared.startLoading()
-        PlaylistManager.shared.restoreSession()
     }
     
     private func setUserAgent() {
@@ -300,16 +273,20 @@ open class EmbeddedClient {
     
     private func setUpWebServer(_ profile: Profile) {
         let server = WebServer.sharedInstance
-        if server.server.isRunning { return }
+        guard !server.server.isRunning else { return }
         
-        ReaderModeHandlers.register(server, profile: profile)
-        ErrorPageHelper.register(server, certStore: profile.certStore)
-        SafeBrowsingHandler.register(server)
-        AboutHomeHandler.register(server)
-        AboutLicenseHandler.register(server)
-        SessionRestoreHandler.register(server)
-        BookmarksInterstitialPageHandler.register(server)
-
+        let responders: [(String, InternalSchemeResponse)] =
+            [(AboutHomeHandler.path, AboutHomeHandler()),
+             (AboutLicenseHandler.path, AboutLicenseHandler()),
+             (SessionRestoreHandler.path, SessionRestoreHandler()),
+             (ErrorPageHandler.path, ErrorPageHandler())]
+        responders.forEach { (path, responder) in
+            InternalSchemeHandler.responders[path] = responder
+        }
+        
+        ReaderModeHandlers.register(server, profile: profile) //TODO: PORT TO InternalSchemeHandler
+        SafeBrowsingHandler.register(server) //TODO: REMOVE COMPLETELY!!!
+        BookmarksInterstitialPageHandler.register(server) //TODO: PORT TO InternalSchemeHandler
         // Bug 1223009 was an issue whereby CGDWebserver crashed when moving to a background task
         // catching and handling the error seemed to fix things, but we're not sure why.
         // Either way, not implicitly unwrapping a try is not a great way of doing things

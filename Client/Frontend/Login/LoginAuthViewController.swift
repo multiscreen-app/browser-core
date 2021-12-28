@@ -12,19 +12,12 @@ class LoginAuthViewController: UITableViewController {
         
     // MARK: Lifecycle
     
-    init(requiresAuthentication: Bool = false) {
-        self.requiresAuthentication = requiresAuthentication
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        if requiresAuthentication, Preferences.Privacy.lockWithPasscode.value {
-            askForAuthentication()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,38 +39,9 @@ class LoginAuthViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    // MARK: Internal
-    
-    @discardableResult
-    func askForAuthentication() -> Bool {
-        guard let windowProtection = self.currentScene?.windowProtection else {
-            return false
-        }
-
-        if !windowProtection.isPassCodeAvailable {
-            showSetPasscodeError()
-            return false
-        } else {
-            windowProtection.presentAuthenticationForViewController(determineLockWithPasscode: false)
-            return true
-        }
-    }
-
-    func showSetPasscodeError() {
-        let alert = UIAlertController(
-            title: Strings.Login.loginInfoSetPasscodeAlertTitle,
-            message: Strings.Login.loginInfoSetPasscodeAlertDescription,
-            preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: Strings.OKString, style: .default, handler: nil))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
     // MARK: Private
     
     private var blurredSnapshotView: UIView?
-    private let requiresAuthentication: Bool
 
     @objc private func blurContents() {
         if blurredSnapshotView == nil {

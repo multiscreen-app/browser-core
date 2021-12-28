@@ -6,7 +6,7 @@ import Foundation
 import XCGLogger
 import Shared
 
-private let log = Logger.syncLogger
+private let log = Logger.braveCoreLogger
 
 public typealias Args = [Any?]
 

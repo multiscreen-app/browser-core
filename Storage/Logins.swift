@@ -7,7 +7,7 @@ import WebKit
 import Shared
 import XCGLogger
 
-private var log = Logger.syncLogger
+private var log = Logger.braveCoreLogger
 
 /**
  * LoginData is a wrapper around NSURLCredential and NSURLProtectionSpace to allow us to add extra fields where needed.

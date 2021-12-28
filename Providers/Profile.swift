@@ -17,7 +17,7 @@ import SwiftKeychainWrapper
     import SwiftyJSON
 #endif
 
-private let log = Logger.syncLogger
+private let log = Logger.braveCoreLogger
 
 public let ProfileRemoteTabsSyncDelay: TimeInterval = 0.1
 

@@ -30,7 +30,7 @@ extension BrowserViewController: TopToolbarDelegate {
         
         isTabTrayActive = true
         
-        let vc = TabTrayController(tabManager: tabManager)
+        let vc = TabTrayController(self, tabManager: tabManager)
         vc.delegate = self
 
         if let delegate = browserInstance?.delegate {

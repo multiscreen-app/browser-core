@@ -15,7 +15,9 @@ extension WKWebView {
         let safeUrl = url.absoluteString.replacingOccurrences(of: "'", with: apostropheEncoded)
         evaluateSafeJavaScript(functionName: "location.replace", args: [safeUrl], sandboxed: true, escapeArgs: false, asFunction: true, completion: nil)
         
-        evaluateJavaScript("location.replace('\(safeUrl)')", in: nil, in: .defaultClient, completionHandler: nil) //swiftlint:disable:this safe_javascript
+        if #available(iOS 14.0, *) {
+            evaluateJavaScript("location.replace('\(safeUrl)')", in: nil, in: .defaultClient, completionHandler: nil) //swiftlint:disable:this safe_javascript
+        }
     }
 }
 

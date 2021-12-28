@@ -6,7 +6,7 @@ import Foundation
 import Shared
 import XCGLogger
 
-private let log = Logger.syncLogger
+private let log = Logger.braveCoreLogger
 
 open class SQLiteLogins: BrowserLogins {
 

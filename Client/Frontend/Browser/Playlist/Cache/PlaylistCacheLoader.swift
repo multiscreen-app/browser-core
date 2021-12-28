@@ -399,18 +399,19 @@ class PlaylistWebLoader: UIView {
             $0.edges.equalToSuperview()
         }
         
+        // ms playlist
         // TODO: REFACTOR to support multiple windows better
-        if let browserController = webView.currentScene?.browserViewController {
-            let KVOs: [KVOConstants] = [
-                .estimatedProgress, .loading, .canGoBack,
-                .canGoForward, .URL, .title,
-                .hasOnlySecureContent, .serverTrust
-            ]
-            
-            browserController.tab(tab, didCreateWebView: webView)
-            KVOs.forEach { webView.removeObserver(browserController, forKeyPath: $0.rawValue) }
-            webView.scrollView.removeObserver(browserController.scrollController, forKeyPath: KVOConstants.contentSize.rawValue)
-        }
+//        if let browserController = webView.currentScene?.browserViewController {
+//            let KVOs: [KVOConstants] = [
+//                .estimatedProgress, .loading, .canGoBack,
+//                .canGoForward, .URL, .title,
+//                .hasOnlySecureContent, .serverTrust
+//            ]
+//            
+//            browserController.tab(tab, didCreateWebView: webView)
+//            KVOs.forEach { webView.removeObserver(browserController, forKeyPath: $0.rawValue) }
+//            webView.scrollView.removeObserver(browserController.scrollController, forKeyPath: KVOConstants.contentSize.rawValue)
+//        }
         
         // When creating a tab, TabManager automatically adds a uiDelegate
         // This webView is invisible and we don't want any UI being handled.
@@ -651,23 +652,6 @@ extension PlaylistWebLoader: WKNavigationDelegate {
             }
 
             pendingRequests[url.absoluteString] = navigationAction.request
-            
-            // TODO: Downgrade to 14.5 once api becomes available.
-            if #available(iOS 15, *) {
-                // do nothing, use Apple's https solution.
-            } else {
-                if Preferences.Shields.httpsEverywhere.value,
-                   url.scheme == "http",
-                    let urlHost = url.normalizedHost() {
-                    HttpsEverywhereStats.shared.shouldUpgrade(url) { shouldupgrade in
-                        DispatchQueue.main.async {
-                            if shouldupgrade {
-                                self.pendingHTTPUpgrades[urlHost] = navigationAction.request
-                            }
-                        }
-                    }
-                }
-            }
 
             if
                 let mainDocumentURL = navigationAction.request.mainDocumentURL,
@@ -736,14 +720,15 @@ extension PlaylistWebLoader: WKNavigationDelegate {
             }
         }
         
+        // ms playlist
         // TODO: REFACTOR to support Multiple Windows Better
-        if let browserController = webView.currentScene?.browserViewController {
-            // Check if this response should be handed off to Passbook.
-            if OpenPassBookHelper(request: request, response: response, canShowInWebView: false, forceDownload: false, browserViewController: browserController) != nil {
-                decisionHandler(.cancel)
-                return
-            }
-        }
+//        if let browserController = webView.currentScene?.browserViewController {
+//            // Check if this response should be handed off to Passbook.
+//            if OpenPassBookHelper(request: request, response: response, canShowInWebView: false, forceDownload: false, browserViewController: browserController) != nil {
+//                decisionHandler(.cancel)
+//                return
+//            }
+//        }
         
         if navigationResponse.isForMainFrame {
             if response.mimeType?.isKindOfHTML == false, request != nil {

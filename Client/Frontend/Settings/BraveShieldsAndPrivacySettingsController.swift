@@ -14,7 +14,6 @@ private let log = Logger.browserLogger
 class BraveShieldsAndPrivacySettingsController: TableViewController {
     let profile: Profile
     let tabManager: TabManager
-    let feedDataSource: FeedDataSource
     let historyAPI: BraveHistoryAPI
     
     init(profile: Profile, tabManager: TabManager, historyAPI: BraveHistoryAPI) {
