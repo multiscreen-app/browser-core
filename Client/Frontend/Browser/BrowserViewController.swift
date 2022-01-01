@@ -417,11 +417,12 @@ class BrowserViewController: UIViewController {
     }
     
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        if let delegate = browserInstance?.delegate, !(viewControllerToPresent is UIActivityViewController), !(viewControllerToPresent is UIAlertController) {
-            delegate.displayPopup(viewControllerToPresent, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
-        } else {
-            super.present(viewControllerToPresent, animated: flag, completion: completion)
-        }
+        super.present(viewControllerToPresent, animated: flag, completion: completion)
+//        if let delegate = browserInstance?.delegate, !(viewControllerToPresent is UIActivityViewController), !(viewControllerToPresent is UIAlertController) {
+//            delegate.displayPopup(viewControllerToPresent, configuration: CenterConfiguration(size: .medium), modal: true, dismiss: nil)
+//        } else {
+//            super.present(viewControllerToPresent, animated: flag, completion: completion)
+//        }
     }
 
     @objc func appWillResignActiveNotification() {
@@ -1792,7 +1793,7 @@ extension BrowserViewController: TabDelegate {
         
         tab.addContentScript(FingerprintingProtection(tab: tab), name: FingerprintingProtection.name(), sandboxed: false)
         
-        tab.addContentScript(BraveGetUA(tab: tab), name: BraveGetUA.name(), sandboxed: false)
+        tab.addContentScript(HtmlSelectReplace(tab: tab), name: HtmlSelectReplace.name(), sandboxed: false)
 //        tab.addContentScript(BraveSearchHelper(tab: tab, profile: profile),
 //                             name: BraveSearchHelper.name(), sandboxed: false)
         

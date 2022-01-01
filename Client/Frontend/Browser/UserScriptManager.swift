@@ -285,6 +285,35 @@ class UserScriptManager {
         
         return WKUserScript(source: alteredSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
     }()
+    
+    // MARK: multiscreen scripts
+    private let easydropdown: WKUserScript? = {
+        guard let path = Bundle.embeddedMain.path(forResource: "easydropdown", ofType: "js"),
+              let source = try? String(contentsOfFile: path) else {
+            log.error("Failed to load easydropdown.js")
+            return nil
+        }
+        return WKUserScript(source: source, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+    }()
+    
+    private let easydropdownCss: WKUserScript? = {
+        guard let path = Bundle.embeddedMain.path(forResource: "ivy", ofType: "css"),
+              let cssSource = try? String(contentsOfFile: path) else {
+            log.error("Failed to load ivy.css")
+            return nil
+        }
+        let cssBase64 = UserScriptManager.encodeStringTo64(fromString: cssSource)!
+        let cssStyle = """
+            javascript:(function() {
+            var parent = document.getElementsByTagName('head').item(0);
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = window.atob('\(cssBase64)');
+            parent.appendChild(style)})()
+        """
+        return WKUserScript(source: cssStyle, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+    }()
+    
 
     private func reloadUserScripts() {
         tab?.webView?.configuration.userContentController.do {
@@ -325,6 +354,19 @@ class UserScriptManager {
             if let domainUserScript = domainUserScript, let script = domainUserScript.script {
                 $0.addUserScript(script)
             }
+            
+            // multiscreen scripts
+            if let script = easydropdown {
+                $0.addUserScript(script)
+            }
+            if let script = easydropdownCss {
+                $0.addUserScript(script)
+            }
         }
+    }
+    
+    private static func encodeStringTo64(fromString: String) -> String? {
+        let plainData = fromString.data(using: .utf8)
+        return plainData?.base64EncodedString(options: [])
     }
 }

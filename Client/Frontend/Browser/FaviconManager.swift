@@ -21,7 +21,7 @@ class FaviconManager: TabContentScript {
         self.profile = profile
         self.tab = tab
 
-        if let path = Bundle.main.path(forResource: "Favicons", ofType: "js") {
+        if let path = Bundle.embeddedMain.path(forResource: "Favicons", ofType: "js") {
             if let source = try? String(contentsOfFile: path, encoding: .utf8) {
                 let userScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
                 tab.webView!.configuration.userContentController.addUserScript(userScript)
