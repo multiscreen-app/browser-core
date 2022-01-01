@@ -176,25 +176,6 @@ class UserScriptManager {
         return WKUserScript(source: source, injectionTime: .atDocumentStart, forMainFrameOnly: false)
     }()
     
-    // PaymentRequestUserScript is injected at document start to handle
-    // requests to payment APIs
-    private let PaymentRequestUserScript: WKUserScript? = {
-        guard let path = Bundle.embeddedMain.path(forResource: "PaymentRequest", ofType: "js"), let source = try? String(contentsOfFile: path) else {
-            log.error("Failed to load PaymentRequest.js")
-            return nil
-        }
-        
-        var alteredSource = source
-        
-        alteredSource = alteredSource.replacingOccurrences(of: "$<paymentreq>", with: "PaymentRequest\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<paymentresponse>", with: "PaymentResponse\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<paymentresponsedetails>", with: "PaymentResponseDetails\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<paymentreqcallback>", with: "PaymentRequestCallback\(securityTokenString)", options: .literal)
-        alteredSource = alteredSource.replacingOccurrences(of: "$<handler>", with: "PaymentRequest\(messageHandlerTokenString)", options: .literal)
-        
-        return WKUserScript(source: alteredSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-    }()
-    
     private let resourceDownloadManagerUserScript: WKUserScript? = {
         guard let path = Bundle.embeddedMain.path(forResource: "ResourceDownloader", ofType: "js"), let source = try? String(contentsOfFile: path) else {
             log.error("Failed to load ResourceDownloader.js")

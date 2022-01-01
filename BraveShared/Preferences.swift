@@ -26,27 +26,6 @@ public class Preferences {
 }
 
 extension Preferences {
-    public final class DAU {
-        public static let lastLaunchInfo = Option<[Int?]?>(key: "dau.last-launch-info", default: nil)
-        static let weekOfInstallation = Option<String?>(key: "dau.week-of-installation", default: nil)
-        // On old codebase we checked existence of `dau_stat` to determine whether it's first server ping.
-        // We need to translate that to use the new `firstPingParam` preference.
-        static let firstPingParam: Option<Bool> =
-            Option<Bool>(key: "dau.first-ping", default: Preferences.DAU.lastLaunchInfo.value == nil)
-        /// Date of installation, this preference is removed after 14 days of usage.
-        public static let installationDate = Option<Date?>(key: "dau.installation-date", default: nil)
-    }
-    public final class URP {
-        static let nextCheckDate = Option<TimeInterval?>(key: "urp.next-check-date", default: nil)
-        static let retryCountdown = Option<Int?>(key: "urp.retry-countdown", default: nil)
-        static let customHeaderData = Option<Data?>(key: "urp.custom-header-data", default: nil)
-        static let downloadId = Option<String?>(key: "urp.referral.download-id", default: nil)
-        public static let referralCode = Option<String?>(key: "urp.referral.code", default: nil)
-        static let referralCodeDeleteDate = Option<TimeInterval?>(key: "urp.referral.delete-date", default: nil)
-        /// Whether the ref code lookup has still yet to occur
-        public static let referralLookupOutstanding = Option<Bool?>(key: "urp.referral.lookkup-completed", default: nil)
-    }
-    
     public final class NTP {
         public static let ntpCheckDate = Option<TimeInterval?>(key: "ntp.next-check-date", default: nil)
     }
@@ -208,18 +187,6 @@ extension Preferences {
     }
     
     public class func migrateBraveShared(keyPrefix: String) {
-        // DAU
-        migrate(keyPrefix: keyPrefix, key: "dau_stat", to: Preferences.DAU.lastLaunchInfo)
-        migrate(keyPrefix: keyPrefix, key: "week_of_installation", to: Preferences.DAU.weekOfInstallation)
-        
-        // URP
-        migrate(keyPrefix: keyPrefix, key: "urpDateCheckPrefsKey", to: Preferences.URP.nextCheckDate)
-        migrate(keyPrefix: keyPrefix, key: "urpRetryCountdownPrefsKey", to: Preferences.URP.retryCountdown)
-        migrate(keyPrefix: keyPrefix, key: "CustomHeaderDataPrefs", to: Preferences.URP.customHeaderData)
-        migrate(keyPrefix: keyPrefix, key: "downloadIdPrefsKey", to: Preferences.URP.downloadId)
-        migrate(keyPrefix: keyPrefix, key: "referralCodePrefsKey", to: Preferences.URP.referralCode)
-        migrate(keyPrefix: keyPrefix, key: "referralCodeDeleteTimePrefsKey", to: Preferences.URP.referralCodeDeleteDate)
-        
         // Block Stats
         migrate(keyPrefix: keyPrefix, key: "adblock", to: Preferences.BlockStats.adsCount)
         migrate(keyPrefix: keyPrefix, key: "tracking_protection", to: Preferences.BlockStats.trackersCount)

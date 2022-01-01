@@ -244,7 +244,7 @@ extension BrowserViewController: TopToolbarDelegate {
             url = originalURL
         }
         
-        if url.isLocalUtility {
+        if url.isLocalUtility || InternalURL(url)?.isAboutURL == true || InternalURL(url)?.isAboutHomeURL == true {
             return
         }
         
@@ -545,7 +545,10 @@ extension BrowserViewController: ToolbarDelegate {
     
     func tabToolbarDidPressMenu(_ tabToolbar: ToolbarProtocol) {
         let selectedTabURL: URL? = {
-            guard let url = tabManager.selectedTab?.url, !url.isLocal || url.isReaderModeURL else { return nil }
+            guard let url = tabManager.selectedTab?.url else { return nil }
+            
+            if (InternalURL.isValid(url: url) || url.isLocal) && !url.isReaderModeURL { return nil }
+            
             return url
         }()
         var activities: [UIActivity] = []

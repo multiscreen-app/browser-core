@@ -278,16 +278,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         // that is an iOS bug or not.
         AutocompleteTextField.appearance().semanticContentAttribute = .forceLeftToRight
         
-        let isFirstLaunch = Preferences.General.isFirstLaunch.value
-        if Preferences.General.basicOnboardingCompleted.value == OnboardingState.undetermined.rawValue {
-            Preferences.General.basicOnboardingCompleted.value =
-                isFirstLaunch ? OnboardingState.unseen.rawValue : OnboardingState.completed.rawValue
-        }
         Preferences.General.isFirstLaunch.value = false
         Preferences.Review.launchCount.value += 1
-        
-        browserViewController.shouldShowIntroScreen =
-            DefaultBrowserIntroManager.prepareAndShowIfNeeded(isNewUser: isFirstLaunch)
         
         // Search engine setup must be checked outside of 'firstLaunch' loop because of #2770.
         // There was a bug that when you skipped onboarding, default search engine preference
@@ -299,10 +291,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         // Migration of Yahoo Search Engines
         if !Preferences.Search.yahooEngineMigrationCompleted.value {
             profile?.searchEngines.migrateDefaultYahooSearchEngines()
-        }
-        
-        if isFirstLaunch {
-            Preferences.DAU.installationDate.value = Date()
         }
         
         AdblockResourceDownloader.shared.startLoading()

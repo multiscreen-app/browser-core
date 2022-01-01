@@ -170,9 +170,6 @@ class BrowserViewController: UIViewController {
     /// Boolean tracking  if Tab Tray is active on the screen
     /// Used to determine If pop-over should be presented
     var isTabTrayActive = false
-        
-    /// Boolean Tracking NTP Education should be loaded after onboarding of user
-    var shouldShowNTPEducation = false
 
     /// Data Source object used to determine blocking stats
     // let benchmarkBlockingDataSource = BlockingSummaryDataSource()
@@ -803,15 +800,6 @@ class BrowserViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-
-        presentOnboardingIntro() { [weak self] in
-            self?.shouldShowNTPEducation = true
-        }
-        
-        if #available(*, iOS 14) {
-            presentDefaultBrowserIntroScreen()
-        }
-        
         screenshotHelper.viewIsVisible = true
         screenshotHelper.takePendingScreenshots(tabManager.allTabs)
 

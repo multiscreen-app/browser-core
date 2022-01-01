@@ -225,11 +225,6 @@ open class EmbeddedClient {
         // that is an iOS bug or not.
         AutocompleteTextField.appearance().semanticContentAttribute = .forceLeftToRight
         
-        let isFirstLaunch = Preferences.General.isFirstLaunch.value
-        if Preferences.General.basicOnboardingCompleted.value == OnboardingState.undetermined.rawValue {
-            Preferences.General.basicOnboardingCompleted.value =
-                isFirstLaunch ? OnboardingState.unseen.rawValue : OnboardingState.completed.rawValue
-        }
         Preferences.General.isFirstLaunch.value = false
         Preferences.Review.launchCount.value += 1
             
@@ -243,10 +238,6 @@ open class EmbeddedClient {
         // Migration of Yahoo Search Engines
         if !Preferences.Search.yahooEngineMigrationCompleted.value {
             profile?.searchEngines.migrateDefaultYahooSearchEngines()
-        }
-        
-        if isFirstLaunch {
-            Preferences.DAU.installationDate.value = Date()
         }
         
         AdblockResourceDownloader.shared.startLoading()

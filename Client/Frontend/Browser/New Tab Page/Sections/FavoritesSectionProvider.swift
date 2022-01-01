@@ -56,7 +56,7 @@ class FavoritesSectionProvider: NSObject, NTPObservableSectionProvider {
         /// 1. icon size minimum
         /// 2. trait collection
         /// 3. orientation ("is landscape")
-        let icons = (min: 4, max: 6)
+        let icons = (min: 2, max: 12)
         let defaultWidth: CGFloat = defaultIconSize.width
         let fittingNumber: Int
         
@@ -86,7 +86,7 @@ class FavoritesSectionProvider: NSObject, NTPObservableSectionProvider {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let fetchedCount = frc.fetchedObjects?.count ?? 0
-        return min(fetchedCount, Self.numberOfItems(in: collectionView, availableWidth: fittingSizeForCollectionView(collectionView, section: section).width))
+        return fetchedCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -119,7 +119,7 @@ class FavoritesSectionProvider: NSObject, NTPObservableSectionProvider {
         if minWidth < size.width {
             // If the default icon size is too large, make it slightly smaller
             // to fit at least 4 icons
-            size = CGSize(width: floor(width / 4.0), height: FavoriteCell.height(forWidth: floor(width / 4.0)))
+            size = CGSize(width: floor(width / 2.0), height: FavoriteCell.height(forWidth: floor(width / 2.0)))
         } else if collectionView.traitCollection.horizontalSizeClass == .regular {
             // If we're on regular horizontal size class and the computed size
             // of the icon is larger than `largerIconSize`, use `largerIconSize`
@@ -135,10 +135,7 @@ class FavoritesSectionProvider: NSObject, NTPObservableSectionProvider {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let isLandscape = collectionView.frame.width > collectionView.frame.height
-        // Adjust the left-side padding a bit for portrait iPad
-        let inset = isLandscape ? 40 : collectionView.readableContentGuide.layoutFrame.origin.x
-        return UIEdgeInsets(top: 40, left: inset, bottom: 6, right: inset)
+        return UIEdgeInsets(top: 40, left: 40, bottom: 6, right: 40)
     }
         
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

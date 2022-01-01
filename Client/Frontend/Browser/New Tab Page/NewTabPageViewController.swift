@@ -38,7 +38,7 @@ protocol NTPSectionProvider: NSObject, UICollectionViewDelegateFlowLayout & UICo
 }
 
 extension NTPSectionProvider {
-    var landscapeBehavior: NTPLandscapeSizingBehavior { .halfWidth }
+    var landscapeBehavior: NTPLandscapeSizingBehavior { .fullWidth }
     /// The bounding size for auto-sizing cells, bound to the maximum available
     /// width in the collection view, taking into account safe area insets and
     /// insets for that given section
@@ -119,9 +119,9 @@ class NewTabPageViewController: UIViewController {
             }, legacyLongPressAction: { [weak self] alertController in
                 self?.present(alertController, animated: true)
             }),
-            FavoritesOverflowSectionProvider(action: { [weak self] in
-                self?.delegate?.focusURLBar()
-            })
+//            FavoritesOverflowSectionProvider(action: { [weak self] in
+//                self?.delegate?.focusURLBar()
+//            })
         ]
       
         // This is a one-off view, adding it to the NTP only if necessary.
